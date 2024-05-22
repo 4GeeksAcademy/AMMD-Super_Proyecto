@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import Jumbotron from "../component/jumbotron";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import CarruselClientes from "../component/carruselClientes";
 import "../../styles/home.css";
+import CarruselProfesionales from "../component/carruselProfesionales";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<Jumbotron />
+		<>
+			<Jumbotron />
+			<br></br>
+			<CarruselClientes />
+			<br></br>
+			<CarruselProfesionales />
+		</>
 	);
 };
