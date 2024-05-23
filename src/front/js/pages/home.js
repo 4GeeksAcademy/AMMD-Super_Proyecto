@@ -4,6 +4,7 @@ import Jumbotron from "../component/jumbotron";
 import CarruselClientes from "../component/carruselClientes";
 import "../../styles/home.css";
 import CarruselProfesionales from "../component/carruselProfesionales";
+import Noticias from "../component/noticias";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -15,6 +16,8 @@ export const Home = () => {
 			<CarruselClientes />
 			<br></br>
 			<CarruselProfesionales />
+			<br></br>
+			<Noticias />
 		</>
 	);
 };
