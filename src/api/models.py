@@ -39,8 +39,7 @@ class User(db.Model):
             "nombre": self.nombre,
             "apellidos": self.apellidos,
             "nombre_usuario": self.nombre_usuario,
-            "email": self.email,
-            "password": self.password,
+            "email": self.email,           
             "telefono": self.telefono,
             "dni": self.dni,
             "localizacion":self.localización,
@@ -66,7 +65,7 @@ class User(db.Model):
 class Chat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fecha_creacion = db.Column(db.DateTime, unique = False, nullable = False) #En vez de dateStamp he puesto DateTime porque sino daba error
-    texto = db.Column(db.String(400), unique = False, nullable = True)
+    texto = db.Column(db.String(800), unique = False, nullable = True)
     usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) #es una fk que enlaza con nombre de usuario, para identificar a los participantes
     #He añadido los datos dentro de db.Columns de usuario_id
 
