@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import Buscador from "../component/buscador";
 import Jumbotron from "../component/jumbotron";
 import CarruselClientes from "../component/carruselClientes";
 import "../../styles/home.css";
@@ -11,6 +12,7 @@ export const Home = () => {
 
 	return (
 		<>
+			<Buscador />
 			<Jumbotron />
 			<br></br>
 			<CarruselClientes />

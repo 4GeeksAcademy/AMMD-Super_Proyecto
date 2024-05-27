@@ -3,7 +3,7 @@ import React from 'react';
 const CarruselProfesionales = () => {
     return (
         <>
-            <h2  style={{ margin: '0 auto', textAlign: 'center', maxWidth: '800px' }}>Únete a nuestro equipo y comparte tu pasión culinaria con el mundo.</h2>
+            <h2  style={{ margin: '0 auto 20px', textAlign: 'center', maxWidth: '1200px' }}>Únete a nuestro equipo y comparte tu pasión culinaria con el mundo.</h2>
             <div id="carruselProfesionales" className="carousel slide" data-bs-ride="carousel" style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carruselProfesionales" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>

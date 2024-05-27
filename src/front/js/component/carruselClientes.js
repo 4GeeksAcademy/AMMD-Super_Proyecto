@@ -3,7 +3,9 @@ import React from 'react';
 const CarruselClientes = () => {
     return (
         <>
-            <h2  style={{ margin: '0 auto', textAlign: 'center', maxWidth: '800px' }}>Llevamos experiencias gastronómicas excepcionales al lugar que tu elijas.</h2>
+            <h2 style={{ margin: '0 auto 20px', textAlign: 'center', maxWidth: '1200px' }}>
+                Llevamos experiencias gastronómicas excepcionales al lugar que tu elijas.
+            </h2>
             <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
