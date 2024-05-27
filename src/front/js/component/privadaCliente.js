@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PrivadaCliente() {
+const PrivadaCliente = () => {
 
   return (
     <div>

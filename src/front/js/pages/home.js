@@ -6,6 +6,7 @@ import CarruselClientes from "../component/carruselClientes";
 import "../../styles/home.css";
 import CarruselProfesionales from "../component/carruselProfesionales";
 import Noticias from "../component/noticias";
+import FormularioRegistro from "./formularioregistro";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -20,6 +21,7 @@ export const Home = () => {
 			<CarruselProfesionales />
 			<br></br>
 			<Noticias />
+			
 		</>
 	);
 };

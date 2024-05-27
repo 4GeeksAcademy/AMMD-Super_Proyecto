@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
+
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
@@ -10,6 +11,11 @@ import injectContext from "./store/appContext";
 
 import Navbar from "./component/navbar";
 import { Footer } from "./component/footer";
+import FormularioRegistro from "./pages/formularioregistro";
+import { VistaPrivadaProfesional } from "./pages/vistaprivadaprofesional";
+import { VistaInicioSesionProfesional } from "./pages/vistainicioprofesional";
+import { VistaInicioSesionCliente } from "./pages/vistainiciosesioncliente";
+import { VistaPrivadaCliente } from "./pages/vistaprivadacliente";
 
 //create your first component
 const Layout = () => {
@@ -26,6 +32,11 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<FormularioRegistro />} path="/formularioregistro" />
+                        <Route element={<VistaInicioSesionCliente />} path="/iniciosesioncliente" />
+                        <Route element={<VistaInicioSesionProfesional/>} path="/sesionprivadaprofesional" />
+                        <Route element={<VistaPrivadaCliente />} path="/privadacliente" />
+                        <Route element={<VistaPrivadaProfesional />} path="/privadaprofesional" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
