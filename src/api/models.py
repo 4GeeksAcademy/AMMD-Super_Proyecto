@@ -7,7 +7,6 @@ class Profesional(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(15), unique=False, nullable=True)
     apellidos = db.Column(db.String(15), unique=False, nullable=True)
-    nombre_usuario = db.Column(db.String(15), unique=True, nullable=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(20), unique=False, nullable=False)
     telefono = db.Column(db.String(12), unique=True, nullable=True)
@@ -32,7 +31,6 @@ class Profesional(db.Model):
             "id": self.id,
             "nombre": self.nombre,
             "apellidos": self.apellidos,
-            "nombre_usuario": self.nombre_usuario,
             "email": self.email,
             "telefono": self.telefono,
             "localizacion": self.localizacion,
@@ -45,7 +43,7 @@ class Profesional(db.Model):
             "tipo_servicio_sumiller": self.tipo_servicio_sumiller,
             "tipo_servicio_pastelero": self.tipo_servicio_pastelero,
             "tipo_servicio_barman": self.tipo_servicio_barman,
-            "servicio_clase_pasteleria": self.servicio_clase_pasteleria,
+            "servicio_pasteleria": self.servicio_pasteleria,
             "is_active": self.is_active
         }
 
@@ -73,7 +71,6 @@ class User(db.Model):
             "id": self.id,
             "nombre": self.nombre,
             "apellidos": self.apellidos,
-            "nombre_usuario": self.nombre_usuario,
             "email": self.email,
             "telefono": self.telefono,
             "localizacion": self.localizacion,

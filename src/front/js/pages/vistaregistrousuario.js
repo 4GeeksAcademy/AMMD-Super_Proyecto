@@ -1,19 +1,19 @@
 
 import React, { useContext } from "react";
-import Registro from "../component/registro";
+import RegistroUsuario from "../component/registroUsuario";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
-const FormularioRegistro = () => {
+const VistaRegistroUsuario = () => {
 
         const { store, actions } = useContext(Context);
 
     return (
         <div className="container">
             <h1>Formulario</h1>
-            <Registro />
+            <RegistroUsuario />
         </div>
     );
 }
 
-export default FormularioRegistro;
+export default VistaRegistroUsuario;

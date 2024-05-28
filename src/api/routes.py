@@ -14,20 +14,54 @@ CORS(api)
 # This should be implemented as a proper storage (e.g., a database or an in-memory store like Redis)
 revoked_tokens = set()
 
+@api.route('/usuarios', methods=['GET'])
+def get_usuarios():
+    # Obtener todos los usuarios de la base de datos
+    usuarios = User.query.all()
+    # Convertir los objetos de usuario a un formato serializable
+    usuarios_serializados = [user.serialize() for user in usuarios]
+    return jsonify({"results": usuarios_serializados}), 200
+
+@api.route('/profesionales', methods=['GET'])
+def get_profesionales():
+    # Obtener todos los usuarios de la base de datos
+    profesionales = Profesional.query.all()
+    # Convertir los objetos de usuario a un formato serializable
+    profesionales_serializados = [profesional.serialize() for profesional in profesionales]
+    return jsonify({"results": profesionales_serializados}), 200
+
+@api.route('/usuario/<int:user_id>', methods=['GET'])
+def get_usuario(user_id):
+    # Obtener el usuario de la base de datos por su ID
+    usuario = User.query.get_or_404(user_id)
+    # Convertir el objeto de usuario a un formato serializable
+    usuario_serializado = usuario.serialize()
+    return jsonify(usuario_serializado), 200
+
+@api.route('/profesional/<int:profesional_id>', methods=['GET'])
+def get_profesional(profesional_id):
+    # Obtener el usuario de la base de datos por su ID
+    profesional = Profesional.query.get_or_404(profesional_id)
+    # Convertir el objeto de usuario a un formato serializable
+    profesional_serializado = profesional.serialize()
+    return jsonify(profesional_serializado), 200
+
 #ruta crear usuario
 @api.route('/crearusuario', methods=['POST'])
 def crear_usuario():
     data = request.get_json()
+    nombre = data.get("nombre")
     email = data.get("email")
     password = data.get("password")
     
-    if not email or not password:
+    if not nombre or not email or not password:
         return jsonify({"msg": "Correo y contraseña son requeridos"}), 400
 
     if User.query.filter_by(email=email).first():
         return jsonify({"msg": "Este correo electrónico ya está registrado"}), 400
 
     user_new = User(
+        nombre=nombre,
         email=email,
         password=password
     )
@@ -38,16 +72,18 @@ def crear_usuario():
 @api.route('/crearprofesional', methods=['POST'])
 def crear_profesional():
     data = request.get_json()
+    nombre = data.get("nombre")
     email = data.get("email")
     password = data.get("password")
 
-    if not email or not password:
+    if not nombre or not email or not password:
         return jsonify({"msg": "Correo y contraseña son requeridos"}), 400
 
     if Profesional.query.filter_by(email=email).first():
         return jsonify({"msg": "Este correo electrónico ya está registrado"}), 400
 
     profesional_new = Profesional(
+        nombre=nombre,
         email=email,
         password=password
     )

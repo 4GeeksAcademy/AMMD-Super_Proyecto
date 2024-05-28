@@ -6,7 +6,7 @@ import CarruselClientes from "../component/carruselClientes";
 import "../../styles/home.css";
 import CarruselProfesionales from "../component/carruselProfesionales";
 import Noticias from "../component/noticias";
-import FormularioRegistro from "./formularioregistro";
+import FormularioRegistro from "./vistaregistrousuario";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);

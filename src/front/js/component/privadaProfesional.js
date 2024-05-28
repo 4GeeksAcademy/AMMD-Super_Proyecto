@@ -15,20 +15,20 @@ function PrivadaProfesional() {
             />
           </div>
           <div className="col">
-            <h3>Hola {nombre} !!!</h3>
+            <h3>Hola !!!</h3>
             <button type="button" className="btn btn-primary">ACTUALIZAR</button>
             <button type="button" className="btn btn-secondary">CERRAR</button>
             <button type="button" className="btn btn-success">ELIMINAR</button>
             <br />
-            <p>Nombre {nombre}</p>
-            <p>Apellido {apellido}</p>
-            <p>Email {email}</p>
-            <p>DNI {dni}</p>
-            <p>Contraseña {contraseña}</p>
-            <p>Pais {pais}</p>
-            <p>Población {poblacion}</p>
-            <p>Código Postal {codigoPostal}</p>
-            <p>Dirección {direccion}</p>
+            <p>Nombre </p>
+            <p>Apellido </p>
+            <p>Email </p>
+            <p>DNI </p>
+            <p>Contraseña </p>
+            <p>Pais </p>
+            <p>Población </p>
+            <p>Código Postal </p>
+            <p>Dirección </p>
           </div>
         </div>
       </div>

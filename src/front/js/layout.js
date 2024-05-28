@@ -11,11 +11,13 @@ import injectContext from "./store/appContext";
 
 import Navbar from "./component/navbar";
 import { Footer } from "./component/footer";
-import FormularioRegistro from "./pages/formularioregistro";
 import { VistaPrivadaProfesional } from "./pages/vistaprivadaprofesional";
 import { VistaInicioSesionProfesional } from "./pages/vistainicioprofesional";
 import { VistaInicioSesionCliente } from "./pages/vistainiciosesioncliente";
 import { VistaPrivadaCliente } from "./pages/vistaprivadacliente";
+import VistaRegistroUsuario from "./pages/vistaregistrousuario";
+import VistaRegistroProfesional from "./pages/vistaregistroprofesional";
+
 
 //create your first component
 const Layout = () => {
@@ -32,9 +34,10 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<FormularioRegistro />} path="/formularioregistro" />
+                        <Route element={<VistaRegistroUsuario />} path="/registrousuario" />
+                        <Route element={<VistaRegistroProfesional />} path="/registroprofesional" />
                         <Route element={<VistaInicioSesionCliente />} path="/iniciosesioncliente" />
-                        <Route element={<VistaInicioSesionProfesional/>} path="/sesionprivadaprofesional" />
+                        <Route element={<VistaInicioSesionProfesional/>} path="/iniciosesionprofesional" />
                         <Route element={<VistaPrivadaCliente />} path="/privadacliente" />
                         <Route element={<VistaPrivadaProfesional />} path="/privadaprofesional" />
                         <Route element={<Demo />} path="/demo" />
