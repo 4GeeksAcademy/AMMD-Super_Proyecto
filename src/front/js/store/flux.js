@@ -4,7 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			usuarios: [],
 			profesionales: [],
 			usuarioSeleccionado: [],
-			profesionalSeleccionado: []
+			profesionalSeleccionado: [],
+			token: null
 		},
 		actions: {
 			// Use getActions to call a function within a function
@@ -32,12 +33,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ profesionalSeleccionado: data.results }))
 					.catch(err => console.error("Error al cargar profesional:", err));
 			},
-			// COMPROBAR ESTE FETCH
 			crearUsuario: (usuario) => {
 				const requestOptions = {
 					method: "POST",
 					headers: {
-						"Content-Type": "aplication/json"
+						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(usuario),
 					redirect: "follow"
@@ -47,12 +47,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((result) => console.log(result))
 					.catch((error) => console.error("Error al crear usuario:", error));
 			},
-			// COMPROBAR ESTE FETCH
 			crearProfesional: (profesional) => {
 				const requestOptions = {
 					method: "POST",
 					headers: {
-						"Content-Type": "aplication/json"
+						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(profesional),
 					redirect: "follow"
@@ -62,6 +61,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((result) => console.log(result))
 					.catch((error) => console.error("Error al crear profesional:", error));
 			},
+			iniciarSesionUsuario: (email, password) => {
+				const requestOptions = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({ email, password }),
+					redirect: "follow"
+				};
+
+				fetch("https://obscure-disco-4jjqqxj49vrghj5gv-3001.app.github.dev/api/iniciarsesionusuario", requestOptions)
+					.then((response) => {
+						if (!response.ok) {
+							throw new Error(`HTTP error! Status: ${response.status}`);
+						}
+						return response.json();
+					})
+					.then((data) => {
+						setStore({ token: data.token });
+						// Opcional: Puedes guardar también el user_id si lo necesitas
+						// setStore({ user_id: data.user_id });
+					})
+					.catch((error) => {
+						console.error("Error al iniciar sesión:", error);
+					});
+			},
+			
 
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

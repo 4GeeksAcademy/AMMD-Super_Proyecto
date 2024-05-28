@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, JWTManager, get_jwt_identity, jwt_required, get_jwt
@@ -15,7 +14,7 @@ CORS(api)
 revoked_tokens = set()
 
 @api.route('/usuarios', methods=['GET'])
-def get_usuarios():
+def cargar_usuarios():
     # Obtener todos los usuarios de la base de datos
     usuarios = User.query.all()
     # Convertir los objetos de usuario a un formato serializable
@@ -23,7 +22,7 @@ def get_usuarios():
     return jsonify({"results": usuarios_serializados}), 200
 
 @api.route('/profesionales', methods=['GET'])
-def get_profesionales():
+def cargar_profesionales():
     # Obtener todos los usuarios de la base de datos
     profesionales = Profesional.query.all()
     # Convertir los objetos de usuario a un formato serializable
@@ -31,7 +30,7 @@ def get_profesionales():
     return jsonify({"results": profesionales_serializados}), 200
 
 @api.route('/usuario/<int:user_id>', methods=['GET'])
-def get_usuario(user_id):
+def cargar_usuario(user_id):
     # Obtener el usuario de la base de datos por su ID
     usuario = User.query.get_or_404(user_id)
     # Convertir el objeto de usuario a un formato serializable
@@ -39,7 +38,7 @@ def get_usuario(user_id):
     return jsonify(usuario_serializado), 200
 
 @api.route('/profesional/<int:profesional_id>', methods=['GET'])
-def get_profesional(profesional_id):
+def cargar_profesional(profesional_id):
     # Obtener el usuario de la base de datos por su ID
     profesional = Profesional.query.get_or_404(profesional_id)
     # Convertir el objeto de usuario a un formato serializable
