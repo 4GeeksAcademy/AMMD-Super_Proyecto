@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const InicioSesionCliente = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,13 +64,18 @@ const InicioSesionCliente = () => {
             <p className="mb-0">Regístrate haciendo click</p>
           </div>
           <div className="col-auto">
-            <button className="btn btn-primary">Aquí</button>
+            <button 
+              className="btn btn-primary"
+              onClick={() => navigate(`/registrousuario`)}
+            >
+              Aquí
+            </button>
           </div>
         </div>
       </div>
       <div className="container row row-cols-1 row-cols-md-2 g-4 mt-4">
         <h2>¿Qué te apetece?</h2>
-        <div className="col">
+        <div className="col-6">
           <div className="card">
             <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
             <div className="card-body">
@@ -76,7 +84,7 @@ const InicioSesionCliente = () => {
             </div>
           </div>
         </div>
-        <div className="col">
+        <div className="col-6">
           <div className="card">
             <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
             <div className="card-body">
@@ -85,7 +93,7 @@ const InicioSesionCliente = () => {
             </div>
           </div>
         </div>
-        <div className="col">
+        <div className="col-6">
           <div className="card">
             <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
             <div className="card-body">
@@ -94,7 +102,7 @@ const InicioSesionCliente = () => {
             </div>
           </div>
         </div>
-        <div className="col">
+        <div className="col-6">
           <div className="card">
             <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
             <div className="card-body">

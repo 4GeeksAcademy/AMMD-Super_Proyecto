@@ -1,39 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
-function InicioSesionProfesional() {
+const InicioSesionProfesional = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setError('Por favor, introduce un email y una contraseña válidos.');
+      return;
+    }
+    // Para ver en la consola que ha funcionado
+    console.log(`Inicio de sesión: Email - ${email}, Contraseña - ${password}`);
+    // Limpiar los campos después del inicio de sesión
+    setEmail('');
+    setPassword('');
+    setError(null);
+  };
+
   return (
     <div className="container">
-      <form>
-        <fieldset disabled>
+      <form onSubmit={handleSubmit}>
+        <fieldset>
           <legend>¿QUIERES ECHARLE UN OJO A NUESTRA WEB?</legend>
           <div className="mb-3">
-            <label htmlFor="disabledTextInput1" className="form-label">Inicio Sesión</label>
-            <input type="text" id="disabledTextInput1" className="form-control" placeholder="Email" />
+            <label htmlFor="emailInput" className="form-label">Inicio Sesión</label>
+            <input
+              type="text"
+              id="emailInput"
+              className="form-control"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="mb-3">
-            <label htmlFor="disabledTextInput2" className="form-label"></label>
-            <input type="text" id="disabledTextInput2" className="form-control" placeholder="Contraseña" />
+            <label htmlFor="passwordInput" className="form-label">Contraseña</label>
+            <input
+              type="password"
+              id="passwordInput"
+              className="form-control"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
-          <div className="mb-3">
-            <h4>¿No tienes cuenta y quieres contratar un servicio?</h4>
+          <div className="col-auto">
+                <button type="submit" className="btn btn-primary">Iniciar sesión</button>
           </div>
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-auto">
-                <p className="mb-0">Regístrate haciendo click</p>
-              </div>
-              <div className="col-auto">
-                <button type="submit" className="btn btn-primary">Aquí</button>
-              </div>
-            </div>
-          </div>
+          {error && <div className="alert alert-danger mt-3">{error}</div>}
         </fieldset>
       </form>
-
-      <div className="container row row-cols-1 row-cols-md-2 g-4">
+      <div className="mb-3">
+        <h4>¿No tienes cuenta y quieres contratar un servicio?</h4>
+      </div>
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-auto">
+            <p className="mb-0">Regístrate haciendo click</p>
+          </div>
+          <div className="col-auto">
+            <button 
+              className="btn btn-primary"
+              onClick={() => navigate(`/registroprofesional`)}
+            >
+              Aquí
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="container row row-cols-1 row-cols-md-2 g-4 mt-4">
         <h2>¿Qué te apetece?</h2>
-        <br />
-        <div className="col">
+        <div className="col-6">
           <div className="card">
             <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
             <div className="card-body">
@@ -42,7 +84,7 @@ function InicioSesionProfesional() {
             </div>
           </div>
         </div>
-        <div className="col">
+        <div className="col-6">
           <div className="card">
             <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
             <div className="card-body">
@@ -51,7 +93,7 @@ function InicioSesionProfesional() {
             </div>
           </div>
         </div>
-        <div className="col">
+        <div className="col-6">
           <div className="card">
             <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
             <div className="card-body">
@@ -60,7 +102,7 @@ function InicioSesionProfesional() {
             </div>
           </div>
         </div>
-        <div className="col">
+        <div className="col-6">
           <div className="card">
             <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
             <div className="card-body">
@@ -71,9 +113,8 @@ function InicioSesionProfesional() {
         </div>
       </div>
 
-      <div className="container accordion" id="accordionExample">
+      <div className="accordion mt-4" id="accordionExample">
         <h2>PREGUNTAS FRECUENTES</h2>
-        <br />
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
