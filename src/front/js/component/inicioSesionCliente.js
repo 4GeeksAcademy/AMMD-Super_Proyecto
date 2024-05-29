@@ -77,41 +77,41 @@ const InicioSesionCliente = () => {
           </div>
         </div>
       </div>
+      <h2>¿Qué te apetece?</h2>
       <div className="container row row-cols-1 row-cols-md-2 g-4 mt-4">
-        <h2>¿Qué te apetece?</h2>
         <div className="col-6">
           <div className="card">
-            <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
+            <img src="https://images.pexels.com/photos/8942304/pexels-photo-8942304.jpeg" className="card-img-top" alt="..." />
             <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 className="card-title">Un Barman en tu sitio favorito</h5>
+              <p className="card-text">Transforma tu hogar en un bar exclusivo con nuestro servicio de barman a domicilio. Ideal para fiestas y eventos, nuestros mixólogos profesionales preparan cócteles personalizados, garantizando una experiencia única y memorable para ti y tus invitados. ¡Disfruta de una noche excepcional sin salir de casa!</p>
             </div>
           </div>
         </div>
         <div className="col-6">
           <div className="card">
-            <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
+            <img src="https://images.pexels.com/photos/7525182/pexels-photo-7525182.jpeg" className="card-img-top" alt="..." />
             <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 className="card-title">Clases de Pastelería en casa</h5>
+              <p className="card-text">Descubre el arte de la pastelería desde la comodidad de tu hogar con nuestras clases personalizadas. Aprende técnicas profesionales y recetas deliciosas de la mano de expertos pasteleros. Ideal para todas las edades y niveles, convierte tu cocina en un taller de dulces creaciones. ¡Reserva ahora!</p>
             </div>
           </div>
         </div>
         <div className="col-6">
           <div className="card">
-            <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
+            <img src="https://images.pexels.com/photos/8775093/pexels-photo-8775093.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className="card-img-top" alt="..." />
             <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+              <h5 className="card-title">Catas personalizadas</h5>
+              <p className="card-text">Disfruta de una experiencia única con nuestras clases de catas de vino personalizadas en casa. Guiado por expertos sommeliers, aprenderás a apreciar y distinguir distintos vinos, sus aromas y sabores. Perfecto para cualquier ocasión, convierte tu hogar en una bodega exclusiva. ¡Reserva tu cata hoy!</p>
             </div>
           </div>
         </div>
         <div className="col-6">
           <div className="card">
-            <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
+            <img src="https://images.pexels.com/photos/5908216/pexels-photo-5908216.jpeg" className="card-img-top" alt="..." />
             <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 className="card-title">Abre las puertas de tu cocina a nuestros chefs</h5>
+              <p className="card-text">Transforma tu cocina en un restaurante de alta cocina invitando a un chef profesional a tu hogar. Disfruta de menús personalizados, técnicas culinarias avanzadas y platos exquisitos sin salir de casa. Eleva tus cenas y eventos especiales con una experiencia gastronómica única. ¡Reserva ahora!</p>
             </div>
           </div>
         </div>

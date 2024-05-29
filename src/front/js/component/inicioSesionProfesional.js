@@ -59,7 +59,7 @@ const InicioSesionProfesional = () => {
         </fieldset>
       </form>
       <div className="mb-3">
-        <h4 style={{marginBottom: '20px'}}>¿No tienes cuenta y quieres contratar un servicio?</h4>
+        <h4 style={{marginBottom: '20px'}}>¿No tienes cuenta y quieres formar parte de nuestro equipo?</h4>
       </div>
       <div className="container" style={{marginBottom: '40px'}}>
         <div className="row align-items-center">
@@ -77,41 +77,41 @@ const InicioSesionProfesional = () => {
           </div>
         </div>
       </div>
+      <h2>¿Por qué trabajar con nosotros?</h2>
       <div className="container row row-cols-1 row-cols-md-2 g-4 mt-4">
-        <h2>¿Qué te apetece?</h2>
         <div className="col-6">
           <div className="card">
-            <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
+            <img src="https://images.pexels.com/photos/2923156/pexels-photo-2923156.jpeg" className="card-img-top" alt="..." />
             <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 className="card-title">Libertad laboral</h5>
+              <p className="card-text">Descubre la libertad laboral con nuestros servicios de cocina a domicilio. Donde os contratan como chefs profesionales y podrás preparar comidas en sus hogares, adaptándose a tu horario y preferencias. Olvídate de cocinar y disfruta de más tiempo libre. ¡Sabor y comodidad garantizados!</p>
             </div>
           </div>
         </div>
         <div className="col-6">
           <div className="card">
-            <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
+            <img src="https://images.pexels.com/photos/4349791/pexels-photo-4349791.jpeg" className="card-img-top" alt="..." />
             <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 className="card-title">Rompe tu rutina laboral</h5>
+              <p className="card-text">Ofrecemos una oportunidad única para chefs profesionales. Rompe la rutina laboral y únete a nuestro equipo de servicios de cocina a domicilio. Prepárate para deleitar a clientes con tus habilidades culinarias en un entorno flexible y gratificante. ¡Haz que cada comida sea una experiencia memorable!</p>
             </div>
           </div>
         </div>
         <div className="col-6">
           <div className="card">
-            <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
+            <img src="https://images.pexels.com/photos/4253320/pexels-photo-4253320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className="card-img-top" alt="..." />
             <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+              <h5 className="card-title">Pasión por la gastronomía</h5>
+              <p className="card-text">Ofrecemos experiencias culinarias exclusivas en sitios privados, donde los chefs pueden desplegar su creatividad en un entorno íntimo y personalizado. Únete a nosotros y comparte tu talento con clientes que valoran la alta cocina y la dedicación que pones en cada plato. ¡Haz de cada comida una obra maestra!</p>
             </div>
           </div>
         </div>
         <div className="col-6">
           <div className="card">
-            <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
+            <img src="https://images.pexels.com/photos/2814829/pexels-photo-2814829.jpeg" className="card-img-top" alt="..." />
             <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 className="card-title">La maestría del jamon</h5>
+              <p className="card-text">Buscamos cortadores de jamón expertos para unirse a nuestra plataforma. Comparte tu habilidad y maestría con una audiencia que aprecia la excelencia. Ofrecemos visibilidad, oportunidades de crecimiento y una comunidad exclusiva que valora tu arte. ¡Únete a nosotros y eleva tu carrera al siguiente nivel!</p>
             </div>
           </div>
         </div>
