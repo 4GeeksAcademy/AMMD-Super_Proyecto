@@ -1,3 +1,5 @@
+require('dotenv').config();
+const BASE_URL = process.env.BACKEND_URL;
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -5,30 +7,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 			profesionales: [],
 			usuarioSeleccionado: [],
 			profesionalSeleccionado: [],
-			token: null
+			token: null,
 		},
 		actions: {
 			// Use getActions to call a function within a function
 			cargarUsuarios: () => {
-				fetch("https://obscure-disco-4jjqqxj49vrghj5gv-3001.app.github.dev/api/usuarios")
+				fetch(BASE_URL+"/api/usuarios")
 					.then(res => res.json())
 					.then(data => setStore({ usuarios: data.results }))
 					.catch(err => console.error("Error al cargar usuarios:", err));
 			},
 			cargarProfesionales: () => {
-				fetch("https://obscure-disco-4jjqqxj49vrghj5gv-3001.app.github.dev/api/profesionales")
+				fetch(BASE_URL+"/api/profesionales")
 					.then(res => res.json())
 					.then(data => setStore({ profesionales: data.results }))
 					.catch(err => console.error("Error al cargar profesionales:", err));
 			},
 			cargarUsuario: (id) => {
-				fetch("https://obscure-disco-4jjqqxj49vrghj5gv-3001.app.github.dev/api/usuario/" + id)
+				fetch(BASE_URL+"/api/usuario/" + id)
 					.then(res => res.json())
 					.then(data => setStore({ usuarioSeleccionado: data.results }))
 					.catch(err => console.error("Error al cargar usuario:", err));
 			},
 			cargarProfesional: (id) => {
-				fetch("https://obscure-disco-4jjqqxj49vrghj5gv-3001.app.github.dev/api/profesional/" + id)
+				fetch(BASE_URL+"/api/profesional/" + id)
 					.then(res => res.json())
 					.then(data => setStore({ profesionalSeleccionado: data.results }))
 					.catch(err => console.error("Error al cargar profesional:", err));
@@ -42,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(usuario),
 					redirect: "follow"
 				};
-				fetch("https://obscure-disco-4jjqqxj49vrghj5gv-3001.app.github.dev/api/crearusuario", requestOptions)
+				fetch(BASE_URL+"/api/crearusuario", requestOptions)
 					.then((response) => response.json())
 					.then((result) => console.log(result))
 					.catch((error) => console.error("Error al crear usuario:", error));
@@ -56,7 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(profesional),
 					redirect: "follow"
 				};
-				fetch("https://obscure-disco-4jjqqxj49vrghj5gv-3001.app.github.dev/api/crearprofesional", requestOptions)
+				fetch(BASE_URL+"/api/crearprofesional", requestOptions)
 					.then((response) => response.json())
 					.then((result) => console.log(result))
 					.catch((error) => console.error("Error al crear profesional:", error));
@@ -71,7 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 
-				fetch("https://obscure-disco-4jjqqxj49vrghj5gv-3001.app.github.dev/api/iniciarsesionusuario", requestOptions)
+				fetch(BASE_URL+"/api/iniciarsesionusuario", requestOptions)
 					.then((response) => {
 						if (!response.ok) {
 							throw new Error(`HTTP error! Status: ${response.status}`);

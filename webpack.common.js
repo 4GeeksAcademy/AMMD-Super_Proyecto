@@ -36,13 +36,26 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js']
+    extensions: ['*', '.js', '.jsx'],
+    fallback: {
+      "path": require.resolve("path-browserify"),
+      "os": require.resolve("os-browserify/browser"),
+      "crypto": require.resolve("crypto-browserify"),
+      "vm": require.resolve("vm-browserify"),
+      "buffer": require.resolve("buffer/"),
+      "stream": require.resolve("stream-browserify"),
+      "process": require.resolve("process/browser")
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
         favicon: '4geeks.ico',
         template: 'template.html'
     }),
-    new Dotenv({ safe: true, systemvars: true })
+    new Dotenv({ safe: true, systemvars: true }),
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+      process: 'process/browser'
+    })
   ]
 };

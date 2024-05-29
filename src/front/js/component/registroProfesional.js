@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+require('dotenv').config();
+const BASE_URL = process.env.BACKEND_URL;
 
 const RegistroProfesional = () => {
     const [profesional, setProfesional] = useState({
@@ -16,7 +18,7 @@ const RegistroProfesional = () => {
             body: JSON.stringify(profesional)
         };
 
-        fetch("https://obscure-disco-4jjqqxj49vrghj5gv-3001.app.github.dev/api/crearprofesional", requestOptions)
+        fetch(BASE_URL+"api/crearprofesional", requestOptions)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
