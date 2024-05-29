@@ -15,12 +15,11 @@ class Profesional(db.Model):
     foto_de_perfil = db.Column(db.String, unique=True, nullable=True)
     descripcion = db.Column(db.String(300), unique=False, nullable=True)
     info_adicional = db.Column(db.String(300), unique=False, nullable=True)
-    tipo_servicio_chef = db.Column(db.Enum('picapica', 'clase_de_cocina', 'comida_de_trabajo', 'servicio_degustacion', 'batchcooking', name='tipo_servicio_chef'), unique=False, nullable=True)
-    tipo_servicio_jamonero = db.Column(db.Enum('clase_de_corte_jamon', 'corte_de_jamon', name='tipo_servicio_jamonero'))
-    tipo_servicio_sumiller = db.Column(db.Enum('clase_de_cata_de_vinos', 'maridaje', name='tipo_servicio_sumiller'))
-    tipo_servicio_pastelero = db.Column(db.Enum('clase_de_pasteleria', 'merienda', 'desayuno', name='tipo_servicio_pastelero'))
-    tipo_servicio_barman = db.Column(db.Enum('clase_de_cocteleria', 'servicio_barra', name='tipo_servicio_barman'))
-    servicio_pasteleria = db.Column(db.Enum('clase_de_pasteleria', 'desayuno', 'merienda', name='servicio_pasteleria'))
+    tipo_servicio_chef = db.Column(db.Enum('Pica-pica', 'Taller de cocina', 'Comida de trabajo', 'Servicio degustación', 'Batchcooking', name='tipo_servicio_chef'), unique=False, nullable=True)
+    tipo_servicio_jamonero = db.Column(db.Enum('Corte de jamón', 'Clase de corte de jamón', name='tipo_servicio_jamonero'))
+    tipo_servicio_sumiller = db.Column(db.Enum('Cata de vinos', 'Maridaje', name='tipo_servicio_sumiller'))
+    tipo_servicio_pastelero = db.Column(db.Enum('Clase de pasteleria', 'Servicio de desayunos', 'Servicio de meriendas', name='tipo_servicio_pastelero'))
+    tipo_servicio_barman = db.Column(db.Enum('Clase de cocteleria', 'Servicio de barra', name='tipo_servicio_barman'))
     is_active = db.Column(db.Boolean(), unique=False, nullable=True)
 
     def __repr__(self):
@@ -43,7 +42,6 @@ class Profesional(db.Model):
             "tipo_servicio_sumiller": self.tipo_servicio_sumiller,
             "tipo_servicio_pastelero": self.tipo_servicio_pastelero,
             "tipo_servicio_barman": self.tipo_servicio_barman,
-            "servicio_pasteleria": self.servicio_pasteleria,
             "is_active": self.is_active
         }
 

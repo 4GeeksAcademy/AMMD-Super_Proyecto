@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 const InicioSesionCliente = () => {
@@ -25,10 +25,11 @@ const InicioSesionCliente = () => {
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
-        <fieldset>
-          <legend>¿QUIERES ECHARLE UN OJO A NUESTRA WEB?</legend>
-          <div className="mb-3">
-            <label htmlFor="emailInput" className="form-label">Inicio Sesión</label>
+        <fieldset style={{marginBottom: '50px'}}>
+          <legend style={{marginBottom: '20px'}}>¿QUIERES ECHARLE UN OJO A NUESTRA WEB?</legend>
+          <div className="mb-3" >
+            <label 
+              htmlFor="emailInput" className="form-label">Inicio Sesión</label>
             <input
               type="text"
               id="emailInput"
@@ -49,26 +50,29 @@ const InicioSesionCliente = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="col-auto">
-                <button type="submit" className="btn btn-primary">Iniciar sesión</button>
+          <div className="col-auto"  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <button  type="submit" className="btn btn-primary">
+                  Iniciar sesión
+                </button>
           </div>
           {error && <div className="alert alert-danger mt-3">{error}</div>}
         </fieldset>
       </form>
       <div className="mb-3">
-        <h4>¿No tienes cuenta y quieres contratar un servicio?</h4>
+        <h4 style={{marginBottom: '20px'}}>¿No tienes cuenta y quieres contratar un servicio?</h4>
       </div>
-      <div className="container">
+      <div className="container" style={{marginBottom: '40px'}}>
         <div className="row align-items-center">
           <div className="col-auto">
             <p className="mb-0">Regístrate haciendo click</p>
           </div>
           <div className="col-auto">
             <button 
-              className="btn btn-primary"
+              type="button"
+              className="btn btn-link"
               onClick={() => navigate(`/registrousuario`)}
             >
-              Aquí
+              ¡Aquí!
             </button>
           </div>
         </div>
