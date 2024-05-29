@@ -46,23 +46,25 @@ const InicioSesionCliente = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="mb-3">
-            <h4>¿No tienes cuenta y quieres contratar un servicio?</h4>
+          <div className="col-auto">
+                <button type="submit" className="btn btn-primary">Iniciar sesión</button>
           </div>
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-auto">
-                <p className="mb-0">Regístrate haciendo click</p>
-              </div>
-              <div className="col-auto">
-                <button type="submit" className="btn btn-primary">Aquí</button>
-              </div>
-            </div>
-          </div>
+          {error && <div className="alert alert-danger mt-3">{error}</div>}
         </fieldset>
-        {error && <div className="alert alert-danger mt-3">{error}</div>}
       </form>
-
+      <div className="mb-3">
+        <h4>¿No tienes cuenta y quieres contratar un servicio?</h4>
+      </div>
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-auto">
+            <p className="mb-0">Regístrate haciendo click</p>
+          </div>
+          <div className="col-auto">
+            <button className="btn btn-primary">Aquí</button>
+          </div>
+        </div>
+      </div>
       <div className="container row row-cols-1 row-cols-md-2 g-4 mt-4">
         <h2>¿Qué te apetece?</h2>
         <div className="col">
