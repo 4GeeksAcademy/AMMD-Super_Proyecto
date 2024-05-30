@@ -14,6 +14,11 @@ const RegistroUsuario = () => {
         const value = e.target.value;
         setFormValue({ ...formValue, [id]: value });
     }
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        actions.crearUsuario(formValue.email, formValue.password)
+        navigate("/iniciosesioncliente")
+    }
     
     return (
         <form>
@@ -45,7 +50,7 @@ const RegistroUsuario = () => {
                     />
                 </div>
             </div>
-            <button type="submit" className="btn btn-primary" onClick={() => actions.crearUsuario(formValue.email, formValue.password, navigate)}>
+            <button type="submit" className="btn btn-primary" onClick={(e) =>handleSubmit(e) }>
                 Crear Usuario
             </button>
         </form>

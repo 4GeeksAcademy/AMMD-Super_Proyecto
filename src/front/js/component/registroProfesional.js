@@ -15,6 +15,12 @@ const RegistroProfesional = () => {
         const value = e.target.value;
         setFormValue({ ...formValue, [id]: value });
     }
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        actions.crearProfesional(formValue.email, formValue.password)
+        navigate("/iniciosesionprofesional")
+    }
+    
     
     return (
         <form>
@@ -46,7 +52,7 @@ const RegistroProfesional = () => {
                     />
                 </div>
             </div>
-            <button type="submit" className="btn btn-primary" onClick={() => actions.crearProfesional(formValue.email, formValue.password, navigate)}>
+            <button type="submit" className="btn btn-primary" onClick={(e) =>handleSubmit(e) }>
                 Crear Profesional
             </button>
         </form>

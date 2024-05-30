@@ -35,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     .then(data => setStore({ profesionalSeleccionado: data.results }))
                     .catch(err => console.error("Error al cargar profesional:", err));
             },
-            crearUsuario: (email, password, navigate) => {
+            crearUsuario: (email, password) => {
                 const requestOptions = {
                     method: "POST",
                     headers: {
@@ -48,11 +48,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                     .then((response) => response.json())
                     .then((result) => {
                         console.log(result);
-                        navigate('/iniciosesioncliente');
+                       
                     })
                     .catch((error) => console.error("Error al crear usuario:", error));
             },
-            crearProfesional: (email, password, navigate) => {
+            crearProfesional: (email, password) => {
                 const requestOptions = {
                     method: "POST",
                     headers: {
@@ -65,11 +65,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                     .then((response) => response.json())
                     .then((result) => {
                         console.log(result);
-                        navigate('/iniciosesionprofesional');
+                        
                     })
                     .catch((error) => console.error("Error al crear profesional:", error));
             },
-            iniciarSesionUsuario: (email, password, navigate) => {
+            iniciarSesionUsuario: (email, password) => {
                 const requestOptions = {
                     method: "POST",
                     headers: {
@@ -87,13 +87,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .then((data) => {
                         setStore({ token: data.token });
-                        navigate('/privadacliente');
+                       
                     })
                     .catch((error) => {
                         console.error("Error al iniciar sesión:", error);
                     });
             },
-            iniciarSesionProfesional: (email, password, navigate) => {
+            iniciarSesionProfesional: (email, password) => {
                 const requestOptions = {
                     method: "POST",
                     headers: {
@@ -111,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .then((data) => {
                         setStore({ token: data.token });
-                        navigate('/privadaprofesional');
+                       
                     })
                     .catch((error) => {
                         console.error("Error al iniciar sesión:", error);

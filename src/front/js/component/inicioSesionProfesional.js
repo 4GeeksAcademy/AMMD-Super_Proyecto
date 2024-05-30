@@ -12,6 +12,11 @@ const InicioSesionProfesional = () => {
     const value = e.target.value;
     setFormValue({ ...formValue, [id]: value });
   }
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    actions.iniciarSesionProfesional(formValue.email, formValue.password, navigate)
+    navigate("/privadaprofesional")
+}
 
   return (
     <div className="container">
@@ -42,7 +47,7 @@ const InicioSesionProfesional = () => {
             />
           </div>
           <div className="col-auto"  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <button  type="submit" className="btn btn-primary" onClick={() => actions.iniciarSesionProfesional(formValue.email, formValue.password, navigate)}>
+                <button  type="submit" className="btn btn-primary" onClick={(e) => handleSubmit(e)}>
                   Iniciar sesión
                 </button>
           </div>
