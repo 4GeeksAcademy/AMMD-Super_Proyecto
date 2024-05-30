@@ -6,6 +6,7 @@ const InicioSesionCliente = () => {
   const { store, actions } = useContext(Context);
   const [formValue, setFormValue] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+
   function onChange(e) {
     const id = e.target.id;
     const value = e.target.value;
@@ -109,40 +110,95 @@ const InicioSesionCliente = () => {
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              PREGUNTA 1
+             <strong>¿Qué es Adopta un Chef?</strong> 
             </button>
           </h2>
           <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div className="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              <p>Adopta un Chef es una plataforma que conecta a clientes con chefs profesionales y expertos en gastronomía para ofrecer una variedad de servicios culinarios personalizados, como clases de cocina, catas de vino, talleres de cócteles, y más.</p>
             </div>
           </div>
         </div>
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingTwo">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              PREGUNTA 2
+             <strong>Servicios</strong>
             </button>
           </h2>
           <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
             <div className="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              <ol>
+                <li><strong>¿Qué tipo de servicios ofrecen?</strong> Ofrecemos clases de cocina personalizadas, cenas privadas, catas de vino, talleres de cócteles, planificación y ejecución de eventos gastronómicos, y más.</li>
+                <li><strong>¿Cómo funciona el servicio de cenas privadas?</strong> Un chef profesional visitará tu hogar para preparar y servir una comida gourmet. Puedes personalizar el menú según tus preferencias y necesidades dietéticas.</li>
+                <li><strong>¿Qué incluyen las clases de cocina?</strong> Las clases de cocina incluyen instrucciones paso a paso, todos los ingredientes necesarios, y la oportunidad de aprender técnicas culinarias de un chef profesional.</li>
+              </ol>
             </div>
           </div>
         </div>
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingThree">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              PREGUNTA 3
+              <strong>Reservas</strong>
             </button>
           </h2>
           <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
             <div className="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            <ol>
+                <li><strong>¿Cómo puedo reservar un servicio? </strong> Puedes reservar un servicio a través de nuestro sitio web seleccionando el servicio deseado, eligiendo la fecha y hora, y proporcionando los detalles de tu solicitud.</li>
+                <li><strong>¿Con cuánta antelación debo hacer una reserva? </strong> Recomendamos hacer las reservas con al menos una semana de antelación para asegurar disponibilidad, aunque intentaremos acomodar solicitudes de último minuto si es posible.</li>
+                <li><strong>¿Puedo cancelar o modificar mi reserva?</strong>  Sí, puedes cancelar o modificar tu reserva. Por favor, revisa nuestra política de cancelación para obtener más detalles sobre posibles cargos.</li>
+              </ol>
             </div>
           </div>
         </div>
-      </div>
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="headingFour">
+            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              <strong>Precios y Pagos</strong>
+            </button>
+          </h2>
+          <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+            <div className="accordion-body">
+            <ol>
+                <li><strong> ¿Cuáles son los precios de sus servicios?</strong> Los precios varían según el tipo de servicio, la duración, y la cantidad de personas. Puedes encontrar detalles específicos en la página de cada servicio.</li>
+                <li><strong>¿Qué métodos de pago aceptan?</strong>  Aceptamos pagos con tarjetas de crédito, débito y transferencias bancarias. Todos los pagos se realizan de manera segura a través de nuestra plataforma.</li>
+                <li><strong> ¿Hay algún costo adicional?</strong>  Todos los costos se detallan al momento de la reserva. En algunos casos, puede haber cargos adicionales por ingredientes especiales o personalizaciones fuera del menú estándar.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="headingFive">
+            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              <strong>Experiencia y Seguridad</strong>
+            </button>
+          </h2>
+          <div id="collapseFive" className="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+            <div className="accordion-body">
+            <ol>
+                <li><strong>  ¿Quiénes son los chefs?</strong> Nuestros chefs son profesionales experimentados con formación en escuelas de cocina reconocidas y experiencia en restaurantes de alta gama. Puedes ver sus perfiles y calificaciones en nuestro sitio web.</li>
+                <li><strong>¿Es seguro tener un chef en mi hogar?</strong>  Sí, todos nuestros chefs pasan por un riguroso proceso de selección que incluye verificaciones de antecedentes y referencias. Tu seguridad y satisfacción son nuestra máxima prioridad.</li>
+                <li><strong> ¿Qué medidas se toman para garantizar la higiene y seguridad alimentaria?</strong>  Nuestros chefs siguen estrictos protocolos de higiene y seguridad alimentaria, incluyendo el uso de equipos de protección personal y la desinfección de superficies. </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="headingSix">
+            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              <strong>Otros</strong>
+            </button>
+          </h2>
+          <div id="collapseSix" className="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+            <div className="accordion-body">
+            <ol>
+                <li><strong>¿Puedo regalar un servicio de Adopta un Chef?</strong> Sí, ofrecemos tarjetas de regalo que pueden ser usadas para cualquier servicio en nuestra plataforma. Es un regalo perfecto para cumpleaños, aniversarios, y otras ocasiones especiales.</li>
+                <li><strong>¿Ofrecen servicios para eventos corporativos?</strong>  Sí, ofrecemos servicios personalizados para eventos corporativos, incluyendo team-building, catas de vino, y cenas ejecutivas. Contáctanos para obtener más información y cotizaciones personalizadas.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div> 
     </div>
   );
 }
