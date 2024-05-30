@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+require('dotenv').config();
+const BASE_URL = process.env.BACKEND_URL;
 
 const RegistroUsuario = () => {
     const [usuario, setUsuario] = useState({
-        nombre: "",
         email: "",
         password: ""
     });
@@ -16,7 +17,7 @@ const RegistroUsuario = () => {
             body: JSON.stringify(usuario)
         };
 
-        fetch("https://obscure-disco-4jjqqxj49vrghj5gv-3001.app.github.dev/api/crearusuario", requestOptions)
+        fetch(BASE_URL + "api/crearusuario", requestOptions)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -28,7 +29,6 @@ const RegistroUsuario = () => {
 
                 // Limpiar el formulario después del registro exitoso
                 setUsuario({
-                    nombre: "",
                     email: "",
                     password: ""
                 });
@@ -45,20 +45,6 @@ const RegistroUsuario = () => {
     
     return (
         <form onSubmit={handleRegistro}>
-            <div className="row mb-3">
-                <label htmlFor="nombre" className="col-sm-2 col-form-label">
-                    Nombre
-                </label>
-                <div className="col-sm-10">
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        id="nombre"
-                        value={usuario.nombre}
-                        onChange={handleChange}
-                    />
-                </div>
-            </div>
             <div className="row mb-3">
                 <label htmlFor="email" className="col-sm-2 col-form-label">
                     Email

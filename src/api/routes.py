@@ -49,18 +49,16 @@ def cargar_profesional(profesional_id):
 @api.route('/crearusuario', methods=['POST'])
 def crear_usuario():
     data = request.get_json()
-    nombre = data.get("nombre")
     email = data.get("email")
     password = data.get("password")
     
-    if not nombre or not email or not password:
+    if not email or not password:
         return jsonify({"msg": "Correo y contraseña son requeridos"}), 400
 
     if User.query.filter_by(email=email).first():
         return jsonify({"msg": "Este correo electrónico ya está registrado"}), 400
 
     user_new = User(
-        nombre=nombre,
         email=email,
         password=password
     )
@@ -71,18 +69,16 @@ def crear_usuario():
 @api.route('/crearprofesional', methods=['POST'])
 def crear_profesional():
     data = request.get_json()
-    nombre = data.get("nombre")
     email = data.get("email")
     password = data.get("password")
 
-    if not nombre or not email or not password:
+    if not email or not password:
         return jsonify({"msg": "Correo y contraseña son requeridos"}), 400
 
     if Profesional.query.filter_by(email=email).first():
         return jsonify({"msg": "Este correo electrónico ya está registrado"}), 400
 
     profesional_new = Profesional(
-        nombre=nombre,
         email=email,
         password=password
     )
