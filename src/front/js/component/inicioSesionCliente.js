@@ -1,61 +1,49 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const InicioSesionCliente = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-
+  const { store, actions } = useContext(Context);
+  const [formValue, setFormValue] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email || !password) {
-      setError('Por favor, introduce un email y una contraseña válidos.');
-      return;
-    }
-    // Para ver en la consola que ha funcionado
-    console.log(`Inicio de sesión: Email - ${email}, Contraseña - ${password}`);
-    // Limpiar los campos después del inicio de sesión
-    setEmail('');
-    setPassword('');
-    setError(null);
-  };
-
+  function onChange(e) {
+    const id = e.target.id;
+    const value = e.target.value;
+    setFormValue({ ...formValue, [id]: value });
+  }
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
+      <form>
         <fieldset style={{marginBottom: '50px'}}>
           <legend style={{marginBottom: '20px'}}>¿QUIERES ECHARLE UN OJO A NUESTRA WEB?</legend>
           <div className="mb-3" >
-            <label 
+            <label
               htmlFor="emailInput" className="form-label">Inicio Sesión</label>
             <input
-              type="text"
-              id="emailInput"
-              className="form-control"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+                  type="text"
+                  id="email"
+                  className="form-control"
+                  placeholder="Email"
+                  value={formValue.email}
+                  onChange={onChange}
+                />
           </div>
           <div className="mb-3">
             <label htmlFor="passwordInput" className="form-label">Contraseña</label>
             <input
-              type="password"
-              id="passwordInput"
-              className="form-control"
-              placeholder="Contraseña"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+                  type="password"
+                  id="password"
+                  className="form-control"
+                  placeholder="Contraseña"
+                  value={formValue.password}
+                  onChange={onChange}
+                />
           </div>
           <div className="col-auto"  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <button  type="submit" className="btn btn-primary">
+                <button  type="submit" className="btn btn-primary" onClick={() => actions.iniciarSesionUsuario(formValue.email, formValue.password, navigate)}>
                   Iniciar sesión
                 </button>
           </div>
-          {error && <div className="alert alert-danger mt-3">{error}</div>}
         </fieldset>
       </form>
       <div className="mb-3">
@@ -64,10 +52,10 @@ const InicioSesionCliente = () => {
       <div className="container" style={{marginBottom: '40px'}}>
         <div className="row align-items-center">
           <div className="col-auto">
-            <p className="mb-0">Regístrate haciendo click</p>
+          <p className="mb-0">Regístrate haciendo click</p>
           </div>
           <div className="col-auto">
-            <button 
+            <button
               type="button"
               className="btn btn-link"
               onClick={() => navigate(`/registrousuario`)}
@@ -116,7 +104,6 @@ const InicioSesionCliente = () => {
           </div>
         </div>
       </div>
-
       <div className="accordion mt-4" id="accordionExample">
         <h2>PREGUNTAS FRECUENTES</h2>
         <div className="accordion-item">
@@ -159,5 +146,4 @@ const InicioSesionCliente = () => {
     </div>
   );
 }
-
 export default InicioSesionCliente;
