@@ -35,32 +35,38 @@ const getState = ({ getStore, getActions, setStore }) => {
                     .then(data => setStore({ profesionalSeleccionado: data.results }))
                     .catch(err => console.error("Error al cargar profesional:", err));
             },
-            crearUsuario: (usuario) => {
+            crearUsuario: (email, password, navigate) => {
                 const requestOptions = {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(usuario),
+                    body: JSON.stringify({email, password}),
                     redirect: "follow"
                 };
-                fetch(BASE_URL+"/api/crearusuario", requestOptions)
+                fetch(BASE_URL + "/api/crearusuario", requestOptions)
                     .then((response) => response.json())
-                    .then((result) => console.log(result))
+                    .then((result) => {
+                        console.log(result);
+                        navigate('/iniciosesioncliente');
+                    })
                     .catch((error) => console.error("Error al crear usuario:", error));
             },
-            crearProfesional: (profesional) => {
+            crearProfesional: (email, password, navigate) => {
                 const requestOptions = {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(profesional),
+                    body: JSON.stringify({email, password}),
                     redirect: "follow"
                 };
                 fetch(BASE_URL+"/api/crearprofesional", requestOptions)
                     .then((response) => response.json())
-                    .then((result) => console.log(result))
+                    .then((result) => {
+                        console.log(result);
+                        navigate('/iniciosesionprofesional');
+                    })
                     .catch((error) => console.error("Error al crear profesional:", error));
             },
             iniciarSesionUsuario: (email, password, navigate) => {

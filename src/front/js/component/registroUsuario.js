@@ -1,50 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 require('dotenv').config();
 const BASE_URL = process.env.BACKEND_URL;
 
 const RegistroUsuario = () => {
-    const [usuario, setUsuario] = useState({
-        email: "",
-        password: ""
-    });
+    const { store, actions } = useContext(Context);
+    const [formValue, setFormValue] = useState({ email: "", password: "" });
+    const navigate = useNavigate();
 
-    const handleRegistro = (e) => {
-        e.preventDefault();
-
-        const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(usuario)
-        };
-
-        fetch(BASE_URL + "api/crearusuario", requestOptions)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data.msg); // Manejar la respuesta según lo necesario
-
-                // Limpiar el formulario después del registro exitoso
-                setUsuario({
-                    email: "",
-                    password: ""
-                });
-            })
-            .catch((error) => {
-                console.error("Error al registrar:", error);
-            });
-    };
-
-    const handleChange = (e) => {
-        const { id, value } = e.target;
-        setUsuario({ ...usuario, [id]: value });
-    };
+    function onChange(e) {
+        const id = e.target.id;
+        const value = e.target.value;
+        setFormValue({ ...formValue, [id]: value });
+    }
     
     return (
-        <form onSubmit={handleRegistro}>
+        <form>
             <div className="row mb-3">
                 <label htmlFor="email" className="col-sm-2 col-form-label">
                     Email
@@ -54,8 +26,8 @@ const RegistroUsuario = () => {
                         type="email" 
                         className="form-control" 
                         id="email"
-                        value={usuario.email}
-                        onChange={handleChange}
+                        value={formValue.email}
+                        onChange={onChange}
                     />
                 </div>
             </div>
@@ -68,12 +40,12 @@ const RegistroUsuario = () => {
                         type="password" 
                         className="form-control" 
                         id="password"
-                        value={usuario.password}
-                        onChange={handleChange}
+                        value={formValue.password}
+                        onChange={onChange}
                     />
                 </div>
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" onClick={() => actions.crearUsuario(formValue.email, formValue.password, navigate)}>
                 Crear Usuario
             </button>
         </form>
