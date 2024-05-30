@@ -18,6 +18,7 @@ import { VistaPrivadaCliente } from "./pages/vistaprivadacliente";
 import VistaRegistroUsuario from "./pages/vistaregistrousuario";
 import VistaRegistroProfesional from "./pages/vistaregistroprofesional";
 import VistaSobreNosotros from "./pages/vistaSobreNosotros";
+import { VistaCardProfesionales } from "./pages/vistaCardProfesionales";
 
 
 //create your first component
@@ -42,6 +43,7 @@ const Layout = () => {
                         <Route element={<VistaPrivadaCliente />} path="/privadacliente" />
                         <Route element={<VistaPrivadaProfesional />} path="/privadaprofesional" />
                         <Route element={<VistaSobreNosotros />} path="/sobrenosotros" />
+                        <Route element={<VistaCardProfesionales/>} path="/cardprofesionales" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />

@@ -1,6 +1,10 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Buscador = () => {
+
+    const navigate = useNavigate();
+
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px 5px', gap: '10px' }}>
             <ul className="nav" style={{ marginRight: '10px' }}>
@@ -52,6 +56,7 @@ const Buscador = () => {
                 type="button" 
                 id="button-addon2"
                 style={{ marginLeft: '10px' }}
+                onClick={() => navigate(`/cardprofesionales`)}
             >
                 Buscar
             </button>

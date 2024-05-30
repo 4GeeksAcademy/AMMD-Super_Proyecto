@@ -4,6 +4,7 @@ import Cocinero_adopta_un_chef from "../../img/Cocinero_adopta_un_chef.png"
 import Titulo_adopta_un_chef from "../../img/Titulo_adopta_un_chef.png"
 
 const Navbar = () => {
+  
   const navigate = useNavigate();
 
   return (
