@@ -1,30 +1,21 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const InicioSesionProfesional = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-
+  const { store, actions } = useContext(Context);
+  const [formValue, setFormValue] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email || !password) {
-      setError('Por favor, introduce un email y una contraseña válidos.');
-      return;
-    }
-    // Para ver en la consola que ha funcionado
-    console.log(`Inicio de sesión: Email - ${email}, Contraseña - ${password}`);
-    // Limpiar los campos después del inicio de sesión
-    setEmail('');
-    setPassword('');
-    setError(null);
-  };
+  function onChange(e) {
+    const id = e.target.id;
+    const value = e.target.value;
+    setFormValue({ ...formValue, [id]: value });
+  }
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
+      <form>
         <fieldset style={{marginBottom: '50px'}}>
           <legend style={{marginBottom: '20px'}}>¿QUIERES ECHARLE UN OJO A NUESTRA WEB?</legend>
           <div className="mb-3" >
@@ -32,30 +23,29 @@ const InicioSesionProfesional = () => {
               htmlFor="emailInput" className="form-label">Inicio Sesión</label>
             <input
               type="text"
-              id="emailInput"
+              id="email"
               className="form-control"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formValue.email}
+              onChange={onChange}
             />
           </div>
           <div className="mb-3">
             <label htmlFor="passwordInput" className="form-label">Contraseña</label>
             <input
               type="password"
-              id="passwordInput"
+              id="password"
               className="form-control"
               placeholder="Contraseña"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formValue.password}
+              onChange={onChange}
             />
           </div>
           <div className="col-auto"  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <button  type="submit" className="btn btn-primary">
+                <button  type="submit" className="btn btn-primary" onClick={() => actions.iniciarSesionProfesional(formValue.email, formValue.password, navigate)}>
                   Iniciar sesión
                 </button>
           </div>
-          {error && <div className="alert alert-danger mt-3">{error}</div>}
         </fieldset>
       </form>
       <div className="mb-3">

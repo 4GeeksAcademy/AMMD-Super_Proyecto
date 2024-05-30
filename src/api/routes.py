@@ -115,7 +115,7 @@ def iniciar_sesion_profesional():
     
     # Verificar si el profesional existe y la contraseña es correcta
     if profesional is None or profesional.password != password:
-        return jsonify({"msg": "Usuario no encontrado o contraseña incorrecta"}), 401
+        return jsonify({"msg": "Profesional no encontrado o contraseña incorrecta"}), 401
     
     # Crear el token JWT
     access_token = create_access_token(identity=profesional.id)

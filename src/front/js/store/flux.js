@@ -87,6 +87,30 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.error("Error al iniciar sesión:", error);
                     });
             },
+            iniciarSesionProfesional: (email, password, navigate) => {
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password }),
+                    redirect: "follow"
+                };
+                fetch(BASE_URL + "/api/iniciarsesionprofesional", requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        setStore({ token: data.token });
+                        navigate('/privadaprofesional');
+                    })
+                    .catch((error) => {
+                        console.error("Error al iniciar sesión:", error);
+                    });
+            },
             exampleFunction: () => {
                 getActions().changeColor(0, "green");
             },           
