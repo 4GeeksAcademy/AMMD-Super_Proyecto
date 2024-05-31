@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
+import Buscador from './buscador';
 
 const PrivadaCliente = () => {
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -16,7 +19,7 @@ const PrivadaCliente = () => {
           </div>
           <div className="col">
             <h3>Hola !!!</h3>
-            <button type="button" className="btn btn-primary">ACTUALIZAR</button>
+            <button type="button" className="btn btn-primary">EDITAR</button>
             <button type="button" className="btn btn-secondary">CERRAR</button>
             <button type="button" className="btn btn-success">ELIMINAR</button>
             <br />
@@ -38,8 +41,8 @@ const PrivadaCliente = () => {
           <div className="col-auto">
             <p className="mb-0">¿Quieres contratar un chef?</p>
           </div>
-          <div className="col-auto">
-            <button type="submit" className="btn btn-primary">Búscalo aquí</button>
+          <div className="container-buscador">
+            <Buscador />
           </div>
         </div>
         <h4>Política de privacidad</h4>

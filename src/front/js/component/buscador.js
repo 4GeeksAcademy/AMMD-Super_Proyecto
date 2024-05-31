@@ -6,10 +6,10 @@ const Buscador = () => {
     const navigate = useNavigate();
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px 5px', gap: '10px' }}>
+        <div className="container-buscador" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px 5px', gap: '10px' }}>
             <ul className="nav" style={{ marginRight: '10px' }}>
                 <li className="nav-item">
-                    <a className="nav-link disabled" aria-disabled="true">¿Qué te apetece?</a>
+                    <a className="nav-link disabled" aria-disabled="true"><strong>¿Qué te apetece?</strong></a>
                 </li>
             </ul>                
             <div className="dropdown" style={{ marginRight: '10px' }}>
@@ -56,7 +56,7 @@ const Buscador = () => {
                 type="button" 
                 id="button-addon2"
                 style={{ marginLeft: '10px' }}
-                onClick={() => navigate(`/cardprofesionales`)}
+                onClick={() => navigate(`/busquedaprofesionales`)}
             >
                 Buscar
             </button>
