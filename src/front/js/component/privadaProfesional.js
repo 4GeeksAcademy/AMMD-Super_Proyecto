@@ -16,7 +16,7 @@ function PrivadaProfesional() {
           </div>
           <div className="col">
             <h3>Hola !!!</h3>
-            <button type="button" className="btn btn-primary">ACTUALIZAR</button>
+            <button type="button" className="btn btn-primary">EDITAR</button>
             <button type="button" className="btn btn-secondary">CERRAR</button>
             <button type="button" className="btn btn-success">ELIMINAR</button>
             <br />
@@ -34,14 +34,6 @@ function PrivadaProfesional() {
       </div>
 
       <div className="container">
-        <div className="row align-items-center">
-          <div className="col-auto">
-            <p className="mb-0">¿Quieres contratar un chef?</p>
-          </div>
-          <div className="col-auto">
-            <button type="submit" className="btn btn-primary">Búscalo aquí</button>
-          </div>
-        </div>
         <h4>Política de privacidad</h4>
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis exercitationem iste tempore iure accusantium perspiciatis facere nam nobis pariatur, quod iusto natus totam quaerat deleniti incidunt sint ab ipsam sed.

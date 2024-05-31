@@ -12,16 +12,17 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<>
-			<Buscador />
+		<div className="container">
+			<div className="container-buscador">
+                        <Buscador />
+            </div>
 			<Jumbotron />
 			<br></br>
 			<CarruselClientes />
 			<br></br>
 			<CarruselProfesionales />
 			<br></br>
-			<Noticias />
-			
-		</>
+			<Noticias />			
+		</div>
 	);
 };

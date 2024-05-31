@@ -2,6 +2,190 @@ body {
     background-color: #FAF4EB;
 }
 
-.card {
-    border: solid #C19F65 2px;
+.container-buscador {
+    border:#C09F65 1px solid;
 }
+
+  .rounded-border {
+    border: solid #C19F65 2px; /* Puedes ajustar el color y el grosor del borde según tu preferencia */
+    border-radius: 15px; /* Ajusta este valor para hacer el borde más o menos redondeado */
+    padding: 20px; /* Esto es opcional: añade un poco de padding para que el contenido no toque el borde */
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    border: solid #C19F65 2px;
+    position: relative; /* Necesario para el uso de ::before */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones para un efecto suave */
+  }
+  
+  .card::before {
+    content: ''; /* Pseudo-elemento vacío */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5); /* Oscurecimiento */
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Transición para un efecto suave */
+  }
+  
+  .card:hover {
+    transform: translateY(-10px); /* Mueve la tarjeta hacia arriba para el efecto de flotación */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra para el efecto de flotación */
+  }
+  
+  .card:hover::before {
+    opacity: 1; /* Hace visible el oscurecimiento */
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center; /* Aseguramos que las cards estén centradas en su contenedor */
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 700px; /* Aumentamos el ancho máximo */
+    height: 650px; /* Aumentamos la altura */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Para asegurarnos de que el contenido no se salga */
+  }
+  
+  .card-img-top {
+    height: 400px; /* Aumentamos la altura de la imagen */
+    object-fit: cover;
+  }
+  
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Asegura que el contenido no se salga */
+  }
+  
+  .card-title {
+    flex-shrink: 0;
+    font-size: 1.5em; /* Aumentamos el tamaño del título */
+    margin: 0.5em 0;
+  }
+  
+  .card-text {
+    flex-grow: 1;
+    font-size: 1em;
+    text-align: justify;
+    overflow: hidden; /* Asegura que el texto no se salga */
+    display: -webkit-box; /* Compatibilidad con webkit */
+    -webkit-line-clamp: 6; /* Número de líneas que quieres mostrar */
+    -webkit-box-orient: vertical; /* Orientación vertical */
+  }
+  
+  .accordion-container {
+    display: flex;
+    justify-content: center; /* Centra el acordeón horizontalmente */
+    width: 100%;
+    padding: 16px; /* Añade un poco de padding a los lados */
+  }
+  
+  .accordion {
+    width: 100%; /* Ajusta el tamaño del acordeón según tus necesidades */
+    transition: all 0.3s ease; /* Transición para un efecto suave */
+  }
+  
+  .accordion-header {
+    text-align: center; /* Centra el texto del encabezado */
+  }
+  
+  .accordion-collapse {
+    transition: all 0.3s ease; /* Transición para el alargamiento */
+  }
+  
+  .accordion-collapse.collapsing {
+    height: auto; /* Ajuste para que no se limite la altura durante la transición */
+  }
+  
+  button {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsla(41, 73%, 54%, 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+  }
+  
+  .edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+      to left,
+      hsl(36, 97%, 59%) 0%,
+      hsl(41, 84%, 50%) 8%,
+      hsl(32, 98%, 32%) 92%,
+      hsl(340deg 100% 16%) 100%
+    );
+  }
+  
+  .front {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: rgb(3, 3, 3);
+    background: #C19F65 (39, 92%, 42%);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+  }
+  
+  button:hover {
+    filter: brightness(110%);
+  }
+  
+  button:hover .front {
+    transform: translateY(-6px);
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+  }
+  
+  button:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+  }
+  
+  button:hover .shadow {
+    transform: translateY(4px);
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+  }
+  
+  button:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+  }
+  
+  button:focus:not(:focus-visible) {
+    outline: none;
+  }

@@ -10,6 +10,7 @@ import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
 import Navbar from "./component/navbar";
+import Buscador from "./component/buscador";
 import { Footer } from "./component/footer";
 import { VistaPrivadaProfesional } from "./pages/vistaprivadaprofesional";
 import { VistaInicioSesionProfesional } from "./pages/vistainicioprofesional";
@@ -18,6 +19,9 @@ import { VistaPrivadaCliente } from "./pages/vistaprivadacliente";
 import VistaRegistroUsuario from "./pages/vistaregistrousuario";
 import VistaRegistroProfesional from "./pages/vistaregistroprofesional";
 import VistaSobreNosotros from "./pages/vistaSobreNosotros";
+import { VistaCardProfesionales } from "./pages/vistaBusquedaProfesionales";
+import { VistaContratacionProfesional } from "./pages/vistaContratacionProfesional";
+import { VistaBusquedaProfesionales } from "./pages/vistaBusquedaProfesionales";
 
 
 //create your first component
@@ -42,6 +46,8 @@ const Layout = () => {
                         <Route element={<VistaPrivadaCliente />} path="/privadacliente" />
                         <Route element={<VistaPrivadaProfesional />} path="/privadaprofesional" />
                         <Route element={<VistaSobreNosotros />} path="/sobrenosotros" />
+                        <Route element={<VistaBusquedaProfesionales/>} path="/busquedaprofesionales" />
+                        <Route element={<VistaContratacionProfesional/>} path="/contratacionprofesional" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />

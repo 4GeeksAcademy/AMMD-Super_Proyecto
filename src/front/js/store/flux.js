@@ -191,6 +191,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     .then(data => setStore({ profesionales: data.results }))
                     .catch(err => console.error("Error al cargar profesionales:", err));
             },
+            
             cargarUsuario: (id) => {
                 fetch(BASE_URL+"/api/usuario/" + id)
                     .then(res => res.json())
