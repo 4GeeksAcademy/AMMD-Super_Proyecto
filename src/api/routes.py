@@ -3,7 +3,7 @@ from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, JWTManager, get_jwt_identity, jwt_required, get_jwt
 from api.models import db, User, Profesional,Conversacion,ServiciosContratados
-
+from werkzeug.security import generate_password_hash, check_password_hash
 
 api = Blueprint('api', __name__)
 
@@ -57,10 +57,12 @@ def crear_usuario():
 
     if User.query.filter_by(email=email).first():
         return jsonify({"msg": "Este correo electrónico ya está registrado"}), 400
+    
+    hashed_password = generate_password_hash(password)
 
     user_new = User(
-        email=email,
-        password=password
+        email= email,
+        password= hashed_password
     )
     db.session.add(user_new)
     db.session.commit()
@@ -77,10 +79,12 @@ def crear_profesional():
 
     if Profesional.query.filter_by(email=email).first():
         return jsonify({"msg": "Este correo electrónico ya está registrado"}), 400
+    
+    hashed_password = generate_password_hash(password)
 
     profesional_new = Profesional(
-        email=email,
-        password=password
+        email= email,
+        password= hashed_password
     )
     db.session.add(profesional_new)
     db.session.commit()
@@ -91,36 +95,21 @@ def crear_profesional():
 def iniciar_sesion_usuario():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    
-# Buscar el usuario en la base de datos
-    user = User.query.filter_by(email=email, password=password).first()
-    
-# Verificar si el usuario existe y la contraseña es correcta
-    if user is None or user.password != password:
+    user = User.query.filter_by(email=email).first()
+    if user is None or not check_password_hash(user.password, password):
         return jsonify({"msg": "Usuario no encontrado o contraseña incorrecta"}), 401
-    
-      #Crear el token JWT
     access_token = create_access_token(identity=user.id)
-    
-     # Devolver el token JWT y el ID del usuario
     return jsonify({"token": access_token, "user_id": user.id}), 200
 
+#ruta iniciar sesion profesional
 @api.route("/iniciarsesionprofesional", methods=["POST"])
 def iniciar_sesion_profesional():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    
-    # Buscar al profesional en la base de datos
-    profesional = Profesional.query.filter_by(email=email, password=password).first()
-    
-    # Verificar si el profesional existe y la contraseña es correcta
-    if profesional is None or profesional.password != password:
+    profesional = Profesional.query.filter_by(email=email).first()
+    if profesional is None or not check_password_hash(profesional.password, password):
         return jsonify({"msg": "Profesional no encontrado o contraseña incorrecta"}), 401
-    
-    # Crear el token JWT
     access_token = create_access_token(identity=profesional.id)
-    
-    # Devolver el token JWT y el ID del profesional
     return jsonify({"token": access_token, "profesional_id": profesional.id}), 200
 
 
