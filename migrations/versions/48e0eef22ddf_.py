@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 295f8e2536b7
+Revision ID: 48e0eef22ddf
 Revises: 
-Create Date: 2024-05-27 09:53:31.034742
+Create Date: 2024-05-31 17:08:09.936601
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '295f8e2536b7'
+revision = '48e0eef22ddf'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,26 +22,25 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nombre', sa.String(length=15), nullable=True),
     sa.Column('apellidos', sa.String(length=15), nullable=True),
-    sa.Column('nombre_usuario', sa.String(length=15), nullable=True),
     sa.Column('email', sa.String(length=120), nullable=False),
-    sa.Column('password', sa.String(length=20), nullable=False),
+    sa.Column('password', sa.String(length=500), nullable=False),
     sa.Column('telefono', sa.String(length=12), nullable=True),
     sa.Column('localizacion', sa.String(length=20), nullable=True),
     sa.Column('direccion', sa.String(length=30), nullable=True),
     sa.Column('foto_de_perfil', sa.String(), nullable=True),
     sa.Column('descripcion', sa.String(length=300), nullable=True),
     sa.Column('info_adicional', sa.String(length=300), nullable=True),
-    sa.Column('tipo_servicio_chef', sa.Enum('picapica', 'clase_de_cocina', 'comida_de_trabajo', 'servicio_degustacion', 'batchcooking', name='tipo_servicio_chef'), nullable=True),
-    sa.Column('tipo_servicio_jamonero', sa.Enum('clase_de_corte_jamon', 'corte_de_jamon', name='tipo_servicio_jamonero'), nullable=True),
-    sa.Column('tipo_servicio_sumiller', sa.Enum('clase_de_cata_de_vinos', 'maridaje', name='tipo_servicio_sumiller'), nullable=True),
-    sa.Column('tipo_servicio_pastelero', sa.Enum('clase_de_pasteleria', 'merienda', 'desayuno', name='tipo_servicio_pastelero'), nullable=True),
-    sa.Column('tipo_servicio_barman', sa.Enum('clase_de_cocteleria', 'servicio_barra', name='tipo_servicio_barman'), nullable=True),
-    sa.Column('servicio_pasteleria', sa.Enum('clase_de_pasteleria', 'desayuno', 'merienda', name='servicio_pasteleria'), nullable=True),
+    sa.Column('tipo_de_profesional', sa.Enum('Chef', 'Barman', 'Cortador de jamon', 'Sumiller', 'Pastelero', name='tipo_de_profesional'), nullable=True),
+    sa.Column('tipo_de_cocina', sa.Enum('cocina española', 'cocina peruana', 'cocina griega', 'cocina americana', 'cocina italiana', 'cocina argentina', 'cocina tailandesa', 'cocina mexicana', 'cocina creativa', 'cocina japonesa', 'cocina vegana', name='tipo_de_cocina'), nullable=True),
+    sa.Column('tipo_servicio_chef', sa.Enum('Pica-pica', 'Taller de cocina', 'Comida trabajo', 'Servicio degustación', 'Comida informal', 'Batchcooking', name='tipo_servicio_chef'), nullable=True),
+    sa.Column('tipo_servicio_jamonero', sa.Enum('Corte de jamón', 'Clase de corte de jamón', name='tipo_servicio_jamonero'), nullable=True),
+    sa.Column('tipo_servicio_sumiller', sa.Enum('Cata de vinos', 'Maridaje', name='tipo_servicio_sumiller'), nullable=True),
+    sa.Column('tipo_servicio_pastelero', sa.Enum('Clase de pasteleria', 'Servicio de desayunos', 'Servicio de meriendas', name='tipo_servicio_pastelero'), nullable=True),
+    sa.Column('tipo_servicio_barman', sa.Enum('Clase de cocteleria', 'Servicio de barra', name='tipo_servicio_barman'), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('foto_de_perfil'),
-    sa.UniqueConstraint('nombre_usuario'),
     sa.UniqueConstraint('telefono')
     )
     op.create_table('User',
@@ -49,7 +48,7 @@ def upgrade():
     sa.Column('nombre', sa.String(length=15), nullable=True),
     sa.Column('apellidos', sa.String(length=15), nullable=True),
     sa.Column('email', sa.String(length=120), nullable=False),
-    sa.Column('password', sa.String(length=20), nullable=False),
+    sa.Column('password', sa.String(length=500), nullable=False),
     sa.Column('telefono', sa.String(length=12), nullable=True),
     sa.Column('localizacion', sa.String(length=20), nullable=True),
     sa.Column('longitud', sa.Float(), nullable=True),
@@ -67,6 +66,14 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('fecha_creacion', sa.DateTime(), nullable=False),
     sa.Column('coment_text', sa.String(length=800), nullable=True),
+    sa.Column('usuario_id', sa.Integer(), nullable=False),
+    sa.Column('profesional_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['profesional_id'], ['Profesional.id'], ),
+    sa.ForeignKeyConstraint(['usuario_id'], ['User.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('favoritos',
+    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('usuario_id', sa.Integer(), nullable=False),
     sa.Column('profesional_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['profesional_id'], ['Profesional.id'], ),
@@ -91,6 +98,7 @@ def upgrade():
 def downgrade():
     # ### commands auto generated by Alembic - please adjust! ###
     op.drop_table('servicios_contratados')
+    op.drop_table('favoritos')
     op.drop_table('conversacion')
     op.drop_table('User')
     op.drop_table('Profesional')
