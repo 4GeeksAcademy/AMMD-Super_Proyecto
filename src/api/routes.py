@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, JWTManager, get_jwt_identity, jwt_required, get_jwt
-from api.models import db, User, Profesional,Conversacion,ServiciosContratados
+from api.models import db, User, Profesional,Conversacion,ServiciosContratados,Favoritos
 from werkzeug.security import generate_password_hash, check_password_hash
 
 api = Blueprint('api', __name__)
@@ -171,10 +171,12 @@ def vista_privada_profesional():
         "tipo_servicio_jamonero": profesional.tipo_servicio_jamonero,
         "tipo_servicio_sumiller": profesional.tipo_servicio_sumiller,
         "tipo_servicio_pastelero": profesional.tipo_servicio_pastelero,
-        "tipo_servicio_barman": profesional.tipo_servicio_barman,
-        "servicio_pasteleria": profesional.servicio_pasteleria,
+        "tipo_servicio_barman": profesional.tipo_servicio_barman,        
         "is_active": profesional.is_active
     }), 200
+
+
+
 
 
 # #ruta editar usuario
@@ -294,10 +296,139 @@ def eliminar_profesional():
 
     return jsonify({"msg": "Profesional eliminado exitosamente"}), 200
 
+from datetime import datetime
 
+@api.route('/crearconversacion', methods=['POST'])
+def crear_conversacion():
+    data = request.get_json()
+    profesional_id = data.get('profesional_id')
+    coment_text = data.get('coment_text')
+    usuario_id = data.get('usuario_id')
 
+    if not profesional_id or not coment_text or not usuario_id:
+        return jsonify({"msg": "profesional_id, coment_text, y usuario_id son necesarios"}), 400
 
+    # Obtener la fecha actual
+    fecha_creacion = datetime.now()
 
+    # Crear una nueva conversación con los datos proporcionados
+    nueva_conversacion = Conversacion(
+        fecha_creacion=fecha_creacion,
+        coment_text=coment_text,
+        usuario_id=usuario_id,
+        profesional_id=profesional_id
+    )
 
+    # Guardar la nueva conversación en la base de datos
+    db.session.add(nueva_conversacion)
+    db.session.commit()
+
+    return jsonify({"msg": "Conversación creada exitosamente"}), 201
+
+@api.route('/profesional/<int:profesional_id>/mensajes', methods=['GET'])
+def cargar_mensajes_profesional(profesional_id):
+    # Obtener todos los mensajes de conversación enviados al profesional con el ID proporcionado
+    mensajes = Conversacion.query.filter_by(profesional_id=profesional_id).all()
+    
+    # Verificar si hay mensajes para el profesional
+    if not mensajes:
+        return jsonify({"msg": "No hay mensajes para este profesional"}), 404
+    
+    # Serializar los objetos de mensaje a un formato JSON
+    mensajes_serializados = [mensaje.serialize() for mensaje in mensajes]
+    
+    return jsonify({"mensajes": mensajes_serializados}), 200
+
+@api.route('/profesional/<int:profesional_id>/mensajes/<int:mensaje_id>/responder', methods=['POST'])
+def responder_mensaje_profesional(profesional_id, mensaje_id):
+    data = request.get_json()
+    comentario = data.get("comentario")
+
+    # Verificar si se proporcionó un comentario
+    if not comentario:
+        return jsonify({"msg": "Se requiere un comentario para responder al mensaje"}), 400
+
+    # Verificar si el mensaje pertenece al profesional
+    mensaje = Conversacion.query.filter_by(id=mensaje_id, profesional_id=profesional_id).first()
+    if not mensaje:
+        return jsonify({"msg": "El mensaje no existe o no está asociado a este profesional"}), 404
+
+    # Agregar la respuesta al mensaje
+    mensaje.coment_text = comentario
+    db.session.commit()
+
+    return jsonify({"msg": "Respuesta enviada exitosamente"}), 201
+
+@api.route("/conversaciones_usuario", methods=["GET"])
+@jwt_required()
+def get_user_conversations():
+    # Obtener el ID del usuario actualmente autenticado
+    user_id = get_jwt_identity()
+
+    # Buscar todas las conversaciones en las que el usuario está involucrado
+    conversaciones = Conversacion.query.filter(Conversacion.usuario_id == user_id).all()
+
+    # Serializar las conversaciones para enviarlas como respuesta
+    conversaciones_serializadas = [conversacion.serialize() for conversacion in conversaciones]
+
+    return jsonify({"conversaciones": conversaciones_serializadas}), 200
+
+from flask import jsonify
+
+# Método para agregar un profesional a la lista de favoritos de un usuario
+@api.route("/agregarfavorito/<int:profesional_id>", methods=["POST"])
+@jwt_required()
+def agregar_favorito(profesional_id):
+    # Obtener el ID del usuario actualmente autenticado
+    user_id = get_jwt_identity()
+    
+    # Verificar si el usuario ya ha marcado a este profesional como favorito
+    favorito_existente = Favoritos.query.filter_by(usuario_id=user_id, profesional_id=profesional_id).first()
+    if favorito_existente:
+        return jsonify({"msg": "Este profesional ya está en tu lista de favoritos"}), 400
+    
+    # Crear un nuevo registro en la tabla de favoritos
+    nuevo_favorito = Favoritos(usuario_id=user_id, profesional_id=profesional_id)
+    db.session.add(nuevo_favorito)
+    db.session.commit()
+    
+    return jsonify({"msg": "Profesional añadido a favoritos exitosamente"}), 201
+
+@api.route('/eliminarfavorito/<int:favorito_id>', methods=['DELETE'])
+@jwt_required()
+def eliminar_favorito(favorito_id):
+    # Obtener el ID del usuario actualmente autenticado
+    current_user_id = get_jwt_identity()
+    
+    # Buscar el favorito en la base de datos por ID y usuario actual
+    favorito = Favoritos.query.filter_by(id=favorito_id, usuario_id=current_user_id).first()
+    
+    # Verificar si el favorito existe y pertenece al usuario actual
+    if favorito is None:
+        return jsonify({"msg": "Favorito no encontrado o no pertenece al usuario"}), 404
+    
+    # Eliminar el favorito de la base de datos
+    db.session.delete(favorito)
+    db.session.commit()
+
+    return jsonify({"msg": "Favorito eliminado exitosamente"}), 200
+
+@api.route('/favoritos', methods=['GET'])
+@jwt_required()
+def obtener_favoritos():
+    # Obtener el ID del usuario actualmente autenticado
+    current_user_id = get_jwt_identity()
+    
+    # Buscar los favoritos del usuario en la base de datos
+    favoritos = Favoritos.query.filter_by(usuario_id=current_user_id).all()
+    
+    # Verificar si el usuario tiene favoritos
+    if not favoritos:
+        return jsonify({"msg": "No se encontraron profesionales favoritos para este usuario"}), 404
+    
+    # Serializar los datos de los favoritos
+    favoritos_serializados = [favorito.serialize() for favorito in favoritos]
+    
+    return jsonify({"favoritos": favoritos_serializados}), 200
 
 
