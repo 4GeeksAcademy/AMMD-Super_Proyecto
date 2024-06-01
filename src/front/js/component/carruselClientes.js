@@ -1,10 +1,12 @@
 import React from 'react';
+import "../../styles/carruselClientes.css";
+
 
 const CarruselClientes = () => {
     return (
         <>
-            <h2 style={{ margin: '0 auto 20px', textAlign: 'center', maxWidth: '1200px' }}>
-                Llevamos experiencias gastronómicas excepcionales al lugar que tu elijas.
+            <h2 className="tituloCarruselClientes">
+                LLEVAMOS EXPERIENCIAS GASTRONOMICAS EXCEPCIONALES A DONDE TU ELIJAS
             </h2>
             <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <div className="carousel-indicators">

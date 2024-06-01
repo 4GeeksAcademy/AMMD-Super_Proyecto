@@ -1,4 +1,6 @@
 import React from 'react';
+import "../../styles/sobreNosotros.css";
+
 
 const SobreNosotros = () => {
   return (

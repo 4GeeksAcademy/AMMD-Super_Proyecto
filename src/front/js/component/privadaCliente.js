@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import Buscador from './buscador';
+import "../../styles/privadaCliente.css";
+
 
 const PrivadaCliente = () => {
   const navigate = useNavigate();

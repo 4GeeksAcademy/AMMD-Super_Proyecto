@@ -1,9 +1,11 @@
 import React from 'react';
+import "../../styles/carruselProfesionales.css";
+
 
 const CarruselProfesionales = () => {
     return (
         <>
-            <h2  style={{ margin: '0 auto 20px', textAlign: 'center', maxWidth: '1200px' }}>Únete a nuestro equipo y comparte tu pasión culinaria con el mundo.</h2>
+            <h2 className="tituloCarruselProfesional">UNETE A NUESTRO EQUIPO Y COMPARTE TU PASION CULINARIA CON EL MUNDO</h2>
             <div id="carruselProfesionales" className="carousel slide" data-bs-ride="carousel" style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carruselProfesionales" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>

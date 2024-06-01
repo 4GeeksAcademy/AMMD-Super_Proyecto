@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../../styles/cardProfesionales.css";
+
 
 const CardProfesionales = () => {
     const navigate = useNavigate();

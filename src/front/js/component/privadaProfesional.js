@@ -1,4 +1,6 @@
 import React from 'react';
+import "../../styles/privadaProfesional.css";
+
 
 function PrivadaProfesional() {
 
