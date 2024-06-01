@@ -1,0 +1,44 @@
+.login {
+    width: 800px;
+    height: 400px;
+    background: #212529;
+    padding: 47px;
+    color: #fff;
+    border-radius: 17px;
+    font-size: 1.3em;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+  }
+  
+  .login input[type="text"],
+  .login input[type="password"],
+  .btn-inicio-sesion {
+    width: 100%;
+    padding: 13px 18px;
+    margin: 20px 0 0 0;
+    font-size: 0.8em;
+    border-radius: 100px;
+    background: #3c3c3c;
+    color: #fff;
+    border: none;
+    outline: none;
+  }
+  
+  .btn-inicio-sesion {
+    background: linear-gradient(144deg, #97bfff, #4376c9 50%, #97bfff);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 50%; /* Ancho ajustado */
+    text-align: center; /* Centrar texto */
+  }
+  
+  .btn-inicio-sesion:hover {
+    background: linear-gradient(144deg, #1e1e1e , 20%,#1e1e1e 50%,#1e1e1e );
+  }
+  
