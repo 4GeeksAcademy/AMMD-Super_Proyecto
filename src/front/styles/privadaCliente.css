@@ -1,0 +1,96 @@
+/* PrivadaCliente.css */
+
+/* Contenedor principal */
+.container.privadaCliente {
+    margin-top: 20px;
+  }
+  
+  /* Centrado */
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Fila */
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Columnas */
+  .col {
+    flex: 1;
+    margin: 10px;
+  }
+  
+  /* Imagen */
+  .col img {
+    border-radius: 10px;
+    border: 5px solid #C19F65;
+  }
+  
+  h3 {
+    color: #333;
+    text-decoration: underline;
+  }
+  
+  /* Estilo de los botones */
+  .btn {
+    font-family: monospace;
+    font-size: 1.5rem;
+    color: #FAFAFA;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #FAFAFA;
+    background: #252525;
+    box-shadow: 3px 3px #fafafa;
+    cursor: pointer;
+    margin: 35px 0;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Efecto dinámico en hover para los botones */
+  .btn:hover {
+    background-color: #C19F65;
+    transform: scale(1.05);
+  }
+  
+  /* Efecto al hacer clic en el botón */
+  .btn:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
+  }
+  
+  /* Estilos para los párrafos dentro de cajas */
+  .container.privadaCliente p {
+    margin: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+  }
+  
+  /* Contenedor del buscador */
+  .container-buscador {
+    flex: 1;
+    margin-left: 10px;
+  }
+  
+  /* Texto sin margen inferior */
+  p.mb-0 {
+    margin-bottom: 0;
+  }
+  
+  h4 {
+    margin-top: 20px;
+    color: #444;
+  }
+  
+  .container-buscador {
+    border: 2px solid #C19F65; /* Borde sólido de color #C19F65 */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    margin-top: 20px; /* Margen superior */
+  }

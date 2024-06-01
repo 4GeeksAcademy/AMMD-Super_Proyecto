@@ -13,9 +13,7 @@ export const Home = () => {
 
 	return (
 		<div className="container">
-			<div className="container-buscador">
-                        <Buscador />
-            </div>
+            <Buscador />
 			<Jumbotron />
 			<br></br>
 			<CarruselClientes />

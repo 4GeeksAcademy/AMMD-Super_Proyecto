@@ -47,7 +47,7 @@ const InicioSesionProfesional = () => {
             />
           </div>
           <div className="col-auto"  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <button  type="submit" className="btn btn-primary" onClick={(e) => handleSubmit(e)}>
+                <button  type="submit" className="btn" onClick={(e) => handleSubmit(e)}>
                   Iniciar sesión
                 </button>
           </div>
@@ -64,7 +64,7 @@ const InicioSesionProfesional = () => {
           <div className="col-auto">
             <button 
               type="button"
-              className="btn btn-link"
+              className="btn"
               onClick={() => navigate(`/registroprofesional`)}
             >
               ¡Aquí!

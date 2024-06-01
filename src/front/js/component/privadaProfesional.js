@@ -1,24 +1,25 @@
 import React from 'react';
+import '../../styles/privadaProfesional.css'; // Ajusta la ruta de importación del CSS
 
 function PrivadaProfesional() {
 
   return (
     <div>
-      <div className="container text-center">
+      <div className="container privadaProfesional text-center">
         <div className="row">
           <div className="col">
             <img 
               src="https://images.pexels.com/photos/2709388/pexels-photo-2709388.jpeg?auto=compress&cs=tinysrgb&w=600" 
               alt="Descripción de la imagen" 
               width="300" 
-              height="300" 
+              height="360" 
             />
           </div>
           <div className="col">
             <h3>Hola !!!</h3>
-            <button type="button" className="btn btn-primary">EDITAR</button>
-            <button type="button" className="btn btn-secondary">CERRAR</button>
-            <button type="button" className="btn btn-success">ELIMINAR</button>
+            <button type="button" className="btn">EDITAR</button>
+            <button type="button" className="btn">CERRAR</button>
+            <button type="button" className="btn">ELIMINAR</button>
             <br />
             <p>Nombre </p>
             <p>Apellido </p>

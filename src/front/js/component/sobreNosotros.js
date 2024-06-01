@@ -8,7 +8,7 @@ const SobreNosotros = () => {
       <h2 style={{marginBottom: '20px'}}>El equipo</h2>
       <div className="container text-center">
         <div className="row">
-          <div className="col-3" style={{marginBottom: '50px'}}>
+          <div className="col-3">
             <div className="card" style={{width: '18rem'}}>
               <img src="https://via.placeholder.com/150" className="card-img-top" alt="Ainhoa" />
               <div className="card-body">
