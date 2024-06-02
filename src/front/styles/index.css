@@ -2,12 +2,6 @@ body {
     background-color: #FAF4EB;
 }
 
-
-
-.container-buscador {
-    border:#C09F65 1px solid;
-}
-
   .rounded-border {
     border: solid #C19F65 2px; /* Puedes ajustar el color y el grosor del borde según tu preferencia */
     border-radius: 15px; /* Ajusta este valor para hacer el borde más o menos redondeado */
