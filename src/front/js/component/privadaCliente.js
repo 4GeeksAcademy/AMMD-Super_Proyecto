@@ -1,9 +1,22 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import Buscador from './buscador';
+import { useContext } from 'react';
+import { Context } from '../store/appContext';
+import { useState,useEffect } from 'react';
 
 const PrivadaCliente = () => {
   const navigate = useNavigate();
+  const{store,actions}= useContext(Context)
+
+//prueba para renderizar un usuario
+const usuarioId = 1; 
+const usuarioEncontrado = store.usuarios.find(usuario => usuario.id === usuarioId);
+if (usuarioEncontrado) {
+  console.log("Usuario encontrado:", usuarioEncontrado);
+} else {
+  console.log("No se encontró ningún usuario con el ID:", usuarioId);
+}
 
   return (
     <div>
@@ -23,15 +36,15 @@ const PrivadaCliente = () => {
             <button type="button" className="btn btn-secondary">CERRAR</button>
             <button type="button" className="btn btn-success">ELIMINAR</button>
             <br />
-            <p>Nombre</p>
-            <p>Apellido </p>
-            <p>Email </p>
-            <p>DNI </p>
-            <p>Contraseña </p>
+            <p>Nombre{usuarioEncontrado.nombre}</p>
+            <p>Apellido{usuarioEncontrado.apellidos} </p>
+            <p>Email{usuarioEncontrado.email} </p>
+            <p>Direccion {usuarioEncontrado.direccion}</p>          
             <p>Pais </p>
-            <p>Población </p>
+            <p>Población {usuarioEncontrado.localizacion}</p>
             <p>Código Postal </p>
-            <p>Dirección </p>
+            <p>Alergias {usuarioEncontrado.alergias} </p>
+
           </div>
         </div>
       </div>

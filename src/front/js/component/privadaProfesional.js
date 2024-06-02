@@ -1,6 +1,23 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
+import Buscador from './buscador';
+import { useContext } from 'react';
+import { Context } from '../store/appContext';
+import { useState,useEffect } from 'react';
 
-function PrivadaProfesional() {
+const PrivadaProfesional = () => {
+
+   const navigate = useNavigate();
+   const{store,actions}= useContext(Context)
+
+   //prueba para renderizar un usuario
+const profesionalId = 1; 
+const profesionalEncontrado = store.profesionales.find(profesional => profesional.id === profesionalId);
+if (profesionalEncontrado) {
+  console.log("profesional encontrado:", profesionalEncontrado);
+} else {
+  console.log("No se encontró ningún profesional con el ID:", profesionalId);
+}
 
   return (
     <div>
@@ -20,15 +37,21 @@ function PrivadaProfesional() {
             <button type="button" className="btn btn-secondary">CERRAR</button>
             <button type="button" className="btn btn-success">ELIMINAR</button>
             <br />
-            <p>Nombre </p>
-            <p>Apellido </p>
-            <p>Email </p>
-            <p>DNI </p>
-            <p>Contraseña </p>
-            <p>Pais </p>
-            <p>Población </p>
-            <p>Código Postal </p>
-            <p>Dirección </p>
+            <h6>Nombre </h6>
+            <p>{profesionalEncontrado.nombre}</p>
+            <h6>Apellido </h6>
+            <p>{profesionalEncontrado.apellidos}</p>
+            <h6>Email </h6>
+            <p>{profesionalEncontrado.email}</p>
+            <h6>Profesion</h6>
+            <p>{profesionalEncontrado.descripcion}</p>
+            <h6>Información adicional</h6>
+            <p>{profesionalEncontrado.info_adicional}</p>
+            <h6>Población</h6>
+            <p>{profesionalEncontrado.localizacion}</p>
+            <h6>tipos de servicio</h6>
+            <p>{profesionalEncontrado.tipo_servicio_chef}</p>
+            
           </div>
         </div>
       </div>

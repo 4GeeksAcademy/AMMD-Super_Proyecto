@@ -103,7 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }],
             profesionales: [{
                 "apellidos": "Pérez",
-                "descripcion": "Chef con experiencia en cocina mediterránea.",
+                "descripcion": "Chef",
                 "direccion": "Calle Falsa 123",
                 "email": "1",
                 "foto_de_perfil": "foto1.jpg",
@@ -114,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "nombre": "Juan",
                 "telefono": "123456789",
                 "tipo_servicio_barman": false,
-                "tipo_servicio_chef": true,
+                "tipo_servicio_chef": "picapica",
                 "tipo_servicio_jamonero": false,
                 "tipo_servicio_pastelero": false,
                 "tipo_servicio_sumiller": false
@@ -132,7 +132,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "nombre": "David",
                 "telefono": "987654321",
                 "tipo_servicio_barman": false,
-                "tipo_servicio_chef": true,
+                "tipo_servicio_chef": "taller de cocina",
                 "tipo_servicio_jamonero": true,
                 "tipo_servicio_pastelero": false,
                 "tipo_servicio_sumiller": false
@@ -157,7 +157,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
               {
                 "apellidos": "Fernández",
-                "descripcion": "Sumiller certificado con amplia experiencia.",
+                "descripcion": "Sumiller",
                 "direccion": "Plaza Mayor 1",
                 "email": "chef@chef",
                 "foto_de_perfil": "foto4.jpg",
@@ -190,8 +190,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     .then(res => res.json())
                     .then(data => setStore({ profesionales: data.results }))
                     .catch(err => console.error("Error al cargar profesionales:", err));
-            },
-            
+            },            
             cargarUsuario: (id) => {
                 fetch(BASE_URL+"/api/usuario/" + id)
                     .then(res => res.json())
@@ -286,6 +285,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.error("Error al iniciar sesión:", error);
                     });
             },
+
             exampleFunction: () => {
                 getActions().changeColor(0, "green");
             },           
