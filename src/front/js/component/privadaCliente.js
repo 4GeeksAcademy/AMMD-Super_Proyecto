@@ -1,24 +1,27 @@
-import React from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Buscador from './buscador';
 import "../../styles/privadaCliente.css";
 
 import { useContext } from 'react';
 import { Context } from '../store/appContext';
-import { useState,useEffect } from 'react';
 
 const PrivadaCliente = () => {
   const navigate = useNavigate();
-  const{store,actions}= useContext(Context)
+  const { store, actions } = useContext(Context);
+  const [usuarioId, setUsuarioId] = useState(null); // Estado local para almacenar el usuarioId
 
-//prueba para renderizar un usuario
-const usuarioId = 1; 
-const usuarioEncontrado = store.usuarios.find(usuario => usuario.id === usuarioId);
-if (usuarioEncontrado) {
-  console.log("Usuario encontrado:", usuarioEncontrado);
-} else {
-  console.log("No se encontró ningún usuario con el ID:", usuarioId);
-}
+  // useEffect(() => {
+  //   // Aquí cargamos los usuarios utilizando la acción cargarUsuarios definida en el contexto
+  //   actions.cargarUsuario();
+  // }, [actions]);
+  
+    console.log("No se encontró ningún usuario con el ID:", store.usuarios.id);
+   
+
+  const handleEditar = () => {
+    navigate('/editarusuario', { state: { usuario: store.usuarios } });
+  };
 
   return (
     <div>
@@ -34,19 +37,24 @@ if (usuarioEncontrado) {
           </div>
           <div className="col">
             <h3>Hola !!!</h3>
-            <button type="button" className="btn btn-primary">EDITAR</button>
+            <button 
+              type="button"
+              className="btn btn-primary"
+              onClick={handleEditar}
+              >
+                EDITAR
+            </button>
             <button type="button" className="btn btn-secondary">CERRAR</button>
             <button type="button" className="btn btn-success">ELIMINAR</button>
             <br />
-            <p>Nombre{usuarioEncontrado.nombre}</p>
-            <p>Apellido{usuarioEncontrado.apellidos} </p>
-            <p>Email{usuarioEncontrado.email} </p>
-            <p>Direccion {usuarioEncontrado.direccion}</p>          
-            <p>Pais </p>
-            <p>Población {usuarioEncontrado.localizacion}</p>
-            <p>Código Postal </p>
-            <p>Alergias {usuarioEncontrado.alergias} </p>
-
+            <p>Nombre: {store.usuarios.nombre}</p>
+            <p>Apellido: {store.usuarios.apellidos} </p>
+            <p>Email: {store.usuarios.email} </p>
+            <p>Direccion: {store.usuarios.direccion}</p>          
+            <p>Pais: </p>
+            <p>Población: {store.usuarios.localizacion}</p>
+            <p>Código Postal: </p>
+            <p>Alergias: {store.usuarios.alergias} </p>
           </div>
         </div>
       </div>
@@ -67,6 +75,6 @@ if (usuarioEncontrado) {
       </div>
     </div>
   );
-}
+};
 
 export default PrivadaCliente;
