@@ -175,14 +175,10 @@ def vista_privada_profesional():
         "is_active": profesional.is_active
     }), 200
 
-
-
-
-
-# #ruta editar usuario
-@api.route("/actualizarusuario", methods=["PUT"])
+# ruta editar usuario
+@api.route("/editarusuario", methods=["PUT"])
 @jwt_required()
-def update_user():
+def editar_usuario():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
     if user is None:
@@ -217,7 +213,7 @@ def update_user():
 
     db.session.commit()
 
-    return jsonify({"msg": "Usuario actualizado exitosamente"}), 200
+    return jsonify({"msg": "Usuario editado exitosamente"}), 200
 
 # Método para editar profesional
 @api.route("/editarprofesional", methods=["PUT"])

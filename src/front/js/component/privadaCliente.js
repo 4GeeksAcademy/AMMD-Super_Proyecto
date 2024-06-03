@@ -1,22 +1,38 @@
-import React from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Buscador from './buscador';
-import { useContext } from 'react';
 import { Context } from '../store/appContext';
-import { useState,useEffect } from 'react';
 
 const PrivadaCliente = () => {
   const navigate = useNavigate();
-  const{store,actions}= useContext(Context)
+  const { store, actions } = useContext(Context);
+  const [usuarioId, setUsuarioId] = useState(null); // Estado local para almacenar el usuarioId
 
-//prueba para renderizar un usuario
-const usuarioId = 1; 
-const usuarioEncontrado = store.usuarios.find(usuario => usuario.id === usuarioId);
-if (usuarioEncontrado) {
-  console.log("Usuario encontrado:", usuarioEncontrado);
-} else {
-  console.log("No se encontró ningún usuario con el ID:", usuarioId);
-}
+  useEffect(() => {
+    // Aquí cargamos los usuarios utilizando la acción cargarUsuarios definida en el contexto
+    actions.cargarUsuarios();
+  }, [actions]);
+
+  // Obtener el usuarioId de manera dinámica (en este caso, el primer usuario de la lista)
+  useEffect(() => {
+    // Verificar que existan usuarios cargados
+    if (store.usuarios.length > 0) {
+      // Establecer el usuarioId, por ejemplo el primer usuario de la lista
+      setUsuarioId(store.usuarios[0].id);
+    }
+  }, [store.usuarios]);
+
+  // Encontrar el usuario correspondiente al usuarioId
+  const usuarioEncontrado = store.usuarios.find(usuario => usuario.id === usuarioId);
+
+  if (!usuarioEncontrado) {
+    console.log("No se encontró ningún usuario con el ID:", usuarioId);
+    return null; // o mostrar algún mensaje de error
+  }
+
+  const handleEditar = () => {
+    navigate('/editarusuario', { state: { usuario: usuarioEncontrado } });
+  };
 
   return (
     <div>
@@ -32,19 +48,24 @@ if (usuarioEncontrado) {
           </div>
           <div className="col">
             <h3>Hola !!!</h3>
-            <button type="button" className="btn btn-primary">EDITAR</button>
+            <button 
+              type="button"
+              className="btn btn-primary"
+              onClick={handleEditar}
+              >
+                EDITAR
+            </button>
             <button type="button" className="btn btn-secondary">CERRAR</button>
             <button type="button" className="btn btn-success">ELIMINAR</button>
             <br />
-            <p>Nombre{usuarioEncontrado.nombre}</p>
-            <p>Apellido{usuarioEncontrado.apellidos} </p>
-            <p>Email{usuarioEncontrado.email} </p>
-            <p>Direccion {usuarioEncontrado.direccion}</p>          
-            <p>Pais </p>
-            <p>Población {usuarioEncontrado.localizacion}</p>
-            <p>Código Postal </p>
-            <p>Alergias {usuarioEncontrado.alergias} </p>
-
+            <p>Nombre: {usuarioEncontrado.nombre}</p>
+            <p>Apellido: {usuarioEncontrado.apellidos} </p>
+            <p>Email: {usuarioEncontrado.email} </p>
+            <p>Direccion: {usuarioEncontrado.direccion}</p>          
+            <p>Pais: </p>
+            <p>Población: {usuarioEncontrado.localizacion}</p>
+            <p>Código Postal: </p>
+            <p>Alergias: {usuarioEncontrado.alergias} </p>
           </div>
         </div>
       </div>
@@ -65,6 +86,6 @@ if (usuarioEncontrado) {
       </div>
     </div>
   );
-}
+};
 
 export default PrivadaCliente;
