@@ -4,6 +4,8 @@ import { Context } from "../store/appContext";
 import "../../styles/inicioSesionProfesional.css";
 
 
+import "../../styles/iniciarSesionCliente.css"
+
 const InicioSesionProfesional = () => {
   const { store, actions } = useContext(Context);
   const [formValue, setFormValue] = useState({ email: "", password: "" });
@@ -23,37 +25,32 @@ const InicioSesionProfesional = () => {
   return (
     <div className="container">
       <form>
-        <fieldset style={{marginBottom: '50px'}}>
-          <legend style={{marginBottom: '20px'}}>¿QUIERES ECHARLE UN OJO A NUESTRA WEB?</legend>
-          <div className="mb-3" >
-            <label 
-              htmlFor="emailInput" className="form-label">Inicio Sesión</label>
+      <div className="login wrap" style={{marginBottom: '50px'}}>
+          <div className="h1">Login</div>
             <input
-              type="text"
-              id="email"
-              className="form-control"
+              pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
               placeholder="Email"
+              id="email"
+              name="email"
+              type="text"
               value={formValue.email}
               onChange={onChange}
             />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="passwordInput" className="form-label">Contraseña</label>
             <input
-              type="password"
-              id="password"
-              className="form-control"
               placeholder="Contraseña"
+              id="password"
+              name="password"
+              type="password"
               value={formValue.password}
               onChange={onChange}
             />
-          </div>
-          <div className="col-auto"  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <button  type="submit" className="btn btn-primary" onClick={(e) => handleSubmit(e)}>
-                  Iniciar sesión
-                </button>
-          </div>
-        </fieldset>
+            <input
+              value="Iniciar sesión"
+              className="btn-inicio-sesion"
+              type="submit"
+              onClick={(e) =>handleSubmit(e) }
+            />
+        </div>
       </form>
       <div className="mb-3">
         <h4 style={{marginBottom: '20px'}}>¿No tienes cuenta y quieres formar parte de nuestro equipo?</h4>
