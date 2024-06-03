@@ -7,7 +7,7 @@ const CardProfesionales = () => {
     const navigate = useNavigate();
 
     return (
-        <div class="container text-center">
+        <div class="container cardProfesional text-center">
         <div class="row">
             <div class="col">
             <div className="card mb-3" style={{ maxWidth: "540px" }}>

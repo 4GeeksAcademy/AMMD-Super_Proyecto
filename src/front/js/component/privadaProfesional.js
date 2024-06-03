@@ -1,11 +1,11 @@
 import React from 'react';
-import "../../styles/privadaProfesional.css";
-
+import '../../styles/privadaProfesional.css'; // Ajusta la ruta de importación del CSS
 
 function PrivadaProfesional() {
 
   return (
-    <div>
+    <div className='privadaProfesional'>
+      <button type="button" className="btn close-button">CERRAR</button>
       <div className="container text-center">
         <div className="row">
           <div className="col">
@@ -13,24 +13,23 @@ function PrivadaProfesional() {
               src="https://images.pexels.com/photos/2709388/pexels-photo-2709388.jpeg?auto=compress&cs=tinysrgb&w=600" 
               alt="Descripción de la imagen" 
               width="300" 
-              height="300" 
+              height="400" 
             />
           </div>
           <div className="col">
-            <h3>Hola !!!</h3>
-            <button type="button" className="btn btn-primary">EDITAR</button>
-            <button type="button" className="btn btn-secondary">CERRAR</button>
-            <button type="button" className="btn btn-success">ELIMINAR</button>
+            <h3>Hola !!!</h3>            
             <br />
             <p>Nombre </p>
             <p>Apellido </p>
             <p>Email </p>
             <p>DNI </p>
             <p>Contraseña </p>
-            <p>Pais </p>
             <p>Población </p>
-            <p>Código Postal </p>
             <p>Dirección </p>
+          </div>
+          <div className="button-row editar eliminar"> {/* Nuevo contenedor para los botones con clase de alineación derecha */}
+            <button type="button" className="btn">EDITAR</button>
+            <button type="button" className="btn">ELIMINAR</button>
           </div>
         </div>
       </div>

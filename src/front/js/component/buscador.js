@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import {useContext} from 'react';
+import { useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/buscador.css";
-
+import '../../styles/buscador.css';
 
 const Buscador = () => {
-
     const navigate = useNavigate();
-    const{store} = useContext(Context);
+    const { store } = useContext(Context);
     const [profesionalSeleccionado, setProfesionalSeleccionado] = useState(null);
     const [tipoDeServicio, setTipoDeServicio] = useState(null); 
     const [tipoDeComida, setTipoDeComida] = useState(null); 
@@ -25,9 +23,8 @@ const Buscador = () => {
         setTipoDeComida(tipoComida);
     }
 
-
     return (
-        <div className="container-buscador" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px 5px', gap: '10px' }}>
+        <div className="container-buscador">
             <ul className="nav" style={{ marginRight: '10px' }}>
                 <li className="nav-item">
                     <a className="nav-link disabled" aria-disabled="true"><strong>¿Qué te apetece?</strong></a>
@@ -44,9 +41,6 @@ const Buscador = () => {
                     <li><a className="dropdown-item" href="#" onClick={() => manejarTipoProfesional('cortador de jamon')}>Cortador/a de jamón</a></li>
                     <li><a className="dropdown-item" href="#" onClick={() => manejarTipoProfesional('barman')}>Barman/Barwomen</a></li>                        
                 </ul>
-
-                
-                {/* onClick={()=>{setChefs(filtrarTipoDeServicio(store.profesionales, "tipo_servicio_chef"))}} */}
             </div> 
             {profesionalSeleccionado === 'chef' && (
                 <div className="dropdown" style={{ marginRight: '10px' }}>
@@ -55,7 +49,7 @@ const Buscador = () => {
                     </button>
                     <ul className="dropdown-menu">
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoServicio('taller de cocina')}>Taller de cocina</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoServicio('servicio cocktel')}>Servicio coctel</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoServicio('servicio coctel')}>Servicio coctel</a></li>
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoServicio('comida de empresa')}>Comida de empresa</a></li>
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoServicio('comida menu degustacion')}>Comida menu degustacion</a></li>
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoServicio('batchcooking')}>Batchcooking</a></li>
@@ -70,7 +64,6 @@ const Buscador = () => {
                 <ul className="dropdown-menu">
                     <li><a className="dropdown-item" href="#">Corte de jamon</a></li>
                     <li><a className="dropdown-item" href="#">Clase de corte de jamon</a></li>
-                                     
                 </ul>
             </div> 
             )}
@@ -112,7 +105,7 @@ const Buscador = () => {
             </div>
             )}
 
-        {profesionalSeleccionado === 'chef' && ( 
+            {profesionalSeleccionado === 'chef' && ( 
             <div className="dropdown" style={{ marginRight: '10px' }}>
                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Tipo de cocina
