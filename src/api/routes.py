@@ -99,7 +99,8 @@ def iniciar_sesion_usuario():
     if user is None or not check_password_hash(user.password, password):
         return jsonify({"msg": "Usuario no encontrado o contraseña incorrecta"}), 401
     access_token = create_access_token(identity=user.id)
-    return jsonify({"token": access_token, "user_id": user.id}), 200
+    print(user.serialize())
+    return jsonify({"token": access_token, "user": user.serialize()}), 200
 
 #ruta iniciar sesion profesional
 @api.route("/iniciarsesionprofesional", methods=["POST"])

@@ -8,30 +8,16 @@ const PrivadaCliente = () => {
   const { store, actions } = useContext(Context);
   const [usuarioId, setUsuarioId] = useState(null); // Estado local para almacenar el usuarioId
 
-  useEffect(() => {
-    // Aquí cargamos los usuarios utilizando la acción cargarUsuarios definida en el contexto
-    actions.cargarUsuarios();
-  }, [actions]);
-
-  // Obtener el usuarioId de manera dinámica (en este caso, el primer usuario de la lista)
-  useEffect(() => {
-    // Verificar que existan usuarios cargados
-    if (store.usuarios.length > 0) {
-      // Establecer el usuarioId, por ejemplo el primer usuario de la lista
-      setUsuarioId(store.usuarios[0].id);
-    }
-  }, [store.usuarios]);
-
-  // Encontrar el usuario correspondiente al usuarioId
-  const usuarioEncontrado = store.usuarios.find(usuario => usuario.id === usuarioId);
-
-  if (!usuarioEncontrado) {
-    console.log("No se encontró ningún usuario con el ID:", usuarioId);
-    return null; // o mostrar algún mensaje de error
-  }
+  // useEffect(() => {
+  //   // Aquí cargamos los usuarios utilizando la acción cargarUsuarios definida en el contexto
+  //   actions.cargarUsuario();
+  // }, [actions]);
+  
+    console.log("No se encontró ningún usuario con el ID:", store.usuarios.id);
+   
 
   const handleEditar = () => {
-    navigate('/editarusuario', { state: { usuario: usuarioEncontrado } });
+    navigate('/editarusuario', { state: { usuario: store.usuarios } });
   };
 
   return (
@@ -58,14 +44,14 @@ const PrivadaCliente = () => {
             <button type="button" className="btn btn-secondary">CERRAR</button>
             <button type="button" className="btn btn-success">ELIMINAR</button>
             <br />
-            <p>Nombre: {usuarioEncontrado.nombre}</p>
-            <p>Apellido: {usuarioEncontrado.apellidos} </p>
-            <p>Email: {usuarioEncontrado.email} </p>
-            <p>Direccion: {usuarioEncontrado.direccion}</p>          
+            <p>Nombre: {store.usuarios.nombre}</p>
+            <p>Apellido: {store.usuarios.apellidos} </p>
+            <p>Email: {store.usuarios.email} </p>
+            <p>Direccion: {store.usuarios.direccion}</p>          
             <p>Pais: </p>
-            <p>Población: {usuarioEncontrado.localizacion}</p>
+            <p>Población: {store.usuarios.localizacion}</p>
             <p>Código Postal: </p>
-            <p>Alergias: {usuarioEncontrado.alergias} </p>
+            <p>Alergias: {store.usuarios.alergias} </p>
           </div>
         </div>
       </div>

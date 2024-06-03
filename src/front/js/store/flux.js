@@ -258,8 +258,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                         return response.json();
                     })
                     .then((data) => {
-                        setStore({ token: data.token });
-                       
+                        
+                        setStore({ token: data.token, usuarios: data.user });
+                        const store = getStore();
+                        console.log(store.usuarios)
                     })
                     .catch((error) => {
                         console.error("Error al iniciar sesión:", error);
