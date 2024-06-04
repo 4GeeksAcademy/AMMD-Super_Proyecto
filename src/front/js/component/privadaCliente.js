@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Buscador from './buscador';
 import "../../styles/privadaCliente.css";
 
-import { useContext } from 'react';
 import { Context } from '../store/appContext';
 
 const PrivadaCliente = () => {
