@@ -4,9 +4,11 @@ from flask_cors import CORS
 from flask_jwt_extended import create_access_token, JWTManager, get_jwt_identity, jwt_required, get_jwt
 from api.models import db, User, Profesional,Conversacion,ServiciosContratados,Favoritos
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_mail import Mail, Message
 
 api = Blueprint('api', __name__)
 
+mail = Mail()
 # Allow CORS requests to this API
 CORS(api)
 
@@ -428,4 +430,13 @@ def obtener_favoritos():
     
     return jsonify({"favoritos": favoritos_serializados}), 200
 
-
+@api.route("/mailTest")
+def index():
+   msg = Message(
+        subject="Hello",
+        sender="adoptaunchef@gmail.com",
+        recipients=["chefdavid@hotmail.com"],
+    )
+   msg.body = "Hello Flask message sent from Flask-Mail"
+   mail.send(msg)
+   return jsonify({"msg":"email"})

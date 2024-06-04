@@ -14,6 +14,7 @@ from api.models import User, Profesional, Conversacion, ServiciosContratados
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
+from flask_mail import Mail, Message
 # from models import Person
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -24,6 +25,15 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 BASE_URL = os.getenv('BACKEND_URL')
 
+#config mail
+mail= Mail(app)
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'adoptaunchef@gmail.com'
+app.config['MAIL_PASSWORD'] = 'adoptaunchef'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app) 
 # Configuración de JWT
 app.config['JWT_SECRET_KEY'] = 'secretisimo'  # Cambia esto por una clave secreta segura
 jwt = JWTManager(app)

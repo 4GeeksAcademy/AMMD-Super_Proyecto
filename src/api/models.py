@@ -17,12 +17,22 @@ class Profesional(db.Model):
     descripcion = db.Column(db.String(300), nullable=True)
     info_adicional = db.Column(db.String(300), nullable=True)
     tipo_de_profesional = db.Column(db.Enum('Chef','Barman','Cortador de jamon','Sumiller','Pastelero',name='tipo_de_profesional'))
-    tipo_de_cocina = db.Column(db.Enum('cocina española','cocina peruana','cocina griega','cocina americana','cocina italiana','cocina argentina','cocina tailandesa','cocina mexicana','cocina creativa','cocina japonesa', 'cocina vegana',name='tipo_de_cocina'),nullable=True)
-    tipo_servicio_chef = db.Column(db.Enum('Pica-pica', 'Taller de cocina', 'Comida trabajo', 'Servicio degustación','Comida informal', 'Batchcooking', name='tipo_servicio_chef'), nullable=True)
-    tipo_servicio_jamonero = db.Column(db.Enum('Corte de jamón', 'Clase de corte de jamón', name='tipo_servicio_jamonero'))
-    tipo_servicio_sumiller = db.Column(db.Enum('Cata de vinos', 'Maridaje', name='tipo_servicio_sumiller'))
-    tipo_servicio_pastelero = db.Column(db.Enum('Clase de pasteleria', 'Servicio de desayunos', 'Servicio de meriendas', name='tipo_servicio_pastelero'))
-    tipo_servicio_barman = db.Column(db.Enum('Clase de cocteleria', 'Servicio de barra', name='tipo_servicio_barman'))
+    tipo_de_cocina_especialidad = db.Column(db.Enum('cocina española','cocina peruana','cocina griega','cocina americana','cocina italiana','cocina argentina','cocina tailandesa','cocina mexicana','cocina creativa','cocina japonesa', 'cocina vegana',name='tipo_de_cocina'),nullable=True)  
+    tipo_servicio_chef_pica_pica = db.Column(db.Text, nullable=True)
+    tipo_servicio_chef_taller_de_cocina = db.Column(db.Text, nullable=True)
+    tipo_servicio_chef_comida_de_trabajo =db.Column(db.Text, nullable=True)
+    tipo_servicio_chef_servicio_degustacion = db.Column(db.Text, nullable=True)
+    tipo_servicio_chef_comida_informal = db.Column(db.Text, nullable=True)
+    tipo_servicio_chef_bacthcooking = db.Column(db.Text, nullable=True)
+    tipo_servicio_jamonero_corte = db.Column(db.Text, nullable=True)
+    tipo_servicio_jamonero_clase_corte = db.Column(db.Text, nullable=True)
+    tipo_servicio_sumiller_maridaje = db.Column(db.Text, nullable=True)
+    tipo_servicio_sumiller_cata = db.Column(db.Text, nullable=True)  
+    tipo_servicio_pastelero_clase = db.Column(db.Text, nullable=True)  
+    tipo_servicio_pastelero_desayuno = db.Column(db.Text, nullable=True)  
+    tipo_servicio_pastelero_merienda = db.Column(db.Text, nullable=True)  
+    tipo_servicio_barman_barra = db.Column(db.Text, nullable=True)  
+    tipo_servicio_barman_clase = db.Column(db.Text, nullable=True)      
     is_active = db.Column(db.Boolean(), nullable=True)
 
     def __repr__(self):
@@ -47,10 +57,21 @@ class Profesional(db.Model):
             "descripcion": self.descripcion,
             "info_adicional": self.info_adicional,
             "tipo_servicio_chef": self.tipo_servicio_chef,
-            "tipo_servicio_jamonero": self.tipo_servicio_jamonero,
-            "tipo_servicio_sumiller": self.tipo_servicio_sumiller,
-            "tipo_servicio_pastelero": self.tipo_servicio_pastelero,
-            "tipo_servicio_barman": self.tipo_servicio_barman,
+            "tipo_servicio_chef_pica_pica":self.tipo_servicio_chef_pica_pica,
+            "tipo_servicio_chef_taller_de_cocina":self.tipo_servicio_chef_taller_de_cocina,
+            "tipo_servicio_chef_comida_de_trabajo":self.tipo_servicio_chef_comida_de_trabajo,
+            "tipo_servicio_chef_servicio_degustacion":self.tipo_servicio_chef_servicio_degustacion,
+            "tipo_servicio_chef_comida_informal":self.tipo_servicio_chef_comida_informal,
+            "tipo_servicio_chef_bacthcooking":self.tipo_servicio_chef_bacthcooking,
+            "tipo_servicio_jamonero_corte":self.tipo_servicio_jamonero_corte,
+            "tipo_servicio_jamonero_clase_corte":self.tipo_servicio_jamonero_clase_corte,
+            "tipo_servicio_sumiller_maridaje":self.tipo_servicio_sumiller_maridaje,
+            "tipo_servicio_sumiller_cata":self.tipo_servicio_sumiller_cata,
+            "tipo_servicio_pastelero_clase":self.tipo_servicio_pastelero_clase,
+            "tipo_servicio_pastelero_desayuno":self.tipo_servicio_pastelero_desayuno,
+            "tipo_servicio_pastelero_merienda":self.tipo_servicio_pastelero_merienda,
+            "tipo_servicio_barman_barra":self.tipo_servicio_barman_barra,
+            "tipo_servicio_barman_clase":self.tipo_servicio_barman_clase,            
             "is_active": self.is_active
         }
 
