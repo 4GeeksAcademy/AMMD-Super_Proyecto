@@ -1,12 +1,22 @@
 import React from 'react';
 import "../../styles/sobreNosotros.css";
+import logoammd from "../../img/logoammd.png"
 
 
 const SobreNosotros = () => {
   return (
-    <div className="container">
-      <h1 style={{marginBottom: '20px'}}>Somos AMMD Developers</h1>
-      <p style={{marginBottom: '50px'}}>En AMMD Developers, somos un equipo apasionado de desarrolladores web dedicados a transformar ideas innovadoras en realidades digitales sostenibles. Nuestro amor por la innovación nos impulsa a crear proyectos que no solo destacan por su creatividad y funcionalidad, sino también por su impacto positivo en el medio ambiente y la sociedad.</p>
+            <div className="container">
+              <div className="container text-center">
+                 <div className="row">
+                     <div className="col-9 tituloSobreNosotros">
+                       <h1 style={{marginBottom: '20px'}}>Somos AMMD Developers</h1>
+                       <p style={{marginBottom: '50px'}}>En AMMD Developers, somos un equipo apasionado de desarrolladores web dedicados a transformar ideas innovadoras en realidades digitales sostenibles. Nuestro amor por la innovación nos impulsa a crear proyectos que no solo destacan por su creatividad y funcionalidad, sino también por su impacto positivo en el medio ambiente y la sociedad.</p>
+                    </div>
+                  <div className="col-3">
+                  <img src={logoammd} alt="logo_adoptaunchef" style={{ height: '300px', width: 'auto' }}></img>
+            </div>
+          </div>
+        </div>
       <h2 style={{marginBottom: '20px'}}>El equipo</h2>
       <div className="container text-center">
         <div className="row">
