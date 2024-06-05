@@ -116,7 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "localizacion": "Madrid",
                 "nombre": "Juan",
                 "telefono": "123456789",
-                "tipo_de_profesional": 'Chef',
+                "tipo_de_profesional": 'chef',
                 "tipo_de_cocina_especialidad": 'cocina griega',
                 "tipo_servicio_barman": false,
                 "tipo_servicio_chef": "picapica",
@@ -136,7 +136,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "localizacion": "Barcelona",
                 "nombre": "David",
                 "telefono": "987654321",
-                "tipo_de_profesional": 'Chef',
+                "tipo_de_profesional": 'chef',
                 "tipo_de_cocina_especialidad": 'cocina peruana',
                 "tipo_servicio_barman": false,
                 "tipo_servicio_chef": "taller de cocina",
@@ -156,6 +156,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "localizacion": "Valencia",
                 "nombre": "Carlos",
                 "telefono": "654321987",
+                "tipo_de_profesional": 'pastelero',
                 "tipo_servicio_barman": false,
                 "tipo_servicio_chef": false,
                 "tipo_servicio_jamonero": false,
@@ -174,6 +175,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "localizacion": "Sevilla",
                 "nombre": "Ainhoa",
                 "telefono": "321654987",
+                "tipo_de_profesional": 'sumiller',
                 "tipo_servicio_barman": false,
                 "tipo_servicio_chef": false,
                 "tipo_servicio_jamonero": false,
@@ -185,9 +187,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             profesionalSeleccionado: [],
             token: null,
             tipoServicioSeleccionado: null,
-            tipoComidaSeleccionada: null,
             tipoEventoSeleccionado: null,
-            localidadSeleccionada: null
+            tipoComidaSeleccionada: null,
+            localidadSeleccionada: null,
+            profesionalesFiltrados: null
         },
         actions: {
             // Use getActions to call a function within a function
@@ -330,7 +333,15 @@ const getState = ({ getStore, getActions, setStore }) => {
             filtrarTipoServicio: (servicio) => {
                 setStore({ tipoServicioSeleccionado: servicio });
             },
-
+            filtrarTipoEvento: (evento) => {
+                setStore({ tipoEventoSeleccionado: evento })
+            },
+            filtrarTipoComida: (comida) => {
+                setStore({ tipoComidaSeleccionada: comida })
+            },
+            filtrarLocalizacion: (localizacion) => {
+                setStore({ localidadSeleccionada: localizacion });
+            },
             exampleFunction: () => {
                 getActions().changeColor(0, "green");
             },           

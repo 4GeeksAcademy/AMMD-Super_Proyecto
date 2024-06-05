@@ -3,17 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/buscador.css";
 
-
 const Buscador = () => {
-
     const navigate = useNavigate();
-    const{store, actions} = useContext(Context);
+    const { store, actions } = useContext(Context);
 
     const [profesionalSeleccionado, setProfesionalSeleccionado] = useState("");
-    const [tipoDeEvento, setTipoDeEvento] = useState(""); 
+    const [tipoDeEvento, setTipoDeEvento] = useState("");
     const [tipoDeComida, setTipoDeComida] = useState("");
     const [localizacion, setLocalizacion] = useState("");     
-    
+
     const manejarTipoProfesional = (tipoProfesional) => {
         setProfesionalSeleccionado(tipoProfesional);
         setTipoDeEvento("");
@@ -23,27 +21,21 @@ const Buscador = () => {
     const manejarTipoEvento = (tipoEvento) => {
         setTipoDeEvento(tipoEvento);
     }
-    
+
     const manejarTipoComida = (tipoComida) => {
         setTipoDeComida(tipoComida);
     }
 
-    const manejarBuscar = (servicio) => {
-        actions.filtrarTipoServicio(servicio)
-        navigate(`/busquedaprofesionales`)
+    const manejarBuscar = (servicio, evento) => {
+        actions.filtrarTipoServicio(servicio);
+        actions.filtrarTipoEvento(evento);
+        navigate(`/busquedaprofesionales`);
     }
-
-    // const datos_busqueda = store.profesionales.filter(profesional => {
-    //     return (
-            
-    //     );
-    // });
 
     console.log(profesionalSeleccionado)
     console.log(tipoDeEvento)
     console.log(tipoDeComida)
     console.log(localizacion)
-    // console.log(datos_busqueda);
 
     return (
         <div className="container-buscador" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px 5px', gap: '10px' }}>
@@ -63,7 +55,6 @@ const Buscador = () => {
                     <li><a className="dropdown-item" href="#" onClick={() => manejarTipoProfesional('cortador de jamon')}>Cortador/a de jamón</a></li>
                     <li><a className="dropdown-item" href="#" onClick={() => manejarTipoProfesional('barman')}>Barman/Barwomen</a></li>                        
                 </ul>
-                {/* onClick={()=>{setChefs(filtrarTipoDeServicio(store.profesionales, "tipo_servicio_chef"))}} */}
             </div> 
 
             {profesionalSeleccionado === 'chef' && (
@@ -135,7 +126,6 @@ const Buscador = () => {
                     <ul className="dropdown-menu">
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Corte de jamon')}>Corte de jamon</a></li>
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Clase de corte de jamon')}>Clase de corte de jamon</a></li>
-                                        
                     </ul>
                 </div> 
             )}
@@ -167,7 +157,7 @@ const Buscador = () => {
                 type="button" 
                 id="button-addon2"
                 style={{ marginLeft: '10px' }}               
-                onClick={() => manejarBuscar(profesionalSeleccionado) }
+                onClick={() => manejarBuscar(profesionalSeleccionado, tipoDeEvento) }
             >
                 Buscar
             </button>

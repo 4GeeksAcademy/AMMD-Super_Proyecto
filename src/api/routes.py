@@ -429,6 +429,7 @@ def obtener_favoritos():
     favoritos_serializados = [favorito.serialize() for favorito in favoritos]
     
     return jsonify({"favoritos": favoritos_serializados}), 200
+    
 
 @api.route("/mailTest")
 def index():
