@@ -180,6 +180,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             usuarioSeleccionado: [],
             profesionalSeleccionado: [],
             token: null,
+            tipoServicioSeleccionado: null,
+            tipoComidaSeleccionada: null,
+            tipoEventoSeleccionado: null,
+            localidadSeleccionada: null
         },
         actions: {
             // Use getActions to call a function within a function
@@ -319,6 +323,9 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.error("Error al editar el usuario", error);
                     });
             },
+            filtrarTipoServicio: (servicio) => {
+                setStore({ tipoServicioSeleccionado: servicio });
+            },
 
             exampleFunction: () => {
                 getActions().changeColor(0, "green");
@@ -339,5 +346,3 @@ const getState = ({ getStore, getActions, setStore }) => {
     };
 };
 export default getState;
-
-// aa

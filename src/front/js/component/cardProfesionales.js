@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/cardProfesionales.css";
 
 
-const CardProfesionales = () => {
+const CardProfesionales = ({nombre, localizacion, children, }) => {
     const navigate = useNavigate();
 
     return (
-        <div class="container text-center">
-        <div class="row">
-            <div class="col">
+        <div className="container text-center">
+        <div className="row">
+            <div className="col">
             <div className="card mb-3" style={{ maxWidth: "540px" }}>
             <div className="row g-0">
                 <div className="col-md-4">
@@ -17,9 +17,9 @@ const CardProfesionales = () => {
                 </div>
                 <div className="col-md-8">
                     <div className="card-body">
-                        <h5 className="card-title">Miguel</h5>
+                        <h5 className="card-title">{nombre}</h5>
                         <p className="card-text">
-                            Barcelona
+                            {localizacion}
                         </p>
                         <p className="card-text">
                             Tipo de evento
@@ -30,6 +30,7 @@ const CardProfesionales = () => {
                         <p className="card-text">
                             Reseñas
                         </p>
+                        {children}
                         <button  
                             onClick={() => navigate(`/contratacionprofesional`)}
                         >
@@ -40,10 +41,10 @@ const CardProfesionales = () => {
             </div>
         </div>
         </div>
-        <div class="col">
+        <div className="col">
             
         </div>
-        <div class="col">
+        <div className="col">
             
         </div>
         </div>
