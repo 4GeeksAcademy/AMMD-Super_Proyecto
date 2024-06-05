@@ -4,9 +4,13 @@ from flask_cors import CORS
 from flask_jwt_extended import create_access_token, JWTManager, get_jwt_identity, jwt_required, get_jwt
 from api.models import db, User, Profesional,Conversacion,ServiciosContratados,Favoritos
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_mail import Mail, Message
+from datetime import datetime, timedelta
+import uuid
 
 api = Blueprint('api', __name__)
 
+mail = Mail()
 # Allow CORS requests to this API
 CORS(api)
 
@@ -428,4 +432,70 @@ def obtener_favoritos():
     
     return jsonify({"favoritos": favoritos_serializados}), 200
 
+# @api.route("/mailTest")
+# def index():
+#     try:
+#         msg = Message(
+#             subject="Hello",
+#             sender="adoptaunchef@gmail.com",
+#             recipients=["chefdavid@hotmail.com"]
+#         )
+#         msg.body = "Hello Flask message sent from Flask-Mail"
+#         mail.send(msg)
+#         return jsonify({"msg": "email sent"})
+#     except Exception as e:
+#         return jsonify({"error": str(e)})
 
+@api.route("/resetpassword", methods=["POST"])
+def reset_password():
+    data = request.get_json()
+    email = data.get('email')
+
+    if not email:
+        return jsonify({"error": "Email is required"}), 400
+
+    user = User.query.filter_by(email=email).first()
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    # Generar un token único
+    token = str(uuid.uuid4())
+    expiration = datetime.utcnow() + timedelta(hours=1)
+    user.reset_token = token
+    user.token_expiration = expiration
+    db.session.commit()
+
+    try:
+        msg = Message(
+            subject="Password Reset Request",
+            sender="adoptaunchef@gmail.com",
+            recipients=[email]
+        )
+        reset_link = f"https://legendary-waffle-x55gpwjxw94rc944-3000.app.github.dev/resetpassword/{token}"
+        msg.body = f"Please click the link below to reset your password:\n\n{reset_link}"
+        mail.send(msg)
+        return jsonify({"msg": "email sent"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@api.route("/resetpassword/<token>", methods=["PUT"])
+def update_password(token):
+    data = request.get_json()
+    new_password = data.get('password')
+
+    if not new_password:
+        return jsonify({"error": "Password is required"}), 400
+
+    user = User.query.filter_by(reset_token=token).first()
+
+    if not user or user.token_expiration < datetime.utcnow():
+        return jsonify({"error": "Invalid or expired token"}), 400
+
+    # Actualizar la contraseña
+    user.password = generate_password_hash(new_password)
+    user.reset_token = None
+    user.token_expiration = None
+    db.session.commit()
+
+    return jsonify({"msg": "Password has been updated"})

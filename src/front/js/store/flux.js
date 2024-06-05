@@ -124,7 +124,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
               {
                 "apellidos": "Martínez",
-                "descripcion": "Especialista en alta cocina.",
+                "descripcion": "sumiller",
                 "direccion": "Avenida Siempre Viva 742",
                 "email": "chefdavid@hotmail.com",
                 "foto_de_perfil": "foto2.jpg",

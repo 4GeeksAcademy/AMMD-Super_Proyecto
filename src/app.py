@@ -14,6 +14,8 @@ from api.models import User, Profesional, Conversacion, ServiciosContratados
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
+from flask_mail import Mail, Message
+from api.routes import api
 # from models import Person
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -24,6 +26,14 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 BASE_URL = os.getenv('BACKEND_URL')
 
+#config mail
+app.config['MAIL_SERVER']='sandbox.smtp.mailtrap.io'
+app.config['MAIL_PORT'] = 2525
+app.config['MAIL_USERNAME'] = '1515c6f1d92b9f'
+app.config['MAIL_PASSWORD'] = '0f8c77ee421a5a'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+mail = Mail(app) 
 # Configuración de JWT
 app.config['JWT_SECRET_KEY'] = 'secretisimo'  # Cambia esto por una clave secreta segura
 jwt = JWTManager(app)
