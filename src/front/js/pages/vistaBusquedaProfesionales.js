@@ -6,54 +6,81 @@ import Buscador from "../component/buscador";
 export const VistaBusquedaProfesionales = () => {
     const { store } = useContext(Context);
     const [profesionalSeleccionado, setProfesionalSeleccionado] = useState([]);
-    const [tipoDeEventoSeleccionado, setTipoDeEventoSeleccionado] = useState("");
-
-    useEffect(() => {
-
-        // 1º Dropdown tipo de servicios (los profesionales que seleccionemos)
-        if (store.tipoServicioSeleccionado == 'chef') {
-            const filtrados_chef = store.profesionales.filter(profesional => profesional.tipo_servicio_chef);
-            setProfesionalSeleccionado(filtrados_chef);
-        } else if (store.tipoServicioSeleccionado == 'sumiller') {
-            const filtrados_sumiller = store.profesionales.filter(profesional => profesional.tipo_servicio_sumiller);
-            setProfesionalSeleccionado(filtrados_sumiller);
-        } else if (store.tipoServicioSeleccionado == 'pastelero') {
-            const filtrados_pastelero = store.profesionales.filter(profesional => profesional.tipo_servicio_pastelero);
-            setProfesionalSeleccionado(filtrados_pastelero);
-        } else if (store.tipoServicioSeleccionado == 'cortador de jamon') {
-            const filtrados_cortador_de_jamon = store.profesionales.filter(profesional => profesional.tipo_servicio_jamonero);
-            setProfesionalSeleccionado(filtrados_cortador_de_jamon);
-        } else if (store.tipoServicioSeleccionado == 'barman') {
-            const filtrados_barman = store.profesionales.filter(profesional => profesional.tipo_servicio_barman);
-            setProfesionalSeleccionado(filtrados_barman);
-        } else setProfesionalSeleccionado([])
+    const [tipoEventoSeleccionado, setTipoEventoSeleccionado] = useState("");
+     
         
-        console.log(profesionalSeleccionado);
+    useEffect(() => {
+        let filtrados = [];
 
-        // 2º Dropdown tipos de eventos del chef
-        // if (store.tipoServicioSeleccionado == 'chef') {
-        //     const filtrados_pica_pica = store.profesionales.filter(profesional => profesional.tipo_servicio_chef_pica_pica);
-        //     setTipoDeEventoSeleccionado(filtrados_pica_pica);
-        // } else if (store.tipoServicioSeleccionado == 'chef') {
-        //     const filtrados_taller_de_cocina = store.profesionales.filter(profesional => profesional.tipo_servicio_chef_taller_de_cocina);
-        //     setTipoDeEventoSeleccionado(filtrados_taller_de_cocina);
-        // } else if (store.tipoServicioSeleccionado == 'chef') {
-        //     const filtrados_comida_de_trabajo = store.profesionales.filter(profesional => profesional.tipo_servicio_chef_comida_de_trabajo);
-        //     setTipoDeEventoSeleccionado(filtrados_comida_de_trabajo);
-        // } else if (store.tipoServicioSeleccionado == 'chef') {
-        //     const filtrados_servicio_degustacion = store.profesionales.filter(profesional => profesional.tipo_servicio_chef_servicio_degustacion);
-        //     setTipoDeEventoSeleccionado(filtrados_servicio_degustacion);
-        // } else if (store.tipoServicioSeleccionado == 'chef') {
-        //     const filtrados_comida_informal = store.profesionales.filter(profesional => profesional.tipo_servicio_chef_comida_informal);
-        //     setTipoDeEventoSeleccionado(filtrados_comida_informal);
-        // } else if (store.tipoServicioSeleccionado == 'chef') {
-        //     const filtrados_bacthcooking = store.profesionales.filter(profesional => profesional.tipo_servicio_chef_bacthcooking);
-        //     setTipoDeEventoSeleccionado(filtrados_bacthcooking);
-        // } else setTipoDeEventoSeleccionado([])
+        // Filtrar por tipo de servicio
+        if (store.tipoServicioSeleccionado === 'chef') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_servicio_chef);
+            console.log(filtrados, "filtrados chef")
+        } else if (store.tipoServicioSeleccionado === 'sumiller') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_servicio_sumiller);
+            console.log(filtrados, "filtrados sumiller")
+        } else if (store.tipoServicioSeleccionado === 'pastelero') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_servicio_pastelero);
+        } else if (store.tipoServicioSeleccionado === 'cortador de jamon') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_servicio_jamonero);
+        } else if (store.tipoServicioSeleccionado === 'barman') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_servicio_barman);
+        } else {
+            filtrados = store.profesionales;
+        }
+        console.log(store.tipoServicioSeleccionado)
+        console.log(store.tipoEventoSeleccionado)
 
-        // console.log(tipoDeEventoSeleccionado)
+        // Filtrar por tipo de evento chef
+        if (store.tipoServicioSeleccionado === 'chef' && store.tipoEventoSeleccionado === 'pica-pica') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_chef_pica_pica);
+            console.log(filtrados, "filtrados pica-pica")
+        } else if (store.tipoEventoSeleccionado === 'taller de cocina') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_chef_taller_de_cocina);
+            console.log(filtrados, "filtrados taller de cocina")
+        } else if (store.tipoEventoSeleccionado === 'comida de empresa') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_chef_comida_de_trabajo);
+        } else if (store.tipoEventoSeleccionado === 'comida menu degustacion') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_chef_servicio_degustacion);
+        } else if (store.tipoEventoSeleccionado === 'comida informal') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_chef_comida_informal);
+        } else if (store.tipoEventoSeleccionado === 'batchcooking') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_chef_bacthcooking);
+        }
 
-    }, [store.tipoServicioSeleccionado, store.profesionales]); 
+        // Filtrar por tipo evento sumiller
+        if (store.tipoServicioSeleccionado === 'sumiller' && store.tipoEventoSeleccionado === 'Cata de vinos') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_sumiller_cata);
+            console.log(filtrados, "filtrados cata de vinos")
+        } else if (store.tipoEventoSeleccionado === 'Maridaje') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_sumiller_maridaje);
+            console.log(filtrados, "filtrados maridaje")
+        } 
+
+        if (store.tipoServicioSeleccionado === 'pastelero' && store.tipoEventoSeleccionado === 'Clase de pastelería') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_pastelero_clase);
+            console.log(filtrados, "filtrados clase")
+        } else if (store.tipoEventoSeleccionado === 'Servicio de desayuno') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_pastelero_desayuno);
+            console.log(filtrados, "filtrados desayuno")
+        } else if (store.tipoEventoSeleccionado === 'Servicio de merienda') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_pastelero_merienda);
+            console.log(filtrados, "merienda")
+        } 
+
+        if (store.tipoServicioSeleccionado === 'cortador de jamon' && store.tipoEventoSeleccionado === 'Corte de jamon') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_jamonero_corte);
+            console.log(filtrados, "filtrados corte")
+        } else if (store.tipoEventoSeleccionado === 'Clase de corte de jamon') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_jamonero_clase_corte);
+            console.log(filtrados, "filtrados clase")
+        } 
+
+        setProfesionalSeleccionado(filtrados);
+        console.log(filtrados);
+
+    }, [store.tipoServicioSeleccionado, store.tipoEventoSeleccionado, store.profesionales]);
+    
 
     return (
         <div className="container">
