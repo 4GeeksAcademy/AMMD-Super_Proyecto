@@ -1,17 +1,17 @@
 import React from "react";
-import "../../styles/jumbotron.css";
+import "../../styles/conversacion.css";
 
 
-const Jumbotron = () => {
+const Conversacion = () => {
 
     return(
         <div className="jumbotron" style={{ margin: '0 auto', textAlign: 'center', maxWidth: '800px' }}>
             <h1 className="display-4">ADOPTA UN CHEF</h1>
             <h3 className="lead">Solo para disfrutones</h3>
             <hr className="my-4"/>
-            <p className="lema">Gastronomía a domicilio: Saborea la excelencia de los mejores chefs en la comodidad de tu hogar</p>
+            <p>Gastronomía a domicilio: Saborea la excelencia de los mejores chefs en la comodidad de tu hogar</p>
         </div>
     )
 }
 
-export default Jumbotron;
+export default Conversacion;

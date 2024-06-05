@@ -6,7 +6,7 @@ const CarruselProfesionales = () => {
     return (
         <>
             <h2 className="tituloCarruselProfesional">UNETE A NUESTRO EQUIPO Y COMPARTE TU PASION CULINARIA CON EL MUNDO</h2>
-            <div id="carruselProfesionales" className="carousel slide" data-bs-ride="carousel" style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <div id="carruselProfesionales" className="carousel slide" data-bs-ride="carousel" style={{ maxWidth: '1000px', margin: '0 auto' }}>
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carruselProfesionales" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carruselProfesionales" data-bs-slide-to="1" aria-label="Slide 2"></button>

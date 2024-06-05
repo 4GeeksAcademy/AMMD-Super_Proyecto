@@ -1,3 +1,49 @@
 .tituloCarruselClientes {
     border-bottom: solid #C09F65 3px;
 }
+
+#carouselExampleIndicators {
+    max-width: 1200px; /* Aumentamos el ancho del carrusel */
+    margin: 0 auto;
+    border: 4px solid #C09F65; /* Agregamos un borde con el color dado */
+    border-radius: 15px; /* Añadimos un poco de radio al borde */
+  }
+  
+  .carousel-inner .carousel-item {
+    height: 400px; /* Reducimos la altura de los elementos del carrusel */
+    overflow: hidden; /* Ocultamos cualquier desbordamiento */
+    transition: transform 0.5s ease; /* Añadimos una transición suave al cambio de imagen */
+    border-radius: 12px; /* Redondeamos las esquinas de las imágenes */
+  }
+  
+  .carousel-item img {
+    width: 100%; /* Ajustamos el ancho de la imagen al 100% */
+    height: auto; /* Mantenemos la relación de aspecto de la imagen */
+    transition: transform 0.5s ease; /* Añadimos una transición suave al hacer hover */
+  }
+  
+  .carousel-item:hover img {
+    transform: scale(1.1); /* Al hacer hover, aumentamos ligeramente el tamaño */
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    border-radius: 50%; /* Hacemos los controles redondos */
+    background-color: transparent; /* Hacemos el fondo transparente */
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    top: 50%; /* Posicionamos los controles en el centro vertical */
+    transform: translateY(-50%);
+  }
+  
+  .carousel-control-prev {
+    left: -60px; /* Posicionamos el control previo a la izquierda */
+  }
+  
+  .carousel-control-next {
+    right: -60px; /* Posicionamos el control siguiente a la derecha */
+  }

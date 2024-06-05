@@ -1,0 +1,21 @@
+
+  
+  .display-4 {
+    font-size: 6rem; 
+    color: transparent; /* Texto transparente */
+    background-image: linear-gradient(to right, #C09F65, #FFA500, #C09F65); /* Fondo con gradiente lineal */
+    background-clip: text; /* Aplicar el color de fondo al texto */
+    -webkit-background-clip: text; /* Para navegadores Webkit */
+    animation: textGlow 2s linear infinite alternate; 
+  }
+  
+  .lead {
+    font-size: 2rem;
+    color: #C09F65; 
+  }
+
+  .lema {
+    font-size: 2rem;
+    border-bottom: #C09F65 solid 2px;
+  }
+  

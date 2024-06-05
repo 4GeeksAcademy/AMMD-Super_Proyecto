@@ -43,7 +43,7 @@ const SobreNosotros = () => {
               <img src="https://via.placeholder.com/150" className="card-img-top" alt="Miguel" />
               <div className="card-body">
                 <h5 className="card-title">Miguel</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p className="card-text">Desarrollador full stack con experiencia en administración de empresas y 15 años en logística, comercio internacional y ventas. Combino habilidades técnicas y empresariales para crear soluciones tecnológicas eficientes.</p>
               </div>
             </div>
           </div>
