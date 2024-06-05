@@ -105,82 +105,100 @@ const getState = ({ getStore, getActions, setStore }) => {
                 // }
             ],
             profesionales: [{
-                "apellidos": "Pérez",
-                "descripcion": "Chef",
-                "direccion": "Calle Falsa 123",
-                "email": "1",
-                "foto_de_perfil": "foto1.jpg",
                 "id": 1,
-                "info_adicional": "Disponible para eventos privados.",
-                "is_active": true,
-                "localizacion": "Madrid",
                 "nombre": "Juan",
-                "telefono": "123456789",
-                "tipo_de_profesional": 'chef',
-                "tipo_de_cocina_especialidad": 'cocina griega',
-                "tipo_servicio_barman": false,
-                "tipo_servicio_chef": "picapica",
-                "tipo_servicio_jamonero": false,
-                "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": false
-              },
-              {
                 "apellidos": "Martínez",
+                "email": "juan@hotmail.com",
+                "localizacion": "Barcelona",
+                "foto_de_perfil": "foto2.jpg",
                 "descripcion": "Especialista en alta cocina.",
                 "direccion": "Avenida Siempre Viva 742",
-                "email": "chefdavid@hotmail.com",
-                "foto_de_perfil": "foto2.jpg",
-                "id": 2,
-                "info_adicional": "Experiencia internacional.",
-                "is_active": true,
-                "localizacion": "Barcelona",
-                "nombre": "David",
                 "telefono": "987654321",
+                "info_adicional": "Experiencia internacional.",
+                
                 "tipo_de_profesional": 'chef',
-                "tipo_de_cocina_especialidad": 'cocina peruana',
+
                 "tipo_servicio_barman": false,
                 "tipo_servicio_chef": "taller de cocina",
-                "tipo_servicio_jamonero": true,
+                "tipo_servicio_jamonero": false,
                 "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": false
+                "tipo_servicio_sumiller": false,
+
+                "tipo_de_cocina_especialidad": 'cocina peruana',
+
+                "is_active": true
+            },
+              {
+                "id": 2,
+                "nombre": "David",
+                "apellidos": "Martínez",
+                "email": "chefdavid@hotmail.com",
+                "localizacion": "Barcelona",
+                "foto_de_perfil": "foto2.jpg",
+                "descripcion": "Especialista en alta cocina.",
+                "direccion": "Avenida Siempre Viva 742",
+                "telefono": "987654321",
+                "info_adicional": "Experiencia internacional.",
+                
+                "tipo_de_profesional": 'chef',
+
+                "tipo_servicio_barman": false,
+                "tipo_servicio_chef": "taller de cocina",
+                "tipo_servicio_jamonero": false,
+                "tipo_servicio_pastelero": false,
+                "tipo_servicio_sumiller": false,
+
+                "tipo_de_cocina_especialidad": 'cocina peruana',
+
+                "is_active": true
               },
               {
+                "id": 3,
+                "nombre": "Carlos",
                 "apellidos": "López",
+                "email": "carlos@hotmail.com",
+                "localizacion": "Valencia",
+                "foto_de_perfil": "foto3.jpg",
                 "descripcion": "Chef pastelero con 10 años de experiencia.",
                 "direccion": "Calle de la Paz 15",
-                "email": "chef",
-                "foto_de_perfil": "foto3.jpg",
-                "id": 3,
-                "info_adicional": "Especialidad en postres franceses.",
-                "is_active": true,
-                "localizacion": "Valencia",
-                "nombre": "Carlos",
                 "telefono": "654321987",
+                "info_adicional": "Especialidad en postres franceses.",
+                
                 "tipo_de_profesional": 'pastelero',
+
                 "tipo_servicio_barman": false,
                 "tipo_servicio_chef": false,
                 "tipo_servicio_jamonero": false,
                 "tipo_servicio_pastelero": true,
-                "tipo_servicio_sumiller": false
+                "tipo_servicio_sumiller": false,
+
+                "tipo_de_cocina_especialidad": 'cocina peruana',
+
+                "is_active": true
               },
               {
+                "id": 4,
+                "nombre": "Ainhoa",
                 "apellidos": "Fernández",
+                "email": "ainhoa@hotmail.com",
+                "localizacion": "Sevilla",
+                "foto_de_perfil": "foto4.jpg",
                 "descripcion": "Sumiller",
                 "direccion": "Plaza Mayor 1",
-                "email": "chef@chef",
-                "foto_de_perfil": "foto4.jpg",
-                "id": 4,
-                "info_adicional": "Trabaja en colaboración con bodegas locales.",
-                "is_active": true,
-                "localizacion": "Sevilla",
-                "nombre": "Ainhoa",
                 "telefono": "321654987",
+                "info_adicional": "Trabaja en colaboración con bodegas locales.",
+                
                 "tipo_de_profesional": 'sumiller',
+
                 "tipo_servicio_barman": false,
                 "tipo_servicio_chef": false,
                 "tipo_servicio_jamonero": false,
                 "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": true
+                "tipo_servicio_sumiller": true,
+
+                "tipo_de_cocina_especialidad": 'cocina peruana',
+
+                "is_active": true
               }
             ],
             usuarioSeleccionado: [],
