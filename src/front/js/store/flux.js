@@ -189,8 +189,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             tipoServicioSeleccionado: null,
             tipoEventoSeleccionado: null,
             tipoComidaSeleccionada: null,
-            localidadSeleccionada: null,
-            profesionalesFiltrados: null
+            localidadSeleccionada: null   
         },
         actions: {
             // Use getActions to call a function within a function

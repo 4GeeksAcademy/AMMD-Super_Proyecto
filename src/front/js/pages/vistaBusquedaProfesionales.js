@@ -9,13 +9,13 @@ export const VistaBusquedaProfesionales = () => {
 
     useEffect(() => {
         if (store.tipoServicioSeleccionado) {
-            const filtrados = store.profesionales.filter(profesional => profesional.tipo_servicio_chef);
+            const filtrados_chef = store.profesionales.filter(profesional => profesional.tipo_servicio_chef);
             setProfesionalesSeleccionados(filtrados);
         } else {
             setProfesionalesSeleccionados([]);
         }
         console.log(profesionalesSeleccionados);
-    }, [store.tipoServicioSeleccionado, store.profesionales]); // Asegúrate de que se ejecuta cada vez que cambian los profesionales o el tipo de servicio seleccionado
+    }, [store.tipoServicioSeleccionado, store.profesionales]); 
 
     return (
         <div className="container">
