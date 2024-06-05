@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/cardProfesionales.css";
 
 
-const CardProfesionales = ({nombre, localizacion, children, }) => {
+const CardProfesionales = ({nombre, localizacion, tipo_de_profesional, tipo_de_cocina_especialidad, tipo_servicio, children }) => {
     const navigate = useNavigate();
 
     return (
@@ -22,10 +22,13 @@ const CardProfesionales = ({nombre, localizacion, children, }) => {
                             {localizacion}
                         </p>
                         <p className="card-text">
-                            Tipo de evento
+                            Tipo de profesional: {tipo_de_profesional}
                         </p>
                         <p className="card-text">
-                            Tipo de cocina
+                            Tipo de cocina: {tipo_de_cocina_especialidad}
+                        </p>
+                        <p className="card-text">
+                            Tipo de servicio: {tipo_servicio}
                         </p>
                         <p className="card-text">
                             Reseñas
@@ -36,6 +39,7 @@ const CardProfesionales = ({nombre, localizacion, children, }) => {
                         >
                             ¿Quieres saber más de mí?
                         </button>
+
                     </div>
                 </div>
             </div>
