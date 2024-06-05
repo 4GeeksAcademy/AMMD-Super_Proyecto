@@ -62,10 +62,8 @@ const PrivadaCliente = () => {
         <div className="row align-items-center">
           <div className="col-auto">
             <p className="mb-0">¿Quieres contratar un chef?</p>
-          </div>
-          <div className="container-buscador">
-            <Buscador />
-          </div>
+          </div>        
+            <Buscador />         
         </div>
         <h4>Política de privacidad</h4>
         <p>

@@ -90,6 +90,8 @@ class User(db.Model):
     foto_de_perfil = db.Column(db.String, unique=True, nullable=True)
     tipo_de_dieta = db.Column(db.Enum('Vegetariano', 'Vegano', 'Omnivoro', name='tipo_de_dieta'), nullable=True)
     alergias = db.Column(db.String(50), nullable=True)
+    reset_token = db.Column(db.String(120), unique=True, nullable=True)
+    token_expiration = db.Column(db.DateTime, nullable=True)
 
     def __repr__(self):
         return f'<User {self.id}>'
