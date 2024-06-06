@@ -32,6 +32,7 @@ export const VistaBusquedaProfesionales = () => {
         console.log(store.tipoEventoSeleccionado)
 
         // Filtrar por tipo de evento chef
+        // Los store. vienen del flux.js
         if (store.tipoServicioSeleccionado === 'chef' && store.tipoEventoSeleccionado === 'pica-pica') {
             filtrados = filtrados.filter(profesional => profesional.tipo_servicio_chef_pica_pica);
             console.log(filtrados, "filtrados pica-pica")
@@ -48,6 +49,29 @@ export const VistaBusquedaProfesionales = () => {
             filtrados = filtrados.filter(profesional => profesional.tipo_servicio_chef_bacthcooking);
         }
 
+        if (store.tipoCocinaSeleccionada === 'cocina española') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina española');
+        } else if (store.tipoCocinaSeleccionada === 'cocina peruana') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina peruana');
+        } else if (store.tipoCocinaSeleccionada === 'cocina griega') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina griega');
+        } else if (store.tipoCocinaSeleccionada === 'cocina americana') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina americana');
+        } else if (store.tipoCocinaSeleccionada === 'cocina italiana') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina italiana');
+        } else if (store.tipoCocinaSeleccionada === 'cocina argentina') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina argentina');
+        } else if (store.tipoCocinaSeleccionada === 'cocina tailandesa') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina tailandesa');
+        } else if (store.tipoCocinaSeleccionada === 'cocina mexicana') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina mexicana');
+        } else if (store.tipoCocinaSeleccionada === 'cocina creativa') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina creativa');
+        } else if (store.tipoCocinaSeleccionada === 'cocina japonesa') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina japonesa');
+        } else if (store.tipoCocinaSeleccionada === 'cocina vegana') {
+            filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina vegana');                    
+        }    
         // Filtrar por tipo evento sumiller
         if (store.tipoServicioSeleccionado === 'sumiller' && store.tipoEventoSeleccionado === 'Cata de vinos') {
             filtrados = filtrados.filter(profesional => profesional.tipo_servicio_sumiller_cata);
@@ -76,10 +100,18 @@ export const VistaBusquedaProfesionales = () => {
             console.log(filtrados, "filtrados clase")
         } 
 
+        if (store.tipoServicioSeleccionado === 'barman' && store.tipoEventoSeleccionado === 'Clase de cocktelería') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_barman_clase);
+            console.log(filtrados, "filtrados clase cocktelería")
+        } else if (store.tipoEventoSeleccionado === 'Servicio de barra de cocktelería') {
+            filtrados = filtrados.filter(profesional => profesional.tipo_servicio_barman_barra);
+            console.log(filtrados, "filtrados barra")
+        } 
+
         setProfesionalSeleccionado(filtrados);
         console.log(filtrados);
 
-    }, [store.tipoServicioSeleccionado, store.tipoEventoSeleccionado, store.profesionales]);
+    }, [store.tipoServicioSeleccionado, store.tipoEventoSeleccionado, store.tipoCocinaSeleccionada, store.profesionales]);
     
 
     return (

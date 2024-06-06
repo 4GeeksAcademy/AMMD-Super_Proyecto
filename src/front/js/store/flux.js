@@ -131,7 +131,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "tipo_servicio_pastelero": false,
                 "tipo_servicio_sumiller": false,
 
-                "tipo_de_cocina_especialidad": 'cocina peruana',
+                "tipo_de_cocina_especialidad": 'cocina española',
 
                 "is_active": true
             },
@@ -289,9 +289,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
                 "tipo_servicio_barman": false,
                 "tipo_servicio_chef": false,
-                "tipo_servicio_jamonero": false,
+                "tipo_servicio_jamonero": true,
                 "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": true,
+                "tipo_servicio_sumiller": false,
 
 
                 "is_active": true
@@ -315,9 +315,61 @@ const getState = ({ getStore, getActions, setStore }) => {
 
                 "tipo_servicio_barman": false,
                 "tipo_servicio_chef": false,
+                "tipo_servicio_jamonero": true,
+                "tipo_servicio_pastelero": false,
+                "tipo_servicio_sumiller": false,
+
+
+                "is_active": true
+            },
+            {
+                "id": 9,
+                "nombre": "Javier",
+                "apellidos": "Fernández",
+                "email": "sara@hotmail.com",
+                "localizacion": "Sevilla",
+                "foto_de_perfil": "foto4.jpg",
+                "descripcion": "Sumiller",
+                "direccion": "Plaza Mayor 1",
+                "telefono": "321654987",
+                "info_adicional": "Trabaja en colaboración con bodegas locales.",
+
+                "tipo_de_profesional": 'barman',
+
+                "tipo_servicio_barman_barra": false,
+                "tipo_servicio_barman_clase": true,
+
+                "tipo_servicio_barman": true,
+                "tipo_servicio_chef": false,
                 "tipo_servicio_jamonero": false,
                 "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": true,
+                "tipo_servicio_sumiller": false,
+
+
+                "is_active": true
+            },
+            {
+                "id": 10,
+                "nombre": "Ana",
+                "apellidos": "Fernández",
+                "email": "sara@hotmail.com",
+                "localizacion": "Sevilla",
+                "foto_de_perfil": "foto4.jpg",
+                "descripcion": "Sumiller",
+                "direccion": "Plaza Mayor 1",
+                "telefono": "321654987",
+                "info_adicional": "Trabaja en colaboración con bodegas locales.",
+
+                "tipo_de_profesional": 'barman',
+
+                "tipo_servicio_barman_barra": true,
+                "tipo_servicio_barman_clase": false,
+
+                "tipo_servicio_barman": true,
+                "tipo_servicio_chef": false,
+                "tipo_servicio_jamonero": false,
+                "tipo_servicio_pastelero": false,
+                "tipo_servicio_sumiller": false,
 
 
                 "is_active": true
@@ -476,8 +528,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             filtrarTipoEvento: (evento) => {
                 setStore({ tipoEventoSeleccionado: evento })
             },
-            filtrarTipoComida: (comida) => {
-                setStore({ tipoComidaSeleccionada: comida })
+            filtrarTipoCocina: (cocina) => {
+                setStore({ tipoCocinaSeleccionada: cocina })
             },
             filtrarLocalizacion: (localizacion) => {
                 setStore({ localidadSeleccionada: localizacion });

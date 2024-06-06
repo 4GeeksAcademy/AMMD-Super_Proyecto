@@ -9,32 +9,33 @@ const Buscador = () => {
 
     const [profesionalSeleccionado, setProfesionalSeleccionado] = useState("");
     const [tipoDeEvento, setTipoDeEvento] = useState("");
-    const [tipoDeComida, setTipoDeComida] = useState("");
+    const [tipoDeCocina, setTipoDeCocina] = useState("");
     const [localizacion, setLocalizacion] = useState("");     
 
     const manejarTipoProfesional = (tipoProfesional) => {
         setProfesionalSeleccionado(tipoProfesional);
         setTipoDeEvento("");
-        setTipoDeComida("");
+        setTipoDeCocina("");
     }
 
     const manejarTipoEvento = (tipoEvento) => {
         setTipoDeEvento(tipoEvento);
     }
 
-    const manejarTipoComida = (tipoComida) => {
-        setTipoDeComida(tipoComida);
+    const manejarTipoCocina = (tipoCocina) => {
+        setTipoDeCocina(tipoCocina);
     }
 
-    const manejarBuscar = (servicio, evento) => {
+    const manejarBuscar = (servicio, evento, cocina) => {
         actions.filtrarTipoServicio(servicio);
         actions.filtrarTipoEvento(evento);
+        actions.filtrarTipoCocina(cocina)
         navigate(`/busquedaprofesionales`);
     }
 
     console.log(profesionalSeleccionado)
     console.log(tipoDeEvento)
-    console.log(tipoDeComida)
+    console.log(tipoDeCocina)
     console.log(localizacion)
 
     return (
@@ -65,9 +66,9 @@ const Buscador = () => {
                     <ul className="dropdown-menu">
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('pica-pica')}>Pica-pica</a></li>
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('taller de cocina')}>Taller de cocina</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('comida informal')}>Comida informal</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('comida de empresa')}>Comida de empresa</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('comida menu degustacion')}>Comida menu degustacion</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Cocina informal')}>Cocina informal</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Cocina de empresa')}>Cocina de empresa</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Cocina menu degustacion')}>Cocina menu degustacion</a></li>
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('batchcooking')}>Batchcooking</a></li>
                     </ul>
                 </div>
@@ -79,17 +80,17 @@ const Buscador = () => {
                         Tipo de cocina
                     </button>
                     <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoComida('Cocina española')}>Cocina española</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoComida('Cocina peruana')}>Cocina peruana</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoComida('Cocina japonesa')}>Cocina japonesa</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoComida('Cocina italiana')}>Cocina italiana</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoComida('Cocina vegana')}>Cocina vegana</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoComida('Cocina mexicana')}>Cocina mexicana</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoComida('Cocina griega')}>Cocina griega</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoComida('Cocina argentina')}>Cocina argentina</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoComida('Cocina americana')}>Cocina americana</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoComida('Cocina tailandesa')}>Cocina tailandesa</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoComida('Cocina creativa')}>Cocina creativa</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina española')}>Cocina española</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina peruana')}>Cocina peruana</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina japonesa')}>Cocina japonesa</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina italiana')}>Cocina italiana</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina vegana')}>Cocina vegana</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina mexicana')}>Cocina mexicana</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina griega')}>Cocina griega</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina argentina')}>Cocina argentina</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina americana')}>Cocina americana</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina tailandesa')}>Cocina tailandesa</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina creativa')}>Cocina creativa</a></li>
                     </ul>
                 </div>
             )}     
@@ -158,7 +159,7 @@ const Buscador = () => {
                 type="button" 
                 id="button-addon2"
                 style={{ marginLeft: '10px' }}               
-                onClick={() => manejarBuscar(profesionalSeleccionado, tipoDeEvento) }
+                onClick={() => manejarBuscar(profesionalSeleccionado, tipoDeEvento, tipoDeCocina) }
             >
                 Buscar
             </button>
