@@ -32,3 +32,7 @@
     width: 100%;
     filter: drop-shadow(0 0 23px #C09F65);
   }
+
+  .navbar {
+    border-bottom: #C09F65 solid 10px;
+  }
