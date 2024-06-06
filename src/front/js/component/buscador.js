@@ -26,10 +26,15 @@ const Buscador = () => {
         setTipoDeCocina(tipoCocina);
     }
 
-    const manejarBuscar = (servicio, evento, cocina) => {
+    const manejarLocalizacion = (localizacion) => {
+        setLocalizacion(localizacion)
+    }
+
+    const manejarBuscar = (servicio, evento, cocina, localizacion) => {
         actions.filtrarTipoServicio(servicio);
         actions.filtrarTipoEvento(evento);
-        actions.filtrarTipoCocina(cocina)
+        actions.filtrarTipoCocina(cocina);
+        actions.filtrarLocalizacion(localizacion)
         navigate(`/busquedaprofesionales`);
     }
 
@@ -149,9 +154,9 @@ const Buscador = () => {
                     Localidad
                 </button>
                 <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#" onClick={() => setLocalizacion('Madrid')}>Madrid</a></li>
-                    <li><a className="dropdown-item" href="#" onClick={() => setLocalizacion('Barcelona')}>Barcelona</a></li>
-                    <li><a className="dropdown-item" href="#" onClick={() => setLocalizacion('Valencia')}>Valencia</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={() => manejarLocalizacion('madrid')}>Madrid</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={() => manejarLocalizacion('barcelona')}>Barcelona</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={() => manejarLocalizacion('valencia')}>Valencia</a></li>
                 </ul>
             </div>
             <button 
@@ -159,7 +164,7 @@ const Buscador = () => {
                 type="button" 
                 id="button-addon2"
                 style={{ marginLeft: '10px' }}               
-                onClick={() => manejarBuscar(profesionalSeleccionado, tipoDeEvento, tipoDeCocina) }
+                onClick={() => manejarBuscar(profesionalSeleccionado, tipoDeEvento, tipoDeCocina, localizacion) }
             >
                 Buscar
             </button>

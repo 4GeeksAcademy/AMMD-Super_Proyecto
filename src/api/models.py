@@ -11,7 +11,7 @@ class Profesional(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(500), nullable=False)
     telefono = db.Column(db.String(12), unique=True, nullable=True)
-    localizacion = db.Column(db.String(20), nullable=True) 
+    localizacion = db.Column(db.Enum('madrid', 'barcelona', 'valencia', name='localizacion')) 
     direccion = db.Column(db.String(30), nullable=True)
     foto_de_perfil = db.Column(db.String, unique=True, nullable=True)
     descripcion = db.Column(db.String(300), nullable=True)

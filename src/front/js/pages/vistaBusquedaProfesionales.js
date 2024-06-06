@@ -108,10 +108,19 @@ export const VistaBusquedaProfesionales = () => {
             console.log(filtrados, "filtrados barra")
         } 
 
+        if (store.localidadSeleccionada === 'madrid') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'madrid');
+        } else if (store.localidadSeleccionada === 'barcelona') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'barcelona');
+        } else if (store.localidadSeleccionada === 'valencia') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'valencia');
+        }
+        
         setProfesionalSeleccionado(filtrados);
         console.log(filtrados);
-
-    }, [store.tipoServicioSeleccionado, store.tipoEventoSeleccionado, store.tipoCocinaSeleccionada, store.profesionales]);
+        
+        }, [store.tipoServicioSeleccionado, store.tipoEventoSeleccionado, store.tipoCocinaSeleccionada, store.localidadSeleccionada, store.profesionales]);
+        
     
 
     return (
