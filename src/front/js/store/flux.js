@@ -109,7 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "nombre": "Juan",
                 "apellidos": "Martínez",
                 "email": "juan@hotmail.com",
-                "localizacion": "barcelona",
+                "localizacion": "madrid",
                 "foto_de_perfil": "foto2.jpg",
                 "descripcion": "Especialista en alta cocina.",
                 "direccion": "Avenida Siempre Viva 742",

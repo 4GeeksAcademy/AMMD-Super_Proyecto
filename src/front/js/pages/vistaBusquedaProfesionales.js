@@ -49,27 +49,27 @@ export const VistaBusquedaProfesionales = () => {
             filtrados = filtrados.filter(profesional => profesional.tipo_servicio_chef_bacthcooking);
         }
 
-        if (store.tipoCocinaSeleccionada === 'cocina española') {
+        if (store.tipoServicioSeleccionado === 'chef' && store.tipoCocinaSeleccionada === 'cocina española') {
             filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina española');
-        } else if (store.tipoCocinaSeleccionada === 'cocina peruana') {
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.tipoCocinaSeleccionada === 'cocina peruana') {
             filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina peruana');
-        } else if (store.tipoCocinaSeleccionada === 'cocina griega') {
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.tipoCocinaSeleccionada === 'cocina griega') {
             filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina griega');
-        } else if (store.tipoCocinaSeleccionada === 'cocina americana') {
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.tipoCocinaSeleccionada === 'cocina americana') {
             filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina americana');
-        } else if (store.tipoCocinaSeleccionada === 'cocina italiana') {
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.tipoCocinaSeleccionada === 'cocina italiana') {
             filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina italiana');
-        } else if (store.tipoCocinaSeleccionada === 'cocina argentina') {
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.tipoCocinaSeleccionada === 'cocina argentina') {
             filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina argentina');
-        } else if (store.tipoCocinaSeleccionada === 'cocina tailandesa') {
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.tipoCocinaSeleccionada === 'cocina tailandesa') {
             filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina tailandesa');
-        } else if (store.tipoCocinaSeleccionada === 'cocina mexicana') {
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.tipoCocinaSeleccionada === 'cocina mexicana') {
             filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina mexicana');
-        } else if (store.tipoCocinaSeleccionada === 'cocina creativa') {
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.tipoCocinaSeleccionada === 'cocina creativa') {
             filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina creativa');
-        } else if (store.tipoCocinaSeleccionada === 'cocina japonesa') {
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.tipoCocinaSeleccionada === 'cocina japonesa') {
             filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina japonesa');
-        } else if (store.tipoCocinaSeleccionada === 'cocina vegana') {
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.tipoCocinaSeleccionada === 'cocina vegana') {
             filtrados = store.profesionales.filter(profesional => profesional.tipo_de_cocina_especialidad === 'cocina vegana');                    
         }    
         // Filtrar por tipo evento sumiller
@@ -115,7 +115,47 @@ export const VistaBusquedaProfesionales = () => {
         } else if (store.localidadSeleccionada === 'valencia') {
             filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'valencia');
         }
+
+        if (store.tipoServicioSeleccionado === 'chef' && store.localidadSeleccionada === 'madrid') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'madrid');
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.localidadSeleccionada === 'barcelona') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'barcelona');
+        } else if (store.tipoServicioSeleccionado === 'chef' && store.localidadSeleccionada === 'valencia') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'valencia');
+        }        
+
+        if (store.tipoServicioSeleccionado === 'sumiller' && store.localidadSeleccionada === 'madrid') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'madrid');
+        } else if (store.tipoServicioSeleccionado === 'sumiller' && store.localidadSeleccionada === 'barcelona') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'barcelona');
+        } else if (store.tipoServicioSeleccionado === 'sumiller' && store.localidadSeleccionada === 'valencia') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'valencia');
+        }  
+
+        if (store.tipoServicioSeleccionado === 'pastelero' && store.localidadSeleccionada === 'madrid') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'madrid');
+        } else if (store.tipoServicioSeleccionado === 'pastelero' && store.localidadSeleccionada === 'barcelona') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'barcelona');
+        } else if (store.tipoServicioSeleccionado === 'pastelero' && store.localidadSeleccionada === 'valencia') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'valencia');
+        }
+
+        if (store.tipoServicioSeleccionado === 'cortador de jamon' && store.localidadSeleccionada === 'madrid') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'madrid');
+        } else if (store.tipoServicioSeleccionado === 'cortador de jamon' && store.localidadSeleccionada === 'barcelona') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'barcelona');
+        } else if (store.tipoServicioSeleccionado === 'cortador de jamon' && store.localidadSeleccionada === 'valencia') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'valencia');
+        }
         
+        if (store.tipoServicioSeleccionado === 'barman' && store.localidadSeleccionada === 'madrid') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'madrid');
+        } else if (store.tipoServicioSeleccionado === 'barman' && store.localidadSeleccionada === 'barcelona') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'barcelona');
+        } else if (store.tipoServicioSeleccionado === 'barman' && store.localidadSeleccionada === 'valencia') {
+            filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'valencia');
+        }
+
         setProfesionalSeleccionado(filtrados);
         console.log(filtrados);
         
