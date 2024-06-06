@@ -1,0 +1,7 @@
+.btn.editar-profesional {
+    margin: 10px; /* Agrega un margen inferior al botón "EDITAR" */
+  }
+  
+  .btn.eliminar-profesional {
+    margin: 0px; /* Agrega un margen superior al botón "ELIMINAR" */
+  }

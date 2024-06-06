@@ -1,3 +1,35 @@
+/* Asegura que .col-md-3.noticias tenga un borde y separación entre cada card */
+.col-md-3.noticias {
+    border: 2px solid #C09F65;  /* Define el borde de la card */
+    border-radius: 10px;  /* Bordes redondeados */
+    overflow: hidden;  /* Asegura que el contenido no se desborde */
+    padding: 10px;  /* Padding opcional dentro de la card */
+    margin: 1px;  /* Añade margen horizontal para la separación */
+}
+
+/* Botón más pequeño y centrado */
+.btn.noticias {
+    font-size: 1.2rem;  /* Tamaño de la fuente del botón */
+    padding: 0.3rem 0.6rem;  /* Ajusta el padding para hacer que sea menos largo */
+    min-width: 100px;  /* Define un ancho mínimo opcional */
+    text-align: center;  /* Asegura que el texto esté centrado */
+}
+
+/* Asegura que .card-body usa Flexbox para centrar el contenido */
+.card-body.noticias {
+    display: flex;
+    flex-direction: column;  /* Alinea los elementos en columna */
+    align-items: center;  /* Centra el contenido horizontalmente */
+}
+
+/* Opcional: Estilos adicionales para el contenedor row */
+.row.noticias {
+    max-width: 100%; /* O puedes especificar un valor como max-width: 1200px; */
+    padding: 0 15px; /* Añadir padding a los lados para espaciar las cards */
+    box-sizing: border-box; /* Asegurar que el padding no afecte el tamaño total del contenedor */
+}
+
+
 .tituloNoticias {
     border-bottom: solid #C09F65 3px;
 }

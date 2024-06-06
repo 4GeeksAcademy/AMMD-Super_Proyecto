@@ -23,21 +23,19 @@ if (profesionalEncontrado) {
 
   return (
     <div>
+      <button type="button" className="btn cerrar-profesional" style={{ position: 'absolute', top: 180, right: 0 }}>CERRAR </button>
       <div className="container text-center">
         <div className="row">
           <div className="col">
             <img 
               src="https://images.pexels.com/photos/2709388/pexels-photo-2709388.jpeg?auto=compress&cs=tinysrgb&w=600" 
               alt="Descripción de la imagen" 
-              width="300" 
-              height="300" 
+              width="350" 
+              height="450" 
             />
           </div>
           <div className="col">
             <h3>Hola !!!</h3>
-            <button type="button" className="btn btn-primary">EDITAR</button>
-            <button type="button" className="btn btn-secondary">CERRAR</button>
-            <button type="button" className="btn btn-success">ELIMINAR</button>
             <br />
             <h6>Nombre </h6>
             <p>{profesionalEncontrado.nombre}</p>
@@ -53,7 +51,8 @@ if (profesionalEncontrado) {
             <p>{profesionalEncontrado.localizacion}</p>
             <h6>tipos de servicio</h6>
             <p>{profesionalEncontrado.tipo_servicio_chef}</p>
-            
+            <button type="button" className="btn editar-profesional">EDITAR</button>
+            <button type="button" className="btn eliminar-profesional">ELIMINAR</button>
           </div>
         </div>
       </div>

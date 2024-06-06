@@ -5,22 +5,22 @@ import logoammd from "../../img/logoammd.png"
 
 const SobreNosotros = () => {
   return (
-            <div className="container">
-              <div className="container text-center">
-                 <div className="row">
-                     <div className="col-9 tituloSobreNosotros">
-                       <h1 style={{marginBottom: '20px'}}>SOMOS AMMD DEVELOPERS</h1>
-                       <h5>En AMMD Developers, somos un equipo apasionado de desarrolladores web dedicados a transformar ideas innovadoras en realidades digitales sostenibles. Nuestro amor por la innovación nos impulsa a crear proyectos que no solo destacan por su creatividad y funcionalidad, sino también por su impacto positivo en el medio ambiente y la sociedad.</h5>
-                    </div>
-                  <div className="col-3">
-                  <img src={logoammd} alt="logo_adoptaunchef" style={{ height: '300px', width: 'auto' }}></img>
-            </div>
+    <div className="container-sobre-nosotros">
+      <div className="container text-center">
+        <div className="row">
+          <div className="col-9 tituloSobreNosotros">
+            <h1 style={{marginBottom: '20px'}}>SOMOS AMMD DEVELOPERS</h1>
+            <h5>En AMMD Developers, somos un equipo apasionado de desarrolladores web dedicados a transformar ideas innovadoras en realidades digitales sostenibles. Nuestro amor por la innovación nos impulsa a crear proyectos que no solo destacan por su creatividad y funcionalidad, sino también por su impacto positivo en el medio ambiente y la sociedad.</h5>
+          </div>
+          <div className="col-3">
+            <img src={logoammd} alt="logo_adoptaunchef" style={{ height: '300px', width: 'auto' }}></img>
           </div>
         </div>
+      </div>
       <h2 style={{marginBottom: '20px'}}>EL EQUIPO</h2>
       <div className="container text-center">
         <div className="row">
-          <div className="col-3" style={{marginBottom: '50px'}}>
+          <div className="col-3">
             <div className="card" style={{width: '18rem'}}>
               <img src="https://via.placeholder.com/150" className="card-img-top" alt="Ainhoa" />
               <div className="card-body">

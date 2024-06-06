@@ -63,7 +63,7 @@ const InicioSesionProfesional = () => {
           <div className="col-auto">
             <button 
               type="button"
-              className="btn btn-link"
+              className="btn"
               onClick={() => navigate(`/registroprofesional`)}
             >
               ¡Aquí!
