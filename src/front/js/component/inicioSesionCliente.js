@@ -26,7 +26,7 @@ const InicioSesionCliente = () => {
   return (
     <div className="container">
       <form>
-      <div className="login wrap" style={{marginBottom: '50px'}}>
+        <div className="login" style={{marginBottom: '50px'}}>
           <div className="h1">Login</div>
             <input
               pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
@@ -64,7 +64,7 @@ const InicioSesionCliente = () => {
           <div className="col-auto">
             <button
               type="button"
-              className="btn btn-link"
+              className="btn"
               onClick={() => navigate(`/registrousuario`)}
             >
               ¡Aquí!

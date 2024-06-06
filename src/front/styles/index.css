@@ -92,17 +92,47 @@ body {
     padding: 16px; /* Añade un poco de padding a los lados */
   }
   
+  .accordion-button {
+    background-color: #fbf9f9; /* Fondo del botón */
+    color: rgb(9, 9, 9); /* Texto del botón */
+    border: none; /* Sin borde */
+  }
+
+  .accordion-button:not(.collapsed) {
+    background-color: #c3a573; /* Fondo del botón cuando está seleccionado */
+    color: #333; /* Texto del botón cuando está seleccionado */
+    box-shadow: none; /* Sin sombra */
+    border: none; /* Sin borde */
+  }
+
+  .accordion-button:focus {
+    box-shadow: none; /* Elimina la sombra al estar enfocado */
+    border: none; /* Sin borde */
+    outline: none; /* Elimina el borde de enfoque */
+ }
+  .accordion-button:hover {
+    background-color: #c3a573; /* Fondo en hover */
+  }
+  
   .accordion {
     width: 100%; /* Ajusta el tamaño del acordeón según tus necesidades */
     transition: all 0.3s ease; /* Transición para un efecto suave */
   }
   
   .accordion-header {
-    text-align: center; /* Centra el texto del encabezado */
+    background-color: #333; /* Fondo del encabezado */
+    color: #333; /* Texto del encabezado */
+    padding: 2px; /* Espaciado dentro del encabezado */
   }
   
   .accordion-collapse {
     transition: all 0.3s ease; /* Transición para el alargamiento */
+  }
+
+  .accordion-body {
+    background-color: white; /* Fondo del cuerpo */
+    color: #333; /* Texto del cuerpo */
+    padding: 10px 15px; /* Espaciado dentro del cuerpo */
   }
   
   .accordion-collapse.collapsing {
