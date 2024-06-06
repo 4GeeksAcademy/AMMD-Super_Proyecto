@@ -21,6 +21,20 @@ if (profesionalEncontrado) {
   console.log("No se encontró ningún profesional con el ID:", profesionalId);
 }
 
+const handleEditar = () => {
+  navigate('/editarprofesional', { state: { profesional: store.profesionales } });
+};
+
+const handleCerrarSesion = () => {
+  actions.cerrarSesionUsuario();
+  navigate('/'); 
+};
+
+const handleEliminar = () => {
+  actions.eliminarUsuario();
+  navigate('/'); 
+};
+
   return (
     <div>
       <div className="container text-center">
@@ -35,9 +49,27 @@ if (profesionalEncontrado) {
           </div>
           <div className="col">
             <h3>Hola !!!</h3>
-            <button type="button" className="btn btn-primary">EDITAR</button>
-            <button type="button" className="btn btn-secondary">CERRAR</button>
-            <button type="button" className="btn btn-success">ELIMINAR</button>
+            <button 
+              type="button"
+              className="btn btn-primary"
+              onClick={handleEditar}
+              >
+                EDITAR
+            </button>
+            <button 
+              type="button" 
+              className="btn btn-secondary" 
+              onClick={handleCerrarSesion}
+            >
+              CERRAR
+            </button>
+            <button 
+              type="button" 
+              className="btn btn-danger" 
+              onClick={handleEliminar}
+            >
+              ELIMINAR
+            </button> 
             <br />
             <h6>Nombre </h6>
             <p>{profesionalEncontrado.nombre}</p>

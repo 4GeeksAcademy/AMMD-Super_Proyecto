@@ -262,7 +262,7 @@ def editar_profesional():
 
 
 #metodo Eliminar usuario
-@api.route('/eliminarusuario/<int:user_id>', methods=["DELETE"])
+@api.route('/eliminarusuario', methods=["DELETE"])
 @jwt_required()
 def borrar_usuario():
     # Obtener el ID del usuario desde el token JWT

@@ -352,7 +352,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.error("Error al cerrar sesión:", error);
                     });
             },
-            eliminarUsuario: (id) => {
+            eliminarUsuario: () => {
                 const store = getStore();
                 const token = store.token;
 
@@ -365,7 +365,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     redirect: "follow"
                 };
 
-                return fetch(`${BASE_URL}/api/eliminarusuario/${id}`, requestOptions)
+                return fetch(`${BASE_URL}/api/eliminarusuario`, requestOptions)
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -447,7 +447,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.error("Error al cerrar sesión:", error);
                     });
             },
-            eliminarProfesional: (id) => {
+            eliminarProfesional: () => {
                 const store = getStore();
                 const token = store.token;
 
@@ -460,7 +460,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     redirect: "follow"
                 };
 
-                return fetch(`${BASE_URL}/api/eliminarprofesional/${id}`, requestOptions)
+                return fetch(`${BASE_URL}/api/eliminarprofesional`, requestOptions)
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -472,10 +472,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.log("Usuario eliminado exitosamente", data);
 
                         // Mostrar una alerta
-                        alert("Usuario eliminado exitosamente");
-
-                        // Redireccionar a la página principal
-                        window.location.href = '/';
+                        alert("Usuario eliminado exitosamente");                     
+                      
 
                         return data;
                     })

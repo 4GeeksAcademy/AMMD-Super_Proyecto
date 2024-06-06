@@ -22,13 +22,15 @@ const PrivadaCliente = () => {
 
   const handleCerrarSesion = () => {
     actions.cerrarSesionUsuario();
-    navigate('/iniciarsesion'); 
+    navigate('/'); 
   };
-
   const handleEliminar = () => {
-    actions.eliminarUsuario(store.usuarios.id);
-    navigate('/iniciarsesion'); 
+    actions.eliminarUsuario();
+    setTimeout(() => {
+      navigate('/');
+    }, 1000); // Espera 1 segundo antes de redirigir
   };
+  
 
   return (
     <div>

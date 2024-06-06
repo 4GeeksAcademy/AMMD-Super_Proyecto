@@ -89,9 +89,7 @@ const EditarUsuario = () => {
                             onClick={handleSubmit}
                         >
                             Confirmar cambios
-                        </button>
-                        <button type="button" className="btn btn-secondary">CERRAR</button>
-                        <button type="button" className="btn btn-success">ELIMINAR</button>
+                        </button>                        
                         <br />
                         <input type="email" name="email" value={formData.email} placeholder="Email" onChange={handleChange} />
                         <input type="password" name="password" value={formData.password} placeholder="Password" onChange={handleChange} />
