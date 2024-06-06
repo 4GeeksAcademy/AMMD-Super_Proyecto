@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_mail import Mail, Message
 from datetime import datetime, timedelta
 import uuid
+from flask import jsonify
 
 api = Blueprint('api', __name__)
 
@@ -261,7 +262,7 @@ def editar_profesional():
 
 
 #metodo Eliminar usuario
-@api.route("/eliminarusuario", methods=["DELETE"])
+@api.route('/eliminarusuario/<int:user_id>', methods=["DELETE"])
 @jwt_required()
 def borrar_usuario():
     # Obtener el ID del usuario desde el token JWT
@@ -374,7 +375,6 @@ def get_user_conversations():
 
     return jsonify({"conversaciones": conversaciones_serializadas}), 200
 
-from flask import jsonify
 
 # Método para agregar un profesional a la lista de favoritos de un usuario
 @api.route("/agregarfavorito/<int:profesional_id>", methods=["POST"])
@@ -499,3 +499,12 @@ def update_password(token):
     db.session.commit()
 
     return jsonify({"msg": "Password has been updated"})
+
+# Ruta para cerrar sesión usuario
+@api.route('/cerrarsesionusuario', methods=['POST'])
+@jwt_required()
+def cerrar_sesion_usuario():
+    jti = get_jwt()["jti"]
+    revoked_tokens.add(jti)
+    return jsonify({"msg": "Sesión cerrada exitosamente"}), 200
+

@@ -121,8 +121,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "tipo_servicio_jamonero": false,
                 "tipo_servicio_pastelero": false,
                 "tipo_servicio_sumiller": false
-              },
-              {
+            },
+            {
                 "apellidos": "Martínez",
                 "descripcion": "sumiller",
                 "direccion": "Avenida Siempre Viva 742",
@@ -139,8 +139,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "tipo_servicio_jamonero": true,
                 "tipo_servicio_pastelero": false,
                 "tipo_servicio_sumiller": false
-              },
-              {
+            },
+            {
                 "apellidos": "López",
                 "descripcion": "Chef pastelero con 10 años de experiencia.",
                 "direccion": "Calle de la Paz 15",
@@ -157,8 +157,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "tipo_servicio_jamonero": false,
                 "tipo_servicio_pastelero": true,
                 "tipo_servicio_sumiller": false
-              },
-              {
+            },
+            {
                 "apellidos": "Fernández",
                 "descripcion": "Sumiller",
                 "direccion": "Plaza Mayor 1",
@@ -175,7 +175,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "tipo_servicio_jamonero": false,
                 "tipo_servicio_pastelero": false,
                 "tipo_servicio_sumiller": true
-              }
+            }
             ],
             usuarioSeleccionado: [],
             profesionalSeleccionado: [],
@@ -184,25 +184,25 @@ const getState = ({ getStore, getActions, setStore }) => {
         actions: {
             // Use getActions to call a function within a function
             cargarUsuarios: () => {
-                fetch(BASE_URL+"/api/usuarios")
+                fetch(BASE_URL + "/api/usuarios")
                     .then(res => res.json())
                     .then(data => setStore({ usuarios: data.results }))
                     .catch(err => console.error("Error al cargar usuarios:", err));
             },
             cargarProfesionales: () => {
-                fetch(BASE_URL+"/api/profesionales")
+                fetch(BASE_URL + "/api/profesionales")
                     .then(res => res.json())
                     .then(data => setStore({ profesionales: data.results }))
                     .catch(err => console.error("Error al cargar profesionales:", err));
-            },            
+            },
             cargarUsuario: (id) => {
-                fetch(BASE_URL+"/api/usuario/" + id)
+                fetch(BASE_URL + "/api/usuario/" + id)
                     .then(res => res.json())
                     .then(data => setStore({ usuarioSeleccionado: data.results }))
                     .catch(err => console.error("Error al cargar usuario:", err));
             },
             cargarProfesional: (id) => {
-                fetch(BASE_URL+"/api/profesional/" + id)
+                fetch(BASE_URL + "/api/profesional/" + id)
                     .then(res => res.json())
                     .then(data => setStore({ profesionalSeleccionado: data.results }))
                     .catch(err => console.error("Error al cargar profesional:", err));
@@ -213,14 +213,14 @@ const getState = ({ getStore, getActions, setStore }) => {
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({email, password}),
+                    body: JSON.stringify({ email, password }),
                     redirect: "follow"
                 };
                 fetch(BASE_URL + "/api/crearusuario", requestOptions)
                     .then((response) => response.json())
                     .then((result) => {
                         console.log(result);
-                       
+
                     })
                     .catch((error) => console.error("Error al crear usuario:", error));
             },
@@ -230,14 +230,14 @@ const getState = ({ getStore, getActions, setStore }) => {
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({email, password}),
+                    body: JSON.stringify({ email, password }),
                     redirect: "follow"
                 };
-                fetch(BASE_URL+"/api/crearprofesional", requestOptions)
+                fetch(BASE_URL + "/api/crearprofesional", requestOptions)
                     .then((response) => response.json())
                     .then((result) => {
                         console.log(result);
-                        
+
                     })
                     .catch((error) => console.error("Error al crear profesional:", error));
             },
@@ -258,7 +258,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         return response.json();
                     })
                     .then((data) => {
-                        
+
                         setStore({ token: data.token, usuarios: data.user });
                         const store = getStore();
                         console.log(store.usuarios)
@@ -285,7 +285,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .then((data) => {
                         setStore({ token: data.token });
-                       
+
                     })
                     .catch((error) => {
                         console.error("Error al iniciar sesión:", error);
@@ -319,10 +319,174 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.error("Error al editar el usuario", error);
                     });
             },
+            cerrarSesionUsuario: () => {
+                const store = getStore();
+                const token = store.token;
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    redirect: "follow"
+                };
+
+                fetch(`${BASE_URL}/api/cerrarsesionusuario`, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        setStore({ token: null, usuarioSeleccionado: [] });
+
+                        // Redireccionar a la vista principal
+                        window.location.href = '/';
+
+                        // Mostrar una alerta
+                        alert("Has cerrado sesión exitosamente");
+                    })
+                    .catch((error) => {
+                        console.error("Error al cerrar sesión:", error);
+                    });
+            },
+            eliminarUsuario: (id) => {
+                const store = getStore();
+                const token = store.token;
+
+                const requestOptions = {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    redirect: "follow"
+                };
+
+                return fetch(`${BASE_URL}/api/eliminarusuario/${id}`, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Aquí puedes realizar acciones adicionales después de eliminar el usuario, si es necesario
+                        console.log("Usuario eliminado exitosamente", data);
+
+                        // Mostrar una alerta
+                        alert("Usuario eliminado exitosamente");                  
+                       
+
+                        return data;
+                    })
+                    .catch((error) => {
+                        console.error("Error al eliminar usuario:", error);
+                    });
+            },
+            editarProfesional: (profesionalData) => {
+                const store = getStore();
+                const token = store.token;
+
+                const requestOptions = {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify(profesionalData)
+                };
+                return fetch(BASE_URL + "/api/editarprofesional", requestOptions)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Error en la solicitud");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Profesional editado exitosamente", data);
+                        // Puedes actualizar el estado o realizar otras acciones aquí
+                        return data;
+                    })
+                    .catch(error => {
+                        console.error("Error al editar el profesional", error);
+                    });
+            },
+            cerrarSesionProfesional: () => {
+                const store = getStore();
+                const token = store.token;
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    redirect: "follow"
+                };
+
+                fetch(`${BASE_URL}/api/cerrarsesionprofesional`, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        setStore({ token: null, usuarioSeleccionado: [] });
+
+                        // Redireccionar a la vista principal
+                        window.location.href = '/';
+
+                        // Mostrar una alerta
+                        alert("Has cerrado sesión exitosamente");
+                    })
+                    .catch((error) => {
+                        console.error("Error al cerrar sesión:", error);
+                    });
+            },
+            eliminarProfesional: (id) => {
+                const store = getStore();
+                const token = store.token;
+
+                const requestOptions = {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    redirect: "follow"
+                };
+
+                return fetch(`${BASE_URL}/api/eliminarprofesional/${id}`, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Aquí puedes realizar acciones adicionales después de eliminar el usuario, si es necesario
+                        console.log("Usuario eliminado exitosamente", data);
+
+                        // Mostrar una alerta
+                        alert("Usuario eliminado exitosamente");
+
+                        // Redireccionar a la página principal
+                        window.location.href = '/';
+
+                        return data;
+                    })
+                    .catch((error) => {
+                        console.error("Error al eliminar usuario:", error);
+                    });
+            },
 
             exampleFunction: () => {
                 getActions().changeColor(0, "green");
-            },           
+            },
             changeColor: (index, color) => {
                 // get the store
                 const store = getStore();

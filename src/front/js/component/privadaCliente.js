@@ -10,16 +10,24 @@ const PrivadaCliente = () => {
   const { store, actions } = useContext(Context);
   const [usuarioId, setUsuarioId] = useState(null); // Estado local para almacenar el usuarioId
 
-  // useEffect(() => {
-  //   // Aquí cargamos los usuarios utilizando la acción cargarUsuarios definida en el contexto
-  //   actions.cargarUsuario();
-  // }, [actions]);
-  
-    console.log("No se encontró ningún usuario con el ID:", store.usuarios.id);
-   
+  useEffect(() => {
+    if (store.usuarios && store.usuarios.id) {
+      setUsuarioId(store.usuarios.id);
+    }
+  }, [store.usuarios]);  
 
   const handleEditar = () => {
     navigate('/editarusuario', { state: { usuario: store.usuarios } });
+  };
+
+  const handleCerrarSesion = () => {
+    actions.cerrarSesionUsuario();
+    navigate('/iniciarsesion'); 
+  };
+
+  const handleEliminar = () => {
+    actions.eliminarUsuario(store.usuarios.id);
+    navigate('/iniciarsesion'); 
   };
 
   return (
@@ -43,8 +51,20 @@ const PrivadaCliente = () => {
               >
                 EDITAR
             </button>
-            <button type="button" className="btn btn-secondary">CERRAR</button>
-            <button type="button" className="btn btn-success">ELIMINAR</button>
+            <button 
+              type="button" 
+              className="btn btn-secondary" 
+              onClick={handleCerrarSesion}
+            >
+              CERRAR
+            </button>
+            <button 
+              type="button" 
+              className="btn btn-danger" 
+              onClick={handleEliminar}
+            >
+              ELIMINAR
+            </button>           
             <br />
             <p>Nombre: {store.usuarios.nombre}</p>
             <p>Apellido: {store.usuarios.apellidos} </p>
