@@ -13,7 +13,6 @@ export const Home = () => {
 
 	return (
 		<div className="container">			
-        	<Buscador />            
 			<Jumbotron />
 			<br></br>
 			<CarruselClientes />

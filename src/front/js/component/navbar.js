@@ -41,9 +41,6 @@ const Navbar = () => {
             <span className="hover-text" data-text="Área de profesionales">Área de profesionales</span>
           </a>
         </li>
-        <img src={logoFacebook} alt="logo_adoptaunchef" style={{ height: '40px', width: 'auto' }}></img>
-        <img src={logoInstagram} alt="logo_adoptaunchef" style={{ height: '40px', width: 'auto' }}></img>
-        <img src={logoTiktok} alt="logo_adoptaunchef" style={{ height: '40px', width: 'auto' }}></img>
       </ul>
     </div>
   </div>

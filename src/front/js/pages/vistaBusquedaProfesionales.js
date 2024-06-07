@@ -130,7 +130,6 @@ export const VistaBusquedaProfesionales = () => {
 
     return (
         <div className="container">
-            <Buscador />
             {profesionalSeleccionado.map(profesional => (
                 <CardProfesionales 
                     key={profesional.id} 

@@ -72,6 +72,22 @@ const InicioSesionCliente = () => {
           </div>
         </div>
       </div>
+      <div className="container" style={{marginBottom: '40px'}}>
+        <div className="row align-items-center">
+          <div className="col-auto">
+          <p className="mb-0">¿Has perdido tu contraseña?</p>
+          </div>
+          <div className="col-auto">
+            <button
+              type="button"
+              className="btn"
+              onClick={() => navigate(``)}
+            >
+              Recupérala
+            </button>
+          </div>
+        </div>
+      </div>
       <h2>¿Qué te apetece?</h2>
       <div className="container row row-cols-1 row-cols-md-2 g-4 mt-4">
         <div className="col-6">

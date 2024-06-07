@@ -1,12 +1,22 @@
 
 
-.container-buscador {
+.buscador {
+    margin-top: -50px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px 5px;
     gap: 10px;
     flex-wrap: wrap; /* Permite que el contenido se ajuste y envuelva */
+    background-color: #6C7884;
+    border-bottom: #C09F65 solid 10px;
+}
+
+.nav-link {
+    font-size: 35px;
+    color: black;
+    border-bottom: #C09F65 solid 3px;
+
 }
 
 .dropdown {
@@ -17,3 +27,4 @@
     max-height: 250px; /* Ajusta esta altura según sea necesario */
     overflow-y: auto; /* Añade scroll vertical si el contenido excede la altura máxima */
 }
+
