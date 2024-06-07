@@ -26,7 +26,7 @@ class Profesional(db.Model):
     tipo_servicio_chef_comida_de_trabajo =db.Column(db.Text, nullable=True)
     tipo_servicio_chef_servicio_degustacion = db.Column(db.Text, nullable=True)
     tipo_servicio_chef_comida_informal = db.Column(db.Text, nullable=True)
-    tipo_servicio_chef_bacthcooking = db.Column(db.Text, nullable=True)
+    tipo_servicio_chef_batchcooking = db.Column(db.Text, nullable=True)
 
     tipo_servicio_jamonero_corte = db.Column(db.Text, nullable=True)
     tipo_servicio_jamonero_clase_corte = db.Column(db.Text, nullable=True)
@@ -70,7 +70,7 @@ class Profesional(db.Model):
             "tipo_servicio_chef_comida_de_trabajo":self.tipo_servicio_chef_comida_de_trabajo,
             "tipo_servicio_chef_servicio_degustacion":self.tipo_servicio_chef_servicio_degustacion,
             "tipo_servicio_chef_comida_informal":self.tipo_servicio_chef_comida_informal,
-            "tipo_servicio_chef_bacthcooking":self.tipo_servicio_chef_bacthcooking,
+            "tipo_servicio_chef_batchcooking":self.tipo_servicio_chef_batchcooking,
             "tipo_servicio_jamonero_corte":self.tipo_servicio_jamonero_corte,
             "tipo_servicio_jamonero_clase_corte":self.tipo_servicio_jamonero_clase_corte,
             "tipo_servicio_sumiller_maridaje":self.tipo_servicio_sumiller_maridaje,

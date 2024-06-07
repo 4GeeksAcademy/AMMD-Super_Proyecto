@@ -122,11 +122,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "tipo_servicio_chef_taller_de_cocina": true,
                 "tipo_servicio_chef_comida_de_trabajo": false,
                 "tipo_servicio_chef_servicio_degustacion": false,
-                "tipo_servicio_chef_comida_informal": false,
-                "tipo_servicio_chef_bacthcooking": false,
+                "tipo_servicio_chef_comida_informal": true,
+                "tipo_servicio_chef_batchcooking": true,
 
                 "tipo_servicio_barman": false,
-                "tipo_servicio_chef": "taller de cocina",
+                "tipo_servicio_chef": true,
                 "tipo_servicio_jamonero": false,
                 "tipo_servicio_pastelero": false,
                 "tipo_servicio_sumiller": false,
@@ -154,10 +154,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "tipo_servicio_chef_comida_de_trabajo": true,
                 "tipo_servicio_chef_servicio_degustacion": false,
                 "tipo_servicio_chef_comida_informal": false,
-                "tipo_servicio_chef_bacthcooking": false,
+                "tipo_servicio_chef_batchcooking": false,
 
                 "tipo_servicio_barman": false,
-                "tipo_servicio_chef": "taller de cocina",
+                "tipo_servicio_chef": true,
                 "tipo_servicio_jamonero": false,
                 "tipo_servicio_pastelero": false,
                 "tipo_servicio_sumiller": false,
@@ -194,7 +194,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             {
                 "id": 6,
-                "nombre": "laura",
+                "nombre": "Laura",
                 "apellidos": "López",
                 "email": "carlos@hotmail.com",
                 "localizacion": "valencia",
@@ -233,7 +233,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "tipo_de_profesional": 'sumiller',
 
                 "tipo_servicio_sumiller_maridaje": true,
-                "tipo_servicio_sumiller_cata": true,
+                "tipo_servicio_sumiller_cata": false,
 
                 "tipo_servicio_barman": false,
                 "tipo_servicio_chef": false,
@@ -259,7 +259,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "tipo_de_profesional": 'sumiller',
 
                 "tipo_servicio_sumiller_maridaje": false,
-                " tipo_servicio_sumiller_cata": false,
+                "tipo_servicio_sumiller_cata": true,
 
                 "tipo_servicio_barman": false,
                 "tipo_servicio_chef": false,
@@ -275,7 +275,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 "nombre": "Ramón",
                 "apellidos": "Fernández",
                 "email": "sara@hotmail.com",
-                "localizacion": "madrid",
+                "localizacion": "barcelona",
                 "foto_de_perfil": "foto4.jpg",
                 "descripcion": "Sumiller",
                 "direccion": "Plaza Mayor 1",

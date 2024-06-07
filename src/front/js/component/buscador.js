@@ -71,9 +71,9 @@ const Buscador = () => {
                     <ul className="dropdown-menu">
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('pica-pica')}>Pica-pica</a></li>
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('taller de cocina')}>Taller de cocina</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Cocina informal')}>Cocina informal</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Cocina de empresa')}>Cocina de empresa</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Cocina menu degustacion')}>Cocina menu degustacion</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('comida informal')}>Cocina informal</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('comida de empresa')}>Cocina de empresa</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('comida menu degustacion')}>Cocina menu degustacion</a></li>
                         <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('batchcooking')}>Batchcooking</a></li>
                     </ul>
                 </div>
