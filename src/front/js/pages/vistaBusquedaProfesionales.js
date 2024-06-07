@@ -156,6 +156,8 @@ export const VistaBusquedaProfesionales = () => {
             filtrados = store.profesionales.filter(profesional => profesional.localizacion === 'valencia');
         }
 
+        
+
         setProfesionalSeleccionado(filtrados);
         console.log(filtrados);
         
