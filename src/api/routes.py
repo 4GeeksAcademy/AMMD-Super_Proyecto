@@ -7,6 +7,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_mail import Mail, Message
 from datetime import datetime, timedelta
 import uuid
+from flask import jsonify
+from datetime import datetime
 
 api = Blueprint('api', __name__)
 
@@ -171,12 +173,16 @@ def vista_privada_profesional():
         "direccion": profesional.direccion,
         "foto_de_perfil": profesional.foto_de_perfil,
         "descripcion": profesional.descripcion,
-        "info_adicional": profesional.info_adicional,
-        "tipo_servicio_chef": profesional.tipo_servicio_chef,
-        "tipo_servicio_jamonero": profesional.tipo_servicio_jamonero,
-        "tipo_servicio_sumiller": profesional.tipo_servicio_sumiller,
-        "tipo_servicio_pastelero": profesional.tipo_servicio_pastelero,
-        "tipo_servicio_barman": profesional.tipo_servicio_barman,        
+        "info_adicional": profesional.info_adicional,        
+        "tipo_servicio_jamonero_corte": profesional.tipo_servicio_jamonero_corte,
+        "tipo_servicio_jamonero_clase_corte": profesional.tipo_servicio_jamonero_clase_corte,
+        "tipo_servicio_sumiller_maridaje": profesional.tipo_servicio_sumiller_maridaje,
+        "tipo_servicio_sumiller_cata": profesional.tipo_servicio_sumiller_cata,
+        "tipo_servicio_pastelero_merienda": profesional.tipo_servicio_pastelero_merienda,
+        "tipo_servicio_pastelero_desayuno": profesional.tipo_servicio_pastelero_desayuno,
+        "tipo_servicio_pastelero_clase": profesional.tipo_servicio_pastelero_clase,
+        "tipo_servicio_barman_barra": profesional.tipo_servicio_barman_barra,   
+        "tipo_servicio_barman_clase": profesional.tipo_servicio_barman_clase,       
         "is_active": profesional.is_active
     }), 200
 
@@ -225,16 +231,18 @@ def editar_usuario():
 @jwt_required()
 def editar_profesional():
     # Obtener el ID del profesional desde el token JWT
-    profesional_id = get_jwt_identity()
-
+    current_profesional_id = get_jwt_identity()
+    print("entrandoa editar")
     # Buscar al profesional en la base de datos
-    profesional = Profesional.query.get(profesional_id)
+    profesional = Profesional.query.get(current_profesional_id)
+    print(current_profesional_id)
     if profesional is None:
         return jsonify({"msg": "Profesional no encontrado"}), 404
 
     # Obtener los datos enviados en la solicitud
     data = request.json
-
+    print(data.get("nombre", profesional.nombre))
+    
     # Actualizar los detalles del profesional con los datos enviados
     profesional.nombre = data.get("nombre", profesional.nombre)
     profesional.apellidos = data.get("apellidos", profesional.apellidos)
@@ -244,14 +252,26 @@ def editar_profesional():
     profesional.localizacion = data.get("localizacion", profesional.localizacion)
     profesional.direccion = data.get("direccion", profesional.direccion)
     profesional.foto_de_perfil = data.get("foto_de_perfil", profesional.foto_de_perfil)
-    profesional.descripcion = data.get("descripcion", profesional.descripcion)
+    profesional.descripcion = data.get("descripcion", profesional.descripcion)    
     profesional.info_adicional = data.get("info_adicional", profesional.info_adicional)
-    profesional.tipo_servicio_chef = data.get("tipo_servicio_chef", profesional.tipo_servicio_chef)
-    profesional.tipo_servicio_jamonero = data.get("tipo_servicio_jamonero", profesional.tipo_servicio_jamonero)
-    profesional.tipo_servicio_sumiller = data.get("tipo_servicio_sumiller", profesional.tipo_servicio_sumiller)
-    profesional.tipo_servicio_pastelero = data.get("tipo_servicio_pastelero", profesional.tipo_servicio_pastelero)
-    profesional.tipo_servicio_barman = data.get("tipo_servicio_barman", profesional.tipo_servicio_barman)
-    profesional.servicio_pasteleria = data.get("servicio_pasteleria", profesional.servicio_pasteleria)
+    profesional.tipo_de_profesional =data.get("tipo_de_profesional",profesional.tipo_de_profesional)
+    profesional.tipo_de_cocina_especialidad = data.get("tipo_de_cocina_especialidad",profesional.tipo_de_cocina_especialidad)
+    profesional.tipo_servicio_chef_pica_pica = data.get("tipo_servicio_chef_pica_pica",profesional.tipo_servicio_chef_pica_pica)
+    profesional.tipo_servicio_chef_taller_de_cocina = data.get("tipo_servicio_chef_taller_de_cocina",profesional.tipo_servicio_chef_taller_de_cocina)
+    profesional.tipo_servicio_chef_comida_de_trabajo = data.get("tipo_servicio_chef_comida_de_trabajo",profesional.tipo_servicio_chef_comida_de_trabajo)
+    profesional.tipo_servicio_chef_servicio_degustacion = data.get("tipo_servicio_chef_servicio_degustacion",profesional.tipo_servicio_chef_servicio_degustacion)
+    profesional.tipo_servicio_chef_comida_informal = data.get("tipo_servicio_chef_comida_informal",profesional.tipo_servicio_chef_comida_informal)
+    profesional.tipo_servicio_chef_batchcooking = data.get("tipo_servicio_chef_batchcooking",profesional.tipo_servicio_chef_batchcooking)
+    profesional.tipo_servicio_jamonero_corte = data.get("tipo_servicio_jamonero_corte",profesional.tipo_servicio_jamonero_corte)
+    profesional.tipo_servicio_jamonero_clase_corte = data.get("tipo_servicio_jamonero_clase_corte",profesional.tipo_servicio_jamonero_clase_corte)
+    profesional.tipo_servicio_sumiller_maridaje = data.get("tipo_servicio_sumiller_maridaje",profesional.tipo_servicio_sumiller_maridaje)
+    profesional.tipo_servicio_sumiller_cata = data.get("tipo_servicio_sumiller_cata",profesional.tipo_servicio_sumiller_cata)
+    profesional.tipo_servicio_pastelero_clase = data.get("tipo_servicio_pastelero_clase",profesional.tipo_servicio_pastelero_clase)
+    profesional.tipo_servicio_pastelero_desayuno = data.get("tipo_servicio_pastelero_desayuno",profesional.tipo_servicio_pastelero_desayuno)
+    profesional.tipo_servicio_pastelero_merienda = data.get("tipo_servicio_pastelero_merienda", profesional.tipo_servicio_pastelero_merienda)
+    profesional.tipo_servicio_barman_barra = data.get("tipo_servicio_barman_barra", profesional.tipo_servicio_barman_barra)
+    profesional.tipo_servicio_barman_clase = data.get("tipo_servicio_barman_clase", profesional.tipo_servicio_barman_clase)
+
     profesional.is_active = data.get("is_active", profesional.is_active)
 
     # Guardar los cambios en la base de datos
@@ -261,7 +281,7 @@ def editar_profesional():
 
 
 #metodo Eliminar usuario
-@api.route("/eliminarusuario", methods=["DELETE"])
+@api.route('/eliminarusuario', methods=["DELETE"])
 @jwt_required()
 def borrar_usuario():
     # Obtener el ID del usuario desde el token JWT
@@ -297,7 +317,7 @@ def eliminar_profesional():
 
     return jsonify({"msg": "Profesional eliminado exitosamente"}), 200
 
-from datetime import datetime
+
 
 @api.route('/crearconversacion', methods=['POST'])
 def crear_conversacion():
@@ -374,7 +394,6 @@ def get_user_conversations():
 
     return jsonify({"conversaciones": conversaciones_serializadas}), 200
 
-from flask import jsonify
 
 # Método para agregar un profesional a la lista de favoritos de un usuario
 @api.route("/agregarfavorito/<int:profesional_id>", methods=["POST"])
@@ -433,19 +452,6 @@ def obtener_favoritos():
     return jsonify({"favoritos": favoritos_serializados}), 200
     
 
-# @api.route("/mailTest")
-# def index():
-#     try:
-#         msg = Message(
-#             subject="Hello",
-#             sender="adoptaunchef@gmail.com",
-#             recipients=["chefdavid@hotmail.com"]
-#         )
-#         msg.body = "Hello Flask message sent from Flask-Mail"
-#         mail.send(msg)
-#         return jsonify({"msg": "email sent"})
-#     except Exception as e:
-#         return jsonify({"error": str(e)})
 
 @api.route("/resetpassword", methods=["POST"])
 def reset_password():
@@ -500,3 +506,19 @@ def update_password(token):
     db.session.commit()
 
     return jsonify({"msg": "Password has been updated"})
+
+# Ruta para cerrar sesión usuario
+@api.route('/cerrarsesionusuario', methods=['POST'])
+@jwt_required()
+def cerrar_sesion_usuario():
+    jti = get_jwt()["jti"]
+    revoked_tokens.add(jti)
+    return jsonify({"msg": "Sesión cerrada exitosamente"}), 200
+
+# Ruta para cerrar sesión de un profesional
+@api.route('/cerrarsesionprofesional', methods=['POST'])
+@jwt_required()
+def cerrar_sesion_profesional():
+    jti = get_jwt()["jti"]
+    revoked_tokens.add(jti)
+    return jsonify({"msg": "Sesión cerrada exitosamente"}), 200

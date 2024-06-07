@@ -25,6 +25,9 @@ import { VistaBusquedaProfesionales } from "./pages/vistaBusquedaProfesionales";
 import { VistaEditarUsuario } from "./pages/vistaEditarUsuario";
 import VistaReestablecerContrasena from "./pages/vistaReestablecerContrasena";
 import VistaActualizacionContrasena from "./pages/vistaActualizacionContrasena";
+import { VistaEditarProfesional } from "./pages/vistaEditarProfesional";
+import { VistaConversacion } from "./pages/vistaConversacion";
+
 
 
 
@@ -52,10 +55,12 @@ const Layout = () => {
                         <Route element={<VistaPrivadaProfesional />} path="/privadaprofesional" />
                         <Route element={<VistaSobreNosotros />} path="/sobrenosotros" />
                         <Route element={<VistaBusquedaProfesionales/>} path="/busquedaprofesionales" />
-                        <Route element={<VistaContratacionProfesional/>} path="/contratacionprofesional" />
+                        <Route element={<VistaContratacionProfesional/>} path="" />
                         <Route element={<VistaEditarUsuario />} path="/editarusuario" />
+                        <Route element={<VistaEditarProfesional />} path="/editarprofesional" />
                         <Route element={<VistaReestablecerContrasena />} path="/reestablecercontrasena" />
                         <Route element={<VistaActualizacionContrasena />} path="/resetpassword/:token" />
+                        <Route element={<VistaConversacion />} path="/conversacion" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />

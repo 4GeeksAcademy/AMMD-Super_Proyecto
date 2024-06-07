@@ -10,17 +10,27 @@ const PrivadaCliente = () => {
   const { store, actions } = useContext(Context);
   const [usuarioId, setUsuarioId] = useState(null); // Estado local para almacenar el usuarioId
 
-  // useEffect(() => {
-  //   // Aquí cargamos los usuarios utilizando la acción cargarUsuarios definida en el contexto
-  //   actions.cargarUsuario();
-  // }, [actions]);
-  
-    console.log("No se encontró ningún usuario con el ID:", store.usuarios.id);
-   
+  useEffect(() => {
+    if (store.usuarios && store.usuarios.id) {
+      setUsuarioId(store.usuarios.id);
+    }
+  }, [store.usuarios]);  
 
   const handleEditar = () => {
     navigate('/editarusuario', { state: { usuario: store.usuarios } });
   };
+
+  const handleCerrarSesion = () => {
+    actions.cerrarSesionUsuario();
+    navigate('/'); 
+  };
+  const handleEliminar = () => {
+    actions.eliminarUsuario();
+    setTimeout(() => {
+      navigate('/');
+    }, 1000); // Espera 1 segundo antes de redirigir
+  };
+  
 
   return (
     <div>
@@ -37,6 +47,17 @@ const PrivadaCliente = () => {
           </div>
           
           <div className="col">
+            
+         
+            <button 
+              type="button" 
+              className="btn btn-secondary" 
+              onClick={handleCerrarSesion}
+            >
+              CERRAR
+            </button>
+                    
+            <br />
           <h3>Hola !!!</h3>
             <p>Nombre: {store.usuarios.nombre}</p>
             <p>Apellido: {store.usuarios.apellidos} </p>
@@ -53,7 +74,7 @@ const PrivadaCliente = () => {
               >
                 EDITAR
             </button>           
-            <button type="button" className="btn eliminar-cliente">ELIMINAR</button>
+            <button type="button" className="btn eliminar-cliente"    onClick={handleEliminar}>ELIMINAR</button>
           </div>
         </div>
       </div>

@@ -16,11 +16,22 @@ const InicioSesionProfesional = () => {
     const value = e.target.value;
     setFormValue({ ...formValue, [id]: value });
   }
-  const handleSubmit = (e) =>{
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    actions.iniciarSesionProfesional(formValue.email, formValue.password, navigate)
-    navigate("/privadaprofesional")
-}
+    try {
+        const loggedin = await actions.iniciarSesionProfesional(formValue.email, formValue.password);
+        if (loggedin) {
+            navigate("/privadaprofesional");
+        } else {
+            alert("Error al iniciar sesión");
+        }
+        console.log(loggedin)
+    } catch (error) {
+        console.log("Error al iniciar sesión", error);
+        alert("Error al iniciar sesión");
+    }    
+};
 
   return (
     <div className="container">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/conversacion.css";
 
-const MessageBoard = () => {
+const Conversacion = () => {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState('');
   const [sender, setSender] = useState('profesional');

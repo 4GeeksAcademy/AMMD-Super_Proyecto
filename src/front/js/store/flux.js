@@ -4,105 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             usuarios: [
-                // {
-                // "id": 1,
-                // "nombre": 'noa',
-                // "apellidos": 'Pérez',
-                // "email": 'noa@noa.es',
-                // "password": '123',
-                // "telefono": '1234567890',
-                // "localizacion": 'Madrid',
-                // "longitud": -3.70379,
-                // "latitud": 40.41678,
-                // "direccion": 'Calle Falsa 123',
-                // "foto_de_perfil": 'juan_perfil.jpg',
-                // "tipo_de_dieta": 'Omnivoro',
-                // "alergias": 'Ninguna'
-                // },
-                // {
-                // "id": 2,
-                //   "alergias": "Polen",
-                //   "apellidos": "García",
-                //   "direccion": "Calle Falsa 123",
-                //   "email": "1",
-                //   "foto_de_perfil": "foto1.jpg",
-                //   "latitud": "40.7128",
-                //   "localizacion": "Madrid",
-                //   "longitud": "-74.0060",
-                //   "nombre": "Juan",
-                //   "telefono": "123456789",
-                //   "tipo_de_dieta": "Vegetariana"
-                // },
-                // {
-                //   "alergias": "Ninguna",
-                //   "apellidos": "Martínez",
-                //   "direccion": "Avenida Siempre Viva 742",
-                //   "email": "david@correo.com",
-                //   "foto_de_perfil": "foto2.jpg",
-                //   "id": 3,
-                //   "latitud": "34.0522",
-                //   "localizacion": "Barcelona",
-                //   "longitud": "-118.2437",
-                //   "nombre": "David",
-                //   "telefono": "987654321",
-                //   "tipo_de_dieta": "Omnívora"
-                // },
-                // {
-                //   "alergias": "Gluten",
-                //   "apellidos": "López",
-                //   "direccion": "Calle de la Paz 15",
-                //   "email": "david@david",
-                //   "foto_de_perfil": "foto3.jpg",
-                //   "id": 4,
-                //   "latitud": "41.3851",
-                //   "localizacion": "Valencia",
-                //   "longitud": "2.1734",
-                //   "nombre": "Carlos",
-                //   "telefono": "654321987",
-                //   "tipo_de_dieta": "Sin gluten"
-                // },
-                // {
-                //   "alergias": "Lactosa",
-                //   "apellidos": "Fernández",
-                //   "direccion": "Plaza Mayor 1",
-                //   "email": "Ainhoa@ainhoa",
-                //   "foto_de_perfil": "foto4.jpg",
-                //   "id": 5,
-                //   "latitud": "37.7749",
-                //   "localizacion": "Sevilla",
-                //   "longitud": "-122.4194",
-                //   "nombre": "Ainhoa",
-                //   "telefono": "321654987",
-                //   "tipo_de_dieta": "Vegana"
-                // },
-                // {
-                //   "alergias": "Mariscos",
-                //   "apellidos": "González",
-                //   "direccion": "Calle del Sol 9",
-                //   "email": "hola",
-                //   "foto_de_perfil": "foto5.jpg",
-                //   "id": 6,
-                //   "latitud": "48.8566",
-                //   "localizacion": "Bilbao",
-                //   "longitud": "2.3522",
-                //   "nombre": "Luis",
-                //   "telefono": "159753456",
-                //   "tipo_de_dieta": "Keto"
-                // },
-                // {
-                //   "alergias": "Nueces",
-                //   "apellidos": "Rodríguez",
-                //   "direccion": "Avenida Libertad 23",
-                //   "email": "chef",
-                //   "foto_de_perfil": "foto6.jpg",
-                //   "id": 7,
-                //   "latitud": "51.5074",
-                //   "localizacion": "Granada",
-                //   "longitud": "-0.1278",
-                //   "nombre": "Marta",
-                //   "telefono": "753951852",
-                //   "tipo_de_dieta": "Paleo"
-                // }
+               
             ],
             profesionales: [{
                 "id": 1,
@@ -444,7 +346,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .catch((error) => console.error("Error al crear profesional:", error));
             },
-            iniciarSesionUsuario: (email, password) => {
+            iniciarSesionUsuario : (email, password) => {
                 const requestOptions = {
                     method: "POST",
                     headers: {
@@ -453,7 +355,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     body: JSON.stringify({ email, password }),
                     redirect: "follow"
                 };
-                fetch(BASE_URL + "/api/iniciarsesionusuario", requestOptions)
+                return fetch(BASE_URL + "/api/iniciarsesionusuario", requestOptions)
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -461,13 +363,14 @@ const getState = ({ getStore, getActions, setStore }) => {
                         return response.json();
                     })
                     .then((data) => {
-
                         setStore({ token: data.token, usuarios: data.user });
                         const store = getStore();
-                        console.log(store.usuarios)
+                        console.log(store.usuarios);
+                        return true;  // Retorna true en caso de éxito
                     })
                     .catch((error) => {
                         console.error("Error al iniciar sesión:", error);
+                        return false;  // Retorna false en caso de error
                     });
             },
             iniciarSesionProfesional: (email, password) => {
@@ -479,7 +382,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     body: JSON.stringify({ email, password }),
                     redirect: "follow"
                 };
-                fetch(BASE_URL + "/api/iniciarsesionprofesional", requestOptions)
+                return fetch(BASE_URL + "/api/iniciarsesionprofesional", requestOptions)
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -488,10 +391,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .then((data) => {
                         setStore({ token: data.token });
-
+                        const store = getStore();
+                        console.log(store.usuarios);
+                        return true;  // Retorna true en caso de éxito
                     })
                     .catch((error) => {
                         console.error("Error al iniciar sesión:", error);
+                        return false;  // Retorna false en caso de error
                     });
             },
             editarUsuario: (userData) => {
@@ -522,6 +428,171 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.error("Error al editar el usuario", error);
                     });
             },
+            cerrarSesionUsuario: () => {
+                const store = getStore();
+                const token = store.token;
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    redirect: "follow"
+                };
+
+                fetch(`${BASE_URL}/api/cerrarsesionusuario`, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        setStore({ token: null, usuarioSeleccionado: [] });
+
+                        // Redireccionar a la vista principal
+                        window.location.href = '/';
+
+                        // Mostrar una alerta
+                        alert("Has cerrado sesión exitosamente");
+                    })
+                    .catch((error) => {
+                        console.error("Error al cerrar sesión:", error);
+                    });
+            },
+            eliminarUsuario: () => {
+                const store = getStore();
+                const token = store.token;
+
+                const requestOptions = {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    redirect: "follow"
+                };
+
+                return fetch(`${BASE_URL}/api/eliminarusuario`, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Aquí puedes realizar acciones adicionales después de eliminar el usuario, si es necesario
+                        console.log("Usuario eliminado exitosamente", data);
+
+                        // Mostrar una alerta
+                        alert("Usuario eliminado exitosamente");                  
+                       
+
+                        return data;
+                    })
+                    .catch((error) => {
+                        console.error("Error al eliminar usuario:", error);
+                    });
+            },
+            editarProfesional: (profesionalData) => {
+                const store = getStore();
+                const token = store.token;
+
+                console.log(profesionalData)
+                
+                const requestOptions = {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify(profesionalData)
+                };
+                return fetch(`${BASE_URL}/api/editarprofesional`, requestOptions)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Error en la solicitud");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Profesional editado exitosamente", data);
+                        // Puedes actualizar el estado o realizar otras acciones aquí
+                        return data;
+                    })
+                    .catch(error => {
+                        console.error("Error al editar el profesional", error);
+                    });
+            },
+            cerrarSesionProfesional: () => {
+                const store = getStore();
+                const token = store.token;
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    redirect: "follow"
+                };
+
+                fetch(`${BASE_URL}/api/cerrarsesionprofesional`, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        setStore({ token: null, usuarioSeleccionado: [] });
+
+                        // Redireccionar a la vista principal
+                        window.location.href = '/';
+
+                        // Mostrar una alerta
+                        alert("Has cerrado sesión exitosamente");
+                    })
+                    .catch((error) => {
+                        console.error("Error al cerrar sesión:", error);
+                    });
+            },
+            eliminarProfesional: () => {
+                const store = getStore();
+                const token = store.token;
+
+                const requestOptions = {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    redirect: "follow"
+                };
+
+                return fetch(`${BASE_URL}/api/eliminarprofesional`, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Aquí puedes realizar acciones adicionales después de eliminar el usuario, si es necesario
+                        console.log("Usuario eliminado exitosamente", data);
+
+                        // Mostrar una alerta
+                        alert("Usuario eliminado exitosamente");                     
+                      
+
+                        return data;
+                    })
+                    .catch((error) => {
+                        console.error("Error al eliminar usuario:", error);
+                    });
+            },
+
             filtrarTipoServicio: (servicio) => {
                 setStore({ tipoServicioSeleccionado: servicio });
             },
