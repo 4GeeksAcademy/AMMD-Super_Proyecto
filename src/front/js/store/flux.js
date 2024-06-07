@@ -398,7 +398,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     },
                     body: JSON.stringify(profesionalData)
                 };
-                return fetch(BASE_URL + "/api/editarprofesional", requestOptions)
+                return fetch(`${BASE_URL}/api/editarprofesional`, requestOptions)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error("Error en la solicitud");

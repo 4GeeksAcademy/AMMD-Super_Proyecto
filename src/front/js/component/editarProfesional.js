@@ -84,10 +84,16 @@ const EditarProfesional = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        actions.editarUsuario(formData)
+        const dataToSend = {};
+        for (let key in formData) {
+            if (formData[key] !== "" && formData[key] !== null) {
+                dataToSend[key] = formData[key];
+            }
+        }
+        actions.editarProfesional(formData)
             .then(result => {
                 if (result) {
-                    window.alert("Usuario editado con éxito");
+                    window.alert("Profesional editado con éxito");
                     navigate("/privadaprofesional");
                 }
             })
