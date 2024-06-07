@@ -5,7 +5,7 @@ import { useLocation ,useNavigate} from "react-router-dom";
 const EditarProfesional = () => {
     const { actions } = useContext(Context);
     const location = useLocation();
-    const usuario = location.state?.usuario;
+    const profesional = location.state?.profesional;
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -39,39 +39,39 @@ const EditarProfesional = () => {
     });
 
     useEffect(() => {
-        if (usuario) {
+        if (profesional) {
             setFormData({
-                email: usuario.email || "",
+                email: profesional.email || "",
                 password: "",  
-                nombre: usuario.nombre || "",
-                apellidos: usuario.apellidos || "",
-                telefono: usuario.telefono || "",
-                localizacion: usuario.localizacion || "",
-                direccion: usuario.direccion || "",
-                foto_de_perfil: usuario.foto_de_perfil || "",
-                descripcion: usuario.descripcion || "",
-                info_adicional: usuario.info_adicional || "",
-                tipo_de_profesional: usuario.tipo_de_profesional || "",
-                tipo_de_cocina_especialidad: usuario.tipo_de_cocina_especialidad || "",
-                tipo_servicio_chef_pica_pica: usuario.tipo_servicio_chef_pica_pica || "",
-                tipo_servicio_chef_taller_de_cocina: usuario.tipo_servicio_chef_taller_de_cocina || "",
-                tipo_servicio_chef_comida_de_trabajo: usuario.tipo_servicio_chef_comida_de_trabajo || "",
-                tipo_servicio_chef_servicio_degustacion: usuario.tipo_servicio_chef_servicio_degustacion || "",
-                tipo_servicio_chef_comida_informal: usuario.tipo_servicio_chef_comida_informal || "",
-                tipo_servicio_chef_batchcooking: usuario.tipo_servicio_chef_batchcooking || "",
-                tipo_servicio_jamonero_corte: usuario.tipo_servicio_jamonero_corte || "",
-                tipo_servicio_jamonero_clase_corte: usuario.tipo_servicio_jamonero_clase_corte || "",
-                tipo_servicio_sumiller_maridaje: usuario.tipo_servicio_sumiller_maridaje || "",
-                tipo_servicio_sumiller_cata: usuario.tipo_servicio_sumiller_cata || "",
-                tipo_servicio_pastelero_clase: usuario.tipo_servicio_pastelero_clase || "",
-                tipo_servicio_pastelero_desayuno: usuario.tipo_servicio_pastelero_desayuno || "",
-                tipo_servicio_pastelero_merienda: usuario.tipo_servicio_pastelero_merienda || "",
-                tipo_servicio_barman_barra: usuario.tipo_servicio_barman_barra || "",
-                tipo_servicio_barman_clase: usuario.tipo_servicio_barman_clase || "",
+                nombre: profesional.nombre || "",
+                apellidos: profesional.apellidos || "",
+                telefono: profesional.telefono || "",
+                localizacion: profesional.localizacion || "",
+                direccion: profesional.direccion || "",
+                foto_de_perfil: profesional.foto_de_perfil || "",
+                descripcion: profesional.descripcion || "",
+                info_adicional: profesional.info_adicional || "",
+                tipo_de_profesional: profesional.tipo_de_profesional || "",
+                tipo_de_cocina_especialidad: profesional.tipo_de_cocina_especialidad || "",
+                tipo_servicio_chef_pica_pica: profesional.tipo_servicio_chef_pica_pica || "",
+                tipo_servicio_chef_taller_de_cocina: profesional.tipo_servicio_chef_taller_de_cocina || "",
+                tipo_servicio_chef_comida_de_trabajo: profesional.tipo_servicio_chef_comida_de_trabajo || "",
+                tipo_servicio_chef_servicio_degustacion: profesional.tipo_servicio_chef_servicio_degustacion || "",
+                tipo_servicio_chef_comida_informal: profesional.tipo_servicio_chef_comida_informal || "",
+                tipo_servicio_chef_batchcooking: profesional.tipo_servicio_chef_batchcooking || "",
+                tipo_servicio_jamonero_corte: profesional.tipo_servicio_jamonero_corte || "",
+                tipo_servicio_jamonero_clase_corte: profesional.tipo_servicio_jamonero_clase_corte || "",
+                tipo_servicio_sumiller_maridaje: profesional.tipo_servicio_sumiller_maridaje || "",
+                tipo_servicio_sumiller_cata: profesional.tipo_servicio_sumiller_cata || "",
+                tipo_servicio_pastelero_clase: profesional.tipo_servicio_pastelero_clase || "",
+                tipo_servicio_pastelero_desayuno: profesional.tipo_servicio_pastelero_desayuno || "",
+                tipo_servicio_pastelero_merienda: profesional.tipo_servicio_pastelero_merienda || "",
+                tipo_servicio_barman_barra: profesional.tipo_servicio_barman_barra || "",
+                tipo_servicio_barman_clase: profesional.tipo_servicio_barman_clase || "",
                 is_active: true
             });
         }
-    }, [usuario]);
+    }, [profesional]);
 
     const handleChange = (e) => {
         setFormData({
@@ -99,7 +99,7 @@ const EditarProfesional = () => {
                 }
             })
             .catch(error => {
-                console.error("Error al editar el usuario", error);
+                console.error("Error al editar el profesional", error);
             });
     };
 

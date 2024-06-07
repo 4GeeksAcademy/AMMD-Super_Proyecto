@@ -173,12 +173,16 @@ def vista_privada_profesional():
         "direccion": profesional.direccion,
         "foto_de_perfil": profesional.foto_de_perfil,
         "descripcion": profesional.descripcion,
-        "info_adicional": profesional.info_adicional,
-        "tipo_servicio_chef": profesional.tipo_servicio_chef,
-        "tipo_servicio_jamonero": profesional.tipo_servicio_jamonero,
-        "tipo_servicio_sumiller": profesional.tipo_servicio_sumiller,
-        "tipo_servicio_pastelero": profesional.tipo_servicio_pastelero,
-        "tipo_servicio_barman": profesional.tipo_servicio_barman,        
+        "info_adicional": profesional.info_adicional,        
+        "tipo_servicio_jamonero_corte": profesional.tipo_servicio_jamonero_corte,
+        "tipo_servicio_jamonero_clase_corte": profesional.tipo_servicio_jamonero_clase_corte,
+        "tipo_servicio_sumiller_maridaje": profesional.tipo_servicio_sumiller_maridaje,
+        "tipo_servicio_sumiller_cata": profesional.tipo_servicio_sumiller_cata,
+        "tipo_servicio_pastelero_merienda": profesional.tipo_servicio_pastelero_merienda,
+        "tipo_servicio_pastelero_desayuno": profesional.tipo_servicio_pastelero_desayuno,
+        "tipo_servicio_pastelero_clase": profesional.tipo_servicio_pastelero_clase,
+        "tipo_servicio_barman_barra": profesional.tipo_servicio_barman_barra,   
+        "tipo_servicio_barman_clase": profesional.tipo_servicio_barman_clase,       
         "is_active": profesional.is_active
     }), 200
 
@@ -228,15 +232,17 @@ def editar_usuario():
 def editar_profesional():
     # Obtener el ID del profesional desde el token JWT
     current_profesional_id = get_jwt_identity()
-
+    print("entrandoa editar")
     # Buscar al profesional en la base de datos
     profesional = Profesional.query.get(current_profesional_id)
+    print(current_profesional_id)
     if profesional is None:
         return jsonify({"msg": "Profesional no encontrado"}), 404
 
     # Obtener los datos enviados en la solicitud
     data = request.json
-
+    print(data.get("nombre", profesional.nombre))
+    
     # Actualizar los detalles del profesional con los datos enviados
     profesional.nombre = data.get("nombre", profesional.nombre)
     profesional.apellidos = data.get("apellidos", profesional.apellidos)
@@ -255,7 +261,7 @@ def editar_profesional():
     profesional.tipo_servicio_chef_comida_de_trabajo = data.get("tipo_servicio_chef_comida_de_trabajo",profesional.tipo_servicio_chef_comida_de_trabajo)
     profesional.tipo_servicio_chef_servicio_degustacion = data.get("tipo_servicio_chef_servicio_degustacion",profesional.tipo_servicio_chef_servicio_degustacion)
     profesional.tipo_servicio_chef_comida_informal = data.get("tipo_servicio_chef_comida_informal",profesional.tipo_servicio_chef_comida_informal)
-    profesional.tipo_servicio_chef_bacthcooking = data.get("tipo_servicio_chef_bacthcooking",profesional.tipo_servicio_chef_bacthcooking)
+    profesional.tipo_servicio_chef_batchcooking = data.get("tipo_servicio_chef_batchcooking",profesional.tipo_servicio_chef_batchcooking)
     profesional.tipo_servicio_jamonero_corte = data.get("tipo_servicio_jamonero_corte",profesional.tipo_servicio_jamonero_corte)
     profesional.tipo_servicio_jamonero_clase_corte = data.get("tipo_servicio_jamonero_clase_corte",profesional.tipo_servicio_jamonero_clase_corte)
     profesional.tipo_servicio_sumiller_maridaje = data.get("tipo_servicio_sumiller_maridaje",profesional.tipo_servicio_sumiller_maridaje)

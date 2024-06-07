@@ -372,14 +372,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.error("Error al iniciar sesión:", error);
                         return false;  // Retorna false en caso de error
                     });
-            } 
-            
-            
-            
-            
-            
-            
-            ,
+            },
             iniciarSesionProfesional: (email, password) => {
                 const requestOptions = {
                     method: "POST",
@@ -389,7 +382,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     body: JSON.stringify({ email, password }),
                     redirect: "follow"
                 };
-                fetch(BASE_URL + "/api/iniciarsesionprofesional", requestOptions)
+                return fetch(BASE_URL + "/api/iniciarsesionprofesional", requestOptions)
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -398,10 +391,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .then((data) => {
                         setStore({ token: data.token });
-
+                        const store = getStore();
+                        console.log(store.usuarios);
+                        return true;  // Retorna true en caso de éxito
                     })
                     .catch((error) => {
                         console.error("Error al iniciar sesión:", error);
+                        return false;  // Retorna false en caso de error
                     });
             },
             editarUsuario: (userData) => {
@@ -503,6 +499,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const store = getStore();
                 const token = store.token;
 
+                console.log(profesionalData)
+                
                 const requestOptions = {
                     method: "PUT",
                     headers: {
