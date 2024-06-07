@@ -1,30 +1,47 @@
-import React, { useState } from 'react';
-import {useContext} from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/buscador.css";
 
-
 const Buscador = () => {
-
     const navigate = useNavigate();
-    const{store} = useContext(Context);
-    const [profesionalSeleccionado, setProfesionalSeleccionado] = useState(null);
-    const [tipoDeServicio, setTipoDeServicio] = useState(null); 
-    const [tipoDeComida, setTipoDeComida] = useState(null); 
-    
+    const { store, actions } = useContext(Context);
+
+    const [profesionalSeleccionado, setProfesionalSeleccionado] = useState("");
+    const [tipoDeEvento, setTipoDeEvento] = useState("");
+    const [tipoDeCocina, setTipoDeCocina] = useState("");
+    const [localizacion, setLocalizacion] = useState("");     
+
     const manejarTipoProfesional = (tipoProfesional) => {
         setProfesionalSeleccionado(tipoProfesional);
+        setTipoDeEvento("");
+        setTipoDeCocina("");
     }
 
-    const manejarTipoServicio = (tipoServicio) => {
-        setTipoDeServicio(tipoServicio);
-    }
-    
-    const manejarTipoComida = (tipoComida) => {
-        setTipoDeComida(tipoComida);
+    const manejarTipoEvento = (tipoEvento) => {
+        setTipoDeEvento(tipoEvento);
     }
 
+    const manejarTipoCocina = (tipoCocina) => {
+        setTipoDeCocina(tipoCocina);
+    }
+
+    const manejarLocalizacion = (localizacion) => {
+        setLocalizacion(localizacion)
+    }
+
+    const manejarBuscar = (servicio, evento, cocina, localizacion) => {
+        actions.filtrarTipoServicio(servicio);
+        actions.filtrarTipoEvento(evento);
+        actions.filtrarTipoCocina(cocina);
+        actions.filtrarLocalizacion(localizacion)
+        navigate(`/busquedaprofesionales`);
+    }
+
+    console.log(profesionalSeleccionado)
+    console.log(tipoDeEvento)
+    console.log(tipoDeCocina)
+    console.log(localizacion)
 
     return (
         <div className="container-buscador" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px 5px', gap: '10px' }}>
@@ -44,111 +61,110 @@ const Buscador = () => {
                     <li><a className="dropdown-item" href="#" onClick={() => manejarTipoProfesional('cortador de jamon')}>Cortador/a de jamón</a></li>
                     <li><a className="dropdown-item" href="#" onClick={() => manejarTipoProfesional('barman')}>Barman/Barwomen</a></li>                        
                 </ul>
-
-                
-                {/* onClick={()=>{setChefs(filtrarTipoDeServicio(store.profesionales, "tipo_servicio_chef"))}} */}
             </div> 
+
             {profesionalSeleccionado === 'chef' && (
                 <div className="dropdown" style={{ marginRight: '10px' }}>
                     <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Tipo de evento chef
                     </button>
                     <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoServicio('taller de cocina')}>Taller de cocina</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoServicio('servicio cocktel')}>Servicio coctel</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoServicio('comida de empresa')}>Comida de empresa</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoServicio('comida menu degustacion')}>Comida menu degustacion</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoServicio('batchcooking')}>Batchcooking</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('pica-pica')}>Pica-pica</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('taller de cocina')}>Taller de cocina</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('comida informal')}>Cocina informal</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('comida de empresa')}>Cocina de empresa</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('comida menu degustacion')}>Cocina menu degustacion</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('batchcooking')}>Batchcooking</a></li>
+                    </ul>
+                </div>
+            )}
+
+            {profesionalSeleccionado === 'chef' && ( 
+                <div className="dropdown" style={{ marginRight: '10px' }}>
+                    <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tipo de cocina
+                    </button>
+                    <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina española')}>Cocina española</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina peruana')}>Cocina peruana</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina japonesa')}>Cocina japonesa</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina italiana')}>Cocina italiana</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina vegana')}>Cocina vegana</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina mexicana')}>Cocina mexicana</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina griega')}>Cocina griega</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina argentina')}>Cocina argentina</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina americana')}>Cocina americana</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina tailandesa')}>Cocina tailandesa</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoCocina('cocina creativa')}>Cocina creativa</a></li>
                     </ul>
                 </div>
             )}     
-            {profesionalSeleccionado === 'cortador de jamon' && ( 
-             <div className="dropdown" style={{ marginRight: '10px' }}>
-                <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Tipo de evento Cortador de Jamon
-                </button>
-                <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Corte de jamon</a></li>
-                    <li><a className="dropdown-item" href="#">Clase de corte de jamon</a></li>
-                                     
-                </ul>
-            </div> 
-            )}
 
             {profesionalSeleccionado === 'sumiller' && ( 
-            <div className="dropdown" style={{ marginRight: '10px' }}>
-                <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Tipo de evento  Sumiller
-                </button>
-                <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Cata de vinos</a></li>
-                    <li><a className="dropdown-item" href="#">Maridaje</a></li>                                     
-                </ul>
-            </div>
+                <div className="dropdown" style={{ marginRight: '10px' }}>
+                    <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tipo de evento  Sumiller
+                    </button>
+                    <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Cata de vinos')}>Cata de vinos</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Maridaje')}>Maridaje</a></li>                                     
+                    </ul>
+                </div>
             )}
 
             {profesionalSeleccionado === 'pastelero' && ( 
-            <div className="dropdown" style={{ marginRight: '10px' }}>
-                <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Tipo de evento Pasteler@
-                </button>
-                <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Clase de pastelería</a></li>
-                    <li><a className="dropdown-item" href="#">Servicio de desayuno</a></li>  
-                    <li><a className="dropdown-item" href="#">Servicio de merienda</a></li>                                    
-                </ul>
-            </div>
+                <div className="dropdown" style={{ marginRight: '10px' }}>
+                    <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tipo de evento Pasteler@
+                    </button>
+                    <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Clase de pastelería')}>Clase de pastelería</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Servicio de desayuno')}>Servicio de desayuno</a></li>  
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Servicio de merienda')}>Servicio de merienda</a></li>                                    
+                    </ul>
+                </div>
+            )}
+
+            {profesionalSeleccionado === 'cortador de jamon' && ( 
+                <div className="dropdown" style={{ marginRight: '10px' }}>
+                    <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tipo de evento Cortador de Jamon
+                    </button>
+                    <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Corte de jamon')}>Corte de jamon</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Clase de corte de jamon')}>Clase de corte de jamon</a></li>
+                    </ul>
+                </div> 
             )}
 
             {profesionalSeleccionado === 'barman' && ( 
-            <div className="dropdown" style={{ marginRight: '10px' }}>
-                <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Tipo de evento Barman/Barwomen
-                </button>
-                <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Clase de cocktelería</a></li>
-                    <li><a className="dropdown-item" href="#">Servicio de barra de cocktelería</a></li>                                                       
-                </ul>
-            </div>
+                <div className="dropdown" style={{ marginRight: '10px' }}>
+                    <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tipo de evento Barman/Barwomen
+                    </button>
+                    <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Clase de cocktelería')}>Clase de cocktelería</a></li>
+                        <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Servicio de barra de cocktelería')}>Servicio de barra de cocktelería</a></li>                                                       
+                    </ul>
+                </div>
             )}
-
-        {profesionalSeleccionado === 'chef' && ( 
-            <div className="dropdown" style={{ marginRight: '10px' }}>
-                <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Tipo de cocina
-                </button>
-                <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Cocina española</a></li>
-                    <li><a className="dropdown-item" href="#">Cocina peruana</a></li>
-                    <li><a className="dropdown-item" href="#">Cocina japonesa</a></li>
-                    <li><a className="dropdown-item" href="#">Cocina italiana</a></li>
-                    <li><a className="dropdown-item" href="#">Cocina vegana</a></li>
-                    <li><a className="dropdown-item" href="#">Cocina mexicana</a></li>
-                    <li><a className="dropdown-item" href="#">Cocina griega</a></li>
-                    <li><a className="dropdown-item" href="#">Cocina argentina</a></li>
-                    <li><a className="dropdown-item" href="#">Cocina americana</a></li>
-                    <li><a className="dropdown-item" href="#">Cocina tailandesa</a></li>
-                    <li><a className="dropdown-item" href="#">Cocina creativa</a></li>
-                </ul>
-            </div>
-        )}
 
             <div className="dropdown" style={{ marginRight: '10px' }}>
                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Localidad
                 </button>
                 <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Madrid</a></li>
-                    <li><a className="dropdown-item" href="#">Barcelona</a></li>
-                    <li><a className="dropdown-item" href="#">Valencia</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={() => manejarLocalizacion('madrid')}>Madrid</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={() => manejarLocalizacion('barcelona')}>Barcelona</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={() => manejarLocalizacion('valencia')}>Valencia</a></li>
                 </ul>
             </div>
             <button 
                 className="btn btn-outline-secondary" 
                 type="button" 
                 id="button-addon2"
-                style={{ marginLeft: '10px' }}
-                onClick={() => navigate(`/busquedaprofesionales`)}
+                style={{ marginLeft: '10px' }}               
+                onClick={() => manejarBuscar(profesionalSeleccionado, tipoDeEvento, tipoDeCocina, localizacion) }
             >
                 Buscar
             </button>

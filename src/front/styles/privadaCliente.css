@@ -110,3 +110,11 @@
     padding: 10px; /* Espaciado interno */
     margin-top: 20px; /* Margen superior */
   }
+
+  .btn.editar-cliente {
+    margin: 10px; /* Agrega un margen inferior al botón "EDITAR" */
+  }
+  
+  .btn.eliminar-cliente {
+    margin: 0px; /* Agrega un margen superior al botón "ELIMINAR" */
+  }

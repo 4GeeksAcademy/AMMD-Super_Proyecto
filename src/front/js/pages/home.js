@@ -12,10 +12,8 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container">
-			<div className="container-buscador">
-                        <Buscador />
-            </div>
+		<div className="container">			
+        	<Buscador />            
 			<Jumbotron />
 			<br></br>
 			<CarruselClientes />

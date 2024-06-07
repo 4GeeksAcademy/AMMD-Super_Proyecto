@@ -3,10 +3,10 @@
     height: 400px;
     background: #212529;
     padding: 47px;
-    color: #fff;
+    color: #faf9f9;
     border-radius: 17px;
     font-size: 1.3em;
-    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Alice", serif;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -22,14 +22,14 @@
     margin: 20px 0 0 0;
     font-size: 0.8em;
     border-radius: 100px;
-    background: #3c3c3c;
+    background: #5c4525;
     color: #fff;
     border: none;
     outline: none;
   }
   
   .btn-inicio-sesion {
-    background: linear-gradient(144deg, #97bfff, #4376c9 50%, #97bfff);
+    background: linear-gradient(144deg, #C19F65, #5c4525 50%, #C19F65);
     color: #fff;
     font-weight: bold;
     cursor: pointer;
@@ -39,6 +39,6 @@
   }
   
   .btn-inicio-sesion:hover {
-    background: linear-gradient(144deg, #1e1e1e , 20%,#1e1e1e 50%,#1e1e1e );
+    background: linear-gradient(144deg, #5c4525 , 20%,#C19F65 50%,#5c4525 );
   }
   

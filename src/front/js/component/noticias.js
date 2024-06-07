@@ -6,59 +6,47 @@ const Noticias = () => {
     return (
         <>
             <h2 className="tituloNoticias">NOTICIAS DESTACADAS</h2>
-            <div className="row" style={{ display: 'flex', justifyContent: 'center'}}>
-                <div className="col-md-3">
-                    <div className="card">
-                        <img src="https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's content.
-                            </p>
-                            <a href="#" className="btn btn-primary">
-                                Go somewhere
+            <div className="row noticias" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'nowrap'}}>
+                <div className="col-md-3 noticias" style={{ flex: '0 0 auto' }}>
+                    <div className="card-noticia">
+                        <img src="https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top noticias" alt="..." />
+                        <div className="card-body noticias">
+                            <h5 className="card-title">TITULO</h5>
+                            <a href="#" className="btn noticias">
+                                Ver Noticia
                             </a>
                         </div>
                     </div>
                 </div>
-                <div className="col-md-3">
-                    <div className="card">
-                        <img src="https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's content.
-                            </p>
-                            <a href="#" className="btn btn-primary">
-                                Go somewhere
+                <div className="col-md-3 noticias" style={{ flex: '0 0 auto' }}>
+                    <div className="card-noticia">
+                        <img src="https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top noticias" alt="..." />
+                        <div className="card-body noticias">
+                            <h5 className="card-title">TITULO</h5>
+                            <a href="#" className="btn noticias">
+                                Ver Noticia
                             </a>
                         </div>
                     </div>
                 </div>
-                <div className="col-md-3">
-                    <div className="card">
-                        <img src="https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's content.
-                            </p>
-                            <a href="#" className="btn btn-primary">
-                                Go somewhere
+                <div className="col-md-3 noticias" style={{ flex: '0 0 auto' }}>
+                    <div className="card-noticia">
+                        <img src="https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top noticias" alt="..." />
+                        <div className="card-body noticias">
+                            <h5 className="card-title">TITULO</h5>
+                            <a href="#" className="btn noticias">
+                                Ver Noticia
                             </a>
                         </div>
                     </div>
                 </div>
-                <div className="col-md-3">
-                    <div className="card">
-                        <img src="https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's content.
-                            </p>
-                            <a href="#" className="btn btn-primary">
-                                Go somewhere
+                <div className="col-md-3 noticias" style={{ flex: '0 0 auto' }}>
+                    <div className="card-noticia">
+                        <img src="https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top noticias" alt="..." />
+                        <div className="card-body noticias">
+                            <h5 className="card-title">TITULO</h5>
+                            <a href="#" className="btn noticias">
+                                Ver Noticia
                             </a>
                         </div>
                     </div>
