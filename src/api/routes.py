@@ -8,6 +8,7 @@ from flask_mail import Mail, Message
 from datetime import datetime, timedelta
 import uuid
 from flask import jsonify
+from datetime import datetime
 
 api = Blueprint('api', __name__)
 
@@ -298,7 +299,7 @@ def eliminar_profesional():
 
     return jsonify({"msg": "Profesional eliminado exitosamente"}), 200
 
-from datetime import datetime
+
 
 @api.route('/crearconversacion', methods=['POST'])
 def crear_conversacion():
@@ -432,19 +433,6 @@ def obtener_favoritos():
     
     return jsonify({"favoritos": favoritos_serializados}), 200
 
-# @api.route("/mailTest")
-# def index():
-#     try:
-#         msg = Message(
-#             subject="Hello",
-#             sender="adoptaunchef@gmail.com",
-#             recipients=["chefdavid@hotmail.com"]
-#         )
-#         msg.body = "Hello Flask message sent from Flask-Mail"
-#         mail.send(msg)
-#         return jsonify({"msg": "email sent"})
-#     except Exception as e:
-#         return jsonify({"error": str(e)})
 
 @api.route("/resetpassword", methods=["POST"])
 def reset_password():
@@ -508,3 +496,10 @@ def cerrar_sesion_usuario():
     revoked_tokens.add(jti)
     return jsonify({"msg": "Sesión cerrada exitosamente"}), 200
 
+# Ruta para cerrar sesión de un profesional
+@api.route('/cerrarsesionprofesional', methods=['POST'])
+@jwt_required()
+def cerrar_sesion_profesional():
+    jti = get_jwt()["jti"]
+    revoked_tokens.add(jti)
+    return jsonify({"msg": "Sesión cerrada exitosamente"}), 200

@@ -21,17 +21,19 @@ if (profesionalEncontrado) {
   console.log("No se encontró ningún profesional con el ID:", profesionalId);
 }
 
+
+
 const handleEditar = () => {
   navigate('/editarprofesional', { state: { profesional: store.profesionales } });
 };
 
 const handleCerrarSesion = () => {
-  actions.cerrarSesionUsuario();
+  actions.cerrarSesionProfesional();
   navigate('/'); 
 };
 
 const handleEliminar = () => {
-  actions.eliminarUsuario();
+  actions.eliminarProfesional();
   navigate('/'); 
 };
 
