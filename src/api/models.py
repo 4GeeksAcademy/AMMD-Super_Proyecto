@@ -11,28 +11,36 @@ class Profesional(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(500), nullable=False)
     telefono = db.Column(db.String(12), unique=True, nullable=True)
-    localizacion = db.Column(db.String(20), nullable=True) 
+    localizacion = db.Column(db.Enum('madrid', 'barcelona', 'valencia', name='localizacion')) 
     direccion = db.Column(db.String(30), nullable=True)
     foto_de_perfil = db.Column(db.String, unique=True, nullable=True)
     descripcion = db.Column(db.String(300), nullable=True)
     info_adicional = db.Column(db.String(300), nullable=True)
-    tipo_de_profesional = db.Column(db.Enum('Chef','Barman','Cortador de jamon','Sumiller','Pastelero',name='tipo_de_profesional'))
+
+    tipo_de_profesional = db.Column(db.Enum('chef','barman','cortador de jamon','sumiller','pastelero',name='tipo_de_profesional'))
+
     tipo_de_cocina_especialidad = db.Column(db.Enum('cocina española','cocina peruana','cocina griega','cocina americana','cocina italiana','cocina argentina','cocina tailandesa','cocina mexicana','cocina creativa','cocina japonesa', 'cocina vegana',name='tipo_de_cocina'),nullable=True)  
+    
     tipo_servicio_chef_pica_pica = db.Column(db.Text, nullable=True)
     tipo_servicio_chef_taller_de_cocina = db.Column(db.Text, nullable=True)
     tipo_servicio_chef_comida_de_trabajo =db.Column(db.Text, nullable=True)
     tipo_servicio_chef_servicio_degustacion = db.Column(db.Text, nullable=True)
     tipo_servicio_chef_comida_informal = db.Column(db.Text, nullable=True)
-    tipo_servicio_chef_bacthcooking = db.Column(db.Text, nullable=True)
+    tipo_servicio_chef_batchcooking = db.Column(db.Text, nullable=True)
+
     tipo_servicio_jamonero_corte = db.Column(db.Text, nullable=True)
     tipo_servicio_jamonero_clase_corte = db.Column(db.Text, nullable=True)
+
     tipo_servicio_sumiller_maridaje = db.Column(db.Text, nullable=True)
     tipo_servicio_sumiller_cata = db.Column(db.Text, nullable=True)  
+
     tipo_servicio_pastelero_clase = db.Column(db.Text, nullable=True)  
     tipo_servicio_pastelero_desayuno = db.Column(db.Text, nullable=True)  
     tipo_servicio_pastelero_merienda = db.Column(db.Text, nullable=True)  
+
     tipo_servicio_barman_barra = db.Column(db.Text, nullable=True)  
-    tipo_servicio_barman_clase = db.Column(db.Text, nullable=True)      
+    tipo_servicio_barman_clase = db.Column(db.Text, nullable=True)     
+     
     is_active = db.Column(db.Boolean(), nullable=True)
 
     def __repr__(self):
@@ -62,7 +70,7 @@ class Profesional(db.Model):
             "tipo_servicio_chef_comida_de_trabajo":self.tipo_servicio_chef_comida_de_trabajo,
             "tipo_servicio_chef_servicio_degustacion":self.tipo_servicio_chef_servicio_degustacion,
             "tipo_servicio_chef_comida_informal":self.tipo_servicio_chef_comida_informal,
-            "tipo_servicio_chef_bacthcooking":self.tipo_servicio_chef_bacthcooking,
+            "tipo_servicio_chef_batchcooking":self.tipo_servicio_chef_batchcooking,
             "tipo_servicio_jamonero_corte":self.tipo_servicio_jamonero_corte,
             "tipo_servicio_jamonero_clase_corte":self.tipo_servicio_jamonero_clase_corte,
             "tipo_servicio_sumiller_maridaje":self.tipo_servicio_sumiller_maridaje,
