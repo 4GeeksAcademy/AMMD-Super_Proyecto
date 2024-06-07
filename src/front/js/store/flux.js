@@ -346,7 +346,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .catch((error) => console.error("Error al crear profesional:", error));
             },
-            iniciarSesionUsuario: (email, password) => {
+            iniciarSesionUsuario : (email, password) => {
                 const requestOptions = {
                     method: "POST",
                     headers: {
@@ -355,7 +355,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     body: JSON.stringify({ email, password }),
                     redirect: "follow"
                 };
-                fetch(BASE_URL + "/api/iniciarsesionusuario", requestOptions)
+                return fetch(BASE_URL + "/api/iniciarsesionusuario", requestOptions)
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -363,15 +363,23 @@ const getState = ({ getStore, getActions, setStore }) => {
                         return response.json();
                     })
                     .then((data) => {
-
                         setStore({ token: data.token, usuarios: data.user });
                         const store = getStore();
-                        console.log(store.usuarios)
+                        console.log(store.usuarios);
+                        return true;  // Retorna true en caso de éxito
                     })
                     .catch((error) => {
                         console.error("Error al iniciar sesión:", error);
+                        return false;  // Retorna false en caso de error
                     });
-            },
+            } 
+            
+            
+            
+            
+            
+            
+            ,
             iniciarSesionProfesional: (email, password) => {
                 const requestOptions = {
                     method: "POST",
