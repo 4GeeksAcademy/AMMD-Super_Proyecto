@@ -44,6 +44,7 @@ const Layout = () => {
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
+                    <Buscador/>
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<VistaRegistroUsuario />} path="/registrousuario" />

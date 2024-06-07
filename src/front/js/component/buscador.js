@@ -44,12 +44,13 @@ const Buscador = () => {
     console.log(localizacion)
 
     return (
-        <div className="container-buscador" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px 5px', gap: '10px' }}>
+        <div className="buscador" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px 5px', gap: '10px' }}>
             <ul className="nav" style={{ marginRight: '10px' }}>
                 <li className="nav-item">
                     <a className="nav-link disabled" aria-disabled="true"><strong>¿Qué te apetece?</strong></a>
                 </li>
             </ul>   
+            <br></br>
             <div className="dropdown" style={{ marginRight: '10px' }}>
                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Tipo de servicio
