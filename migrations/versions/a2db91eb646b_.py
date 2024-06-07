@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: a0f074689357
+Revision ID: a2db91eb646b
 Revises: 
-Create Date: 2024-06-05 04:44:30.634455
+Create Date: 2024-06-07 17:08:22.522550
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a0f074689357'
+revision = 'a2db91eb646b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,19 +25,19 @@ def upgrade():
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('password', sa.String(length=500), nullable=False),
     sa.Column('telefono', sa.String(length=12), nullable=True),
-    sa.Column('localizacion', sa.String(length=20), nullable=True),
+    sa.Column('localizacion', sa.Enum('madrid', 'barcelona', 'valencia', name='localizacion'), nullable=True),
     sa.Column('direccion', sa.String(length=30), nullable=True),
     sa.Column('foto_de_perfil', sa.String(), nullable=True),
     sa.Column('descripcion', sa.String(length=300), nullable=True),
     sa.Column('info_adicional', sa.String(length=300), nullable=True),
-    sa.Column('tipo_de_profesional', sa.Enum('Chef', 'Barman', 'Cortador de jamon', 'Sumiller', 'Pastelero', name='tipo_de_profesional'), nullable=True),
+    sa.Column('tipo_de_profesional', sa.Enum('chef', 'barman', 'cortador de jamon', 'sumiller', 'pastelero', name='tipo_de_profesional'), nullable=True),
     sa.Column('tipo_de_cocina_especialidad', sa.Enum('cocina española', 'cocina peruana', 'cocina griega', 'cocina americana', 'cocina italiana', 'cocina argentina', 'cocina tailandesa', 'cocina mexicana', 'cocina creativa', 'cocina japonesa', 'cocina vegana', name='tipo_de_cocina'), nullable=True),
     sa.Column('tipo_servicio_chef_pica_pica', sa.Text(), nullable=True),
     sa.Column('tipo_servicio_chef_taller_de_cocina', sa.Text(), nullable=True),
     sa.Column('tipo_servicio_chef_comida_de_trabajo', sa.Text(), nullable=True),
     sa.Column('tipo_servicio_chef_servicio_degustacion', sa.Text(), nullable=True),
     sa.Column('tipo_servicio_chef_comida_informal', sa.Text(), nullable=True),
-    sa.Column('tipo_servicio_chef_bacthcooking', sa.Text(), nullable=True),
+    sa.Column('tipo_servicio_chef_batchcooking', sa.Text(), nullable=True),
     sa.Column('tipo_servicio_jamonero_corte', sa.Text(), nullable=True),
     sa.Column('tipo_servicio_jamonero_clase_corte', sa.Text(), nullable=True),
     sa.Column('tipo_servicio_sumiller_maridaje', sa.Text(), nullable=True),

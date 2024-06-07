@@ -1,10 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const EditarUsuario = () => {
     const { actions } = useContext(Context);
     const location = useLocation();
+    const navigate = useNavigate();
     const usuario = location.state?.usuario;
 
     const [formData, setFormData] = useState({
@@ -62,7 +63,8 @@ const EditarUsuario = () => {
         actions.editarUsuario(dataToSend)
             .then(result => {
                 if (result) {
-                    console.log("Usuario editado con éxito", result);
+                    window.alert("Usuario editado con éxito");
+                    navigate("/privadacliente");  // Cambia "/ruta-de-vista-privada" por la ruta real de tu vista privada
                 }
             })
             .catch(error => {
@@ -90,8 +92,6 @@ const EditarUsuario = () => {
                         >
                             Confirmar cambios
                         </button>
-                        <button type="button" className="btn btn-secondary">CERRAR</button>
-                        <button type="button" className="btn btn-success">ELIMINAR</button>
                         <br />
                         <input type="email" name="email" value={formData.email} placeholder="Email" onChange={handleChange} />
                         <input type="password" name="password" value={formData.password} placeholder="Password" onChange={handleChange} />

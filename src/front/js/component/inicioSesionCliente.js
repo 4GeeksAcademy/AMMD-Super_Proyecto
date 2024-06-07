@@ -17,11 +17,21 @@ const InicioSesionCliente = () => {
     setFormValue({ ...formValue, [id]: value });
   }
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    actions.iniciarSesionUsuario(formValue.email, formValue.password)
-    navigate("/privadacliente")
-}
+    try {
+        const loggedin = await actions.iniciarSesionUsuario(formValue.email, formValue.password);
+        if (loggedin) {
+            navigate("/privadacliente");
+        } else {
+            alert("Error al iniciar sesión");
+        }
+        console.log(loggedin)
+    } catch (error) {
+        console.log("Error al iniciar sesión", error);
+        alert("Error al iniciar sesión");
+    }    
+};
 
   return (
     <div className="container">
@@ -72,6 +82,8 @@ const InicioSesionCliente = () => {
           </div>
         </div>
       </div>
+
+      
       <h2>¿Qué te apetece?</h2>
       <div className="container row row-cols-1 row-cols-md-2 g-4 mt-4">
         <div className="col-6">

@@ -21,6 +21,22 @@ if (profesionalEncontrado) {
   console.log("No se encontró ningún profesional con el ID:", profesionalId);
 }
 
+
+
+const handleEditar = () => {
+  navigate('/editarprofesional', { state: { profesional: store.profesionales } });
+};
+
+const handleCerrarSesion = () => {
+  actions.cerrarSesionProfesional();
+  navigate('/'); 
+};
+
+const handleEliminar = () => {
+  actions.eliminarProfesional();
+  navigate('/'); 
+};
+
   return (
     <div>
       <button type="button" className="btn cerrar-profesional" style={{ position: 'absolute', top: 180, right: 0 }}>CERRAR </button>
@@ -36,6 +52,15 @@ if (profesionalEncontrado) {
           </div>
           <div className="col">
             <h3>Hola !!!</h3>
+       
+            <button 
+              type="button" 
+              className="btn btn-secondary" 
+              onClick={handleCerrarSesion}
+            >
+              CERRAR
+            </button>
+           
             <br />
             <h6>Nombre </h6>
             <p>{profesionalEncontrado.nombre}</p>
@@ -51,8 +76,8 @@ if (profesionalEncontrado) {
             <p>{profesionalEncontrado.localizacion}</p>
             <h6>tipos de servicio</h6>
             <p>{profesionalEncontrado.tipo_servicio_chef}</p>
-            <button type="button" className="btn editar-profesional">EDITAR</button>
-            <button type="button" className="btn eliminar-profesional">ELIMINAR</button>
+            <button type="button" className="btn editar-profesional"  onClick={handleEditar}>EDITAR</button>
+            <button type="button" className="btn eliminar-profesional"  onClick={handleEliminar}>ELIMINAR</button>
           </div>
         </div>
       </div>
