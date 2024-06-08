@@ -76,7 +76,8 @@ const OrdenDeServicio = () => {
                 IncluidoEnServicio: "",             
                 Observaciones: "",
                 Cocina: "",
-                Localizacion: ""
+                Localizacion: "",
+                CostoDeServicio: ""
             });
         }
     };
@@ -243,7 +244,16 @@ const OrdenDeServicio = () => {
                             onChange={handleInputChange}
                             placeholder="Que incluye tu servicio?"
                             required
-                        />                 
+                        />      
+                         <input
+                            className="m-1"
+                            type="text"
+                            name="CosteDeServicio"
+                            value={ficha.CostoDeServicio}
+                            onChange={handleInputChange}
+                            placeholder="Coste de tu servicio"
+                            required
+                        />             
                         <input
                             className="m-1"
                             type="text"
@@ -262,13 +272,15 @@ const OrdenDeServicio = () => {
             <div className="resumenOrden">
                 <h6>Resumen orden</h6>
                 <p>Nombre del evento: {ficha.Evento}</p>
+                <p>Fecha: {ficha.Fecha}</p>
                 <p>Numero de personas: {ficha.Pax}</p>
                 <p>Hora: {ficha.Hora}</p>
                 <p>Servicio profesional: {ficha.Servicio}</p>
                 <p>Tipo de evento: {ficha.Evento}</p>
                 <p>Localización: {ficha.Localizacion}</p>
                 <p>Direccion: {ficha.Direccion}</p>
-                <p>El servicio incluye: {ficha.IncluidoEnServicio}</p>          
+                <p>El servicio incluye: {ficha.IncluidoEnServicio}</p> 
+                <p>Coste de servicio {ficha.CostoDeServicio}</p> 
                 <p>Observaciones: {ficha.Observaciones}</p>
             </div>
         </div>

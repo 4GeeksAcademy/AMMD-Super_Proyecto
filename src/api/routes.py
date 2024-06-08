@@ -10,6 +10,11 @@ import uuid
 from flask import jsonify
 from datetime import datetime
 
+
+
+
+
+
 api = Blueprint('api', __name__)
 
 mail = Mail()
@@ -524,33 +529,28 @@ def cerrar_sesion_profesional():
     return jsonify({"msg": "Sesión cerrada exitosamente"}), 200
 
 #Ruta para guardar orden de servicio
-@api.route('/guardarordenservicio', methods=['POST'])
-def guardar_resumen():
-    data = request.get_json()
-
-    nuevo_servicio = ServiciosContratados(
-        precio=data.get('precio'),
-        pax=data.get('pax'),
-        evento=data.get('evento'),
-        tipo_profesional=data.get('tipo_profesional'),
+@api.route('/servicioscontratados', methods=['POST'])
+def guardar_servicio_contratado():
+    data = request.json
+    
+    nuevo_servicio_contratado = ServiciosContratados(
+        nombre_evento=data.get('nombre_evento'),
+        fecha=data.get('fecha'),
+        numero_personas=data.get('numero_personas'),
+        hora=data.get('hora'),
+        servicio_profesional=data.get('servicio_profesional'),
+        tipo_evento=data.get('tipo_evento'),
         localizacion=data.get('localizacion'),
         direccion=data.get('direccion'),
-        incluido_en_servicio=data.get('incluido_en_servicio'),
+        servicio_incluye=data.get('servicio_incluye'),
+        costo_servicio=data.get('costo_servicio'),
         observaciones=data.get('observaciones'),
         cliente_id=data.get('cliente_id'),
         profesional_id=data.get('profesional_id'),
+        fecha_contratacion=data.get('fecha_contratacion')
     )
 
-    db.session.add(nuevo_servicio)
+    db.session.add(nuevo_servicio_contratado)
     db.session.commit()
 
-    return jsonify({'message': 'Resumen guardado exitosamente'}), 201
-
-#obtener orden de servicio
-@api.route('/obtener_resumen/<int:servicio_id>', methods=['GET'])
-def obtener_resumen(servicio_id):
-    servicio = ServiciosContratados.query.get(servicio_id)
-    if servicio:
-        return jsonify(servicio.serialize()), 200
-    else:
-        return jsonify({'message': 'Servicio no encontrado'}), 404
+    return jsonify({'message': 'Servicio contratado guardado correctamente'}), 201
