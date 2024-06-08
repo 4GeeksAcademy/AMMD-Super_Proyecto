@@ -39,7 +39,7 @@ const handleEliminar = () => {
 
   return (
     <div>
-      <button type="button" className="btn cerrar-profesional" style={{ position: 'absolute', top: 180, right: 0 }}>CERRAR </button>
+      <button type="button" className="btn cerrar-profesional" style={{ position: 'absolute', top: 180, right: 0 }}  onClick={handleCerrarSesion}>CERRAR </button>
       <div className="container text-center">
         <div className="row">
           <div className="col">
@@ -53,13 +53,6 @@ const handleEliminar = () => {
           <div className="col">
             <h3>Hola !!!</h3>
        
-            <button 
-              type="button" 
-              className="btn btn-secondary" 
-              onClick={handleCerrarSesion}
-            >
-              CERRAR
-            </button>
            
             <br />
             <h6>Nombre </h6>
