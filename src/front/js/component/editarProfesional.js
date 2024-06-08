@@ -151,11 +151,18 @@ const EditarProfesional = () => {
                         <img
                             src="https://images.pexels.com/photos/2709388/pexels-photo-2709388.jpeg?auto=compress&cs=tinysrgb&w=600"
                             alt="Descripción de la imagen"
-                            width="300"
+                            width="250"
                             height="300"
                         />
                     </div>
                     <div className="col">
+                    <button
+                            type="button"
+                            className="btn"
+                            onClick={handleSubmit}
+                        >
+                            Confirmar cambios
+                        </button>
                         <form onSubmit={handleSubmit}>
                             <input type="text" name="email" value={formData.email} placeholder="Email" onChange={handleChange} />
                             <input type="password" name="password" value={formData.password} placeholder="Password" onChange={handleChange} />
@@ -180,7 +187,7 @@ const EditarProfesional = () => {
                             {formData.tipo_de_profesional === "Pastelero" && renderPasteleroFields()}
                             {formData.tipo_de_profesional === "Jamonero" && renderJamoneroFields()}
                             {formData.tipo_de_profesional === "Barman" && renderBarmanFields()}
-                            <button type="submit">Guardar</button>
+                            
                         </form>
                     </div>
                 </div>

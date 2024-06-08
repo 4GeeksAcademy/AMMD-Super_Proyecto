@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Buscador from './buscador';
 import "../../styles/privadaCliente.css";
+import "../../styles/MiComponente.css"
 
 import { Context } from '../store/appContext';
 
@@ -20,6 +21,10 @@ const PrivadaCliente = () => {
     navigate('/editarusuario', { state: { usuario: store.usuarios } });
   };
 
+  const handleServiciosContratadosUsuario = () => {
+    navigate('/servicioscontratadosusuario', { state: { usuario: store.usuarios } });
+  };
+
   const handleCerrarSesion = () => {
     actions.cerrarSesionUsuario();
     navigate('/'); 
@@ -34,7 +39,7 @@ const PrivadaCliente = () => {
 
   return (
     <div>
-      <button type="button" className="btn cerrar-cliente" style={{ position: 'absolute', top: 180, right: 0 }}  onClick={handleCerrarSesion}>CERRAR </button>
+      <button type="button" className="btn cerrar-cliente" style={{ position: 'absolute', top: 335, right: 0 }}  onClick={handleCerrarSesion}>CERRAR </button>
       <div className="container text-center">
         <div className="row">
           <div className="col">
@@ -47,16 +52,17 @@ const PrivadaCliente = () => {
           </div>
           
           <div className="col">                            
-          <br />
-          <h3>Hola !!!</h3>
-            <p>Nombre: {store.usuarios.nombre}</p>
-            <p>Apellido: {store.usuarios.apellidos} </p>
-            <p>Email: {store.usuarios.email} </p>
-            <p>Direccion: {store.usuarios.direccion}</p>          
-            <p>Pais: </p>
-            <p>Población: {store.usuarios.localizacion}</p>
-            <p>Código Postal: </p>
-            <p>Alergias: {store.usuarios.alergias} </p>
+            <h3>Hola !!!</h3>
+            <br />
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Nombre: "> {store.usuarios.nombre}</p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Apellidos: "> {store.usuarios.apellidos} </p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Email: "> {store.usuarios.email} </p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Dirección: "> {store.usuarios.direccion}</p>          
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="País: "> </p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Población: "> {store.usuarios.localizacion}</p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Codigo Postal: "> </p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Alergias: "> {store.usuarios.alergias} </p>
+            <button type="button" className="btn eliminar-cliente"    onClick={handleServiciosContratadosUsuario}>SERVICIOS CONTRATADOS</button>
             <button 
               type="button"
               className="btn editar-cliente"

@@ -63,7 +63,7 @@ const ServiciosContratadosProfesional = () => {
                     )}
                 </tbody>
             </table>
-            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+            <button type="submit" className="btn" onClick={handleSubmit}>
                 aceptar orden de servicio
             </button>
         </div>

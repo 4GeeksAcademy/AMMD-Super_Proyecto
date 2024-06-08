@@ -1,0 +1,15 @@
+  .editable-placeholder::before {
+    content: attr(data-placeholder);
+    color: #888; /* Cambiar este color a tu preferencia */
+    position: relative;
+    pointer-events: none;
+  }
+  
+  .editable-placeholder:focus::before {
+    content: '';
+  }
+  
+  .editable-placeholder:empty:focus::before {
+    content: '' !important;
+  }
+  
