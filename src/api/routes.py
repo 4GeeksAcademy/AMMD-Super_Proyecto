@@ -522,3 +522,35 @@ def cerrar_sesion_profesional():
     jti = get_jwt()["jti"]
     revoked_tokens.add(jti)
     return jsonify({"msg": "Sesión cerrada exitosamente"}), 200
+
+#Ruta para guardar orden de servicio
+@api.route('/guardarordenservicio', methods=['POST'])
+def guardar_resumen():
+    data = request.get_json()
+
+    nuevo_servicio = ServiciosContratados(
+        precio=data.get('precio'),
+        pax=data.get('pax'),
+        evento=data.get('evento'),
+        tipo_profesional=data.get('tipo_profesional'),
+        localizacion=data.get('localizacion'),
+        direccion=data.get('direccion'),
+        incluido_en_servicio=data.get('incluido_en_servicio'),
+        observaciones=data.get('observaciones'),
+        cliente_id=data.get('cliente_id'),
+        profesional_id=data.get('profesional_id'),
+    )
+
+    db.session.add(nuevo_servicio)
+    db.session.commit()
+
+    return jsonify({'message': 'Resumen guardado exitosamente'}), 201
+
+#obtener orden de servicio
+@api.route('/obtener_resumen/<int:servicio_id>', methods=['GET'])
+def obtener_resumen(servicio_id):
+    servicio = ServiciosContratados.query.get(servicio_id)
+    if servicio:
+        return jsonify(servicio.serialize()), 200
+    else:
+        return jsonify({'message': 'Servicio no encontrado'}), 404
