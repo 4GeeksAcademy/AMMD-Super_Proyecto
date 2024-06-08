@@ -529,28 +529,76 @@ def cerrar_sesion_profesional():
     return jsonify({"msg": "Sesión cerrada exitosamente"}), 200
 
 #Ruta para guardar orden de servicio
-@api.route('/servicioscontratados', methods=['POST'])
-def guardar_servicio_contratado():
+@api.route('/crearserviciocontratado', methods=['POST'])
+@jwt_required()
+def crear_servicio_contratado():
     data = request.json
-    
+
+    # Obtener el ID del profesional actualmente autenticado
+    profesional_id = get_jwt_identity()
+
+    # Verificar si el profesional existe
+    profesional = Profesional.query.get(profesional_id)
+    if not profesional:
+        return jsonify({"msg": "Profesional no encontrado"}), 404
+
+    # Verificar si todos los campos requeridos están presentes en los datos recibidos
+    campos_requeridos = ['nombre_evento', 'fecha', 'numero_personas', 'hora', 'servicio_profesional', 'tipo_evento', 'localizacion', 'direccion', 'servicio_incluye', 'costo_servicio', 'observaciones', 'cliente_id', 'fecha_contratacion']
+    for campo in campos_requeridos:
+        if campo not in data:
+            return jsonify({"msg": f"El campo {campo} es requerido"}), 400
+
+    # Crear el nuevo servicio contratado
     nuevo_servicio_contratado = ServiciosContratados(
-        nombre_evento=data.get('nombre_evento'),
-        fecha=data.get('fecha'),
-        numero_personas=data.get('numero_personas'),
-        hora=data.get('hora'),
-        servicio_profesional=data.get('servicio_profesional'),
-        tipo_evento=data.get('tipo_evento'),
-        localizacion=data.get('localizacion'),
-        direccion=data.get('direccion'),
-        servicio_incluye=data.get('servicio_incluye'),
-        costo_servicio=data.get('costo_servicio'),
-        observaciones=data.get('observaciones'),
-        cliente_id=data.get('cliente_id'),
-        profesional_id=data.get('profesional_id'),
-        fecha_contratacion=data.get('fecha_contratacion')
+        nombre_evento=data['nombre_evento'],
+        fecha=data['fecha'],
+        numero_personas=data['numero_personas'],
+        hora=data['hora'],
+        servicio_profesional=data['servicio_profesional'],
+        tipo_evento=data['tipo_evento'],
+        localizacion=data['localizacion'],
+        direccion=data['direccion'],
+        servicio_incluye=data['servicio_incluye'],
+        costo_servicio=data['costo_servicio'],
+        observaciones=data['observaciones'],
+        cliente_id=data['cliente_id'],
+        profesional_id=profesional_id,
+        fecha_contratacion=data['fecha_contratacion']
     )
 
+    # Guardar el nuevo servicio contratado en la base de datos
     db.session.add(nuevo_servicio_contratado)
     db.session.commit()
 
     return jsonify({'message': 'Servicio contratado guardado correctamente'}), 201
+
+# Ruta para obtener los servicios contratados por el usuario desde su vista privada
+@api.route('/servicioscontratadosusuario', methods=['GET'])
+@jwt_required()
+def get_user_services():
+    # Obtener el ID del usuario actualmente autenticado
+    user_id = get_jwt_identity()
+
+    # Buscar todos los servicios contratados por el usuario
+    servicios_contratados = ServiciosContratados.query.filter_by(cliente_id=user_id).all()
+
+    # Serializar los servicios contratados para enviarlos como respuesta
+    servicios_serializados = [servicio.serialize() for servicio in servicios_contratados]
+
+    return jsonify({"servicios_contratados": servicios_serializados}), 200
+
+#ruta para obtener los servicios contratados desde l profesional 
+@api.route('/servicioscontratadosprofesional', methods=['GET'])
+@jwt_required()
+def get_professional_services():
+    # Obtener el ID del profesional actualmente autenticado
+    profesional_id = get_jwt_identity()
+
+    # Buscar todos los servicios contratados que incluyen al profesional
+    servicios_contratados = ServiciosContratados.query.filter_by(profesional_id=profesional_id).all()
+
+    # Serializar los servicios contratados para enviarlos como respuesta
+    servicios_serializados = [servicio.serialize() for servicio in servicios_contratados]
+
+    return jsonify({"servicios_contratados": servicios_serializados}), 200
+

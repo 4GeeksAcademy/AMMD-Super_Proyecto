@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             usuarios: [
-               
+
             ],
             profesionales: [{
                 "id": 1,
@@ -276,7 +276,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
                 "is_active": true
             },
-           
+
             ],
             usuarioSeleccionado: [],
             profesionalSeleccionado: [],
@@ -284,7 +284,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             tipoServicioSeleccionado: null,
             tipoEventoSeleccionado: null,
             tipoComidaSeleccionada: null,
-            localidadSeleccionada: null
+            localidadSeleccionada: null,
+            serviciosContratados: []
         },
         actions: {
             // Use getActions to call a function within a function
@@ -346,7 +347,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .catch((error) => console.error("Error al crear profesional:", error));
             },
-            iniciarSesionUsuario : (email, password) => {
+            iniciarSesionUsuario: (email, password) => {
                 const requestOptions = {
                     method: "POST",
                     headers: {
@@ -486,8 +487,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.log("Usuario eliminado exitosamente", data);
 
                         // Mostrar una alerta
-                        alert("Usuario eliminado exitosamente");                  
-                       
+                        alert("Usuario eliminado exitosamente");
+
 
                         return data;
                     })
@@ -500,7 +501,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const token = store.token;
 
                 console.log(profesionalData)
-                
+
                 const requestOptions = {
                     method: "PUT",
                     headers: {
@@ -583,8 +584,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.log("Usuario eliminado exitosamente", data);
 
                         // Mostrar una alerta
-                        alert("Usuario eliminado exitosamente");                     
-                      
+                        alert("Usuario eliminado exitosamente");
+
 
                         return data;
                     })
@@ -604,6 +605,100 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             filtrarLocalizacion: (localizacion) => {
                 setStore({ localidadSeleccionada: localizacion });
+            },
+            crearServicioContratado: (data) => {
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                };
+
+                fetch(`${BASE_URL}/api/crearserviciocontratado`, requestOptions)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Servicio contratado guardado correctamente:', data);
+                        // Aquí puedes realizar acciones adicionales si es necesario
+                    })
+                    .catch(error => {
+                        console.error('Error al guardar servicio contratado:', error);
+                    });
+            },
+            // Función para obtener los servicios contratados del usuario
+            obtenerServiciosContratadosUsuario: () => {
+                // Obtener el token de acceso del almacenamiento local (asegúrate de tenerlo disponible)
+                const token = localStorage.getItem('accessToken');
+
+                // Verificar si el token está presente
+                if (!token) {
+                    console.error('Token de acceso no encontrado');
+                    return;
+                }
+
+                // Configurar las opciones de la solicitud
+                const requestOptions = {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}` // Agregar el token de acceso en el encabezado de autorización
+                    }
+                };
+
+                // Realizar la solicitud a la ruta de servicios contratados del usuario
+                fetch(`${BASE_URL}/api/servicioscontratadosusuario`, requestOptions)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Error de red! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Servicios contratados por el usuario:', data);
+                        // Aquí puedes procesar los datos recibidos y actualizar la interfaz de usuario según sea necesario
+                    })
+                    .catch(error => {
+                        console.error('Error al obtener servicios contratados:', error);
+                    });
+            },
+            obtenerServiciosContratadosProfesional: () => {
+                // Obtener el token de acceso del almacenamiento local
+                const token = localStorage.getItem('accessToken');
+
+                // Verificar si el token está presente
+                if (!token) {
+                    console.error('Token de acceso no encontrado');
+                    return;
+                }
+
+                // Configurar las opciones de la solicitud
+                const requestOptions = {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}` // Agregar el token de acceso en el encabezado de autorización
+                    }
+                };
+
+                // Realizar la solicitud a la ruta de servicios contratados del profesional
+                fetch(`${BASE_URL}/api/servicioscontratadosprofesional`, requestOptions)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Error de red! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Servicios contratados por el profesional:', data);
+                        // Actualizar el estado global con los servicios contratados
+                        setStore({ serviciosContratados: data.servicios_contratados });
+                    })
+                    .catch(error => {
+                        console.error('Error al obtener servicios contratados:', error);
+                    });
             },
             exampleFunction: () => {
                 getActions().changeColor(0, "green");

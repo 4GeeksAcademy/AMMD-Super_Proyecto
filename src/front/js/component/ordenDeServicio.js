@@ -81,6 +81,10 @@ const OrdenDeServicio = () => {
             });
         }
     };
+    const handleguardarservicio = () => {
+        actions.crearServicioContratado(ficha);
+        // navigate('/'); 
+      };
 
     return (
         <div>
@@ -266,23 +270,64 @@ const OrdenDeServicio = () => {
                     </div>
                 </div>
                 <button className="boton" onClick={addFicha}>
-                    Guardar Orden De Servicio
+                 
                 </button>
             </div>
             <div className="resumenOrden">
-                <h6>Resumen orden</h6>
-                <p>Nombre del evento: {ficha.Evento}</p>
-                <p>Fecha: {ficha.Fecha}</p>
-                <p>Numero de personas: {ficha.Pax}</p>
-                <p>Hora: {ficha.Hora}</p>
-                <p>Servicio profesional: {ficha.Servicio}</p>
-                <p>Tipo de evento: {ficha.Evento}</p>
-                <p>Localización: {ficha.Localizacion}</p>
-                <p>Direccion: {ficha.Direccion}</p>
-                <p>El servicio incluye: {ficha.IncluidoEnServicio}</p> 
-                <p>Coste de servicio {ficha.CostoDeServicio}</p> 
-                <p>Observaciones: {ficha.Observaciones}</p>
-            </div>
+    <h6>Resumen orden</h6>
+    <table className="table">
+        <tbody>
+            <tr>
+                <td><strong>Nombre del evento:</strong></td>
+                <td>{ficha.Evento}</td>
+            </tr>
+            <tr>
+                <td><strong>Fecha:</strong></td>
+                <td>{ficha.Fecha}</td>
+            </tr>
+            <tr>
+                <td><strong>Numero de personas:</strong></td>
+                <td>{ficha.Pax}</td>
+            </tr>
+            <tr>
+                <td><strong>Hora:</strong></td>
+                <td>{ficha.Hora}</td>
+            </tr>
+            <tr>
+                <td><strong>Servicio profesional:</strong></td>
+                <td>{ficha.Servicio}</td>
+            </tr>
+            <tr>
+                <td><strong>Tipo de evento:</strong></td>
+                <td>{ficha.Evento}</td>
+            </tr>
+            <tr>
+                <td><strong>Localización:</strong></td>
+                <td>{ficha.Localizacion}</td>
+            </tr>
+            <tr>
+                <td><strong>Dirección:</strong></td>
+                <td>{ficha.Direccion}</td>
+            </tr>
+            <tr>
+                <td><strong>El servicio incluye:</strong></td>
+                <td>{ficha.IncluidoEnServicio}</td>
+            </tr>
+            <tr>
+                <td><strong>Coste de servicio:</strong></td>
+                <td>{ficha.CostoDeServicio}</td>
+            </tr>
+            <tr>
+                <td><strong>Observaciones:</strong></td>
+                <td>{ficha.Observaciones}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button className="boton" onClick={handleguardarservicio}>
+                Guardar orden de servicio
+            </button>
+</div>
+
         </div>
     );
 };
