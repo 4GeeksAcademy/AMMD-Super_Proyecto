@@ -284,7 +284,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             tipoServicioSeleccionado: null,
             tipoEventoSeleccionado: null,
             tipoComidaSeleccionada: null,
-            localidadSeleccionada: null
+            localidadSeleccionada: null,
+            conversaciones: [],
+            usuarios: []
         },
         actions: {
             // Use getActions to call a function within a function
@@ -364,6 +366,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .then((data) => {
                         setStore({ token: data.token, usuarios: data.user });
+                        console.log(data)
+                        localStorage.setItem("id", data.user.id)
                         const store = getStore();
                         console.log(store.usuarios);
                         return true;  // Retorna true en caso de éxito
@@ -604,6 +608,32 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             filtrarLocalizacion: (localizacion) => {
                 setStore({ localidadSeleccionada: localizacion });
+            },
+            crearConversacion: (profesional_id, usuario_id, coment_text) => {
+                
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ profesional_id, coment_text, usuario_id })
+                };
+
+                return fetch(`${BASE_URL}/api/crearconversacion`, requestOptions)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Error en la solicitud");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Conversación creada exitosamente", data);
+                    // Puedes actualizar el estado o realizar otras acciones aquí
+                    // Por ejemplo, podrías añadir la nueva conversación a una lista en el store
+                })
+                .catch(error => {
+                    console.error("Error al crear la conversación:", error);
+                });
             },
             exampleFunction: () => {
                 getActions().changeColor(0, "green");

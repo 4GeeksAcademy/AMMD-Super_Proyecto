@@ -55,7 +55,7 @@ const Layout = () => {
                         <Route element={<VistaPrivadaProfesional />} path="/privadaprofesional" />
                         <Route element={<VistaSobreNosotros />} path="/sobrenosotros" />
                         <Route element={<VistaBusquedaProfesionales/>} path="/busquedaprofesionales" />
-                        <Route element={<VistaContratacionProfesional/>} path="" />
+                        <Route element={<VistaContratacionProfesional/>} path="/contratarprofesional/:profesional_id" />
                         <Route element={<VistaEditarUsuario />} path="/editarusuario" />
                         <Route element={<VistaEditarProfesional />} path="/editarprofesional" />
                         <Route element={<VistaReestablecerContrasena />} path="/reestablecercontrasena" />

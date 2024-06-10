@@ -7,6 +7,10 @@ export const VistaBusquedaProfesionales = () => {
     const { store } = useContext(Context);
     const [profesionalSeleccionado, setProfesionalSeleccionado] = useState([]);
 
+    useEffect (() => {
+        console.log(profesionalSeleccionado)
+    }, [profesionalSeleccionado])
+
     useEffect(() => {
         let filtrados = store.profesionales;
 
@@ -132,7 +136,8 @@ export const VistaBusquedaProfesionales = () => {
         <div className="container">
             {profesionalSeleccionado.map(profesional => (
                 <CardProfesionales 
-                    key={profesional.id} 
+                    key={profesional.id}
+                    profesional_id={profesional.id}
                     nombre={profesional.nombre} 
                     localizacion={profesional.localizacion}
                     tipo_de_profesional={profesional.tipo_de_profesional}
