@@ -587,7 +587,7 @@ def get_user_services():
 
     return jsonify({"servicios_contratados": servicios_serializados}), 200
 
-#ruta para obtener los servicios contratados desde l profesional 
+#ruta para obtener los servicios contratados desde el profesional 
 @api.route('/servicioscontratadosprofesional', methods=['GET'])
 @jwt_required()
 def get_professional_services():

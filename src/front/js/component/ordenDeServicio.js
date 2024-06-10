@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from "../store/appContext";
 
@@ -14,29 +14,39 @@ const OrdenDeServicio = () => {
 
     const manejarTipoProfesional = (tipoProfesional) => {
         setProfesionalSeleccionado(tipoProfesional);
-        setTipoDeEvento("");
-        setTipoDeCocina("");
         setFicha(prevFicha => ({
             ...prevFicha,
             Servicio: tipoProfesional,
             Evento: "",
-            Cocina: ""
+            Cocina: "",
+            Localizacion: localizacion
         }));
     };
 
     const manejarTipoEvento = (tipoEvento) => {
         setTipoDeEvento(tipoEvento);
-        setFicha(prevFicha => ({ ...prevFicha, Evento: tipoEvento }));
+        setFicha(prevFicha => ({
+            ...prevFicha,
+            Evento: tipoEvento,
+            Localizacion: localizacion
+        }));
     };
 
     const manejarTipoCocina = (tipoCocina) => {
         setTipoDeCocina(tipoCocina);
-        setFicha(prevFicha => ({ ...prevFicha, Cocina: tipoCocina }));
+        setFicha(prevFicha => ({
+            ...prevFicha,
+            Cocina: tipoCocina,
+            Localizacion: localizacion
+        }));
     };
 
     const manejarLocalizacion = (localizacion) => {
         setLocalizacion(localizacion);
-        setFicha(prevFicha => ({ ...prevFicha, Localizacion: localizacion }));
+        setFicha(prevFicha => ({
+            ...prevFicha,
+            Localizacion: localizacion
+        }));
     };
 
     const manejarBuscar = (servicio, evento, cocina, localizacion) => {
@@ -56,7 +66,8 @@ const OrdenDeServicio = () => {
         IncluidoEnServicio: "",      
         Observaciones: "",
         Cocina: "",
-        Localizacion: ""
+        Localizacion: "",
+        CostoDeServicio: ""
     });
 
     const handleInputChange = (e) => {
@@ -77,15 +88,17 @@ const OrdenDeServicio = () => {
                 Observaciones: "",
                 Cocina: "",
                 Localizacion: "",
-                CostoDeServicio: ""
+                CostoDeServicio: "",
+                Fecha:""
             });
         }
     };
-    const handleguardarservicio = () => {
+
+    const handleguardarservicio = (ficha) => {
         actions.crearServicioContratado(ficha);
         // navigate('/'); 
-      };
-
+    };
+    console.log(ficha)
     return (
         <div>
             <div className="fichaTecnica">
@@ -252,7 +265,7 @@ const OrdenDeServicio = () => {
                          <input
                             className="m-1"
                             type="text"
-                            name="CosteDeServicio"
+                            name="CostoDeServicio"
                             value={ficha.CostoDeServicio}
                             onChange={handleInputChange}
                             placeholder="Coste de tu servicio"
@@ -270,64 +283,64 @@ const OrdenDeServicio = () => {
                     </div>
                 </div>
                 <button className="boton" onClick={addFicha}>
-                 
+                    {/* Aquí puedes agregar el texto o el ícono para el botón */}
+                    Añadir Ficha
                 </button>
             </div>
             <div className="resumenOrden">
-    <h6>Resumen orden</h6>
-    <table className="table">
-        <tbody>
-            <tr>
-                <td><strong>Nombre del evento:</strong></td>
-                <td>{ficha.Evento}</td>
-            </tr>
-            <tr>
-                <td><strong>Fecha:</strong></td>
-                <td>{ficha.Fecha}</td>
-            </tr>
-            <tr>
-                <td><strong>Numero de personas:</strong></td>
-                <td>{ficha.Pax}</td>
-            </tr>
-            <tr>
-                <td><strong>Hora:</strong></td>
-                <td>{ficha.Hora}</td>
-            </tr>
-            <tr>
-                <td><strong>Servicio profesional:</strong></td>
-                <td>{ficha.Servicio}</td>
-            </tr>
-            <tr>
-                <td><strong>Tipo de evento:</strong></td>
-                <td>{ficha.Evento}</td>
-            </tr>
-            <tr>
-                <td><strong>Localización:</strong></td>
-                <td>{ficha.Localizacion}</td>
-            </tr>
-            <tr>
-                <td><strong>Dirección:</strong></td>
-                <td>{ficha.Direccion}</td>
-            </tr>
-            <tr>
-                <td><strong>El servicio incluye:</strong></td>
-                <td>{ficha.IncluidoEnServicio}</td>
-            </tr>
-            <tr>
-                <td><strong>Coste de servicio:</strong></td>
-                <td>{ficha.CostoDeServicio}</td>
-            </tr>
-            <tr>
-                <td><strong>Observaciones:</strong></td>
-                <td>{ficha.Observaciones}</td>
-            </tr>
-        </tbody>
-    </table>
-    <button className="boton" onClick={handleguardarservicio}>
-                Guardar orden de servicio
-            </button>
-</div>
-
+                <h6>Resumen orden</h6>
+                <table className="table">
+                    <tbody>
+                        <tr>
+                            <td><strong>Nombre del evento:</strong></td>
+                            <td>{ficha.Evento}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fecha:</strong></td>
+                            <td>{ficha.Fecha}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Numero de personas:</strong></td>
+                            <td>{ficha.Pax}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hora:</strong></td>
+                            <td>{ficha.Hora}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Servicio profesional:</strong></td>
+                            <td>{ficha.Servicio}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tipo de evento:</strong></td>
+                            <td>{ficha.Evento}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Localización:</strong></td>
+                            <td>{ficha.Localizacion}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dirección:</strong></td>
+                            <td>{ficha.Direccion}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>El servicio incluye:</strong></td>
+                            <td>{ficha.IncluidoEnServicio}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coste de servicio:</strong></td>
+                            <td>{ficha.CostoDeServicio}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Observaciones:</strong></td>
+                            <td>{ficha.Observaciones}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" className="btn eliminar-profesional"  onClick={handleguardarservicio(ficha)}>
+                    GUARDAR Y ENVIAR ORDEN
+                </button>
+            </div>
         </div>
     );
 };

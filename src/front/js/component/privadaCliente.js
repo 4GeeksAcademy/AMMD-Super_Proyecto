@@ -24,6 +24,12 @@ const PrivadaCliente = () => {
     actions.cerrarSesionUsuario();
     navigate('/'); 
   };
+
+  const handleServicio = () => {
+   
+    navigate('/servicioscontratadosusuario'); 
+  };
+
   const handleEliminar = () => {
     actions.eliminarUsuario();
     setTimeout(() => {
@@ -63,6 +69,13 @@ const PrivadaCliente = () => {
               onClick={handleEditar}
               >
                 EDITAR
+            </button>       
+            <button 
+              type="button"
+              className="btn editar-cliente"
+              onClick={handleServicio}
+              >
+               SERVICIOS CONTRATATDOS
             </button>           
             <button type="button" className="btn eliminar-cliente"    onClick={handleEliminar}>ELIMINAR</button>
           </div>

@@ -37,6 +37,16 @@ const handleEliminar = () => {
   navigate('/'); 
 };
 
+
+const handleServicio = () => { 
+  navigate('/servicioscontratadosprofesional'); 
+};
+
+const handleCrearOrden = () => { 
+  navigate('/ordenservicio'); 
+};
+
+
   return (
     <div>
       <button type="button" className="btn cerrar-profesional" style={{ position: 'absolute', top: 180, right: 0 }}  onClick={handleCerrarSesion}>CERRAR </button>
@@ -71,7 +81,9 @@ const handleEliminar = () => {
             <p>{profesionalEncontrado.tipo_servicio_chef}</p>
             <button type="button" className="btn editar-profesional"  onClick={handleEditar}>EDITAR</button>
             <button type="button" className="btn eliminar-profesional"  onClick={handleEliminar}>ELIMINAR</button>
-          </div>
+            <button type="button" className="btn "  onClick={handleCrearOrden}>CREAR ORDEN DE SERVICIO</button>
+            <button type="button" className="btn "  onClick={handleServicio}>servicioscontratadosprofesional</button>
+            </div>
         </div>
       </div>
 
