@@ -1,10 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/cardProfesionales.css";
 
 
-const CardProfesionales = ({nombre, localizacion, tipo_de_profesional, tipo_de_cocina_especialidad, tipo_servicio, children }) => {
+const CardProfesionales = ({nombre, localizacion, tipo_de_profesional, tipo_de_cocina_especialidad, tipo_servicio, profesional_id, children }) => {
     const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/contratarprofesional/${profesional_id}`);
+    };
+
+    useEffect( () => { 
+        console.log(profesional_id)
+    }, [profesional_id])
 
     return (
         <div className="container text-center">
@@ -35,7 +43,7 @@ const CardProfesionales = ({nombre, localizacion, tipo_de_profesional, tipo_de_c
                         </p>
                         {children}
                         <button  
-                            onClick={() => navigate(`/contratacionprofesional`)}
+                            onClick={handleClick}
                         >
                             ¿Quieres saber más de mí?
                         </button>
