@@ -26,7 +26,7 @@ const InicioSesionProfesional = () => {
         } else {
             alert("Error al iniciar sesión");
         }
-        console.log(loggedin)
+        console.log(store.token)
     } catch (error) {
         console.log("Error al iniciar sesión", error);
         alert("Error al iniciar sesión");

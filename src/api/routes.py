@@ -10,6 +10,11 @@ import uuid
 from flask import jsonify
 from datetime import datetime
 
+
+
+
+
+
 api = Blueprint('api', __name__)
 
 mail = Mail()
@@ -17,7 +22,7 @@ mail = Mail()
 CORS(api)
 
 # This should be implemented as a proper storage (e.g., a database or an in-memory store like Redis)
-revoked_tokens = set()
+# revoked_tokens = set()
 
 @api.route('/usuarios', methods=['GET'])
 def cargar_usuarios():
@@ -522,3 +527,80 @@ def cerrar_sesion_profesional():
     jti = get_jwt()["jti"]
     revoked_tokens.add(jti)
     return jsonify({"msg": "Sesión cerrada exitosamente"}), 200
+
+#Ruta para guardar orden de servicio
+@api.route('/crearserviciocontratado', methods=['POST'])
+@jwt_required()
+def crear_servicio_contratado():
+    data = request.json
+
+    # Obtener el ID del profesional actualmente autenticado
+    profesional_id = get_jwt_identity()
+    print(profesional_id)
+    # Verificar si el profesional existe
+    profesional = Profesional.query.get(profesional_id)
+    if not profesional:
+        return jsonify({"msg": "Profesional no encontrado"}), 404
+
+    # Verificar si todos los campos requeridos están presentes en los datos recibidos
+    campos_requeridos = ['nombre_evento', 'fecha', 'numero_personas', 'hora', 'servicio_profesional', 'tipo_evento', 'localizacion', 'direccion', 'servicio_incluye', 'costo_servicio', 'observaciones', 'cliente_id', 'fecha_contratacion']
+    for campo in campos_requeridos:
+        if campo not in data:
+            return jsonify({"msg": f"El campo {campo} es requerido"}), 400
+
+    # Crear el nuevo servicio contratado
+    nuevo_servicio_contratado = ServiciosContratados(
+        nombre_evento=data['nombre_evento'],
+        fecha=data['fecha'],
+        numero_personas=data['numero_personas'],
+        hora=datetime.strptime(data['hora'], '%H:%M').time() if data['hora'] else None,
+        servicio_profesional=data['servicio_profesional'],
+        tipo_evento=data['tipo_evento'],
+        localizacion=data['localizacion'],
+        direccion=data['direccion'],
+        servicio_incluye=data['servicio_incluye'],
+        costo_servicio=data['costo_servicio'],
+        observaciones=data['observaciones'],
+        cliente_id=data['cliente_id'],
+        profesional_id=profesional_id,
+        fecha_contratacion=data['fecha_contratacion']
+    )
+
+    # Guardar el nuevo servicio contratado en la base de datos
+    db.session.add(nuevo_servicio_contratado)
+    db.session.commit()
+
+    return jsonify({'message': 'Servicio contratado guardado correctamente'}), 201
+
+# Ruta para obtener los servicios contratados por el usuario desde su vista privada
+@api.route('/servicioscontratadosusuario', methods=['GET'])
+@jwt_required()
+def get_user_services():
+    # Obtener el ID del usuario actualmente autenticado
+    user_id = get_jwt_identity()
+
+    # Buscar todos los servicios contratados por el usuario
+    servicios_contratados = ServiciosContratados.query.filter_by(cliente_id=user_id).all()
+    # servicios_contratados = ServiciosContratados.query.all()
+    print(servicios_contratados)
+
+    # Serializar los servicios contratados para enviarlos como respuesta
+    servicios_serializados = [servicio.serialize() for servicio in servicios_contratados]
+
+    return jsonify({"servicios_contratados": servicios_serializados}), 200
+
+#ruta para obtener los servicios contratados desde el profesional 
+@api.route('/servicioscontratadosprofesional', methods=['GET'])
+@jwt_required()
+def get_professional_services():
+    # Obtener el ID del profesional actualmente autenticado
+    profesional_id = get_jwt_identity()
+
+    # Buscar todos los servicios contratados que incluyen al profesional
+    servicios_contratados = ServiciosContratados.query.filter_by(profesional_id=profesional_id).all()
+
+    # Serializar los servicios contratados para enviarlos como respuesta
+    servicios_serializados = [servicio.serialize() for servicio in servicios_contratados]
+
+    return jsonify({"servicios_contratados": servicios_serializados}), 200
+

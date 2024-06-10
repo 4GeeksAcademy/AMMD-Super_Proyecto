@@ -27,7 +27,9 @@ import VistaReestablecerContrasena from "./pages/vistaReestablecerContrasena";
 import VistaActualizacionContrasena from "./pages/vistaActualizacionContrasena";
 import { VistaEditarProfesional } from "./pages/vistaEditarProfesional";
 import { VistaConversacion } from "./pages/vistaConversacion";
-
+import { VistaOrdenDeServicio } from "./pages/vistaOrdenDeServicio";
+import VistaServiciosContratadosUsuario from "./pages/vistaServicioContratadoUsuario";
+import VistaServiciosContratadosProfesional from "./pages/vistaServiciosContratadosProfesional";
 
 
 
@@ -61,6 +63,9 @@ const Layout = () => {
                         <Route element={<VistaReestablecerContrasena />} path="/reestablecercontrasena" />
                         <Route element={<VistaActualizacionContrasena />} path="/resetpassword/:token" />
                         <Route element={<VistaConversacion />} path="/conversacion" />
+                        <Route element={<VistaOrdenDeServicio />} path="/ordenservicio" />
+                        <Route element={<VistaServiciosContratadosUsuario />} path="/servicioscontratadosusuario" />
+                        <Route element={<VistaServiciosContratadosProfesional/>} path="/servicioscontratadosprofesional" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />

@@ -24,6 +24,12 @@ const PrivadaCliente = () => {
     actions.cerrarSesionUsuario();
     navigate('/'); 
   };
+
+  const handleServicio = () => {
+   
+    navigate('/servicioscontratadosusuario'); 
+  };
+
   const handleEliminar = () => {
     actions.eliminarUsuario();
     setTimeout(() => {
@@ -34,7 +40,7 @@ const PrivadaCliente = () => {
 
   return (
     <div>
-      <button type="button" className="btn cerrar-cliente" style={{ position: 'absolute', top: 180, right: 0 }}>CERRAR </button>
+      <button type="button" className="btn cerrar-cliente" style={{ position: 'absolute', top: 180, right: 0 }}  onClick={handleCerrarSesion}>CERRAR </button>
       <div className="container text-center">
         <div className="row">
           <div className="col">
@@ -46,18 +52,8 @@ const PrivadaCliente = () => {
             />
           </div>
           
-          <div className="col">
-            
-         
-            <button 
-              type="button" 
-              className="btn btn-secondary" 
-              onClick={handleCerrarSesion}
-            >
-              CERRAR
-            </button>
-                    
-            <br />
+          <div className="col">                            
+          <br />
           <h3>Hola !!!</h3>
             <p>Nombre: {store.usuarios.nombre}</p>
             <p>Apellido: {store.usuarios.apellidos} </p>
@@ -73,6 +69,13 @@ const PrivadaCliente = () => {
               onClick={handleEditar}
               >
                 EDITAR
+            </button>       
+            <button 
+              type="button"
+              className="btn editar-cliente"
+              onClick={handleServicio}
+              >
+               SERVICIOS CONTRATATDOS
             </button>           
             <button type="button" className="btn eliminar-cliente"    onClick={handleEliminar}>ELIMINAR</button>
           </div>

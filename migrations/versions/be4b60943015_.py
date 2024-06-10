@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: a2db91eb646b
+Revision ID: be4b60943015
 Revises: 
-Create Date: 2024-06-07 17:08:22.522550
+Create Date: 2024-06-10 19:13:44.473849
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a2db91eb646b'
+revision = 'be4b60943015'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -95,12 +95,20 @@ def upgrade():
     )
     op.create_table('servicios_contratados',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('precio', sa.Float(), nullable=True),
-    sa.Column('pax', sa.Integer(), nullable=True),
-    sa.Column('menu', sa.String(), nullable=True),
+    sa.Column('nombre_evento', sa.String(), nullable=True),
+    sa.Column('fecha', sa.Date(), nullable=True),
+    sa.Column('numero_personas', sa.Integer(), nullable=True),
+    sa.Column('hora', sa.Time(), nullable=True),
+    sa.Column('servicio_profesional', sa.String(), nullable=True),
+    sa.Column('tipo_evento', sa.String(), nullable=True),
+    sa.Column('localizacion', sa.String(), nullable=True),
+    sa.Column('direccion', sa.String(), nullable=True),
+    sa.Column('servicio_incluye', sa.String(), nullable=True),
+    sa.Column('costo_servicio', sa.Float(), nullable=True),
+    sa.Column('observaciones', sa.String(), nullable=True),
     sa.Column('cliente_id', sa.Integer(), nullable=False),
     sa.Column('profesional_id', sa.Integer(), nullable=False),
-    sa.Column('fecha', sa.DateTime(), nullable=True),
+    sa.Column('fecha_contratacion', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['cliente_id'], ['User.id'], ),
     sa.ForeignKeyConstraint(['profesional_id'], ['Profesional.id'], ),
     sa.PrimaryKeyConstraint('id')

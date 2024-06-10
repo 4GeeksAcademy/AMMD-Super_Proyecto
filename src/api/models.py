@@ -153,12 +153,20 @@ class Conversacion(db.Model):
 class ServiciosContratados(db.Model):
     __tablename__ = 'servicios_contratados'
     id = db.Column(db.Integer, primary_key=True)
-    precio = db.Column(db.Float, nullable=True)
-    pax = db.Column(db.Integer, nullable=True)
-    menu = db.Column(db.String, nullable=True)
+    nombre_evento = db.Column(db.String, nullable=True)
+    fecha = db.Column(db.Date, nullable=True)
+    numero_personas = db.Column(db.Integer, nullable=True)
+    hora = db.Column(db.Time, nullable=True)
+    servicio_profesional = db.Column(db.String, nullable=True)
+    tipo_evento = db.Column(db.String, nullable=True)
+    localizacion = db.Column(db.String, nullable=True)
+    direccion = db.Column(db.String, nullable=True)
+    servicio_incluye = db.Column(db.String, nullable=True)
+    costo_servicio = db.Column(db.Float, nullable=True)
+    observaciones = db.Column(db.String, nullable=True)
     cliente_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
     profesional_id = db.Column(db.Integer, db.ForeignKey('Profesional.id'), nullable=False)
-    fecha = db.Column(db.DateTime, nullable=True)
+    fecha_contratacion = db.Column(db.DateTime, nullable=True)
 
     cliente = db.relationship('User', backref='servicios_contratados', foreign_keys=[cliente_id])
     profesional = db.relationship('Profesional', backref='servicios_contratados', foreign_keys=[profesional_id])
@@ -169,12 +177,20 @@ class ServiciosContratados(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "precio": self.precio,
-            "pax": self.pax,
-            "menu": self.menu,
+            "nombre_evento": self.nombre_evento,
+            "fecha": self.fecha,
+            "numero_personas": self.numero_personas,
+            "hora": self.hora.strftime('%H:%M') if self.hora else None,
+            "servicio_profesional": self.servicio_profesional,
+            "tipo_evento": self.tipo_evento,
+            "localizacion": self.localizacion,
+            "direccion": self.direccion,
+            "servicio_incluye": self.servicio_incluye,
+            "costo_servicio": self.costo_servicio,
+            "observaciones": self.observaciones,
             "cliente_id": self.cliente_id,
             "profesional_id": self.profesional_id,
-            "fecha": self.fecha
+            "fecha_contratacion": self.fecha_contratacion
         }
 
 class Favoritos(db.Model):
@@ -195,3 +211,12 @@ class Favoritos(db.Model):
             "usuario_id": self.usuario_id,
             "profesional_id": self.profesional_id
         }
+
+
+
+
+
+
+
+
+
