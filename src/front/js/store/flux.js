@@ -7,276 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
             ],
             profesionales: [
-                {
-                "id": 1,
-                "nombre": "Juan",
-                "apellidos": "Martínez",
-                "email": "juan@hotmail.com",
-                "localizacion": "madrid",
-                "foto_de_perfil": "foto2.jpg",
-                "descripcion": "Especialista en alta cocina.",
-                "direccion": "Avenida Siempre Viva 742",
-                "telefono": "987654321",
-                "info_adicional": "Experiencia internacional.",
-
-                "tipo_de_profesional": 'chef',
-
-                "tipo_servicio_chef_pica_pica": true,
-                "tipo_servicio_chef_taller_de_cocina": true,
-                "tipo_servicio_chef_comida_de_trabajo": false,
-                "tipo_servicio_chef_servicio_degustacion": false,
-                "tipo_servicio_chef_comida_informal": true,
-                "tipo_servicio_chef_batchcooking": true,
-
-                "tipo_servicio_barman": false,
-                "tipo_servicio_chef": true,
-                "tipo_servicio_jamonero": false,
-                "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": false,
-
-                "tipo_de_cocina_especialidad": 'cocina española',
-
-                "is_active": true
-            },
-            {
-                "id": 2,
-                "nombre": "David",
-                "apellidos": "Martínez",
-                "email": "chefdavid@hotmail.com",
-                "localizacion": "barcelona",
-                "foto_de_perfil": "foto2.jpg",
-                "descripcion": "Especialista en alta cocina.",
-                "direccion": "Avenida Siempre Viva 742",
-                "telefono": "987654321",
-                "info_adicional": "Experiencia internacional.",
-
-                "tipo_de_profesional": 'chef',
-
-                "tipo_servicio_chef_pica_pica": false,
-                "tipo_servicio_chef_taller_de_cocina": false,
-                "tipo_servicio_chef_comida_de_trabajo": true,
-                "tipo_servicio_chef_servicio_degustacion": false,
-                "tipo_servicio_chef_comida_informal": false,
-                "tipo_servicio_chef_batchcooking": false,
-
-                "tipo_servicio_barman": false,
-                "tipo_servicio_chef": true,
-                "tipo_servicio_jamonero": false,
-                "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": false,
-
-                "tipo_de_cocina_especialidad": 'cocina peruana',
-
-                "is_active": true
-            },
-            {
-                "id": 3,
-                "nombre": "Carlos",
-                "apellidos": "López",
-                "email": "carlos@hotmail.com",
-                "localizacion": "barcelona",
-                "foto_de_perfil": "foto3.jpg",
-                "descripcion": "Chef pastelero con 10 años de experiencia.",
-                "direccion": "Calle de la Paz 15",
-                "telefono": "654321987",
-                "info_adicional": "Especialidad en postres franceses.",
-
-                "tipo_de_profesional": 'pastelero',
-
-                "tipo_servicio_pastelero_clase": true,
-                "tipo_servicio_pastelero_desayuno": true,
-                "tipo_servicio_pastelero_merienda": false,
-
-                "tipo_servicio_barman": false,
-                "tipo_servicio_chef": false,
-                "tipo_servicio_jamonero": false,
-                "tipo_servicio_pastelero": true,
-                "tipo_servicio_sumiller": false,
-
-                "is_active": true
-            },
-            {
-                "id": 6,
-                "nombre": "Laura",
-                "apellidos": "López",
-                "email": "carlos@hotmail.com",
-                "localizacion": "valencia",
-                "foto_de_perfil": "foto3.jpg",
-                "descripcion": "Chef pastelero con 10 años de experiencia.",
-                "direccion": "Calle de la Paz 15",
-                "telefono": "654321987",
-                "info_adicional": "Especialidad en postres franceses.",
-
-                "tipo_de_profesional": 'pastelero',
-
-                "tipo_servicio_pastelero_clase": false,
-                "tipo_servicio_pastelero_desayuno": true,
-                "tipo_servicio_pastelero_merienda": false,
-
-                "tipo_servicio_barman": false,
-                "tipo_servicio_chef": false,
-                "tipo_servicio_jamonero": false,
-                "tipo_servicio_pastelero": true,
-                "tipo_servicio_sumiller": false,
-
-                "is_active": true
-            },
-            {
-                "id": 4,
-                "nombre": "Ainhoa",
-                "apellidos": "Fernández",
-                "email": "ainhoa@hotmail.com",
-                "localizacion": "valencia",
-                "foto_de_perfil": "foto4.jpg",
-                "descripcion": "Sumiller",
-                "direccion": "Plaza Mayor 1",
-                "telefono": "321654987",
-                "info_adicional": "Trabaja en colaboración con bodegas locales.",
-
-                "tipo_de_profesional": 'sumiller',
-
-                "tipo_servicio_sumiller_maridaje": true,
-                "tipo_servicio_sumiller_cata": false,
-
-                "tipo_servicio_barman": false,
-                "tipo_servicio_chef": false,
-                "tipo_servicio_jamonero": false,
-                "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": true,
-
-
-                "is_active": true
-            },
-            {
-                "id": 5,
-                "nombre": "Sara",
-                "apellidos": "Fernández",
-                "email": "sara@hotmail.com",
-                "localizacion": "valencia",
-                "foto_de_perfil": "foto4.jpg",
-                "descripcion": "Sumiller",
-                "direccion": "Plaza Mayor 1",
-                "telefono": "321654987",
-                "info_adicional": "Trabaja en colaboración con bodegas locales.",
-
-                "tipo_de_profesional": 'sumiller',
-
-                "tipo_servicio_sumiller_maridaje": false,
-                "tipo_servicio_sumiller_cata": true,
-
-                "tipo_servicio_barman": false,
-                "tipo_servicio_chef": false,
-                "tipo_servicio_jamonero": false,
-                "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": true,
-
-
-                "is_active": true
-            },
-            {
-                "id": 7,
-                "nombre": "Ramón",
-                "apellidos": "Fernández",
-                "email": "sara@hotmail.com",
-                "localizacion": "barcelona",
-                "foto_de_perfil": "foto4.jpg",
-                "descripcion": "Sumiller",
-                "direccion": "Plaza Mayor 1",
-                "telefono": "321654987",
-                "info_adicional": "Trabaja en colaboración con bodegas locales.",
-
-                "tipo_de_profesional": 'cortador de jamon',
-
-                "tipo_servicio_jamonero_corte": true,
-                "tipo_servicio_jamonero_clase_corte": false,
-
-                "tipo_servicio_barman": false,
-                "tipo_servicio_chef": false,
-                "tipo_servicio_jamonero": true,
-                "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": false,
-
-
-                "is_active": true
-            },
-            {
-                "id": 8,
-                "nombre": "María",
-                "apellidos": "Fernández",
-                "email": "sara@hotmail.com",
-                "localizacion": "madrid",
-                "foto_de_perfil": "foto4.jpg",
-                "descripcion": "Sumiller",
-                "direccion": "Plaza Mayor 1",
-                "telefono": "321654987",
-                "info_adicional": "Trabaja en colaboración con bodegas locales.",
-
-                "tipo_de_profesional": 'cortador de jamon',
-
-                "tipo_servicio_jamonero_corte": false,
-                "tipo_servicio_jamonero_clase_corte": true,
-
-                "tipo_servicio_barman": false,
-                "tipo_servicio_chef": false,
-                "tipo_servicio_jamonero": true,
-                "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": false,
-
-
-                "is_active": true
-            },
-            {
-                "id": 9,
-                "nombre": "Javier",
-                "apellidos": "Fernández",
-                "email": "sara@hotmail.com",
-                "localizacion": "madrid",
-                "foto_de_perfil": "foto4.jpg",
-                "descripcion": "Sumiller",
-                "direccion": "Plaza Mayor 1",
-                "telefono": "321654987",
-                "info_adicional": "Trabaja en colaboración con bodegas locales.",
-
-                "tipo_de_profesional": 'barman',
-
-                "tipo_servicio_barman_barra": false,
-                "tipo_servicio_barman_clase": true,
-
-                "tipo_servicio_barman": true,
-                "tipo_servicio_chef": false,
-                "tipo_servicio_jamonero": false,
-                "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": false,
-
-
-                "is_active": true
-            },
-            {
-                "id": 10,
-                "nombre": "Ana",
-                "apellidos": "Fernández",
-                "email": "sara@hotmail.com",
-                "localizacion": "madrid",
-                "foto_de_perfil": "foto4.jpg",
-                "descripcion": "Sumiller",
-                "direccion": "Plaza Mayor 1",
-                "telefono": "321654987",
-                "info_adicional": "Trabaja en colaboración con bodegas locales.",
-
-                "tipo_de_profesional": 'barman',
-
-                "tipo_servicio_barman_barra": true,
-                "tipo_servicio_barman_clase": false,
-
-                "tipo_servicio_barman": true,
-                "tipo_servicio_chef": false,
-                "tipo_servicio_jamonero": false,
-                "tipo_servicio_pastelero": false,
-                "tipo_servicio_sumiller": false,
-
-
-                "is_active": true
-            },
+                
 
             ],
             usuarioSeleccionado: [],
@@ -393,8 +124,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .then((data) => {
                         setStore({ token: data.token });
-                        const store = getStore();
-                        console.log(data);
+                        localStorage.setItem("token",data.token)                       
                         return true;  // Retorna true en caso de éxito
                     })
                     .catch((error) => {
@@ -609,8 +339,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             crearServicioContratado: (data) => {
 
-                const store = getStore();
-                const token = store.token;
+                const token = localStorage.getItem('token');
 
                 console.log(token)
                 if (!token) {
@@ -645,7 +374,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             
             obtenerServiciosContratadosProfesional: () => {
                 // Obtener el token de acceso del almacenamiento local
-                const token = localStorage.getItem('accessToken');
+                const token = localStorage.getItem('token');
 
                 // Verificar si el token está presente
                 if (!token) {
@@ -680,25 +409,21 @@ const getState = ({ getStore, getActions, setStore }) => {
                     });
             },
             obtenerServiciosContratadosUsuario: () => {
-                // Obtener el token de acceso del almacenamiento local
-                const token = localStorage.getItem('accessToken');
+                const token = localStorage.getItem('token');
             
-                // Verificar si el token está presente
                 if (!token) {
                     console.error('Token de acceso no encontrado');
                     return;
                 }
             
-                // Configurar las opciones de la solicitud
                 const requestOptions = {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}` // Agregar el token de acceso en el encabezado de autorización
+                        'Authorization': `Bearer ${token}`
                     }
                 };
             
-                // Realizar la solicitud a la ruta de servicios contratados del usuario
                 fetch(`${BASE_URL}/api/servicioscontratadosusuario`, requestOptions)
                     .then(response => {
                         if (!response.ok) {
@@ -707,9 +432,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                         return response.json();
                     })
                     .then(data => {
-                        console.log('Servicios contratados por el usuario:', data);
-                        // Actualizar el estado global con los servicios contratados
-                        setStore({ serviciosContratados: data.servicios_contratados });
+                        if (data.servicios_contratados) {
+                            setStore({ serviciosContratados: data.servicios_contratados });
+                        } else {
+                            setStore({ serviciosContratados: [] });
+                        }
                     })
                     .catch(error => {
                         console.error('Error al obtener servicios contratados:', error);

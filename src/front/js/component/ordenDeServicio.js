@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Context } from "../store/appContext";
 
 const OrdenDeServicio = () => {
-
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
 
@@ -16,10 +15,10 @@ const OrdenDeServicio = () => {
         setProfesionalSeleccionado(tipoProfesional);
         setFicha(prevFicha => ({
             ...prevFicha,
-            Servicio: tipoProfesional,
-            Evento: "",
-            Cocina: "",
-            Localizacion: localizacion
+            servicio_profesional: tipoProfesional,
+            tipo_evento: "",
+            cocina: "",
+            localizacion: localizacion
         }));
     };
 
@@ -27,8 +26,8 @@ const OrdenDeServicio = () => {
         setTipoDeEvento(tipoEvento);
         setFicha(prevFicha => ({
             ...prevFicha,
-            Evento: tipoEvento,
-            Localizacion: localizacion
+            tipo_evento: tipoEvento,
+            localizacion: localizacion
         }));
     };
 
@@ -36,8 +35,8 @@ const OrdenDeServicio = () => {
         setTipoDeCocina(tipoCocina);
         setFicha(prevFicha => ({
             ...prevFicha,
-            Cocina: tipoCocina,
-            Localizacion: localizacion
+            cocina: tipoCocina,
+            localizacion: localizacion
         }));
     };
 
@@ -45,7 +44,7 @@ const OrdenDeServicio = () => {
         setLocalizacion(localizacion);
         setFicha(prevFicha => ({
             ...prevFicha,
-            Localizacion: localizacion
+            localizacion: localizacion
         }));
     };
 
@@ -58,16 +57,20 @@ const OrdenDeServicio = () => {
     };
 
     const [ficha, setFicha] = useState({
-        Pax: "",
-        Evento: "",
-        Hora: "",
-        Servicio: "",
-        Direccion: "",
-        IncluidoEnServicio: "",      
-        Observaciones: "",
-        Cocina: "",
-        Localizacion: "",
-        CostoDeServicio: ""
+        nombre_evento: "",
+        fecha: "",
+        numero_personas: "",
+        hora: "",
+        servicio_profesional: "",
+        tipo_evento: "",
+        localizacion: "",
+        direccion: "",
+        servicio_incluye: "",
+        costo_servicio: "",
+        observaciones: "",
+        cliente_id: store.cliente_id || 1, // Assuming cliente_id is obtained from the store or a default value
+        profesional_id: store.profesional_id || 1, // Assuming profesional_id is obtained from the store or a default value
+        fecha_contratacion: new Date().toISOString()
     });
 
     const handleInputChange = (e) => {
@@ -76,29 +79,33 @@ const OrdenDeServicio = () => {
     };
 
     const addFicha = () => {
-        if (ficha.Evento.trim() !== "") {
+        if (ficha.tipo_evento.trim() !== "") {
             console.log(ficha);
             setFicha({
-                Pax: "",
-                Evento: "",
-                Hora: "",
-                Servicio: "",
-                Direccion: "",
-                IncluidoEnServicio: "",             
-                Observaciones: "",
-                Cocina: "",
-                Localizacion: "",
-                CostoDeServicio: "",
-                Fecha:""
+                nombre_evento: "",
+                fecha: "",
+                numero_personas: "",
+                hora: "",
+                servicio_profesional: "",
+                tipo_evento: "",
+                localizacion: "",
+                direccion: "",
+                servicio_incluye: "",
+                costo_servicio: "",
+                observaciones: "",
+                cliente_id: store.cliente_id || 1,
+                profesional_id: store.profesional_id || 1,
+                fecha_contratacion: new Date().toISOString()
             });
         }
     };
 
     const handleguardarservicio = (ficha) => {
         actions.crearServicioContratado(ficha);
-        // navigate('/'); 
+        navigate('/'); 
     };
     console.log(ficha)
+
     return (
         <div>
             <div className="fichaTecnica">
@@ -155,191 +162,157 @@ const OrdenDeServicio = () => {
                         {profesionalSeleccionado === 'sumiller' && (
                             <div className="dropdown" style={{ marginRight: '10px' }}>
                                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Tipo de evento  Sumiller
+                                    Tipo de evento sumiller
                                 </button>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Cata de vinos')}>Cata de vinos</a></li>
-                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Maridaje')}>Maridaje</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('cata de vino')}>Cata de vino</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('cata de cava')}>Cata de cava</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('cata de gin-tonic')}>Cata de gin-tonic</a></li>
                                 </ul>
                             </div>
                         )}
                         {profesionalSeleccionado === 'pastelero' && (
                             <div className="dropdown" style={{ marginRight: '10px' }}>
                                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Tipo de evento Pasteler@
+                                    Tipo de evento pastelero
                                 </button>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Clase de pastelería')}>Clase de pastelería</a></li>
-                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Servicio de desayuno')}>Servicio de desayuno</a></li>
-                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Servicio de merienda')}>Servicio de merienda</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('cumpleaños')}>Cumpleaños</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('boda')}>Boda</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('aniversario')}>Aniversario</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('evento tematico')}>Evento temático</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('taller de pasteleria')}>Taller de pastelería</a></li>
                                 </ul>
                             </div>
                         )}
                         {profesionalSeleccionado === 'cortador de jamon' && (
                             <div className="dropdown" style={{ marginRight: '10px' }}>
                                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Tipo de evento Cortador de Jamon
+                                    Tipo de evento cortador de jamón
                                 </button>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Corte de jamon')}>Corte de jamon</a></li>
-                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Clase de corte de jamon')}>Clase de corte de jamon</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('evento social')}>Evento social</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('evento corporativo')}>Evento corporativo</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('celebracion')}>Celebración</a></li>
                                 </ul>
                             </div>
                         )}
                         {profesionalSeleccionado === 'barman' && (
                             <div className="dropdown" style={{ marginRight: '10px' }}>
                                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Tipo de evento Barman/Barwomen
+                                    Tipo de evento barman
                                 </button>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Clase de cocktelería')}>Clase de cocktelería</a></li>
-                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('Servicio de barra de cocktelería')}>Servicio de barra de cocktelería</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('evento social')}>Evento social</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('evento corporativo')}>Evento corporativo</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => manejarTipoEvento('celebracion')}>Celebración</a></li>
                                 </ul>
                             </div>
                         )}
-                        <div className="dropdown" style={{ marginRight: '10px' }}>
-                            <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Localidad
-                            </button>
-                            <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#" onClick={() => manejarLocalizacion('madrid')}>Madrid</a></li>
-                                <li><a className="dropdown-item" href="#" onClick={() => manejarLocalizacion('barcelona')}>Barcelona</a></li>
-                                <li><a className="dropdown-item" href="#" onClick={() => manejarLocalizacion('valencia')}>Valencia</a></li>
-                            </ul>
+                        <div className="mb-3">
+                            <label htmlFor="localizacion" className="form-label">Localización:</label>
+                            <input 
+                                type="text" 
+                                className="form-control" 
+                                id="localizacion" 
+                                value={localizacion} 
+                                onChange={(e) => manejarLocalizacion(e.target.value)} 
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="nombre_evento" className="form-label">Nombre del Evento</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="nombre_evento"
+                                name="nombre_evento"
+                                value={ficha.nombre_evento}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="fecha" className="form-label">Fecha</label>
+                            <input
+                                type="date"
+                                className="form-control"
+                                id="fecha"
+                                name="fecha"
+                                value={ficha.fecha}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="numero_personas" className="form-label">Número de Personas</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="numero_personas"
+                                name="numero_personas"
+                                value={ficha.numero_personas}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="hora" className="form-label">Hora</label>
+                            <input
+                                type="time"
+                                className="form-control"
+                                id="hora"
+                                name="hora"
+                                value={ficha.hora}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="direccion" className="form-label">Dirección</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="direccion"
+                                name="direccion"
+                                value={ficha.direccion}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="servicio_incluye" className="form-label">Servicio Incluye</label>
+                            <textarea
+                                className="form-control"
+                                id="servicio_incluye"
+                                name="servicio_incluye"
+                                rows="3"
+                                value={ficha.servicio_incluye}
+                                onChange={handleInputChange}
+                            ></textarea>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="costo_servicio" className="form-label">Costo del Servicio</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="costo_servicio"
+                                name="costo_servicio"
+                                value={ficha.costo_servicio}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="observaciones" className="form-label">Observaciones</label>
+                            <textarea
+                                className="form-control"
+                                id="observaciones"
+                                name="observaciones"
+                                rows="3"
+                                value={ficha.observaciones}
+                                onChange={handleInputChange}
+                            ></textarea>
                         </div>
                     </div>
-                    <div className="row inputFormulario">
-                        <input
-                            className="evento"
-                            type="text"
-                            name="Evento"
-                            placeholder="Nombre del evento"
-                            value={ficha.Evento}
-                            onChange={handleInputChange}
-                            required
-                        />
-                        <input
-                            className="pax m-1"
-                            type="text"
-                            name="Pax"
-                            placeholder="Pax"
-                            value={ficha.Pax}
-                            onChange={handleInputChange}
-                            required
-                        />
-                        <input
-                            className="hora m-1"
-                            type="time"
-                            name="Hora"
-                            placeholder="Hora"
-                            value={ficha.Hora}
-                            onChange={handleInputChange}
-                            required
-                        />
-                        <input
-                            className="fecha m-1"
-                            type="date"
-                            name="Fecha"
-                            value={ficha.Fecha}
-                            onChange={handleInputChange}
-                            required
-                        />
-                        <input
-                            className="m-1"
-                            type="text"
-                            name="Direccion"
-                            value={ficha.Direccion}
-                            onChange={handleInputChange}
-                            placeholder="Direccion del evento"
-                            required
-                        />
-                        <input
-                            className="m-1"
-                            type="text"
-                            name="IncluidoEnServicio"
-                            value={ficha.IncluidoEnServicio}
-                            onChange={handleInputChange}
-                            placeholder="Que incluye tu servicio?"
-                            required
-                        />      
-                         <input
-                            className="m-1"
-                            type="text"
-                            name="CostoDeServicio"
-                            value={ficha.CostoDeServicio}
-                            onChange={handleInputChange}
-                            placeholder="Coste de tu servicio"
-                            required
-                        />             
-                        <input
-                            className="m-1"
-                            type="text"
-                            name="Observaciones"
-                            value={ficha.Observaciones}
-                            onChange={handleInputChange}
-                            placeholder="Alergias, peticiones especiales..."
-                            required
-                        />
+                    <div>
+                        <button onClick={addFicha} className="btn btn-primary">Guardar Borrador</button>
+                        <button onClick={() => handleguardarservicio(ficha)} className="btn btn-primary">Guardar y Contratar</button>
                     </div>
                 </div>
-                <button className="boton" onClick={addFicha}>
-                    {/* Aquí puedes agregar el texto o el ícono para el botón */}
-                    Añadir Ficha
-                </button>
-            </div>
-            <div className="resumenOrden">
-                <h6>Resumen orden</h6>
-                <table className="table">
-                    <tbody>
-                        <tr>
-                            <td><strong>Nombre del evento:</strong></td>
-                            <td>{ficha.Evento}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Fecha:</strong></td>
-                            <td>{ficha.Fecha}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Numero de personas:</strong></td>
-                            <td>{ficha.Pax}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Hora:</strong></td>
-                            <td>{ficha.Hora}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Servicio profesional:</strong></td>
-                            <td>{ficha.Servicio}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Tipo de evento:</strong></td>
-                            <td>{ficha.Evento}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Localización:</strong></td>
-                            <td>{ficha.Localizacion}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Dirección:</strong></td>
-                            <td>{ficha.Direccion}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>El servicio incluye:</strong></td>
-                            <td>{ficha.IncluidoEnServicio}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Coste de servicio:</strong></td>
-                            <td>{ficha.CostoDeServicio}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Observaciones:</strong></td>
-                            <td>{ficha.Observaciones}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button type="button" className="btn eliminar-profesional"  onClick={handleguardarservicio(ficha)}>
-                    GUARDAR Y ENVIAR ORDEN
-                </button>
             </div>
         </div>
     );

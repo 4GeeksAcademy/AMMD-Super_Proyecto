@@ -66,19 +66,19 @@ const handleCrearOrden = () => {
            
             <br />
             <h6>Nombre </h6>
-            <p>{profesionalEncontrado.nombre}</p>
+            <p>{profesionalEncontrado?.nombre}</p>
             <h6>Apellido </h6>
-            <p>{profesionalEncontrado.apellidos}</p>
+            <p>{profesionalEncontrado?.apellidos}</p>
             <h6>Email </h6>
-            <p>{profesionalEncontrado.email}</p>
+            <p>{profesionalEncontrado?.email}</p>
             <h6>Profesion</h6>
-            <p>{profesionalEncontrado.descripcion}</p>
+            <p>{profesionalEncontrado?.descripcion}</p>
             <h6>Información adicional</h6>
-            <p>{profesionalEncontrado.info_adicional}</p>
+            <p>{profesionalEncontrado?.info_adicional}</p>
             <h6>Población</h6>
-            <p>{profesionalEncontrado.localizacion}</p>
+            <p>{profesionalEncontrado?.localizacion}</p>
             <h6>tipos de servicio</h6>
-            <p>{profesionalEncontrado.tipo_servicio_chef}</p>
+            <p>{profesionalEncontrado?.tipo_servicio_chef}</p>
             <button type="button" className="btn editar-profesional"  onClick={handleEditar}>EDITAR</button>
             <button type="button" className="btn eliminar-profesional"  onClick={handleEliminar}>ELIMINAR</button>
             <button type="button" className="btn "  onClick={handleCrearOrden}>CREAR ORDEN DE SERVICIO</button>
