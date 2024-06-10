@@ -76,7 +76,7 @@ const InicioSesionProfesional = () => {
               <button
                 type="button"
                 className="btn"
-                onClick={() => navigate(`/registrousuario`)}>
+                onClick={() => navigate(`/registroprofesional`)}>
                 ¡Aquí!
               </button>
             </div>

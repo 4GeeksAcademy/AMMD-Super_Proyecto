@@ -54,7 +54,7 @@ const RequestPasswordReset = () => {
                     </div>
                     <button 
                         onClick={handleResetPassword} 
-                        className="btn btn-primary w-100"
+                        className="btn w-100"
                     >
                         Reset password
                     </button>
