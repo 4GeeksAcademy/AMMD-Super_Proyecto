@@ -180,7 +180,7 @@ class ServiciosContratados(db.Model):
             "nombre_evento": self.nombre_evento,
             "fecha": self.fecha,
             "numero_personas": self.numero_personas,
-            "hora": self.hora,
+            "hora": self.hora.strftime('%H:%M') if self.hora else None,
             "servicio_profesional": self.servicio_profesional,
             "tipo_evento": self.tipo_evento,
             "localizacion": self.localizacion,

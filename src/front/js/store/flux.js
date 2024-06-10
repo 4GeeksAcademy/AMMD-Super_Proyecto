@@ -8,7 +8,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             ],
             profesionales: [
                 
-
             ],
             usuarioSeleccionado: [],
             profesionalSeleccionado: [],
@@ -425,15 +424,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                 };
             
                 fetch(`${BASE_URL}/api/servicioscontratadosusuario`, requestOptions)
+                    
                     .then(response => {
+                        console.log(response.status)
                         if (!response.ok) {
                             throw new Error(`Error de red! Status: ${response.status}`);
                         }
                         return response.json();
                     })
                     .then(data => {
-                        if (data.servicios_contratados) {
-                            setStore({ serviciosContratados: data.servicios_contratados });
+                        console.log(data)
+                        if (data.servicioscontratados) {
+                            setStore({ serviciosContratados: data.serviciosContratados });
                         } else {
                             setStore({ serviciosContratados: [] });
                         }

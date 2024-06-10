@@ -22,7 +22,7 @@ mail = Mail()
 CORS(api)
 
 # This should be implemented as a proper storage (e.g., a database or an in-memory store like Redis)
-revoked_tokens = set()
+# revoked_tokens = set()
 
 @api.route('/usuarios', methods=['GET'])
 def cargar_usuarios():
@@ -536,7 +536,7 @@ def crear_servicio_contratado():
 
     # Obtener el ID del profesional actualmente autenticado
     profesional_id = get_jwt_identity()
-
+    print(profesional_id)
     # Verificar si el profesional existe
     profesional = Profesional.query.get(profesional_id)
     if not profesional:
@@ -553,7 +553,7 @@ def crear_servicio_contratado():
         nombre_evento=data['nombre_evento'],
         fecha=data['fecha'],
         numero_personas=data['numero_personas'],
-        hora=data['hora'],
+        hora=datetime.strptime(data['hora'], '%H:%M').time() if data['hora'] else None,
         servicio_profesional=data['servicio_profesional'],
         tipo_evento=data['tipo_evento'],
         localizacion=data['localizacion'],
@@ -581,6 +581,8 @@ def get_user_services():
 
     # Buscar todos los servicios contratados por el usuario
     servicios_contratados = ServiciosContratados.query.filter_by(cliente_id=user_id).all()
+    # servicios_contratados = ServiciosContratados.query.all()
+    print(servicios_contratados)
 
     # Serializar los servicios contratados para enviarlos como respuesta
     servicios_serializados = [servicio.serialize() for servicio in servicios_contratados]
