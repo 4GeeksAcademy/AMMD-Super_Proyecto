@@ -80,14 +80,14 @@ const EditarUsuario = () => {
                         <img
                             src="https://images.pexels.com/photos/2709388/pexels-photo-2709388.jpeg?auto=compress&cs=tinysrgb&w=600"
                             alt="Descripción de la imagen"
-                            width="300"
+                            width="250"
                             height="300"
                         />
                     </div>
                     <div className="col">
                         <button
                             type="button"
-                            className="btn btn-primary"
+                            className="btn"
                             onClick={handleSubmit}
                         >
                             Confirmar cambios

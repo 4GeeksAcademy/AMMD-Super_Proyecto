@@ -54,7 +54,7 @@ const RegistroUsuario = () => {
                     />
                 </div>
             </div>
-            <button type="submit" className="btn btn-primary" onClick={(e) =>handleSubmit(e) }>
+            <button type="submit" className="btn" onClick={(e) =>handleSubmit(e) }>
                 Crear Usuario
             </button>
         </form>

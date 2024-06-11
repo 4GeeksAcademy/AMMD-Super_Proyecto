@@ -1,11 +1,12 @@
 import React from 'react';
 import "../../styles/privadaProfesional.css";
-
+import "../../styles/MiComponente.css"
 import { useNavigate } from "react-router-dom";
 import Buscador from './buscador';
 import { useContext } from 'react';
 import { Context } from '../store/appContext';
 import { useState,useEffect } from 'react';
+
 
 const PrivadaProfesional = () => {
 
@@ -21,7 +22,9 @@ if (profesionalEncontrado) {
   console.log("No se encontró ningún profesional con el ID:", profesionalId);
 }
 
-
+const handleServiciosContratadosProfesional = () => {
+  navigate('/servicioscontratadosprofesional', { state: { profesional: store.profesionales } });
+};
 
 const handleEditar = () => {
   navigate('/editarprofesional', { state: { profesional: store.profesionales } });
@@ -49,7 +52,7 @@ const handleCrearOrden = () => {
 
   return (
     <div>
-      <button type="button" className="btn cerrar-profesional" style={{ position: 'absolute', top: 180, right: 0 }}  onClick={handleCerrarSesion}>CERRAR </button>
+      <button type="button" className="btn cerrar-profesional" style={{ position: 'absolute', top: 335, right: 0 }}  onClick={handleCerrarSesion}>CERRAR </button>
       <div className="container text-center">
         <div className="row">
           <div className="col">
@@ -61,9 +64,7 @@ const handleCrearOrden = () => {
             />
           </div>
           <div className="col">
-            <h3>Hola !!!</h3>
-       
-           
+            <h3>Hola !!!</h3>         
             <br />
             <h6>Nombre </h6>
             <p>{profesionalEncontrado?.nombre}</p>

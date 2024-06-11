@@ -108,6 +108,21 @@ const EditarProfesional = () => {
             <div className="container text-center">
                 <div className="row">
                     <div className="col">
+                        <img
+                            src="https://images.pexels.com/photos/2709388/pexels-photo-2709388.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            alt="Descripción de la imagen"
+                            width="250"
+                            height="300"
+                        />
+                    </div>
+                    <div className="col">
+                    <button
+                            type="button"
+                            className="btn"
+                            onClick={handleSubmit}
+                        >
+                            Confirmar cambios
+                        </button>
                         <form onSubmit={handleSubmit}>
                             <input type="text" name="nombre" value={formData.nombre} placeholder="Nombre" onChange={handleChange} />
                             {console.log(formData)}

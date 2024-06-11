@@ -66,19 +66,36 @@ const InicioSesionProfesional = () => {
       <div className="mb-3">
         <h4 style={{marginBottom: '20px'}}>¿No tienes cuenta y quieres formar parte de nuestro equipo?</h4>
       </div>
-      <div className="container" style={{marginBottom: '40px'}}>
-        <div className="row align-items-center">
-          <div className="col-auto">
-            <p className="mb-0">Regístrate haciendo click</p>
+      <div style={{ marginBottom: '40px', display: 'flex', alignItems: 'center' }}>
+        <div className="container registra-aqui" style={{ marginRight: '20px' }}>
+          <div className="row align-items-center">
+            <div className="col-auto">
+              <p className="mb-0">Regístrate haciendo click</p>
+            </div>
+            <div className="col-auto">
+              <button
+                type="button"
+                className="btn"
+                onClick={() => navigate(`/registroprofesional`)}>
+                ¡Aquí!
+              </button>
+            </div>
           </div>
-          <div className="col-auto">
-            <button 
-              type="button"
-              className="btn"
-              onClick={() => navigate(`/registroprofesional`)}
-            >
-              ¡Aquí!
-            </button>
+        </div>
+        <div className="container recuperala">
+          <div className="row align-items-center">
+            <div className="col-auto">
+              <p className="mb-0">¿Has perdido tu contraseña?</p>
+            </div>
+            <div className="col-auto">
+              <button
+                type="button"
+                className="btn"
+                onClick={() => navigate(`/reestablecercontrasena`)}
+              >
+                Recupérala
+              </button>
+            </div>
           </div>
         </div>
       </div>
