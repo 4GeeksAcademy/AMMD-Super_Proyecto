@@ -416,7 +416,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                     });
             },
             obtenerServiciosContratadosUsuario: () => {
-                const token = localStorage.getItem('token');
+                const store = getStore();
+                const token = store.token;  
             
                 if (!token) {
                     console.error('Token de acceso no encontrado');
@@ -450,6 +451,33 @@ const getState = ({ getStore, getActions, setStore }) => {
                     .catch(error => {
                         console.error('Error al obtener servicios contratados:', error);
                     });
+            },
+            responderServicio: async (id,estado_servicio)=>{
+
+                try {
+                    const store = getStore();
+                    const token = store.token;  
+            
+                    if (!token) {
+                        console.error('Token de acceso no encontrado');
+                        return;
+                    }
+                
+                    const requestOptions = {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                             'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ estado_servicio: estado_servicio })
+                    };
+                    const resp= await fetch(`${BASE_URL}/api/respuestaservicio/${id}`, requestOptions)
+                    const data= await resp.json()
+                    console.log(data)
+                    
+                } catch (error) {
+                    console.log("error respondiendo al servicio ", error)
+                }
             },
             
 

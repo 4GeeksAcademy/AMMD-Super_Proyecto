@@ -563,7 +563,8 @@ def crear_servicio_contratado():
         observaciones=data['observaciones'],
         cliente_id=data['cliente_id'],
         profesional_id=profesional_id,
-        fecha_contratacion=data['fecha_contratacion']
+        fecha_contratacion=data['fecha_contratacion'],
+        estado_servicio="enviar"
     )
 
     # Guardar el nuevo servicio contratado en la base de datos
@@ -603,4 +604,19 @@ def get_professional_services():
     servicios_serializados = [servicio.serialize() for servicio in servicios_contratados]
 
     return jsonify({"servicios_contratados": servicios_serializados}), 200
+
+@api.route('/respuestaservicio/<int:id>', methods=["PUT"])
+@jwt_required()
+def chagestateservice(id):  
+     
+     data= request.json
+
+     servicio = ServiciosContratados.query.get(id)
+     servicio.estado_servicio = data["estado_servicio"]
+
+     db.session.commit()
+     return jsonify({"msg":"servicio actualizado"})
+
+     
+
 

@@ -169,6 +169,8 @@ class ServiciosContratados(db.Model):
     cliente_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
     profesional_id = db.Column(db.Integer, db.ForeignKey('Profesional.id'), nullable=False)
     fecha_contratacion = db.Column(db.DateTime, nullable=True)
+    estado_servicio = db.Column(db.Enum('enviar','aceptar','rechazar', name='estado_servicio'), nullable=False)
+   
 
     cliente = db.relationship('User', backref='servicios_contratados', foreign_keys=[cliente_id])
     profesional = db.relationship('Profesional', backref='servicios_contratados', foreign_keys=[profesional_id])
@@ -192,7 +194,8 @@ class ServiciosContratados(db.Model):
             "observaciones": self.observaciones,
             "cliente_id": self.cliente_id,
             "profesional_id": self.profesional_id,
-            "fecha_contratacion": self.fecha_contratacion
+            "fecha_contratacion": self.fecha_contratacion,
+            "estado_servicio":self.estado_servicio
         }
 
 class Favoritos(db.Model):
