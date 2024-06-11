@@ -250,9 +250,7 @@ def editar_profesional():
     
     # Actualizar los detalles del profesional con los datos enviados
     profesional.nombre = data.get("nombre", profesional.nombre)
-    profesional.apellidos = data.get("apellidos", profesional.apellidos)
-    profesional.email = data.get("email", profesional.email)
-    profesional.password = data.get("password", profesional.password)
+    profesional.apellidos = data.get("apellidos", profesional.apellidos)    
     profesional.telefono = data.get("telefono", profesional.telefono)
     profesional.localizacion = data.get("localizacion", profesional.localizacion)
     profesional.direccion = data.get("direccion", profesional.direccion)

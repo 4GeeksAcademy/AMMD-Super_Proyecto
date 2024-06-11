@@ -21,6 +21,7 @@ class Profesional(db.Model):
 
     tipo_de_cocina_especialidad = db.Column(db.Enum('cocina española','cocina peruana','cocina griega','cocina americana','cocina italiana','cocina argentina','cocina tailandesa','cocina mexicana','cocina creativa','cocina japonesa', 'cocina vegana',name='tipo_de_cocina'),nullable=True)  
     
+    tipo_servicio_chef = db.Column(db.Text, nullable=True)
     tipo_servicio_chef_pica_pica = db.Column(db.Text, nullable=True)
     tipo_servicio_chef_taller_de_cocina = db.Column(db.Text, nullable=True)
     tipo_servicio_chef_comida_de_trabajo =db.Column(db.Text, nullable=True)
@@ -97,6 +98,7 @@ class User(db.Model):
     direccion = db.Column(db.String(30), nullable=True)
     foto_de_perfil = db.Column(db.String, unique=True, nullable=True)
     tipo_de_dieta = db.Column(db.Enum('Vegetariano', 'Vegano', 'Omnivoro', name='tipo_de_dieta'), nullable=True)
+    
     alergias = db.Column(db.String(50), nullable=True)
     reset_token = db.Column(db.String(120), unique=True, nullable=True)
     token_expiration = db.Column(db.DateTime, nullable=True)

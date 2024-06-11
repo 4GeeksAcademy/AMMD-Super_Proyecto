@@ -13,6 +13,7 @@ const ServiciosContratados = () => {
     if (!store.serviciosContratados) {
         return <div>Cargando...</div>;
     }
+    
 
     return (
         <div>

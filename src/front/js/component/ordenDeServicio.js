@@ -102,7 +102,8 @@ const OrdenDeServicio = () => {
 
     const handleguardarservicio = (ficha) => {
         actions.crearServicioContratado(ficha);
-        navigate('/'); 
+        window.alert('¡Servicio enviado con éxito!');
+        navigate('/privadaprofesional'); 
     };
     console.log(ficha)
 
@@ -309,7 +310,7 @@ const OrdenDeServicio = () => {
                         </div>
                     </div>
                     <div>
-                        <button onClick={addFicha} className="btn btn-primary">Guardar Borrador</button>
+                        
                         <button onClick={() => handleguardarservicio(ficha)} className="btn btn-primary">Guardar y Contratar</button>
                     </div>
                 </div>

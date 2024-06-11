@@ -17,7 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             tipoComidaSeleccionada: null,
             localidadSeleccionada: null,
 
-            serviciosContratados: []
+            serviciosContratados: [],
 
             conversaciones: [],
             usuarios: []
@@ -139,8 +139,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                     });
             },
             editarUsuario: (userData) => {
+
                 const store = getStore();
                 const token = store.token;
+
+                
 
                 const requestOptions = {
                     method: "PUT",
@@ -200,8 +203,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     });
             },
             eliminarUsuario: () => {
-                const store = getStore();
-                const token = store.token;
+                const token = localStorage.getItem('token');
 
                 const requestOptions = {
                     method: "DELETE",
@@ -434,7 +436,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 fetch(`${BASE_URL}/api/servicioscontratadosusuario`, requestOptions)
                     
                     .then(response => {
-                        console.log(response.status)
+                      
                         if (!response.ok) {
                             throw new Error(`Error de red! Status: ${response.status}`);
                         }
@@ -442,11 +444,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .then(data => {
                         console.log(data)
-                        if (data.servicioscontratados) {
-                            setStore({ serviciosContratados: data.serviciosContratados });
-                        } else {
-                            setStore({ serviciosContratados: [] });
-                        }
+                       
+                            setStore({ serviciosContratados: data.servicios_contratados });
+                      
+                        
                     })
                     .catch(error => {
                         console.error('Error al obtener servicios contratados:', error);
