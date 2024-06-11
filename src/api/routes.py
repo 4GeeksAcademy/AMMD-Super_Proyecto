@@ -237,15 +237,17 @@ def editar_usuario():
 def editar_profesional():
     # Obtener el ID del profesional desde el token JWT
     current_profesional_id = get_jwt_identity()
-    print("entrandoa editar")
+    print("entrando a editar")
     # Buscar al profesional en la base de datos
     profesional = Profesional.query.get(current_profesional_id)
     print(current_profesional_id)
     if profesional is None:
         return jsonify({"msg": "Profesional no encontrado"}), 404
 
+
     # Obtener los datos enviados en la solicitud
     data = request.json
+    print(data)
     print(data.get("nombre", profesional.nombre))
     
     # Actualizar los detalles del profesional con los datos enviados

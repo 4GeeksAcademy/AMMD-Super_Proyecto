@@ -17,9 +17,9 @@ class Profesional(db.Model):
     descripcion = db.Column(db.String(300), nullable=True)
     info_adicional = db.Column(db.String(300), nullable=True)
 
-    tipo_de_profesional = db.Column(db.Enum('chef','barman','cortador de jamon','sumiller','pastelero',name='tipo_de_profesional'))
+    tipo_de_profesional = db.Column(db.Enum('chef','barman','cortador de jamon','sumiller','pastelero', name='tipo_de_profesional'))
 
-    tipo_de_cocina_especialidad = db.Column(db.Enum('cocina española','cocina peruana','cocina griega','cocina americana','cocina italiana','cocina argentina','cocina tailandesa','cocina mexicana','cocina creativa','cocina japonesa', 'cocina vegana',name='tipo_de_cocina'),nullable=True)  
+    tipo_de_cocina_especialidad = db.Column(db.Enum('cocina española','cocina peruana','cocina griega','cocina americana','cocina italiana','cocina argentina','cocina tailandesa','cocina mexicana','cocina creativa','cocina japonesa', 'cocina vegana',name='tipo_de_cocina'), nullable=True)  
     
     tipo_servicio_chef = db.Column(db.Text, nullable=True)
     tipo_servicio_chef_pica_pica = db.Column(db.Text, nullable=True)

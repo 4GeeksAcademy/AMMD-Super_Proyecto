@@ -59,7 +59,7 @@ const EditarUsuario = () => {
                 dataToSend[key] = formData[key];
             }
         }
-
+        console.log(dataToSend)
         actions.editarUsuario(dataToSend)
             .then(result => {
                 if (result) {

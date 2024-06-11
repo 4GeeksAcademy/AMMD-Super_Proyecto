@@ -34,7 +34,7 @@ const EditarProfesional = () => {
         tipo_servicio_pastelero_merienda: "",
         tipo_servicio_barman_barra: "",
         tipo_servicio_barman_clase: "",
-        is_active: true
+
     });
 
     const [error, setError] = useState(null);
@@ -81,20 +81,27 @@ const EditarProfesional = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setError(null);
 
-        actions.editarProfesional(formData)
+        // Filtrar los datos cambiados
+        const dataToSend = {};
+        for (let key in formData) {
+            if (formData[key] !== "" && formData[key] !== null) {
+                dataToSend[key] = formData[key];
+            }
+        }
+        console.log(dataToSend)
+        actions.editarProfesional(dataToSend)
             .then(result => {
                 if (result) {
                     window.alert("Profesional editado con éxito");
-                    navigate("/privadaprofesional");
+                    navigate("/privadaprofesional");  // Cambia "/ruta-de-vista-privada" por la ruta real de tu vista privada
                 }
             })
             .catch(error => {
                 console.error("Error al editar el profesional", error);
-                setError("Ocurrió un error al editar el profesional. Por favor, inténtalo de nuevo.");
             });
     };
+
 
     return (
         <div>

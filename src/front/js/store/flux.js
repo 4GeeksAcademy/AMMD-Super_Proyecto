@@ -139,11 +139,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                     });
             },
             editarUsuario: (userData) => {
-
                 const store = getStore();
-                const token = store.token;
-
-                
+                const token = store.token;                
 
                 const requestOptions = {
                     method: "PUT",
@@ -238,9 +235,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             editarProfesional: (profesionalData) => {
                 const store = getStore();
                 const token = store.token;
-
                 console.log(profesionalData)
-
                 const requestOptions = {
                     method: "PUT",
                     headers: {
@@ -249,12 +244,15 @@ const getState = ({ getStore, getActions, setStore }) => {
                     },
                     body: JSON.stringify(profesionalData)
                 };
-                return fetch(`${BASE_URL}/api/editarprofesional`, requestOptions)
+                return fetch(BASE_URL + "/api/editarprofesional", requestOptions)
                     .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Error en la solicitud");
+                        if (response.ok) {
+                            return response.json(); // Devuelve los datos si la respuesta es exitosa
+                        } else if (response.status === 404) {
+                            throw new Error("Recurso no encontrado"); // Maneja específicamente el error 404
+                        } else {
+                            throw new Error("Error en la solicitud"); // Maneja otros errores de manera genérica
                         }
-                        return response.json();
                     })
                     .then(data => {
                         console.log("Profesional editado exitosamente", data);
