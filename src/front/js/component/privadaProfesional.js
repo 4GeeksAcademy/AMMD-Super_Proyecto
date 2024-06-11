@@ -82,7 +82,7 @@ const handleCrearOrden = () => {
             <button type="button" className="btn editar-profesional"  onClick={handleEditar}>EDITAR</button>
             <button type="button" className="btn eliminar-profesional"  onClick={handleEliminar}>ELIMINAR</button>
             <button type="button" className="btn "  onClick={handleCrearOrden}>CREAR ORDEN DE SERVICIO</button>
-            <button type="button" className="btn "  onClick={handleServicio}>servicioscontratadosprofesional</button>
+            <button type="button" className="btn "  onClick={handleServicio}>Servicios pendientes de aceptar</button>
             </div>
         </div>
       </div>
