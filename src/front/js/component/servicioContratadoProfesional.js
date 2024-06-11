@@ -2,8 +2,10 @@ import React, { useContext, useEffect } from 'react';
 import { Context } from "../store/appContext";
 import { useNavigate } from 'react-router-dom';
 
+
 const ServiciosContratadosProfesional = () => {
     const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Llamar a la función para cargar los servicios contratados cuando el componente se monta
@@ -14,58 +16,32 @@ const ServiciosContratadosProfesional = () => {
         return <div>Cargando...</div>;
     }
 
-    const handleSubmit = (e) =>{       
-        // navigate("/")
-    }
+    const handleSubmit = (e) => {
+        // Implementar la lógica para aceptar la orden de servicio
+    };
 
     return (
-        <div>
+        <div className="servicios-contratados-container"> {/* Agregamos una clase para el contenedor principal */}
             <h2>Servicios Contratados</h2>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Nombre del Evento</th>
-                        <th>Fecha</th>
-                        <th>Número de Personas</th>
-                        <th>Hora</th>
-                        <th>Servicio Profesional</th>
-                        <th>Tipo de Evento</th>
-                        <th>Localización</th>
-                        <th>Dirección</th>
-                        <th>Servicio Incluye</th>
-                        <th>Costo de Servicio</th>
-                        <th>Observaciones</th>
-                        <th>Fecha de Contratación</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {store.serviciosContratados.length > 0 ? (
-                        store.serviciosContratados.map(servicio => (
-                            <tr key={servicio.id}>
-                                <td>{servicio.nombre_evento}</td>
-                                <td>{new Date(servicio.fecha).toLocaleDateString()}</td>
-                                <td>{servicio.numero_personas}</td>
-                                <td>{servicio.hora}</td>
-                                <td>{servicio.servicio_profesional}</td>
-                                <td>{servicio.tipo_evento}</td>
-                                <td>{servicio.localizacion}</td>
-                                <td>{servicio.direccion}</td>
-                                <td>{servicio.servicio_incluye}</td>
-                                <td>{servicio.costo_servicio}</td>
-                                <td>{servicio.observaciones}</td>
-                                <td>{new Date(servicio.fecha_contratacion).toLocaleString()}</td>
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan="12">No hay servicios contratados.</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
-                aceptar orden de servicio
-            </button>
+            <div className="servicios-list"> {/* Contenedor de la lista de servicios */}
+                {store.serviciosContratados.map(servicio => (
+                    <div key={servicio.id} className="servicio-card"> {/* Tarjeta para cada servicio contratado */}
+                        <h3>{servicio.nombre_evento}</h3>
+                        <p><strong>Fecha:</strong> {new Date(servicio.fecha).toLocaleDateString()}</p>
+                        <p><strong>Número de Personas:</strong> {servicio.numero_personas}</p>
+                        <p><strong>Hora:</strong> {servicio.hora}</p>
+                        <p><strong>Servicio Profesional:</strong> {servicio.servicio_profesional}</p>
+                        <p><strong>Tipo de Evento:</strong> {servicio.tipo_evento}</p>
+                        <p><strong>Localización:</strong> {servicio.localizacion}</p>
+                        <p><strong>Dirección:</strong> {servicio.direccion}</p>
+                        <p><strong>Servicio Incluye:</strong> {servicio.servicio_incluye}</p>
+                        <p><strong>Costo de Servicio:</strong> {servicio.costo_servicio}</p>
+                        <p><strong>Observaciones:</strong> {servicio.observaciones}</p>
+                        <p><strong>Fecha de Contratación:</strong> {new Date(servicio.fecha_contratacion).toLocaleString()}</p>
+                    </div>
+                ))}
+            </div>
+            
         </div>
     );
 };
