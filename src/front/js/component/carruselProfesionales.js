@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import '../../styles/Carousel.css'; // Ruta actualizada y confirmada
 
-const Carousel = () => {
+const Carousel2 = () => {
   const activate = (e) => {
     const slider = document.querySelector('.slider');
-    const items = document.querySelectorAll('.item');
+    const items2 = document.querySelectorAll('.item');
 
     if (e.target.matches('.next')) {
-      slider.append(items[0]);
+      slider.append(items2[0]);
     } else if (e.target.matches('.prev')) {
-      slider.prepend(items[items.length - 1]);
+      slider.prepend(items2[items2.length - 1]);
     }
   };
 
@@ -56,5 +56,5 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default Carousel2;
 

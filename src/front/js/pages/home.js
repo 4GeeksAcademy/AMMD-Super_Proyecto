@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import Buscador from "../component/buscador";
 import Jumbotron from "../component/jumbotron";
-import CarruselClientes from "../component/carruselClientes";
+import Carousel from "../component/carruselClientes";
 import "../../styles/home.css";
-import CarruselProfesionales from "../component/carruselProfesionales";
+import Carousel2 from "../component/carruselProfesionales";
 import Noticias from "../component/noticias";
 import FormularioRegistro from "./vistaregistrousuario";
 
@@ -15,9 +15,9 @@ export const Home = () => {
 		<div className="container">			
 			<Jumbotron />
 			<br></br>
-			<CarruselClientes />
+			<Carousel />
 			<br></br>
-			<CarruselProfesionales />
+			<Carousel2 />
 			<br></br>
 			<Noticias />			
 		</div>
