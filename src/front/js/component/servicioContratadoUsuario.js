@@ -40,6 +40,8 @@ const ServiciosContratados = () => {
                         <h5><strong>Estado del Servicio:</strong> {servicio.estado_servicio === "aceptar" ? "El servicio ha sido aceptado" : servicio.estado_servicio === "rechazar" ? "El servicio ha sido rechazado":""}</h5>
                         <button type="button" className="btn" onClick={()=>handleResponse(servicio.id, "aceptar")}>Aceptar servicio</button>
                         <button type="button" className="btn" onClick={()=>handleResponse(servicio.id, "rechazar")}>Rechazar servicio</button>
+                        <button type="button" className="btn">VOLVER TU PAGINA</button>
+
                     </div>
                     
                 ))}

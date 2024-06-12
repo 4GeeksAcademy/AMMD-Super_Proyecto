@@ -39,6 +39,7 @@ const ServiciosContratadosProfesional = () => {
                         <p><strong>Observaciones:</strong> {servicio.observaciones}</p>
                         <p><strong>Fecha de Contratación:</strong> {new Date(servicio.fecha_contratacion).toLocaleString()}</p>
                         <h5><strong>Estado del Servicio:</strong> {servicio.estado_servicio === "aceptar" ? "Tu servicio ha sido aceptado" : servicio.estado_servicio === "rechazar" ? "Tu servicio ha sido rechazado":""}</h5>
+                        <button type="button" className="btn">VOLVER TU PAGINA</button>
                     </div>
                 ))}
             </div>
