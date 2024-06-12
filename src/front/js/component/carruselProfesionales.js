@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../../styles/Carousel.css'; // Ruta actualizada y confirmada
 
-const Carousel2 = () => {
-  const activate = (e) => {
-    const slider = document.querySelector('.slider');
-    const items2 = document.querySelectorAll('.item');
+const Carousel2 = ({ Carousel2 }) => {
+  const sliderRef = useRef(null);
 
-    if (e.target.matches('.next')) {
-      slider.append(items2[0]);
-    } else if (e.target.matches('.prev')) {
-      slider.prepend(items2[items2.length - 1]);
+  const activate = (e) => {
+    const slider = sliderRef.current;
+    const items = slider.querySelectorAll('.item');
+
+    if (e.target.matches(`.siguiente-${Carousel2}`)) {
+      slider.append(items[0]);
+    } else if (e.target.matches(`.anterior-${Carousel2}`)) {
+      slider.prepend(items[items.length - 1]);
     }
   };
 
@@ -18,43 +20,31 @@ const Carousel2 = () => {
     return () => {
       document.removeEventListener('click', activate, false);
     };
-  }, []);
+  }, [Carousel2]);
 
   return (
     <>
     <h2 className="tituloCarruselCliente">UNETE A NUESTRO EQUIPO Y COMPARTE TU PASION CULINARIA CON EL MUNDO</h2>  
     <main>
-      <div className="slider">
-        <div className="item" style={{ backgroundImage: 'url(https://images.pexels.com/photos/4253303/pexels-photo-4253303.jpeg?auto=compress&cs=tinysrgb&w=600)' }}>
-          <div className="content">
-            <h2 className="title">Slide 1</h2>
-            <p className="description">Description for Slide 1</p>
-            <button>Learn more</button>
-          </div>
+    <div className="slider" ref={sliderRef}>
+        <div className="item" style={{ backgroundImage: 'url(https://images.pexels.com/photos/21077136/pexels-photo-21077136/free-photo-of-llamas-en-la-cocina.jpeg)' }}>
+          
         </div>
-        <div className="item" style={{ backgroundImage: 'url(https://images.pexels.com/photos/4252141/pexels-photo-4252141.jpeg?auto=compress&cs=tinysrgb&w=600)' }}>
-          <div className="content">
-            <h2 className="title">Slide 2</h2>
-            <p className="description">Description for Slide 2</p>
-            <button>Learn more</button>
-          </div>
+        <div className="item" style={{ backgroundImage: 'url(https://images.pexels.com/photos/4252141/pexels-photo-4252141.jpeg)' }}>
+          
         </div>
-        <div className="item" style={{ backgroundImage: 'url(https://images.pexels.com/photos/3933217/pexels-photo-3933217.jpeg?auto=compress&cs=tinysrgb&w=600)' }}>
-          <div className="content">
-            <h2 className="title">Slide 3</h2>
-            <p className="description">Description for Slide 3</p>
-            <button>Learn more</button>
-          </div>
+        <div className="item" style={{ backgroundImage: 'url(https://images.pexels.com/photos/3933217/pexels-photo-3933217.jpeg)' }}>
+          
+            
         </div>
       </div>
-      <div className="boton carrusel 2">
-        <span className="btn prev">Previous</span>
-        <span className="btn next">Next</span>
-      </div>
+      <div className="boton carrusel">
+        <span className={`btn anterior-${Carousel2}`}>Previous</span>
+        <span className={`btn siguiente-${Carousel2}`}>Next</span>
+      </div>     
     </main>
     </>
   );
 };
 
 export default Carousel2;
-

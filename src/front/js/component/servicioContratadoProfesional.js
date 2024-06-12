@@ -20,6 +20,10 @@ const ServiciosContratadosProfesional = () => {
         // Implementar la lógica para aceptar la orden de servicio
     };
 
+    const handleSubmit1 = () => {
+        navigate('/privadaprofesional');
+      };
+
     return (
         <div className="servicios-contratados-container"> {/* Agregamos una clase para el contenedor principal */}
             <h2>Servicios Contratados</h2>
@@ -38,8 +42,8 @@ const ServiciosContratadosProfesional = () => {
                         <p><strong>Costo de Servicio:</strong> {servicio.costo_servicio}</p>
                         <p><strong>Observaciones:</strong> {servicio.observaciones}</p>
                         <p><strong>Fecha de Contratación:</strong> {new Date(servicio.fecha_contratacion).toLocaleString()}</p>
-                        <h5><strong>Estado del Servicio:</strong> {servicio.estado_servicio === "aceptar" ? "Tu servicio ha sido aceptado" : servicio.estado_servicio === "rechazar" ? "Tu servicio ha sido rechazado":""}</h5>
-                        <button type="button" className="btn">VOLVER TU PAGINA</button>
+                        <h3><strong>Estado del Servicio:</strong> {servicio.estado_servicio === "aceptar" ? "Tu servicio ha sido aceptado" : servicio.estado_servicio === "rechazar" ? "Tu servicio ha sido rechazado":""}</h3>
+                        <button type="button" className="btn"  onClick={handleSubmit1}>VOLVER TU PAGINA</button>
                     </div>
                 ))}
             </div>

@@ -322,7 +322,7 @@ const OrdenDeServicio = () => {
                     </div>
                     <div>
                         
-                        <button onClick={() => handleguardarservicio(ficha)} className="btn btn-primary">Guardar y Contratar</button>
+                        <button onClick={() => handleguardarservicio(ficha)} className="btn">Guardar y Contratar</button>
                     </div>
                 </div>
             </div>
