@@ -27,6 +27,10 @@ import VistaReestablecerContrasena from "./pages/vistaReestablecerContrasena";
 import VistaActualizacionContrasena from "./pages/vistaActualizacionContrasena";
 import { VistaEditarProfesional } from "./pages/vistaEditarProfesional";
 import { VistaConversacion } from "./pages/vistaConversacion";
+import { VistaNoticiaUno } from "./pages/vistaNoticiaUno";
+import { VistaNoticiaDos } from "./pages/vistaNoticiaDos";
+import { VistaNoticiaTres } from "./pages/vistaNoticiaTres";
+import { VistaNoticiaCuatro } from "./pages/vistaNoticiaCuatro";
 import { VistaOrdenDeServicio } from "./pages/vistaOrdenDeServicio";
 import VistaServiciosContratadosUsuario from "./pages/vistaServicioContratadoUsuario";
 import VistaServiciosContratadosProfesional from "./pages/vistaServiciosContratadosProfesional";
@@ -64,6 +68,10 @@ const Layout = () => {
                         <Route element={<VistaReestablecerContrasena />} path="/reestablecercontrasena" />
                         <Route element={<VistaActualizacionContrasena />} path="/resetpassword/:token" />
                         <Route element={<VistaConversacion />} path="/conversacion" />
+                        <Route element={<VistaNoticiaUno />} path="/vistaNoticiaUno" />
+                        <Route element={<VistaNoticiaDos />} path="/vistaNoticiaDos" />
+                        <Route element={<VistaNoticiaTres />} path="/vistaNoticiaTres" />
+                        <Route element={<VistaNoticiaCuatro />} path="/vistaNoticiaCuatro" />
                         <Route element={<VistaOrdenDeServicio />} path="/ordenservicio" />
                         <Route element={<VistaServiciosContratadosUsuario />} path="/servicioscontratadosusuario" />
                         <Route element={<VistaServiciosContratadosProfesional/>} path="/servicioscontratadosprofesional" />

@@ -1,13 +1,10 @@
 .footer {
     background-color: #C09F65;
     position: relative;
-    width: 100%;
-    min-height: 100px;
-    padding: 20px 50px;
+    max-height: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     border-top: solid black 10px;
 }
   
