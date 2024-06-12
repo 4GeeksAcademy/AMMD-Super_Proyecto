@@ -543,11 +543,14 @@ def crear_servicio_contratado():
         return jsonify({"msg": "Profesional no encontrado"}), 404
 
     # Verificar si todos los campos requeridos están presentes en los datos recibidos
-    campos_requeridos = ['nombre_evento', 'fecha', 'numero_personas', 'hora', 'servicio_profesional', 'tipo_evento', 'localizacion', 'direccion', 'servicio_incluye', 'costo_servicio', 'observaciones', 'cliente_id', 'fecha_contratacion']
+    campos_requeridos = ['nombre_evento', 'fecha', 'numero_personas', 'hora', 'servicio_profesional', 'tipo_evento', 'localizacion', 'direccion', 'servicio_incluye', 'costo_servicio', 'observaciones', 'cliente_email', 'fecha_contratacion']
     for campo in campos_requeridos:
         if campo not in data:
             return jsonify({"msg": f"El campo {campo} es requerido"}), 400
 
+    cliente_id = User.query.filter_by(email=data["cliente_email"]).first()
+    if not cliente_id:
+        return jsonify({"usuario no encontrado"}),404
     # Crear el nuevo servicio contratado
     nuevo_servicio_contratado = ServiciosContratados(
         nombre_evento=data['nombre_evento'],
@@ -561,7 +564,7 @@ def crear_servicio_contratado():
         servicio_incluye=data['servicio_incluye'],
         costo_servicio=data['costo_servicio'],
         observaciones=data['observaciones'],
-        cliente_id=data['cliente_id'],
+        cliente_id=cliente_id.id,
         profesional_id=profesional_id,
         fecha_contratacion=data['fecha_contratacion'],
         estado_servicio="enviar"

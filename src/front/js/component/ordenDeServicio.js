@@ -68,7 +68,7 @@ const OrdenDeServicio = () => {
         servicio_incluye: "",
         costo_servicio: "",
         observaciones: "",
-        cliente_id: store.cliente_id || 1, // Assuming cliente_id is obtained from the store or a default value
+        cliente_email: store.cliente_email, // Assuming cliente_id is obtained from the store or a default value
         profesional_id: store.profesional_id || 1, // Assuming profesional_id is obtained from the store or a default value
         fecha_contratacion: new Date().toISOString()
     });
@@ -93,7 +93,7 @@ const OrdenDeServicio = () => {
                 servicio_incluye: "",
                 costo_servicio: "",
                 observaciones: "",
-                cliente_id: store.cliente_id || 1,
+                cliente_email: store.cliente_email,
                 profesional_id: store.profesional_id || 1,
                 fecha_contratacion: new Date().toISOString()
             });
@@ -228,6 +228,17 @@ const OrdenDeServicio = () => {
                                 id="nombre_evento"
                                 name="nombre_evento"
                                 value={ficha.nombre_evento}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="cliente_email" className="form-label">Cliente email</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="cliente_email"
+                                name="cliente_email"
+                                value={ficha.cliente_email}
                                 onChange={handleInputChange}
                             />
                         </div>

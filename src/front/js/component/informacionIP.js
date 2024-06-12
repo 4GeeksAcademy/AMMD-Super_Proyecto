@@ -19,20 +19,20 @@ const InformacionIp = () => {
 
     return (
         <div>
-            <h1>IP Information for {ipInfo.ip}</h1>
-            <p>Type: {ipInfo.version}</p>
-            <p>Continent: {ipInfo.continent_code}</p>
+            {/* <h1>IP Information for {ipInfo.ip}</h1> */}
+            {/* <p>Type: {ipInfo.version}</p>
+            <p>Continent: {ipInfo.continent_code}</p> */}
             <p>Country: {ipInfo.country_name} ({ipInfo.country_code})</p>
-            <p>Region: {ipInfo.region} ({ipInfo.region_code})</p>
+            {/* <p>Region: {ipInfo.region} ({ipInfo.region_code})</p> */}
             <p>City: {ipInfo.city}</p>
-            <p>Latitude: {ipInfo.latitude}</p>
-            <p>Longitude: {ipInfo.longitude}</p>
-            <p>Postal Code: {ipInfo.postal}</p>
-            <p>Calling Code: {ipInfo.country_calling_code}</p>
-            <p>Capital: {ipInfo.country_capital}</p>
-            <p>EU Member: {ipInfo.in_eu ? "Yes" : "No"}</p>
-            <p>Time Zone: {ipInfo.timezone}, UTC Offset: {ipInfo.utc_offset}</p>
-            <p>ISP: {ipInfo.org}</p>
+            {/* <p>Latitude: {ipInfo.latitude}</p>
+            <p>Longitude: {ipInfo.longitude}</p> */}
+            {/* <p>Postal Code: {ipInfo.postal}</p> */}
+            {/* <p>Calling Code: {ipInfo.country_calling_code}</p> */}
+            {/* <p>Capital: {ipInfo.country_capital}</p> */}
+            {/* <p>EU Member: {ipInfo.in_eu ? "Yes" : "No"}</p> */}
+            {/* <p>Time Zone: {ipInfo.timezone}, UTC Offset: {ipInfo.utc_offset}</p> */}
+            {/* <p>ISP: {ipInfo.org}</p> */}
         </div>
     );
 };

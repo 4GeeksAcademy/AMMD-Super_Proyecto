@@ -16,7 +16,12 @@ const PrivadaCliente = () => {
     console.log(store.usuarios, "usuario")
   },[store.usuarios])
   
-  
+  useEffect(() => {
+    if (store.usuarios && store.usuarios.id) {
+      setUsuarioId(store.usuarios.id);
+      actions.cargarUsuario()
+    }
+  }, [store.usuarios]);  
 
   const handleEditar = () => {
     navigate('/editarusuario', { state: { usuario: store.usuarios } });
@@ -76,14 +81,8 @@ const PrivadaCliente = () => {
               onClick={handleEditar}
               >
                 EDITAR
-            </button>       
-            <button 
-              type="button"
-              className="btn editar-cliente"
-              onClick={handleServicio}
-              >
-               SERVICIOS CONTRATATDOS
-            </button>           
+            </button>      
+                      
             <button type="button" className="btn eliminar-cliente"    onClick={handleEliminar}>ELIMINAR</button>
           </div>
         </div>
