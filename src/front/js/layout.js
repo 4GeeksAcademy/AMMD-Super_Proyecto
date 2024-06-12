@@ -27,6 +27,7 @@ import VistaReestablecerContrasena from "./pages/vistaReestablecerContrasena";
 import VistaActualizacionContrasena from "./pages/vistaActualizacionContrasena";
 import { VistaEditarProfesional } from "./pages/vistaEditarProfesional";
 import { VistaConversacion } from "./pages/vistaConversacion";
+import { VistaNoticiaUno } from "./pages/vistaNoticiaUno";
 import { VistaOrdenDeServicio } from "./pages/vistaOrdenDeServicio";
 import VistaServiciosContratadosUsuario from "./pages/vistaServicioContratadoUsuario";
 import VistaServiciosContratadosProfesional from "./pages/vistaServiciosContratadosProfesional";
@@ -63,6 +64,7 @@ const Layout = () => {
                         <Route element={<VistaReestablecerContrasena />} path="/reestablecercontrasena" />
                         <Route element={<VistaActualizacionContrasena />} path="/resetpassword/:token" />
                         <Route element={<VistaConversacion />} path="/conversacion" />
+                        <Route element={<VistaNoticiaUno />} path="/vistaNoticiaUno" />
                         <Route element={<VistaOrdenDeServicio />} path="/ordenservicio" />
                         <Route element={<VistaServiciosContratadosUsuario />} path="/servicioscontratadosusuario" />
                         <Route element={<VistaServiciosContratadosProfesional/>} path="/servicioscontratadosprofesional" />

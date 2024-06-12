@@ -1,0 +1,6 @@
+.imagen {
+    border: 5px solid #C09F65; /* Puedes cambiar el color y grosor del borde según prefieras */
+    border-radius: 5px; /* Esto es opcional para darle bordes redondeados */
+    max-width: 100%; /* Para que la imagen no exceda el tamaño del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
