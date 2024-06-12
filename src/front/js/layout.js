@@ -30,6 +30,7 @@ import { VistaConversacion } from "./pages/vistaConversacion";
 import { VistaOrdenDeServicio } from "./pages/vistaOrdenDeServicio";
 import VistaServiciosContratadosUsuario from "./pages/vistaServicioContratadoUsuario";
 import VistaServiciosContratadosProfesional from "./pages/vistaServiciosContratadosProfesional";
+import { VistaInformacionIP } from "./pages/vistaInformacionIp";
 
 
 
@@ -66,6 +67,9 @@ const Layout = () => {
                         <Route element={<VistaOrdenDeServicio />} path="/ordenservicio" />
                         <Route element={<VistaServiciosContratadosUsuario />} path="/servicioscontratadosusuario" />
                         <Route element={<VistaServiciosContratadosProfesional/>} path="/servicioscontratadosprofesional" />
+                        {/* //path de prueba */}
+                        <Route element={<VistaInformacionIP/>} path="/infoip" />
+
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />

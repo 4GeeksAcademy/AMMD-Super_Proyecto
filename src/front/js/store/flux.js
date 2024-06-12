@@ -18,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             localidadSeleccionada: null,
 
             serviciosContratados: [],
+            ipInfo: null,
 
             conversaciones: [],
             usuarios: []
@@ -507,6 +508,19 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error("Error al crear la conversación:", error);
                 });
             },
+            obtenerID: async () => {
+                try {
+                    const response = await fetch("https://ipapi.co/json/");
+                    const result = await response.json();
+                    setStore({ ipInfo: result });
+                } catch (error) {
+                    console.error("Error fetching IP info:", error);
+                }
+            },        
+            
+            
+      
+            
 
             exampleFunction: () => {
                 getActions().changeColor(0, "green");
