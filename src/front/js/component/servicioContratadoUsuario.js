@@ -22,9 +22,9 @@ const ServiciosContratados = () => {
     return (
         <div className="servicios-contratados-container"> {/* Agregamos una clase para el contenedor principal */}
             <h2>Servicios Contratados</h2>
-            <div className="servicios-list"> {/* Contenedor de la lista de servicios */}
+            <div className="servicios-list"> 
                 {store.serviciosContratados.map(servicio => (
-                    <div key={servicio.id} className={`servicio-card ${servicio.estado_servicio=="aceptar"?"bg-success" : servicio.estado_servicio == "rechazar"?"bg-danger":""}`}> {/* Tarjeta para cada servicio contratado */}
+                    <div key={servicio.id} className={`servicio-card ${servicio.estado_servicio=="aceptar"?"bg-success" : servicio.estado_servicio == "rechazar"?"bg-danger":""}`}> 
                         <h3>{servicio.nombre_evento}</h3>
                         <p><strong>Fecha:</strong> {new Date(servicio.fecha).toLocaleDateString()}</p>
                         <p><strong>Número de Personas:</strong> {servicio.numero_personas}</p>
@@ -37,6 +37,7 @@ const ServiciosContratados = () => {
                         <p><strong>Costo de Servicio:</strong> {servicio.costo_servicio}</p>
                         <p><strong>Observaciones:</strong> {servicio.observaciones}</p>
                         <p><strong>Fecha de Contratación:</strong> {new Date(servicio.fecha_contratacion).toLocaleString()}</p>
+                        <h5><strong>Estado del Servicio:</strong> {servicio.estado_servicio === "aceptar" ? "El servicio ha sido aceptado" : servicio.estado_servicio === "rechazar" ? "El servicio ha sido rechazado":""}</h5>
                         <button type="button" className="btn" onClick={()=>handleResponse(servicio.id, "aceptar")}>Aceptar servicio</button>
                         <button type="button" className="btn" onClick={()=>handleResponse(servicio.id, "rechazar")}>Rechazar servicio</button>
                     </div>
