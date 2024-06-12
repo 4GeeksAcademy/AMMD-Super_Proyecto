@@ -9,7 +9,7 @@ const Jumbotron = () => {
             <h1 className="display-4">ADOPTA UN CHEF</h1>
             <h3 className="lead">Solo para disfrutones</h3>
             <hr className="my-4"/>
-            <p className="lema">Gastronomía a domicilio: Saborea la excelencia de los mejores profesionalesa en la comodidad de tu hogar.</p>
+            <p className="lema">Gastronomía a domicilio: Saborea la excelencia de los mejores profesionales en la comodidad de tu hogar.</p>
         </div>
     )
 }

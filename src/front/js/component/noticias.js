@@ -26,10 +26,10 @@ const Noticias = () => {
                 </div>
                 <div className="col-md-3 noticias" style={{ flex: '0 0 auto' }}>
                     <div className="card-noticia">
-                        <img src="https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top noticias" alt="..." />
+                        <img src="https://images.pexels.com/photos/6489509/pexels-photo-6489509.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top noticias" alt="..." />
                         <div className="card-body noticias">
-                            <h5 className="card-title">TITULO</h5>
-                            <a href="#" className="btn noticias">
+                            <h5 className="card-title">COCINA INTELIGENTE</h5>
+                            <a href="#" className="btn noticias" onClick={() => navigate(`/vistaNoticiaDos`)}>
                                 Ver Noticia
                             </a>
                         </div>
@@ -37,10 +37,10 @@ const Noticias = () => {
                 </div>
                 <div className="col-md-3 noticias" style={{ flex: '0 0 auto' }}>
                     <div className="card-noticia">
-                        <img src="https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top noticias" alt="..." />
+                        <img src="https://images.pexels.com/photos/22665550/pexels-photo-22665550/free-photo-of-capsula-de-carrera.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top noticias" alt="..." />
                         <div className="card-body noticias">
-                            <h5 className="card-title">TITULO</h5>
-                            <a href="#" className="btn noticias">
+                            <h5 className="card-title">REVOLUCION CELULAR</h5>
+                            <a href="#" className="btn noticias" onClick={() => navigate(`/vistaNoticiaTres`)}>
                                 Ver Noticia
                             </a>
                         </div>
@@ -48,10 +48,10 @@ const Noticias = () => {
                 </div>
                 <div className="col-md-3 noticias" style={{ flex: '0 0 auto' }}>
                     <div className="card-noticia">
-                        <img src="https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top noticias" alt="..." />
+                        <img src="https://images.pexels.com/photos/4877840/pexels-photo-4877840.jpeg?auto=compress&cs=tinysrgb&w=600" className="card-img-top noticias" alt="..." />
                         <div className="card-body noticias">
-                            <h5 className="card-title">TITULO</h5>
-                            <a href="#" className="btn noticias">
+                            <h5 className="card-title">CRISIS POTASIO</h5>
+                            <a href="#" className="btn noticias" onClick={() => navigate(`/vistaNoticiaCuatro`)}>
                                 Ver Noticia
                             </a>
                         </div>

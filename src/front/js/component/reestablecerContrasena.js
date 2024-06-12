@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../../styles/restablecerContrasena.css";
 
 
 
@@ -37,10 +38,10 @@ const RequestPasswordReset = () => {
     return (
         <div className="d-flex justify-content-center">
             <div className="text-center" style={{ width: "300px" }}>
-                <div className="card-header h5 text-white bg-primary">Password Reset</div>
+                <div className="card-header h5 text-white bg-primary">RESTABLECER CONTRASEÑA</div>
                 <div className="card-body px-5">
                     <p className="card-text py-2">
-                        Enter your email address and we'll send you an email with instructions to reset your password.
+                    Ingrese su dirección de correo electrónico y le enviaremos un correo con instrucciones para restablecer su contraseña.
                     </p>
                     <div data-mdb-input-init className="form-outline">
                         <input 
@@ -50,19 +51,15 @@ const RequestPasswordReset = () => {
                             value={email} 
                             onChange={handleEmailChange} 
                         />
-                        <label className="form-label" htmlFor="typeEmail">Email input</label>
+                        <label className="form-label" htmlFor="typeEmail">Entrada de Correo Electrónico</label>
                     </div>
                     <button 
                         onClick={handleResetPassword} 
                         className="btn w-100"
                     >
-                        Reset password
+                        RESTABLECER CONTRASEÑA
                     </button>
                     {message && <p className="mt-3">{message}</p>}
-                    <div className="d-flex justify-content-between mt-4">
-                        <a className="" href="#">Login</a>
-                        <a className="" href="#">Register</a>
-                    </div>
                 </div>
             </div>
         </div>

@@ -1,10 +1,10 @@
 /* Asegura que .col-md-3.noticias tenga un borde y separación entre cada card */
 .col-md-3.noticias {
-    border: 2px solid #C09F65;  /* Define el borde de la card */
+    border: 5px solid #C09F65;  /* Define el borde de la card */
     border-radius: 10px;  /* Bordes redondeados */
     overflow: hidden;  /* Asegura que el contenido no se desborde */
     padding: 10px;  /* Padding opcional dentro de la card */
-    margin: 1px;  /* Añade margen horizontal para la separación */
+    margin: 8px;  /* Añade margen horizontal para la separación */
 }
 
 /* Botón más pequeño y centrado */
@@ -32,5 +32,9 @@
 
 .tituloNoticias {
     border-bottom: solid #C09F65 3px;
+}
+
+.card-title {
+    border-bottom: 5px solid #C09F65;
 }
 
