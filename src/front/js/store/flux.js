@@ -3,12 +3,8 @@ const BASE_URL = process.env.BACKEND_URL;
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            usuarios: [
-
-            ],
-            profesionales: [
-                
-            ],
+            usuarios: [],
+            profesionales: [],
             usuarioSeleccionado: [],
             profesionalSeleccionado: [],
             token: null,
@@ -21,7 +17,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             ipInfo: null,
 
             conversaciones: [],
-            usuarios: []
 
         },
         actions: {
@@ -149,9 +144,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                         return response.json();
                     })
                     .then((data) => {
-                        setStore({ token: data.token });
-                        localStorage.setItem("token",data.token)                       
-                        return true;  // Retorna true en caso de éxito
+                        setStore({ token: data.token, profesionales: data.profesional });
+                        console.log(data)
+                        localStorage.setItem("id",data.profesional.id)                      
+                        const store = getStore();
+                        console.log(store.profesionales);
+                        return true;
                     })
                     .catch((error) => {
                         console.error("Error al iniciar sesión:", error);
@@ -171,20 +169,25 @@ const getState = ({ getStore, getActions, setStore }) => {
                     body: JSON.stringify(userData)
                 };
                 return fetch(BASE_URL + "/api/editarusuario", requestOptions)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Error en la solicitud");
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log("Usuario editado exitosamente", data);
-                        // Puedes actualizar el estado o realizar otras acciones aquí
-                        return data;
-                    })
-                    .catch(error => {
-                        console.error("Error al editar el usuario", error);
-                    });
+                .then(response => {
+                    if (response.ok) {
+                        return response.json(); // Devuelve los datos si la respuesta es exitosa
+                    } else if (response.status === 404) {
+                        throw new Error("Recurso no encontrado"); // Maneja específicamente el error 404
+                    } else {
+                        throw new Error("Error en la solicitud"); // Maneja otros errores de manera genérica
+                    }
+                })
+                .then(data => {
+                    console.log("Usuario editado exitosamente", data);
+                    console.log(data.usuario)
+                    setStore({ usuarios: data.usuario });
+                    // Puedes actualizar el estado o realizar otras acciones aquí
+                    return data;
+                })
+                .catch(error => {
+                    console.error("Error al editar el usuario", error);
+                });
             },
             cerrarSesionUsuario: () => {
                 const store = getStore();
@@ -277,6 +280,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .then(data => {
                         console.log("Profesional editado exitosamente", data);
+                        console.log(data.profesional)
+                        setStore({ profesionales: data.profesional });
                         // Puedes actualizar el estado o realizar otras acciones aquí
                         return data;
                     })
