@@ -38,12 +38,31 @@ const getState = ({ getStore, getActions, setStore }) => {
                     .then(data => setStore({ profesionales: data.results }))
                     .catch(err => console.error("Error al cargar profesionales:", err));
             },
-            cargarUsuario: (id) => {
-                fetch(BASE_URL + "/api/usuario/" + id)
-                    .then(res => res.json())
-                    .then(data => setStore({ usuarioSeleccionado: data.results }))
-                    .catch(err => console.error("Error al cargar usuario:", err));
-            },
+            cargarUsuario : (id) => (dispatch, getStore) => {
+                const store = getStore();
+                const token = store.token;
+              
+                fetch(`${BASE_URL}/api/usuario/${id}`, {
+                  method: 'GET',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                  }
+                })
+                  .then(res => {
+                    if (!res.ok) {
+                      throw new Error('Error al cargar usuario');
+                    }
+                    return res.json();
+                  })
+                  .then(data => {
+                    dispatch({
+                      type: 'CARGAR_USUARIO',
+                      payload: data.results
+                    });
+                  })
+                  .catch(err => console.error("Error al cargar usuario:", err));
+              },
             cargarProfesional: (id) => {
                 fetch(BASE_URL + "/api/profesional/" + id)
                     .then(res => res.json())
@@ -201,7 +220,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                     });
             },
             eliminarUsuario: () => {
-                const token = localStorage.getItem('token');
+                const store = getStore();
+                const token = store.token;
 
                 const requestOptions = {
                     method: "DELETE",
