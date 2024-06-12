@@ -61,20 +61,13 @@ const handleCrearOrden = () => {
           <div className="col">
             <h3>Hola !!!</h3>         
             <br />
-            <h6>Nombre </h6>
-            <p>{store.profesionales.nombre}</p>
-            <h6>Apellido </h6>
-            <p>{store.profesionales.apellidos}</p>
-            <h6>Email </h6>
-            <p>{store.profesionales.email}</p>
-            <h6>Profesion</h6>
-            <p>{store.profesionales.descripcion}</p>
-            <h6>Información adicional</h6>
-            <p>{store.profesionales.info_adicional}</p>
-            <h6>Población</h6>
-            <p>{store.profesionales.localizacion}</p>
-            <h6>tipos de servicio</h6>
-            <p>{store.profesionales.tipo_servicio_chef}</p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Nombre: ">{profesionalEncontrado?.nombre}</p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Apellidos: ">{profesionalEncontrado?.apellidos}</p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Email: ">{profesionalEncontrado?.email}</p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Descripción: ">{profesionalEncontrado?.descripcion}</p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Información Adicional: ">{profesionalEncontrado?.info_adicional}</p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Población: ">{profesionalEncontrado?.localizacion}</p>
+            <p className="editable-placeholder" contentEditable="true" data-placeholder="Tipo de servicio Chef: ">{profesionalEncontrado?.tipo_servicio_chef}</p>
             <button type="button" className="btn editar-profesional"  onClick={handleEditar}>EDITAR</button>
             <button type="button" className="btn eliminar-profesional"  onClick={handleEliminar}>ELIMINAR</button>
             <button type="button" className="btn "  onClick={handleCrearOrden}>CREAR ORDEN DE SERVICIO</button>

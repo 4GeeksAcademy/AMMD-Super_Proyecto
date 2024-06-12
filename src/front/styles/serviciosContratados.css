@@ -1,0 +1,6 @@
+.servicio-card {
+    margin-right: 350px;
+    border-radius: 10px; /* Puedes ajustar el valor según el nivel de redondez deseado */
+    border: 5px solid rgba(255, 255, 255, 0.6); /* Agrega un borde para resaltar el redondeo */
+    padding: 10px; /* Agrega algo de espacio alrededor del contenido */
+}
