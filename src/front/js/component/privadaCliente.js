@@ -11,11 +11,12 @@ const PrivadaCliente = () => {
   const { store, actions } = useContext(Context);
   const [usuarioId, setUsuarioId] = useState(null); // Estado local para almacenar el usuarioId
 
-  useEffect(() => {
-    if (store.usuarios && store.usuarios.id) {
-      setUsuarioId(store.usuarios.id);
-    }
-  }, [store.usuarios]);  
+  useEffect (() => {
+    // actions.cargarProfesional(store.profesionalSeleccionado.id)
+    console.log(store.usuarios, "usuario")
+  },[store.usuarios])
+  
+  
 
   const handleEditar = () => {
     navigate('/editarusuario', { state: { usuario: store.usuarios } });

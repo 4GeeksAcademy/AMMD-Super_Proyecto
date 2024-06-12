@@ -122,7 +122,7 @@ def iniciar_sesion_profesional():
     if profesional is None or not check_password_hash(profesional.password, password):
         return jsonify({"msg": "Profesional no encontrado o contraseña incorrecta"}), 401
     access_token = create_access_token(identity=profesional.id)
-    return jsonify({"token": access_token, "profesional_id": profesional.id}), 200
+    return jsonify({"token": access_token, "profesional": profesional.serialize()}), 200
 
 
 #ruta vista privada usuario
@@ -229,7 +229,7 @@ def editar_usuario():
 
     db.session.commit()
 
-    return jsonify({"msg": "Usuario editado exitosamente"}), 200
+    return jsonify({"msg": "Usuario editado exitosamente", "usuario": user.serialize()}), 200
 
 # Método para editar profesional
 @api.route("/editarprofesional", methods=["PUT"])
@@ -282,7 +282,7 @@ def editar_profesional():
     # Guardar los cambios en la base de datos
     db.session.commit()
 
-    return jsonify({"msg": "Detalles del profesional actualizados exitosamente"}), 200
+    return jsonify({"msg": "Detalles del profesional actualizados exitosamente", "profesional": profesional.serialize()}), 200
 
 
 #metodo Eliminar usuario

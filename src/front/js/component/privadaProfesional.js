@@ -9,18 +9,13 @@ import { useState,useEffect } from 'react';
 
 
 const PrivadaProfesional = () => {
-
    const navigate = useNavigate();
    const{store,actions}= useContext(Context)
 
-   //prueba para renderizar un usuario
-const profesionalId = 1; 
-const profesionalEncontrado = store.profesionales.find(profesional => profesional.id === profesionalId);
-if (profesionalEncontrado) {
-  console.log("profesional encontrado:", profesionalEncontrado);
-} else {
-  console.log("No se encontró ningún profesional con el ID:", profesionalId);
-}
+useEffect (() => {
+  // actions.cargarProfesional(store.profesionalSeleccionado.id)
+  console.log(store.profesionales, "profesional")
+},[store.profesionales])
 
 const handleServiciosContratadosProfesional = () => {
   navigate('/servicioscontratadosprofesional', { state: { profesional: store.profesionales } });
@@ -67,19 +62,19 @@ const handleCrearOrden = () => {
             <h3>Hola !!!</h3>         
             <br />
             <h6>Nombre </h6>
-            <p>{profesionalEncontrado?.nombre}</p>
+            <p>{store.profesionales.nombre}</p>
             <h6>Apellido </h6>
-            <p>{profesionalEncontrado?.apellidos}</p>
+            <p>{store.profesionales.apellidos}</p>
             <h6>Email </h6>
-            <p>{profesionalEncontrado?.email}</p>
+            <p>{store.profesionales.email}</p>
             <h6>Profesion</h6>
-            <p>{profesionalEncontrado?.descripcion}</p>
+            <p>{store.profesionales.descripcion}</p>
             <h6>Información adicional</h6>
-            <p>{profesionalEncontrado?.info_adicional}</p>
+            <p>{store.profesionales.info_adicional}</p>
             <h6>Población</h6>
-            <p>{profesionalEncontrado?.localizacion}</p>
+            <p>{store.profesionales.localizacion}</p>
             <h6>tipos de servicio</h6>
-            <p>{profesionalEncontrado?.tipo_servicio_chef}</p>
+            <p>{store.profesionales.tipo_servicio_chef}</p>
             <button type="button" className="btn editar-profesional"  onClick={handleEditar}>EDITAR</button>
             <button type="button" className="btn eliminar-profesional"  onClick={handleEliminar}>ELIMINAR</button>
             <button type="button" className="btn "  onClick={handleCrearOrden}>CREAR ORDEN DE SERVICIO</button>

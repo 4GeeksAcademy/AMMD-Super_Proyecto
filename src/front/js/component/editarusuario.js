@@ -63,7 +63,7 @@ const EditarUsuario = () => {
         actions.editarUsuario(dataToSend)
             .then(result => {
                 if (result) {
-                    window.alert("Usuario editado con éxito");
+                    window.alert("Usuario editado con éxito");                    
                     navigate("/privadacliente");  // Cambia "/ruta-de-vista-privada" por la ruta real de tu vista privada
                 }
             })
