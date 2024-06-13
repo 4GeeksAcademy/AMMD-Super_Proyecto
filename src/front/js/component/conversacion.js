@@ -1,44 +1,63 @@
-import React, { useState } from "react";
-import "../../styles/conversacion.css";
+import React, { useState, useContext } from "react";
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
 
-const Conversacion = () => {
-  const [messages, setMessages] = useState([]);
-  const [currentMessage, setCurrentMessage] = useState('');
-  const [sender, setSender] = useState('profesional');
 
-  const handleSendMessage = (e) => {
+const CrearConversacion = ({ profesional_id, usuario_id }) => {
+  const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+
+  const [mensaje, setMensaje] = useState("");
+  const [remite, setRemite] = useState("usuario");
+
+  const handleEnviarMensaje = (e) => {
     e.preventDefault();
-    if (currentMessage.trim() === '') return;
-
-    setMessages([...messages, { text: currentMessage, sender }]);
-    setCurrentMessage('');
+    // Verifica si el usuario está autenticado
+    if (!store.isAuthenticated) {
+      // Redirecciona al usuario a la página de inicio de sesión si no está autenticado
+      navigate("/login");
+      return;
+    }
+    // Llama a la función para crear la conversación
+    crearConversacion(profesional_id, usuario_id, mensaje);
+    // Limpia el estado del mensaje después de enviarlo
+    setMensaje("");
   };
 
   return (
-    <div className="message-board">
-      <h2>Mensaje Board</h2>
-      <div className="message-list">
-        {messages.map((message, index) => (
-          <div key={index} className={`message ${message.sender}`}>
-            <span className="sender">{message.sender}:</span> {message.text}
-          </div>
-        ))}
-      </div>
-      <form onSubmit={handleSendMessage} className="message-form">
-        <select value={sender} onChange={(e) => setSender(e.target.value)}>
-          <option value="profesional">Profesional</option>
-          <option value="cliente">Cliente</option>
-        </select>
-        <input
-          type="text"
-          value={currentMessage}
-          onChange={(e) => setCurrentMessage(e.target.value)}
-          placeholder="Escribe tu mensaje..."
-        />
+    <div>
+      <h2>Crear Conversación</h2>
+      <form onSubmit={handleEnviarMensaje}>
+        <div>
+          <label>
+            Mensaje:
+            <input
+              type="text"
+              value={mensaje}
+              onChange={(e) => setMensaje(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Remite:
+            <select value={remite} onChange={(e) => setRemite(e.target.value)}>
+              <option value="usuario">Usuario</option>
+              <option value="profesional">Profesional</option>
+            </select>
+          </label>
+        </div>
         <button type="submit">Enviar</button>
       </form>
     </div>
   );
 };
 
-export default Conversacion;
+CrearConversacion.propTypes = {
+  usuario_id: PropTypes.number.isRequired,
+  profesional_id: PropTypes.number.isRequired,
+};
+
+export default CrearConversacion;
