@@ -144,6 +144,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         return response.json();
                     })
                     .then((data) => {
+                        localStorage.setItem("token", data.token)
                         setStore({ token: data.token, profesionales: data.profesional });
                         console.log(data)
                         localStorage.setItem("id",data.profesional.id)                      
@@ -372,7 +373,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
             crearServicioContratado: (data) => {
 
-                const token = localStorage.getItem('token');
+                // const store = getStore();
+                // const token = store.token;
+                const token = localStorage.getItem("token")
 
                 console.log(token)
                 if (!token) {

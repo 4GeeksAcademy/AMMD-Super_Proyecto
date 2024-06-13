@@ -1,10 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from "../store/appContext";
+
 
 const OrdenDeServicio = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
+    const token = localStorage.getItem("token")
+
+useEffect(()=>{
+    console.log(token)
+},[])
 
     const [profesionalSeleccionado, setProfesionalSeleccionado] = useState("");
     const [tipoDeEvento, setTipoDeEvento] = useState("");
@@ -100,9 +106,11 @@ const OrdenDeServicio = () => {
         }
     };
 
-    const handleguardarservicio = (ficha) => {
-        actions.crearServicioContratado(ficha);
+    const handleguardarservicio = (ficha,token) => {
+
+        actions.crearServicioContratado(ficha,token);
         window.alert('¡Servicio enviado con éxito!');
+        console.log(ficha)
         navigate('/privadaprofesional'); 
     };
     console.log(ficha)
@@ -322,7 +330,7 @@ const OrdenDeServicio = () => {
                     </div>
                     <div>
                         
-                        <button onClick={() => handleguardarservicio(ficha)} className="btn">Guardar y Contratar</button>
+                        <button onClick={() => handleguardarservicio(ficha,token)} className="btn">Guardar y Contratar</button>
                     </div>
                 </div>
             </div>
