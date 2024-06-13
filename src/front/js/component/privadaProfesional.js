@@ -68,13 +68,57 @@ const handleCrearOrden = () => {
             <h6>Email </h6>
             <p>{store.profesionales.email}</p>
             <h6>Profesion</h6>
-            <p>{store.profesionales.descripcion}</p>
+            <p>{store.profesionales.tipo_de_profesional}</p>
             <h6>Información adicional</h6>
             <p>{store.profesionales.info_adicional}</p>
             <h6>Población</h6>
             <p>{store.profesionales.localizacion}</p>
-            <h6>tipos de servicio</h6>
-            <p>{store.profesionales.tipo_servicio_chef}</p>
+
+            {store.profesionales.tipo_de_profesional === "chef" && (
+              <>
+                <h6>Tipos de servicio del chef</h6>
+                {store.profesionales.tipo_servicio_chef_pica_pica && <p>{store.profesionales.tipo_servicio_chef_pica_pica}</p>}
+                {store.profesionales.tipo_servicio_chef_taller_de_cocina && <p>{store.profesionales.tipo_servicio_chef_taller_de_cocina}</p>}
+                {store.profesionales.tipo_servicio_chef_comida_de_trabajo && <p>{store.profesionales.tipo_servicio_chef_comida_de_trabajo}</p>}
+                {store.profesionales.tipo_servicio_chef_servicio_degustacion && <p>{store.profesionales.tipo_servicio_chef_servicio_degustacion}</p>}
+                {store.profesionales.tipo_servicio_chef_comida_informal && <p>{store.profesionales.tipo_servicio_chef_comida_informal}</p>}
+                {store.profesionales.tipo_servicio_chef_batchcooking && <p>{store.profesionales.tipo_servicio_chef_batchcooking}</p>} 
+              </>         
+            )}
+
+            {store.profesionales.tipo_de_profesional === "cortador de jamon" && (
+              <>
+                <h6>Tipos de servicio del jamonero</h6>
+                {store.profesionales.tipo_servicio_jamonero_corte && <p>{store.profesionales.tipo_servicio_jamonero_corte}</p>}
+                {store.profesionales.tipo_servicio_jamonero_clase_corte && <p>{store.profesionales.tipo_servicio_jamonero_clase_corte}</p>}
+              </>         
+            )}
+
+            {store.profesionales.tipo_de_profesional === "sumiller" && (
+              <>
+                <h6>Tipos de servicio del sumiller</h6>
+                {store.profesionales.tipo_servicio_sumiller_maridaje && <p>{store.profesionales.tipo_servicio_sumiller_maridaje}</p>}
+                {store.profesionales.tipo_servicio_sumiller_cata && <p>{store.profesionales.tipo_servicio_sumiller_cata}</p>}
+              </>         
+            )}
+
+            {store.profesionales.tipo_de_profesional === "pastelero" && (
+              <>
+                <h6>Tipos de servicio del pastelero</h6>
+                {store.profesionales.tipo_servicio_pastelero_clase && <p>{store.profesionales.tipo_servicio_pastelero_clase}</p>}
+                {store.profesionales.tipo_servicio_pastelero_desayuno && <p>{store.profesionales.tipo_servicio_pastelero_desayuno}</p>}
+                {store.profesionales.tipo_servicio_pastelero_merienda && <p>{store.profesionales.tipo_servicio_pastelero_merienda}</p>}
+              </>         
+            )}    
+
+            {store.profesionales.tipo_de_profesional === "barman" && (
+              <>
+                <h6>Tipos de servicio del barman</h6>
+                {store.profesionales.tipo_servicio_barman_barra && <p>{store.profesionales.tipo_servicio_barman_barra}</p>}
+                {store.profesionales.tipo_servicio_barman_clase && <p>{store.profesionales.tipo_servicio_barman_clase}</p>}
+              </>         
+            )}   
+
             <button type="button" className="btn editar-profesional"  onClick={handleEditar}>EDITAR</button>
             <button type="button" className="btn eliminar-profesional"  onClick={handleEliminar}>ELIMINAR</button>
             <button type="button" className="btn "  onClick={handleCrearOrden}>CREAR ORDEN DE SERVICIO</button>
