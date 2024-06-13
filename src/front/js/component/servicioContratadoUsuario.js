@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import "../../styles/serviciosContratados.css"
 
 const ServiciosContratados = () => {
+    const navigate = useNavigate();
     const { store, actions } = useContext(Context);
 
     useEffect(() => {
@@ -20,7 +21,7 @@ const ServiciosContratados = () => {
         
     }
 
-    const handleSubmit = () => {
+    const handlePrivadaCliente = () => {
         navigate('/privadacliente');
       };
  
@@ -47,7 +48,7 @@ const ServiciosContratados = () => {
                         </div>
                         <button type="button" className="btn" onClick={()=>handleResponse(servicio.id, "aceptar")}>Aceptar servicio</button>
                         <button type="button" className="btn" onClick={()=>handleResponse(servicio.id, "rechazar")}>Rechazar servicio</button>
-                        <button type="button" className="btn"  onClick={handleSubmit}>VOLVER TU PAGINA</button>
+                        <button type="button" className="btn"  onClick={handlePrivadaCliente}>VOLVER A TU PAGINA</button>
 
                     </div>
                     

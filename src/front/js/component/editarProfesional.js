@@ -183,7 +183,7 @@ const EditarProfesional = () => {
                                     <input type="text" name="tipo_servicio_jamonero_clase_corte" value={formData.tipo_servicio_jamonero_clase_corte} placeholder="Servicio Clase de Corte" onChange={handleChange} />
                                 </>
                             )}
-                            <button type="submit">Guardar</button>
+                            
                         </form>
                         {error && <div className="error">{error}</div>}
                     </div>

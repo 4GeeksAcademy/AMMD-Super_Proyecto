@@ -61,19 +61,13 @@ const handleCrearOrden = () => {
           <div className="col">
             <h3>Hola !!!</h3>         
             <br />
-            <h6>Nombre </h6>
-            <p>{store.profesionales.nombre}</p>
-            <h6>Apellido </h6>
-            <p>{store.profesionales.apellidos}</p>
-            <h6>Email </h6>
-            <p>{store.profesionales.email}</p>
-            <h6>Profesion</h6>
-            <p>{store.profesionales.tipo_de_profesional}</p>
-            <h6>Información adicional</h6>
-            <p>{store.profesionales.info_adicional}</p>
-            <h6>Población</h6>
-            <p>{store.profesionales.localizacion}</p>
 
+            <p className="editable-placeholder" data-placeholder="Nombre: ">{store.profesionales.nombre}</p>
+            <p className="editable-placeholder" data-placeholder="Apellido: ">{store.profesionales.apellidos}</p>
+            <p className="editable-placeholder" data-placeholder="Email: ">{store.profesionales.email}</p>
+            <p className="editable-placeholder" data-placeholder="Profesion: ">{store.profesionales.tipo_de_profesional}</p>
+            <p className="editable-placeholder" data-placeholder="Información adicional: ">{store.profesionales.info_adicional}</p>
+            <p className="editable-placeholder" data-placeholder="Población: ">{store.profesionales.localizacion}</p>
             {store.profesionales.tipo_de_profesional === "chef" && (
               <>
                 <h6>Tipos de servicio del chef</h6>
