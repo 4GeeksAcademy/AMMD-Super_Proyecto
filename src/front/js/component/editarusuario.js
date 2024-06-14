@@ -72,6 +72,10 @@ const EditarUsuario = () => {
             });
     };
 
+    const handlePrivadaCliente = () => {
+        navigate('/privadacliente');
+      };
+
     return (
         <div>
             <div className="container text-center">
@@ -92,6 +96,7 @@ const EditarUsuario = () => {
                         >
                             Confirmar cambios
                         </button>
+                        <button type="button" className="btn"  onClick={handlePrivadaCliente}>VOLVER A TU PAGINA</button>
                         <br />
                         <input type="email" name="email" value={formData.email} placeholder="Email" onChange={handleChange} />
                         <input type="password" name="password" value={formData.password} placeholder="Password" onChange={handleChange} />
@@ -102,7 +107,6 @@ const EditarUsuario = () => {
                         <input type="text" name="longitud" value={formData.longitud} placeholder="Longitud" onChange={handleChange} />
                         <input type="text" name="latitud" value={formData.latitud} placeholder="Latitud" onChange={handleChange} />
                         <input type="text" name="direccion" value={formData.direccion} placeholder="Dirección" onChange={handleChange} />
-                        <input type="text" name="foto_de_perfil" value={formData.foto_de_perfil} placeholder="Foto de perfil" onChange={handleChange} />
                         <input type="text" name="tipo_de_dieta" value={formData.tipo_de_dieta} placeholder="Tipo de dieta" onChange={handleChange} />
                         <input type="text" name="alergias" value={formData.alergias} placeholder="Alergias" onChange={handleChange} />
                     </div>
