@@ -7,30 +7,30 @@ export const VistaBusquedaProfesionales = () => {
     const { store } = useContext(Context);
     const [profesionalSeleccionado, setProfesionalSeleccionado] = useState([]);
 
-    useEffect (() => {
-        console.log(profesionalSeleccionado)
-    }, [profesionalSeleccionado])
+    useEffect(() => {
+        console.log(store.profesionales);
+    }, [store.profesionales]);
 
     useEffect(() => {
-        let filtrados = store.profesionales;
+        let filtrados = Array.isArray(store.profesionales) ? store.profesionales : [];
 
         // Filtrar por tipo de servicio
         if (store.tipoServicioSeleccionado) {
             switch (store.tipoServicioSeleccionado) {
                 case 'chef':
-                    filtrados = filtrados.filter(profesional => profesional.tipo_servicio_chef);
+                    filtrados = filtrados.filter(profesional => profesional.tipo_de_profesional === "chef");
                     break;
                 case 'sumiller':
-                    filtrados = filtrados.filter(profesional => profesional.tipo_servicio_sumiller);
+                    filtrados = filtrados.filter(profesional => profesional.tipo_de_profesional === "sumiller");
                     break;
                 case 'pastelero':
-                    filtrados = filtrados.filter(profesional => profesional.tipo_servicio_pastelero);
+                    filtrados = filtrados.filter(profesional => profesional.tipo_de_profesional === "pastelero");
                     break;
                 case 'cortador de jamon':
-                    filtrados = filtrados.filter(profesional => profesional.tipo_servicio_jamonero);
+                    filtrados = filtrados.filter(profesional => profesional.tipo_de_profesional === "cortador de jamon");
                     break;
                 case 'barman':
-                    filtrados = filtrados.filter(profesional => profesional.tipo_servicio_barman);
+                    filtrados = filtrados.filter(profesional => profesional.tipo_de_profesional === "barman");
                     break;
                 default:
                     break;
@@ -125,6 +125,7 @@ export const VistaBusquedaProfesionales = () => {
         // Filtrar por localidad seleccionada
         if (store.localidadSeleccionada) {
             filtrados = filtrados.filter(profesional => profesional.localizacion === store.localidadSeleccionada);
+            console.log(store.localidadSeleccionada)
         }
 
         setProfesionalSeleccionado(filtrados);
