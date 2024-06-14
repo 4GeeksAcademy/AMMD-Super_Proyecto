@@ -9,10 +9,7 @@ from datetime import datetime, timedelta
 import uuid
 from flask import jsonify
 from datetime import datetime
-
-
-
-
+import json
 
 
 api = Blueprint('api', __name__)
@@ -260,7 +257,7 @@ def editar_profesional():
     profesional.descripcion = data.get("descripcion", profesional.descripcion)    
     profesional.info_adicional = data.get("info_adicional", profesional.info_adicional)
     profesional.tipo_de_profesional =data.get("tipo_de_profesional",profesional.tipo_de_profesional)
-    profesional.tipo_de_cocina_especialidad = data.get("tipo_de_cocina_especialidad",profesional.tipo_de_cocina_especialidad)
+    profesional.tipo_de_cocina_especialidad = json.dumps(data.get("tipo_de_cocina_especialidad", profesional.tipo_de_cocina_especialidad))
     profesional.tipo_servicio_chef_pica_pica = data.get("tipo_servicio_chef_pica_pica",profesional.tipo_servicio_chef_pica_pica)
     profesional.tipo_servicio_chef_taller_de_cocina = data.get("tipo_servicio_chef_taller_de_cocina",profesional.tipo_servicio_chef_taller_de_cocina)
     profesional.tipo_servicio_chef_comida_de_trabajo = data.get("tipo_servicio_chef_comida_de_trabajo",profesional.tipo_servicio_chef_comida_de_trabajo)

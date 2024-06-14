@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.dialects.postgresql import JSON
 
 db = SQLAlchemy()
 
@@ -19,7 +20,7 @@ class Profesional(db.Model):
 
     tipo_de_profesional = db.Column(db.Enum('chef','barman','cortador de jamon','sumiller','pastelero', name='tipo_de_profesional'))
 
-    tipo_de_cocina_especialidad = db.Column(db.Enum('cocina española','cocina peruana','cocina griega','cocina americana','cocina italiana','cocina argentina','cocina tailandesa','cocina mexicana','cocina creativa','cocina japonesa', 'cocina vegana',name='tipo_de_cocina'), nullable=True)  
+    tipo_de_cocina_especialidad = db.Column(JSON, nullable=True)  
     
     tipo_servicio_chef_pica_pica = db.Column(db.Text, nullable=True)
     tipo_servicio_chef_taller_de_cocina = db.Column(db.Text, nullable=True)
@@ -65,6 +66,7 @@ class Profesional(db.Model):
             "descripcion": self.descripcion,
             "info_adicional": self.info_adicional,
             "tipo_de_profesional": self.tipo_de_profesional,
+            "tipo_de_cocina_especialidad": self.tipo_de_cocina_especialidad,
             "tipo_servicio_chef_pica_pica":self.tipo_servicio_chef_pica_pica,
             "tipo_servicio_chef_taller_de_cocina":self.tipo_servicio_chef_taller_de_cocina,
             "tipo_servicio_chef_comida_de_trabajo":self.tipo_servicio_chef_comida_de_trabajo,

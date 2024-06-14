@@ -1,16 +1,16 @@
 """empty message
 
-Revision ID: 31f77b379742
+Revision ID: 09a7aa37eac9
 Revises: 
-Create Date: 2024-06-11 18:05:15.251525
+Create Date: 2024-06-14 18:54:37.495405
 
 """
 from alembic import op
 import sqlalchemy as sa
-
+from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '31f77b379742'
+revision = '09a7aa37eac9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,8 +31,7 @@ def upgrade():
     sa.Column('descripcion', sa.String(length=300), nullable=True),
     sa.Column('info_adicional', sa.String(length=300), nullable=True),
     sa.Column('tipo_de_profesional', sa.Enum('chef', 'barman', 'cortador de jamon', 'sumiller', 'pastelero', name='tipo_de_profesional'), nullable=True),
-    sa.Column('tipo_de_cocina_especialidad', sa.Enum('cocina española', 'cocina peruana', 'cocina griega', 'cocina americana', 'cocina italiana', 'cocina argentina', 'cocina tailandesa', 'cocina mexicana', 'cocina creativa', 'cocina japonesa', 'cocina vegana', name='tipo_de_cocina'), nullable=True),
-    sa.Column('tipo_servicio_chef', sa.Text(), nullable=True),
+    sa.Column('tipo_de_cocina_especialidad', postgresql.JSON(astext_type=sa.Text()), nullable=True),
     sa.Column('tipo_servicio_chef_pica_pica', sa.Text(), nullable=True),
     sa.Column('tipo_servicio_chef_taller_de_cocina', sa.Text(), nullable=True),
     sa.Column('tipo_servicio_chef_comida_de_trabajo', sa.Text(), nullable=True),

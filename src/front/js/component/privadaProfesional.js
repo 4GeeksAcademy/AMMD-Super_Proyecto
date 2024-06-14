@@ -86,6 +86,13 @@ const handleCrearOrden = () => {
               </>         
             )}
 
+            {store.profesionales.tipo_de_profesional === "chef" && (
+              <>
+                <h6>Tipos de cocina del chef</h6>
+                <p>{store.profesionales.tipo_de_cocina_especialidad}</p>
+              </>
+            )}
+
             {store.profesionales.tipo_de_profesional === "cortador de jamon" && (
               <>
                 <h6>Tipos de servicio del jamonero</h6>
