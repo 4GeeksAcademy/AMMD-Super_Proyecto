@@ -72,6 +72,10 @@ const EditarUsuario = () => {
             });
     };
 
+    const handlePrivadaCliente = () => {
+        navigate('/privadacliente');
+      };
+
     return (
         <div>
             <div className="container text-center">
@@ -92,19 +96,41 @@ const EditarUsuario = () => {
                         >
                             Confirmar cambios
                         </button>
+                        <button type="button" className="btn"  onClick={handlePrivadaCliente}>VOLVER A TU PAGINA</button>
                         <br />
-                        <input type="email" name="email" value={formData.email} placeholder="Email" onChange={handleChange} />
-                        <input type="password" name="password" value={formData.password} placeholder="Password" onChange={handleChange} />
-                        <input type="text" name="nombre" value={formData.nombre} placeholder="Nombre" onChange={handleChange} />
-                        <input type="text" name="apellidos" value={formData.apellidos} placeholder="Apellidos" onChange={handleChange} />
-                        <input type="text" name="telefono" value={formData.telefono} placeholder="Teléfono" onChange={handleChange} />
-                        <input type="text" name="localizacion" value={formData.localizacion} placeholder="Localización" onChange={handleChange} />
-                        <input type="text" name="longitud" value={formData.longitud} placeholder="Longitud" onChange={handleChange} />
-                        <input type="text" name="latitud" value={formData.latitud} placeholder="Latitud" onChange={handleChange} />
-                        <input type="text" name="direccion" value={formData.direccion} placeholder="Dirección" onChange={handleChange} />
-                        <input type="text" name="foto_de_perfil" value={formData.foto_de_perfil} placeholder="Foto de perfil" onChange={handleChange} />
-                        <input type="text" name="tipo_de_dieta" value={formData.tipo_de_dieta} placeholder="Tipo de dieta" onChange={handleChange} />
-                        <input type="text" name="alergias" value={formData.alergias} placeholder="Alergias" onChange={handleChange} />
+                        <div>
+                            <input type="email" name="email" value={formData.email} placeholder="Email" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <input type="password" name="password" value={formData.password} placeholder="Password" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <input type="text" name="nombre" value={formData.nombre} placeholder="Nombre" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <input type="text" name="apellidos" value={formData.apellidos} placeholder="Apellidos" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <input type="text" name="telefono" value={formData.telefono} placeholder="Teléfono" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <input type="text" name="localizacion" value={formData.localizacion} placeholder="Localización" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <input type="text" name="longitud" value={formData.longitud} placeholder="Longitud" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <input type="text" name="latitud" value={formData.latitud} placeholder="Latitud" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <input type="text" name="direccion" value={formData.direccion} placeholder="Dirección" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <input type="text" name="tipo_de_dieta" value={formData.tipo_de_dieta} placeholder="Tipo de dieta" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <input type="text" name="alergias" value={formData.alergias} placeholder="Alergias" onChange={handleChange} />
+                        </div>
                     </div>
                 </div>
             </div>
