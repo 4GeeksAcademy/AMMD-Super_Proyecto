@@ -507,35 +507,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 } catch (error) {
                     console.log("error respondiendo al servicio ", error)
                 }
-            },
+            },          
             
-
-            crearConversacion: (profesional_id, usuario_id, coment_text) => {
-                
-                const requestOptions = {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ profesional_id, coment_text, usuario_id })
-                };
-
-                return fetch(`${BASE_URL}/api/crearconversacion`, requestOptions)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Error en la solicitud");
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Conversación creada exitosamente", data);
-                    // Puedes actualizar el estado o realizar otras acciones aquí
-                    // Por ejemplo, podrías añadir la nueva conversación a una lista en el store
-                })
-                .catch(error => {
-                    console.error("Error al crear la conversación:", error);
-                });
-            },
             obtenerID: async () => {
                 try {
                     const response = await fetch("https://ipapi.co/json/");
@@ -544,7 +517,78 @@ const getState = ({ getStore, getActions, setStore }) => {
                 } catch (error) {
                     console.error("Error fetching IP info:", error);
                 }
-            },        
+            },  
+            cargarConversaciones: () => {
+                const store = getStore();
+                const token = store.token;
+
+                if (!token) {
+                    console.error('Token de acceso no encontrado');
+                    return;
+                }
+
+                const requestOptions = {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                };
+
+                fetch(`${BASE_URL}/api/conversaciones`, requestOptions)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Error de red! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Conversaciones cargadas correctamente:', data);
+                        setStore({ conversaciones: data.conversaciones });
+                    })
+                    .catch(error => {
+                        console.error('Error al cargar conversaciones:', error);
+                    });
+            },
+            crearConversacion: (idProfesional, mensaje, usuarioId) => {
+                const store = getStore();
+                const token = store.token;
+            
+                if (!token) {
+                    console.error('Token de acceso no encontrado');
+                    return;
+                }
+            
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ 
+                        id_profesional: idProfesional, 
+                        mensaje: mensaje,
+                        usuario_id: usuarioId // Asegúrate de que usuarioId sea el ID del usuario actual
+                    })
+                };
+            
+                fetch(`${BASE_URL}/api/crearconversacion`, requestOptions)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Error de red! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Conversación creada correctamente:', data);
+                        // Puedes realizar otras acciones si es necesario
+                    })
+                    .catch(error => {
+                        console.error('Error al crear conversación:', error);
+                    });
+            },
+            
+          
             
             
       

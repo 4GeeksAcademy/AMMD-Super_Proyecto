@@ -14,7 +14,6 @@ from datetime import datetime
 
 
 
-
 api = Blueprint('api', __name__)
 
 mail = Mail()
