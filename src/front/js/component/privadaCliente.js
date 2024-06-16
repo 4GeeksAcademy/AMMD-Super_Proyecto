@@ -32,7 +32,7 @@ const PrivadaCliente = () => {
   };
 
   const handleCerrarSesion = () => {
-    actions.cerrarSesionUsuario();
+    
     navigate('/'); 
   };
 

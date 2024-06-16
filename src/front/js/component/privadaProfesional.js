@@ -26,7 +26,7 @@ const handleEditar = () => {
 };
 
 const handleCerrarSesion = () => {
-  actions.cerrarSesionProfesional();
+
   navigate('/'); 
 };
 
