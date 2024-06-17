@@ -3,17 +3,30 @@ import { Context } from "../store/appContext";
 
 const ConversacionUsuario = () => {
     const { store, actions } = useContext(Context);
+
     const [inputValue, setInputValue] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [selectedProfessional, setSelectedProfessional] = useState({});
     const [error, setError] = useState(null);
 
+
+    const data = {      
+        profesional_id: selectedProfessional.id,
+        coment_text : inputValue,
+        usuario_id : store.usuarios.id
+    }
+
+    useEffect(()=>{
+        console.log(data)  
+        console.log(selectedProfessional)     
+    },[data])
+
     useEffect(() => {
         if (store.token) {
             actions.cargarProfesionales();
         }
-    }, [store.token]); // Asegúrate de ejecutarlo cada vez que cambia store.token
+    }, []); // Asegúrate de ejecutarlo cada vez que cambia store.token
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
@@ -31,16 +44,18 @@ const ConversacionUsuario = () => {
         }
     };
     
-    const handleSendMessage = async () => {
+    const handleSendMessage = async (data) => {
         console.log("selectedProfessional:", selectedProfessional);
     
         if (inputValue.trim() !== "" && selectedProfessional && selectedProfessional.id) {
             console.log("Enviando mensaje con profesional:", selectedProfessional.id);
-            // Resto del código para enviar el mensaje
+        
         } else {
             console.log("Error al enviar mensaje:", "Selecciona un profesional antes de enviar el mensaje.");
             setError("Selecciona un profesional antes de enviar el mensaje.");
         }
+        console.log(data)
+        actions.crearConversacion(data)
     };
 
     const handleKeyDown = (event) => {
@@ -91,7 +106,7 @@ const ConversacionUsuario = () => {
                                 onKeyDown={handleKeyDown}
                                 placeholder="Escribe tu mensaje..."
                             />
-                            <button onClick={handleSendMessage}>Enviar</button>
+                            <button onClick={()=>handleSendMessage(data)}>Enviar</button>
                         </div>
                         {error && <div className="error">{error}</div>}
                     </div>

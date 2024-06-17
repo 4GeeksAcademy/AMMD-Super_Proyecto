@@ -33,31 +33,31 @@ const getState = ({ getStore, getActions, setStore }) => {
                     .then(data => setStore({ profesionales: data.results }))
                     .catch(err => console.error("Error al cargar profesionales:", err));
             },
-            cargarUsuario : (id) => (dispatch, getStore) => {
+            cargarUsuario: (id) => (dispatch, getStore) => {
                 const store = getStore();
                 const token = store.token;
-              
+
                 fetch(`${BASE_URL}/api/usuario/${id}`, {
-                  method: 'GET',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                  }
-                })
-                  .then(res => {
-                    if (!res.ok) {
-                      throw new Error('Error al cargar usuario');
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     }
-                    return res.json();
-                  })
-                  .then(data => {
-                    dispatch({
-                      type: 'CARGAR_USUARIO',
-                      payload: data.results
-                    });
-                  })
-                  .catch(err => console.error("Error al cargar usuario:", err));
-              },
+                })
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error('Error al cargar usuario');
+                        }
+                        return res.json();
+                    })
+                    .then(data => {
+                        dispatch({
+                            type: 'CARGAR_USUARIO',
+                            payload: data.results
+                        });
+                    })
+                    .catch(err => console.error("Error al cargar usuario:", err));
+            },
             cargarProfesional: (id) => {
                 fetch(BASE_URL + "/api/profesional/" + id)
                     .then(res => res.json())
@@ -147,7 +147,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         localStorage.setItem("token", data.token)
                         setStore({ token: data.token, profesionales: data.profesional });
                         console.log(data)
-                        localStorage.setItem("id",data.profesional.id)                      
+                        localStorage.setItem("id", data.profesional.id)
                         const store = getStore();
                         console.log(store.profesionales);
                         return true;
@@ -159,7 +159,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             editarUsuario: (userData) => {
                 const store = getStore();
-                const token = store.token;                
+                const token = store.token;
 
                 const requestOptions = {
                     method: "PUT",
@@ -170,25 +170,25 @@ const getState = ({ getStore, getActions, setStore }) => {
                     body: JSON.stringify(userData)
                 };
                 return fetch(BASE_URL + "/api/editarusuario", requestOptions)
-                .then(response => {
-                    if (response.ok) {
-                        return response.json(); // Devuelve los datos si la respuesta es exitosa
-                    } else if (response.status === 404) {
-                        throw new Error("Recurso no encontrado"); // Maneja específicamente el error 404
-                    } else {
-                        throw new Error("Error en la solicitud"); // Maneja otros errores de manera genérica
-                    }
-                })
-                .then(data => {
-                    console.log("Usuario editado exitosamente", data);
-                    console.log(data.usuario)
-                    setStore({ usuarios: data.usuario });
-                    // Puedes actualizar el estado o realizar otras acciones aquí
-                    return data;
-                })
-                .catch(error => {
-                    console.error("Error al editar el usuario", error);
-                });
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json(); // Devuelve los datos si la respuesta es exitosa
+                        } else if (response.status === 404) {
+                            throw new Error("Recurso no encontrado"); // Maneja específicamente el error 404
+                        } else {
+                            throw new Error("Error en la solicitud"); // Maneja otros errores de manera genérica
+                        }
+                    })
+                    .then(data => {
+                        console.log("Usuario editado exitosamente", data);
+                        console.log(data.usuario)
+                        setStore({ usuarios: data.usuario });
+                        // Puedes actualizar el estado o realizar otras acciones aquí
+                        return data;
+                    })
+                    .catch(error => {
+                        console.error("Error al editar el usuario", error);
+                    });
             },
             cerrarSesionUsuario: () => {
                 const store = getStore();
@@ -382,7 +382,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error('Token no encontrado');
                     return;
                 }
-            
+
                 const requestOptions = {
                     method: 'POST',
                     headers: {
@@ -391,7 +391,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     },
                     body: JSON.stringify(data)
                 };
-            
+
                 fetch(`${BASE_URL}/api/crearserviciocontratado`, requestOptions)
                     .then(response => {
                         if (!response.ok) {
@@ -407,7 +407,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.error('Error al guardar servicio contratado:', error);
                     });
             },
-            
+
             obtenerServiciosContratadosProfesional: () => {
                 // Obtener el token de acceso del almacenamiento local
                 const token = localStorage.getItem('token');
@@ -446,13 +446,13 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             obtenerServiciosContratadosUsuario: () => {
                 const store = getStore();
-                const token = store.token;  
-            
+                const token = store.token;
+
                 if (!token) {
                     console.error('Token de acceso no encontrado');
                     return;
                 }
-            
+
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -460,11 +460,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                         'Authorization': `Bearer ${token}`
                     }
                 };
-            
+
                 fetch(`${BASE_URL}/api/servicioscontratadosusuario`, requestOptions)
-                    
+
                     .then(response => {
-                      
+
                         if (!response.ok) {
                             throw new Error(`Error de red! Status: ${response.status}`);
                         }
@@ -472,43 +472,43 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .then(data => {
                         console.log(data)
-                       
-                            setStore({ serviciosContratados: data.servicios_contratados });
-                      
-                        
+
+                        setStore({ serviciosContratados: data.servicios_contratados });
+
+
                     })
                     .catch(error => {
                         console.error('Error al obtener servicios contratados:', error);
                     });
             },
-            responderServicio: async (id,estado_servicio)=>{
+            responderServicio: async (id, estado_servicio) => {
 
                 try {
                     const store = getStore();
-                    const token = store.token;  
-            
+                    const token = store.token;
+
                     if (!token) {
                         console.error('Token de acceso no encontrado');
                         return;
                     }
-                
+
                     const requestOptions = {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
-                             'Authorization': `Bearer ${token}`
+                            'Authorization': `Bearer ${token}`
                         },
                         body: JSON.stringify({ estado_servicio: estado_servicio })
                     };
-                    const resp= await fetch(`${BASE_URL}/api/respuestaservicio/${id}`, requestOptions)
-                    const data= await resp.json()
+                    const resp = await fetch(`${BASE_URL}/api/respuestaservicio/${id}`, requestOptions)
+                    const data = await resp.json()
                     console.log(data)
-                    
+
                 } catch (error) {
                     console.log("error respondiendo al servicio ", error)
                 }
-            },          
-            
+            },
+
             obtenerID: async () => {
                 try {
                     const response = await fetch("https://ipapi.co/json/");
@@ -517,7 +517,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 } catch (error) {
                     console.error("Error fetching IP info:", error);
                 }
-            },  
+            },
             cargarConversaciones: () => {
                 const store = getStore();
                 const token = store.token;
@@ -550,28 +550,26 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.error('Error al cargar conversaciones:', error);
                     });
             },
-            crearConversacion: (idProfesional, mensaje, usuarioId) => {
+            crearConversacion: (data) => {
                 const store = getStore();
                 const token = store.token;
-            
+
                 if (!token) {
                     console.error('Token de acceso no encontrado');
                     return;
                 }
-            
+                console.log(data)
                 const requestOptions = {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify({ 
-                        id_profesional: idProfesional, 
-                        mensaje: mensaje,
-                        usuario_id: usuarioId // Asegúrate de que usuarioId sea el ID del usuario actual
-                    })
+                    body: JSON.stringify(
+                        data
+                    )
                 };
-            
+
                 fetch(`${BASE_URL}/api/crearconversacion`, requestOptions)
                     .then(response => {
                         if (!response.ok) {
@@ -586,13 +584,73 @@ const getState = ({ getStore, getActions, setStore }) => {
                     .catch(error => {
                         console.error('Error al crear conversación:', error);
                     });
+            },        
+
+            obtenerConversacionesProfesional : async (profesionalId) => {
+                try {
+                    const token = localStorage.getItem("token");
+                    if (!token) {
+                        throw new Error("Token no encontrado");
+                    }
+
+                    const requestOptions = {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    };
+
+                    const response = await fetch(`${BASE_URL}/api/conversaciones/${profesionalId}`, requestOptions);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return data.conversaciones; // Ajusta según la estructura de respuesta de tu API
+                } catch (error) {
+                    console.error("Error al obtener conversaciones del profesional:", error.message);
+                    throw error;
+                }
             },
+
             
-          
-            
-            
-      
-            
+
+            obtenerUsuariosConMensajes: async (profesionalId) => {
+                try {
+                    const token = localStorage.getItem("token");
+                    if (!token) {
+                        throw new Error("Token no encontrado");
+                    }
+
+                    const requestOptions = {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    };
+
+                    // Suponiendo que tu endpoint requiere el ID del profesional para obtener los usuarios
+                    const response = await fetch(`${BASE_URL}/api/usuariosConMensajes/${profesionalId}`, requestOptions);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return data.usuariosConMensajes; // Ajusta esto según la estructura de tu respuesta
+                } catch (error) {
+                    console.error("Error al obtener usuarios con mensajes:", error.message);
+                    throw error; // Propaga el error para manejarlo en el componente que llama a esta función
+                }
+            },
+
+
+
+
+
+
+
 
             exampleFunction: () => {
                 getActions().changeColor(0, "green");
