@@ -85,20 +85,20 @@ const ConversacionProfesional = () => {
         <div className="fondo">
             <div className="container wrap">
                 <div className="titulo row">
-                    <h1>Conversación</h1>
-                    <h2>Usuario y Profesional</h2>
+                    <h1>Conversaciónes</h1>
+                    <h2>Revisa el estado de tus conversaciones</h2>
                 </div>
                 {!store.token ? (
                     <div className="login-container">
                         <input
                             type="email"
-                            placeholder="Email"
+                            placeholder="Escribe tu Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <input
                             type="password"
-                            placeholder="Contraseña"
+                            placeholder="Escribe tu Contraseña"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />

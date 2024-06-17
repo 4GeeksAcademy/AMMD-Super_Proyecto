@@ -7,13 +7,14 @@ import "../../styles/home.css";
 import Carousel2 from "../component/carruselProfesionales";
 import Noticias from "../component/noticias";
 import FormularioRegistro from "./vistaregistrousuario";
+import InformacionIp from "../component/informacionIP";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container">			
-			<Jumbotron />
+		<div className="container">				   
+			<Jumbotron />			
 			<br></br>
 			<Carousel />
 			<br></br>
