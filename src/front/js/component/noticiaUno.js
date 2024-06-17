@@ -1,7 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/noticiaUno.css";
 
 const NoticiaUno = () => {
+    const navigate = useNavigate();
+
+    const handleHome = () => {
+        navigate('/');
+    };
+
     return (
         <div className="container">
             <div className="row">
@@ -14,10 +21,12 @@ const NoticiaUno = () => {
                     <p>Si bien el estudio es observacional y no establece causalidad, es el primero de su tipo en ampliar nuestra comprensión sobre los efectos del consumo de alimentos ultraprocesados en el sueño. Los hallazgos respaldan la necesidad de futuras investigaciones para recopilar datos completos y desarrollar medidas preventivas e intervenciones relacionadas con la dieta y el sueño.</p>
                     <p>Para más detalles, puede visitar la página de la Universidad Sorbona París Norte y la revista Journal of the Academy of Nutrition and Dietetics.</p>
                 </div>
+                
                 <div className="col-4">
                     <div className="image-container">
                         <img className="imagen" src="https://images.pexels.com/photos/25338174/pexels-photo-25338174/free-photo-of-comida-mujer-efecto-desenfocado-patatas-fritas.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Descripción de la imagen" />
                     </div>
+                    <button type="button" className="btn" onClick={handleHome}>VOLVER</button>
                 </div>
             </div>
         </div>

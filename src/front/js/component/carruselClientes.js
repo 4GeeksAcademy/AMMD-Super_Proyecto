@@ -39,8 +39,8 @@ const Carousel = ({ Carrusel }) => {
         </div>
       </div>
       <div className="boton carrusel">
-        <span className={`btn prev-${Carrusel}`}>Previous</span>
-        <span className={`btn next-${Carrusel}`}>Next</span>
+        <span className={`btn prev-${Carrusel}`}>Anterior</span>
+        <span className={`btn next-${Carrusel}`}>Siguiente</span>
       </div>
     </main>
     </>

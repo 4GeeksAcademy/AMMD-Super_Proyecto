@@ -6,7 +6,7 @@ import logoFacebook from "../../img/logoFacebook.png"
 import logoInstagram from "../../img/logoInstagram.png"
 import logoTiktok from "../../img/logoTiktok.png"
 import "../../styles/navbar.css";
-
+import InformacionIp from "./informacionIP";
 
 
 const Navbar = () => {
@@ -40,6 +40,9 @@ const Navbar = () => {
           <a className="nav-link active nav-link-custom" aria-current="page" href="#" onClick={() => navigate(`/iniciosesionprofesional`)}>
             <span className="hover-text" data-text="Área de profesionales">Área de profesionales</span>
           </a>
+        </li>
+        <li>
+          <InformacionIp/>
         </li>
       </ul>
     </div>
