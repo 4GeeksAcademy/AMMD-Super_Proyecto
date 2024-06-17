@@ -510,31 +510,99 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             
 
-            crearConversacion: (profesional_id, usuario_id, coment_text) => {
-                
+            crearConversacion: (data) => {
+                const store = getStore();
+                const token = store.token;
+
+                if (!token) {
+                    console.error('Token de acceso no encontrado');
+                    return;
+                }
+                console.log(data)
                 const requestOptions = {
-                    method: "POST",
+                    method: 'POST',
                     headers: {
-                        "Content-Type": "application/json",
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify({ profesional_id, coment_text, usuario_id })
+                    body: JSON.stringify(
+                        data
+                    )
                 };
 
-                return fetch(`${BASE_URL}/api/crearconversacion`, requestOptions)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Error en la solicitud");
+                fetch(`${BASE_URL}/api/crearconversacion`, requestOptions)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Error de red! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Conversación creada correctamente:', data);
+                        // Puedes realizar otras acciones si es necesario
+                    })
+                    .catch(error => {
+                        console.error('Error al crear conversación:', error);
+                    });
+            },        
+
+            obtenerConversaciones: async (profesionalId) => {
+                try {
+                    const token = localStorage.getItem("token");
+                    if (!token) {
+                        throw new Error("Token no encontrado");
                     }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Conversación creada exitosamente", data);
-                    // Puedes actualizar el estado o realizar otras acciones aquí
-                    // Por ejemplo, podrías añadir la nueva conversación a una lista en el store
-                })
-                .catch(error => {
-                    console.error("Error al crear la conversación:", error);
-                });
+        
+                    const requestOptions = {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    };
+        
+                    const response = await fetch(`${BASE_URL}/api/conversacionesprofesional`, requestOptions);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+        
+                    const data = await response.json();
+                    return data.conversaciones; // Ajusta según la estructura de respuesta de tu API
+                } catch (error) {
+                    console.error("Error al obtener conversaciones del profesional:", error.message);
+                    throw error;
+                }
+                },
+
+            
+
+            obtenerUsuariosConMensajes: async (profesionalId) => {
+                try {
+                    const token = localStorage.getItem("token");
+                    if (!token) {
+                        throw new Error("Token no encontrado");
+                    }
+
+                    const requestOptions = {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    };
+
+                    // Suponiendo que tu endpoint requiere el ID del profesional para obtener los usuarios
+                    const response = await fetch(`${BASE_URL}/api/usuariosConMensajes/${profesionalId}`, requestOptions);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return data.usuariosConMensajes; // Ajusta esto según la estructura de tu respuesta
+                } catch (error) {
+                    console.error("Error al obtener usuarios con mensajes:", error.message);
+                    throw error; // Propaga el error para manejarlo en el componente que llama a esta función
+                }
             },
             obtenerID: async () => {
                 try {
