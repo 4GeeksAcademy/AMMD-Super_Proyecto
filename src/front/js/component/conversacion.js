@@ -116,7 +116,10 @@ const ConversacionUsuario = () => {
                             <h3>Conversaciones:</h3>
                             <ul>
                                 {store.conversaciones.map((conversacion) => (
-                                    <li key={conversacion.id}>{conversacion.coment_text}</li>
+                                     <li key={conversacion.id} onClick={() => handleSelectConversacion(conversacion)}>
+                                     <div><strong>De:</strong> {conversacion.profesional?.email || "Profesional desconocido"}</div>
+                                     <div>{conversacion.coment_text}</div>
+                                 </li>
                                 ))}
                             </ul>
                         </div>

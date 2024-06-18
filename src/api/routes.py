@@ -378,7 +378,7 @@ def responder_conversacion(id):
     return jsonify({'mensaje': nuevo_mensaje})
 
 
-@api.route('/conversacionesprofesional', methods=['GET'])
+@api.route('/conversacionesusuario', methods=['GET'])
 @jwt_required()
 def get_professional_conversations():
     profesional_id = get_jwt_identity()
@@ -390,12 +390,12 @@ def get_professional_conversations():
     return jsonify({"conversaciones": conversaciones_serializadas}), 200
 
 
-@api.route("/conversacionesusuario", methods=["GET"])
+@api.route("/conversacionesprofesional", methods=["GET"])
 @jwt_required()
 def get_user_conversations():
     user_id = get_jwt_identity()
 
-    conversaciones = Conversacion.query.filter_by(usuario_id=user_id).all()
+    conversaciones = Conversacion.query.filter_by(usuario_id=user_id)
 
     conversaciones_serializadas = [conversacion.serialize() for conversacion in conversaciones]
 

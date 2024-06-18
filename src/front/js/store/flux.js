@@ -578,7 +578,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     throw error;
                 }
                 },
-                responderConversacion : async (id) => {
+                responderConversacion : async (id,data) => {
                     try {
                          const token = localStorage.getItem("token");
                         
