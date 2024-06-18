@@ -349,16 +349,42 @@ def crear_conversacion():
 
     return jsonify({"msg": "Conversación creada exitosamente"}), 201
 
+@api.route('/api/conversacionesprofesional/<int:id>/responder', methods=['POST'])
+def responder_conversacion(id):
+    token = request.headers.get('Authorization')
+    
+    if not token:
+        return jsonify({'error': 'Token no encontrado'}), 401
+
+    data = request.json
+    mensaje = data.get('mensaje')
+
+    if not mensaje:
+        return jsonify({'error': 'El mensaje es requerido'}), 400    
+
+    conversacion = Conversacion.query.get(id)
+    
+    if not conversacion:
+        return jsonify({'error': 'Conversación no encontrada'}), 404
+
+    nuevo_mensaje = {
+        'id': len(conversacion.mensajes) + 1,
+        'texto': mensaje
+    }
+
+    conversacion.mensajes.append(nuevo_mensaje)
+    db.session.commit()
+
+    return jsonify({'mensaje': nuevo_mensaje})
+
+
 @api.route('/conversacionesprofesional', methods=['GET'])
 @jwt_required()
 def get_professional_conversations():
-    # Obtener el ID del profesional actualmente autenticado
     profesional_id = get_jwt_identity()
 
-    # Buscar todas las conversaciones que involucran al profesional como parte
     conversaciones = Conversacion.query.filter_by(profesional_id=profesional_id).all()
 
-    # Serializar las conversaciones para enviarlas como respuesta
     conversaciones_serializadas = [conversacion.serialize() for conversacion in conversaciones]
 
     return jsonify({"conversaciones": conversaciones_serializadas}), 200
@@ -367,17 +393,13 @@ def get_professional_conversations():
 @api.route("/conversacionesusuario", methods=["GET"])
 @jwt_required()
 def get_user_conversations():
-    # Obtener el ID del usuario actualmente autenticado
     user_id = get_jwt_identity()
 
-    # Buscar todas las conversaciones en las que el usuario está involucrado
-    conversaciones = Conversacion.query.filter(Conversacion.usuario_id == user_id).all()
+    conversaciones = Conversacion.query.filter_by(usuario_id=user_id).all()
 
-    # Serializar las conversaciones para enviarlas como respuesta
     conversaciones_serializadas = [conversacion.serialize() for conversacion in conversaciones]
 
     return jsonify({"conversaciones": conversaciones_serializadas}), 200
-
 
 # Método para agregar un profesional a la lista de favoritos de un usuario
 @api.route("/agregarfavorito/<int:profesional_id>", methods=["POST"])

@@ -546,9 +546,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                     });
             },        
 
-            obtenerConversaciones: async (profesionalId) => {
+            obtenerConversaciones: async () => {
+                
                 try {
                     const token = localStorage.getItem("token");
+
                     if (!token) {
                         throw new Error("Token no encontrado");
                     }
@@ -567,12 +569,44 @@ const getState = ({ getStore, getActions, setStore }) => {
                     }
         
                     const data = await response.json();
-                    return data.conversaciones; // Ajusta según la estructura de respuesta de tu API
+                    // return data.conversaciones; // Ajusta según la estructura de respuesta de tu API
+                  console.log(data)
+                
+                    setStore({ conversaciones: data.conversaciones });
                 } catch (error) {
                     console.error("Error al obtener conversaciones del profesional:", error.message);
                     throw error;
                 }
                 },
+                responderConversacion : async (id) => {
+                    try {
+                         const token = localStorage.getItem("token");
+                        
+                         
+                        const response = await fetch(`${BASE_URL}/api/conversaciones/${id}/responder`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": `Bearer ${token}`
+                            },
+                            body: JSON.stringify(data)
+                        });
+                
+                        if (!response.ok) {
+                            throw new Error("Error al enviar la respuesta");
+                        }
+                
+                        const data = await response.json();
+                        dispatch({
+                            type: "AGREGAR_RESPUESTA",
+                            payload: data
+                        });
+                    } catch (error) {
+                        console.error("Error al enviar la respuesta:", error);
+                    }
+                },
+                
+                
 
             
 

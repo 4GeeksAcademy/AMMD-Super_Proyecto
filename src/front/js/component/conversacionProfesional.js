@@ -3,37 +3,29 @@ import { Context } from "../store/appContext";
 
 const ConversacionProfesional = () => {
     const { store, actions } = useContext(Context);
-    
-    const [inputValue, setInputValue] = useState("");
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [selectedProfessional, setSelectedProfessional] = useState({});
+    const [selectedConversacion, setSelectedConversacion] = useState(null); // Estado para la conversación seleccionada
     const [error, setError] = useState(null);
-    const [conversaciones, setConversaciones] = useState([]);
+    const [respuesta, setRespuesta] = useState(""); // Estado para la respuesta
 
     useEffect(() => {
-        // Verificar si hay un token válido antes de cargar datos
         if (store.token) {
             actions.cargarProfesionales();
-            
         }
-    }, []); // Dependencia de efecto: se ejecutará cada vez que cambie store.token
+        actions.obtenerConversaciones();
+    }, []);
 
     useEffect(() => {
-        // Llamar a cargarConversaciones cuando se seleccione un nuevo profesional
-        if (selectedProfessional.id) {
-            actions.obtenerConversaciones();
-        }
-    }, [selectedProfessional.id]);
-    const handleInputChange = (event) => {
-        setInputValue(event.target.value);
-    };
+        console.log(store.conversaciones);
+    }, [store.conversaciones]);
 
     const handleLogin = async () => {
         try {
             console.log(`Intentando iniciar sesión con email: ${email}`);
             await actions.iniciarSesionProfesional(email, password);
-            console.log(`profesionalautenticado, token: ${store.token}`);
+            console.log(`Profesional autenticado, token: ${store.token}`);
             actions.cargarProfesionales();
         } catch (error) {
             setError(error.message);
@@ -41,51 +33,37 @@ const ConversacionProfesional = () => {
         }
     };
 
-    const cargarConversaciones = async () => {
-        try {
-            // Verificar si hay un profesional seleccionado y si tiene un ID válido
-            if (selectedProfessional && selectedProfessional.id) {
-                const conversaciones = await actions.obtenerConversacionesProfesional(selectedProfessional.id);
-                setConversaciones(conversaciones);
-            } else {
-                // Si no hay un profesional seleccionado o no tiene ID válido, limpiar las conversaciones
-                setConversaciones([]);
-                console.error("Profesional no seleccionado o ID no disponible");
+    const handleSelectConversacion = (conversacion) => {
+        setSelectedConversacion(conversacion);
+    };
+
+    const handleResponseChange = (event) => {
+        setRespuesta(event.target.value);
+    };
+
+    const handleSendResponse = async () => {
+        if (selectedConversacion && respuesta.trim() !== "") {
+            const data = {      
+                profesional_id: selectedConversacion.profesional_id,
+                coment_text : respuesta,
+                usuario_id : selectedConversacion.usuario_id
             }
-        } catch (error) {
-            console.error("Error al cargar conversaciones:", error.message);
-        }
-    };
-
-    const handleSendMessage = async () => {
-        console.log("selectedProfessional:", selectedProfessional);
-
-        // Verificar si se ha seleccionado un profesional y si tiene un ID válido
-        if (inputValue.trim() !== "" && selectedProfessional && selectedProfessional.id) {
-            console.log("Enviando mensaje con profesional:", selectedProfessional.id);
-            // Implementar lógica para enviar mensaje aquí
+            await actions.crearConversacion(data);
+            setRespuesta(""); // Limpiar el campo de respuesta
         } else {
-            console.log("Error al enviar mensaje:", "Selecciona un profesional antes de enviar el mensaje.");
-            setError("Selecciona un profesional antes de enviar el mensaje.");
+            setError("Selecciona una conversación y escribe una respuesta antes de enviar.");
         }
     };
 
-    const handleKeyDown = (event) => {
-        if (event.key === "Enter") {
-            handleSendMessage();
-        }
-    };
-
-    // Verificar si profesionales está inicializado antes de intentar mapearlo
     if (!Array.isArray(store.profesionales)) {
-        return <div>Cargando profesionales...</div>; // Mostrar un indicador de carga mientras se obtienen los datos
+        return <div>Cargando profesionales...</div>;
     }
-    
+
     return (
         <div className="fondo">
             <div className="container wrap">
                 <div className="titulo row">
-                    <h1>Conversaciónes</h1>
+                    <h1>Conversaciones</h1>
                     <h2>Revisa el estado de tus conversaciones</h2>
                 </div>
                 {!store.token ? (
@@ -107,33 +85,31 @@ const ConversacionProfesional = () => {
                     </div>
                 ) : (
                     <div>
-                        <div className="inputTarea">
-                            <select onChange={(e) => setSelectedProfessional(JSON.parse(e.target.value))}>
-                                <option value="">Selecciona un usuario</option>
-                                {store.usuarios.map((usuario) => (
-                                    <option key={usuario.id} value={JSON.stringify(usuario)}>
-                                        {usuario.email}
-                                    </option>
-                                ))}
-                            </select>
-                            <input
-                                type="text"
-                                value={inputValue}
-                                onChange={handleInputChange}
-                                onKeyDown={handleKeyDown}
-                                placeholder="Escribe tu mensaje..."
-                            />
-                            <button onClick={handleSendMessage}>Enviar</button>
-                        </div>
-                        {error && <div className="error">{error}</div>}
                         <div className="conversaciones">
                             <h3>Conversaciones:</h3>
                             <ul>
-                                {conversaciones.map((conversacion) => (
-                                    <li key={conversacion.id}>{conversacion.mensaje}</li>
+                                {store.conversaciones.map((conversacion) => (
+                                    <li key={conversacion.id} onClick={() => handleSelectConversacion(conversacion)}>
+                                        <div><strong>De:</strong> {conversacion.usuario?.email || "Usuario desconocido"}</div>
+                                        <div>{conversacion.coment_text}</div>
+                                    </li>
                                 ))}
                             </ul>
                         </div>
+                        {selectedConversacion && (
+                            <div className="respuesta">
+                                <h4>Responde a la conversación seleccionada:</h4>
+                                <div><strong>De:</strong> {selectedConversacion.usuario?.email || "Usuario desconocido"}</div>
+                                <input
+                                    type="text"
+                                    value={respuesta}
+                                    onChange={handleResponseChange}
+                                    placeholder="Escribe tu respuesta..."
+                                />
+                                <button onClick={handleSendResponse}>Enviar respuesta</button>
+                            </div>
+                        )}
+                        {error && <div className="error">{error}</div>}
                     </div>
                 )}
             </div>

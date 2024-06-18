@@ -135,7 +135,7 @@ class Conversacion(db.Model):
     coment_text = db.Column(db.String(800), nullable=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
     profesional_id = db.Column(db.Integer, db.ForeignKey('Profesional.id'), nullable=False)
-
+    #añadir columna de "remitente"para identificar quien envia el mensaje. y con  este dato en el frontend usarlo para organizar la vista de los mensajes,poner derecha unos u otros.
     usuario = db.relationship('User', backref='conversaciones', foreign_keys=[usuario_id])
     profesional = db.relationship('Profesional', backref='conversaciones', foreign_keys=[profesional_id])
 
@@ -148,7 +148,8 @@ class Conversacion(db.Model):
             "fecha_creacion": self.fecha_creacion,
             "coment_text": self.coment_text,
             "usuario_id": self.usuario_id,
-            "profesional_id": self.profesional_id
+            "profesional_id": self.profesional_id,
+            "usuario": self.usuario.serialize()
         }
 
 class ServiciosContratados(db.Model):

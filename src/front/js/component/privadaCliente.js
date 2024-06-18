@@ -48,8 +48,7 @@ const PrivadaCliente = () => {
     }, 1000); // Espera 1 segundo antes de redirigir
   };
   
-  const handleHablar = () => {
-   
+  const handleHablar = () => {   
     navigate('/conversacion'); 
   };
 

@@ -24,8 +24,9 @@ const ConversacionUsuario = () => {
 
     useEffect(() => {
         if (store.token) {
-            actions.cargarProfesionales();
+            actions.cargarProfesionales();            
         }
+            actions.obtenerConversaciones()
     }, []); // Asegúrate de ejecutarlo cada vez que cambia store.token
 
     const handleInputChange = (event) => {
@@ -109,8 +110,16 @@ const ConversacionUsuario = () => {
                             <button onClick={()=>handleSendMessage(data)}>Enviar</button>
                         </div>
                         {error && <div className="error">{error}</div>}
-                    </div>
+                    </div>                    
                 )}
+                  <div className="conversaciones">
+                            <h3>Conversaciones:</h3>
+                            <ul>
+                                {store.conversaciones.map((conversacion) => (
+                                    <li key={conversacion.id}>{conversacion.coment_text}</li>
+                                ))}
+                            </ul>
+                        </div>
             </div>
         </div>
     );
