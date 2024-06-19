@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 
 const ConversacionProfesional = () => {
     const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -58,6 +60,10 @@ const ConversacionProfesional = () => {
     if (!Array.isArray(store.profesionales)) {
         return <div>Cargando profesionales...</div>;
     }
+    const handleVolver = () => {
+        navigate('/privadacliente')
+      };
+
 
     return (
         <div className="fondo">
@@ -113,6 +119,7 @@ const ConversacionProfesional = () => {
                     </div>
                 )}
             </div>
+            <button type="button" className="btn volver"    onClick={handleVolver}>VOLVER</button>
         </div>
     );
 };

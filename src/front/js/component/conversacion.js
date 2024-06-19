@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 
 const ConversacionUsuario = () => {
     const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
 
     const [inputValue, setInputValue] = useState("");
     const [email, setEmail] = useState("");
@@ -64,6 +66,9 @@ const ConversacionUsuario = () => {
             handleSendMessage();
         }
     };
+    const handleVolver = () => {
+        navigate('/privadacliente')
+      };
 
     return (
         <div className="fondo">
@@ -123,7 +128,9 @@ const ConversacionUsuario = () => {
                                 ))}
                             </ul>
                         </div>
+                        <button type="button" className="btn volver"    onClick={handleVolver}>VOLVER</button>
             </div>
+            
         </div>
     );
 };
