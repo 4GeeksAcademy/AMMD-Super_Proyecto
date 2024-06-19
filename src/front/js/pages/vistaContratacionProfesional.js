@@ -30,7 +30,7 @@ export const VistaContratacionProfesional = () => {
                         <button type="button" className="btn btn-success">Contrátame</button>
                     </div>
                     <div className="col">
-                    <h2>Mapa</h2>
+                    <h2></h2>
                 </div>
             </div>
             </div>

@@ -47,3 +47,8 @@
   .carousel-control-next {
     right: -60px; /* Posicionamos el control siguiente a la derecha */
   }
+
+  .slider {
+    border: 4px solid #C09F65; /* Agregamos un borde con el color dado */
+
+  }

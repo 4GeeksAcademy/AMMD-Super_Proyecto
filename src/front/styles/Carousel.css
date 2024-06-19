@@ -162,3 +162,7 @@
     .item:nth-child(6) { left: calc(50% + 420px); opacity: 0; }
   }
   
+  .slider {
+    border: 4px solid #C09F65; /* Agregamos un borde con el color dado */
+
+  }
