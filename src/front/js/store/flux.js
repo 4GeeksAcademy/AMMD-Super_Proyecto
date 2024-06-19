@@ -118,6 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         setStore({ token: data.token, usuarios: data.user });
                         console.log(data)
                         localStorage.setItem("id", data.user.id)
+                        localStorage.setItem("token",data.token)
                         const store = getStore();
                         console.log(store.usuarios);
                         return true;  // Retorna true en caso de éxito
@@ -145,7 +146,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     .then((data) => {
                         localStorage.setItem("token", data.token)
-                        setStore({ token: data.token, profesionales: data.profesional });
+                        setStore({ token: data.token, profesionales: data.profesional });                        
                         console.log(data)
                         localStorage.setItem("id",data.profesional.id)                      
                         const store = getStore();
@@ -193,6 +194,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             cerrarSesionUsuario: () => {
                 const store = getStore();
                 const token = store.token;
+                localStorage.removeItem("token");
 
                 const requestOptions = {
                     method: "POST",
@@ -293,7 +295,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             cerrarSesionProfesional: () => {
                 const store = getStore();
                 const token = store.token;
-
+                localStorage.removeItem("token");
                 const requestOptions = {
                     method: "POST",
                     headers: {

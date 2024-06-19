@@ -123,7 +123,7 @@ const ConversacionUsuario = () => {
                         <div className="inputTarea">
                             <select onChange={(e) => setSelectedProfessional(JSON.parse(e.target.value))}>
                                 <option value="">Selecciona un profesional</option>
-                                {store.profesionales.map((professional) => (
+                                {store.profesionales?.map((professional) => (
                                     <option key={professional.id} value={JSON.stringify(professional)}>
                                         {professional.email}
                                     </option>
