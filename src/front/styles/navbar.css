@@ -38,3 +38,36 @@
   }
 
   .ip{color: white !important;margin: 1px;}
+
+  .navbar-nav {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+  
+  .nav-link-custom {
+    margin-left: 20px; /* Ajusta este valor según tus necesidades */
+  }
+  
+  .hover-text {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .hover-text::before {
+    content: attr(data-text);
+    position: absolute;
+    overflow: hidden;
+    max-width: 0;
+    white-space: nowrap;
+    color: #000; /* Color del texto de hover */
+    transition: max-width 0.5s;
+  }
+  
+  .hover-text:hover::before {
+    max-width: 100%;
+  }
+
+  .api {
+    color: white;
+  }

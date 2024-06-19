@@ -22,9 +22,9 @@ const InformacionIp = () => {
             {/* <h1>IP Information for {ipInfo.ip}</h1> */}
             {/* <p>Type: {ipInfo.version}</p>
             <p>Continent: {ipInfo.continent_code}</p> */}
-            <p>Country: {ipInfo.country_name} ({ipInfo.country_code})</p>
+            <p>País: {ipInfo.country_name} ({ipInfo.country_code})</p>
             {/* <p>Region: {ipInfo.region} ({ipInfo.region_code})</p> */}
-            <p>City: {ipInfo.city}</p>
+            <p>Ciudad: {ipInfo.city}</p>
             {/* <p>Latitude: {ipInfo.latitude}</p>
             <p>Longitude: {ipInfo.longitude}</p> */}
             {/* <p>Postal Code: {ipInfo.postal}</p> */}

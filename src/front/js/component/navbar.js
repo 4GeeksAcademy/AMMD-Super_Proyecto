@@ -44,7 +44,7 @@ const Navbar = () => {
             <span className="hover-text" data-text="Área de profesionales">Área de profesionales</span>
           </a>
         </li>
-        <li>
+        <li className="api">
           <InformacionIp/>
         </li>
       </ul>
