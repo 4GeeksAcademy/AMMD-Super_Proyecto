@@ -7,6 +7,8 @@ import logoInstagram from "../../img/logoInstagram.png"
 import logoTiktok from "../../img/logoTiktok.png"
 import "../../styles/navbar.css";
 import InformacionIp from "./informacionIP";
+import { VistaInformacionIP } from "../pages/vistaInformacionIp";
+
 
 
 const Navbar = () => {
@@ -20,7 +22,8 @@ const Navbar = () => {
     <a className="navbar-brand" href="#" onClick={() => navigate(`/`)}>
       <img src={Cocinero_adopta_un_chef} alt="logo_adoptaunchef" style={{ height: '80px', width: 'auto' }}></img>
       <img src={Titulo_adopta_un_chef} alt="titulo_adoptaunchef" style={{ height: '100px', width: 'auto', marginLeft: '10px' }}></img>
-    </a>
+    </a>   
+   
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>

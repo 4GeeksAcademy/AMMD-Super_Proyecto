@@ -6,6 +6,7 @@ import logoFacebook from "../../img/logoFacebook.png"
 import logoInstagram from "../../img/logoInstagram.png"
 import logoTiktok from "../../img/logoTiktok.png"
 import "../../styles/navbarAbajo.css";
+import InformacionIp from "./informacionIP";
 
 
 

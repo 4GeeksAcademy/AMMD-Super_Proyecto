@@ -11,8 +11,8 @@ export const VistaContratacionProfesional = () => {
     const id_profesional = profesional_id
     const coment_text = "Texto de ejemplo";
 
-    const handleClick = (profesional_id, usuario_id, coment_text) => {
-        actions.crearConversacion(profesional_id, usuario_id, coment_text)
+    const handleClick = () => {
+        navigate("/conversacion")
     };
 
     return (
@@ -23,7 +23,7 @@ export const VistaContratacionProfesional = () => {
                         <button 
                             type="button" 
                             className="btn btn-success"
-                            onClick={() => handleClick(profesional_id, usuario_id, coment_text)}
+                            onClick={handleClick}
                         >
                             ¿Hablamos?
                         </button>

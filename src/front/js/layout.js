@@ -35,7 +35,7 @@ import { VistaOrdenDeServicio } from "./pages/vistaOrdenDeServicio";
 import VistaServiciosContratadosUsuario from "./pages/vistaServicioContratadoUsuario";
 import VistaServiciosContratadosProfesional from "./pages/vistaServiciosContratadosProfesional";
 import { VistaInformacionIP } from "./pages/vistaInformacionIp";
-
+import { VistaConversacionProfesional } from "./pages/vistaConversacionProfesional";
 
 
 //create your first component
@@ -77,6 +77,7 @@ const Layout = () => {
                         <Route element={<VistaServiciosContratadosProfesional/>} path="/servicioscontratadosprofesional" />
                         {/* //path de prueba */}
                         <Route element={<VistaInformacionIP/>} path="/infoip" />
+                        <Route element={<VistaConversacionProfesional />} path="/conversacionprofesional" />
 
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />

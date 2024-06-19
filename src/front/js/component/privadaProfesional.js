@@ -44,6 +44,9 @@ const handleCrearOrden = () => {
   navigate('/ordenservicio'); 
 };
 
+const handleHablar = () => {   
+  navigate('/conversacionprofesional'); 
+};
 
   return (
     <div>
@@ -117,6 +120,7 @@ const handleCrearOrden = () => {
             <button type="button" className="btn eliminar-profesional"  onClick={handleEliminar}>ELIMINAR</button>
             <button type="button" className="btn "  onClick={handleCrearOrden}>CREAR ORDEN DE SERVICIO</button>
             <button type="button" className="btn "  onClick={handleServicio}>ESTADO DE TUS SERVICIOS</button>
+            <button type="button" className="btn eliminar-cliente"    onClick={handleHablar}>REVISA TUS MENSAJES</button>
             </div>
         </div>
       </div>

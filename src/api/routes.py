@@ -322,8 +322,6 @@ def eliminar_profesional():
 
     return jsonify({"msg": "Profesional eliminado exitosamente"}), 200
 
-
-
 @api.route('/crearconversacion', methods=['POST'])
 def crear_conversacion():
     data = request.get_json()
@@ -351,53 +349,60 @@ def crear_conversacion():
 
     return jsonify({"msg": "Conversación creada exitosamente"}), 201
 
-@api.route('/profesional/<int:profesional_id>/mensajes', methods=['GET'])
-def cargar_mensajes_profesional(profesional_id):
-    # Obtener todos los mensajes de conversación enviados al profesional con el ID proporcionado
-    mensajes = Conversacion.query.filter_by(profesional_id=profesional_id).all()
-    
-    # Verificar si hay mensajes para el profesional
-    if not mensajes:
-        return jsonify({"msg": "No hay mensajes para este profesional"}), 404
-    
-    # Serializar los objetos de mensaje a un formato JSON
-    mensajes_serializados = [mensaje.serialize() for mensaje in mensajes]
-    
-    return jsonify({"mensajes": mensajes_serializados}), 200
 
-@api.route('/profesional/<int:profesional_id>/mensajes/<int:mensaje_id>/responder', methods=['POST'])
-def responder_mensaje_profesional(profesional_id, mensaje_id):
-    data = request.get_json()
-    comentario = data.get("comentario")
 
-    # Verificar si se proporcionó un comentario
-    if not comentario:
-        return jsonify({"msg": "Se requiere un comentario para responder al mensaje"}), 400
+@api.route('/api/conversacionesprofesional/<int:id>/responder', methods=['POST'])
+def responder_conversacion(id):
+    token = request.headers.get('Authorization')
+    
+    if not token:
+        return jsonify({'error': 'Token no encontrado'}), 401
 
-    # Verificar si el mensaje pertenece al profesional
-    mensaje = Conversacion.query.filter_by(id=mensaje_id, profesional_id=profesional_id).first()
+    data = request.json
+    mensaje = data.get('mensaje')
+
     if not mensaje:
-        return jsonify({"msg": "El mensaje no existe o no está asociado a este profesional"}), 404
+        return jsonify({'error': 'El mensaje es requerido'}), 400    
 
-    # Agregar la respuesta al mensaje
-    mensaje.coment_text = comentario
+    conversacion = Conversacion.query.get(id)
+    
+    if not conversacion:
+        return jsonify({'error': 'Conversación no encontrada'}), 404
+
+    nuevo_mensaje = {
+        'id': len(conversacion.mensajes) + 1,
+        'texto': mensaje
+    }
+
+    conversacion.mensajes.append(nuevo_mensaje)
     db.session.commit()
 
-    return jsonify({"msg": "Respuesta enviada exitosamente"}), 201
+    return jsonify({'mensaje': nuevo_mensaje})
 
-@api.route("/conversaciones_usuario", methods=["GET"])
+
+@api.route('/conversacionesusuario', methods=['GET'])
 @jwt_required()
-def get_user_conversations():
-    # Obtener el ID del usuario actualmente autenticado
-    user_id = get_jwt_identity()
+def get_professional_conversations():
+    profesional_id = get_jwt_identity()
 
-    # Buscar todas las conversaciones en las que el usuario está involucrado
-    conversaciones = Conversacion.query.filter(Conversacion.usuario_id == user_id).all()
-
-    # Serializar las conversaciones para enviarlas como respuesta
+    conversaciones = Conversacion.query.filter_by(usuario_id=profesional_id)
+    print(profesional_id)
     conversaciones_serializadas = [conversacion.serialize() for conversacion in conversaciones]
 
     return jsonify({"conversaciones": conversaciones_serializadas}), 200
+
+
+@api.route("/conversacionesprofesional", methods=["GET"])
+@jwt_required()
+def get_user_conversations():
+    user_id = get_jwt_identity()
+
+    conversaciones = Conversacion.query.filter_by(profesional_id=user_id)
+    print(user_id)
+    conversaciones_serializadas = [conversacion.serialize() for conversacion in conversaciones]
+
+    return jsonify({"conversaciones": conversaciones_serializadas}), 200
+
 
 
 # Método para agregar un profesional a la lista de favoritos de un usuario
