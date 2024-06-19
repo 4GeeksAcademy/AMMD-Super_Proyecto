@@ -19,10 +19,6 @@ const ConversacionProfesional = () => {
         actions.obtenerConversaciones();
     }, []);
 
-    useEffect(() => {
-        console.log(store.conversaciones);
-    }, [store.conversaciones]);
-
     const handleLogin = async () => {
         try {
             console.log(`Intentando iniciar sesión con email: ${email}`);
@@ -47,8 +43,8 @@ const ConversacionProfesional = () => {
         if (selectedConversacion && respuesta.trim() !== "") {
             const data = {      
                 profesional_id: selectedConversacion.profesional_id,
-                coment_text : respuesta,
-                usuario_id : selectedConversacion.usuario_id
+                coment_text: respuesta,
+                usuario_id: selectedConversacion.usuario_id
             }
             await actions.crearConversacion(data);
             setRespuesta(""); // Limpiar el campo de respuesta
@@ -60,10 +56,31 @@ const ConversacionProfesional = () => {
     if (!Array.isArray(store.profesionales)) {
         return <div>Cargando profesionales...</div>;
     }
-    const handleVolver = () => {
-        navigate('/privadacliente')
-      };
 
+    const handleVolver = () => {
+        navigate('/privadacliente');
+    };
+
+    // Función para agrupar conversaciones por el email del usuario
+    const groupConversationsByUser = (conversaciones) => {
+        const groupedConversaciones = {};
+        conversaciones.forEach(conversacion => {
+            const userEmail = conversacion.usuario?.email || "Usuario desconocido";
+            if (!groupedConversaciones[userEmail]) {
+                groupedConversaciones[userEmail] = [];
+            }
+            groupedConversaciones[userEmail].push(conversacion);
+        });
+        return groupedConversaciones;
+    };
+
+    // Función para determinar si un mensaje es el último dentro de su grupo
+    const esUltimoMensaje = (emailKey, conversacion) => {
+        const conversacionesUsuario = conversacionesAgrupadas[emailKey];
+        return conversacion === conversacionesUsuario[conversacionesUsuario.length - 1];
+    };
+
+    const conversacionesAgrupadas = groupConversationsByUser(store.conversaciones);
 
     return (
         <div className="fondo">
@@ -91,21 +108,28 @@ const ConversacionProfesional = () => {
                     </div>
                 ) : (
                     <div>
-                        <div className="conversaciones">
-                            <h3>Conversaciones:</h3>
-                            <ul>
-                                {store.conversaciones.map((conversacion) => (
-                                    <li key={conversacion.id} onClick={() => handleSelectConversacion(conversacion)}>
-                                        <div><strong>De:</strong> {conversacion.usuario?.email || "Usuario desconocido"}</div>
-                                        <div>{conversacion.coment_text}</div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        {/* Renderización de conversaciones agrupadas */}
+                        {Object.keys(conversacionesAgrupadas).map((emailKey, index) => (
+                            <div key={index} className="conversaciones">
+                                <h3>Conversaciones de {emailKey}:</h3>
+                                <ul>
+                                    {conversacionesAgrupadas[emailKey].map((conversacion, idx) => (
+                                        <li
+                                            key={conversacion.id}
+                                            onClick={() => handleSelectConversacion(conversacion)}
+                                        >
+                                            {esUltimoMensaje(emailKey, conversacion) && (
+                                                <span className="ultimo-mensaje-text">Último mensaje: </span>
+                                            )}
+                                            <div>{conversacion.coment_text}</div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                         {selectedConversacion && (
                             <div className="respuesta">
                                 <h4>Responde a la conversación seleccionada:</h4>
-                                <div><strong>De:</strong> {selectedConversacion.usuario?.email || "Usuario desconocido"}</div>
                                 <input
                                     type="text"
                                     value={respuesta}
@@ -119,7 +143,7 @@ const ConversacionProfesional = () => {
                     </div>
                 )}
             </div>
-            <button type="button" className="btn volver"    onClick={handleVolver}>VOLVER</button>
+            <button type="button" className="btn volver" onClick={handleVolver}>VOLVER</button>
         </div>
     );
 };

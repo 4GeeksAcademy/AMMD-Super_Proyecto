@@ -349,6 +349,8 @@ def crear_conversacion():
 
     return jsonify({"msg": "Conversación creada exitosamente"}), 201
 
+
+
 @api.route('/api/conversacionesprofesional/<int:id>/responder', methods=['POST'])
 def responder_conversacion(id):
     token = request.headers.get('Authorization')
@@ -383,8 +385,8 @@ def responder_conversacion(id):
 def get_professional_conversations():
     profesional_id = get_jwt_identity()
 
-    conversaciones = Conversacion.query.filter_by(profesional_id=profesional_id).all()
-
+    conversaciones = Conversacion.query.filter_by(usuario_id=profesional_id)
+    print(profesional_id)
     conversaciones_serializadas = [conversacion.serialize() for conversacion in conversaciones]
 
     return jsonify({"conversaciones": conversaciones_serializadas}), 200
@@ -395,11 +397,13 @@ def get_professional_conversations():
 def get_user_conversations():
     user_id = get_jwt_identity()
 
-    conversaciones = Conversacion.query.filter_by(usuario_id=user_id)
-
+    conversaciones = Conversacion.query.filter_by(profesional_id=user_id)
+    print(user_id)
     conversaciones_serializadas = [conversacion.serialize() for conversacion in conversaciones]
 
     return jsonify({"conversaciones": conversaciones_serializadas}), 200
+
+
 
 # Método para agregar un profesional a la lista de favoritos de un usuario
 @api.route("/agregarfavorito/<int:profesional_id>", methods=["POST"])
