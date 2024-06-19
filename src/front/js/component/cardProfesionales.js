@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/cardProfesionales.css";
 
 
-const CardProfesionales = ({nombre, localizacion, tipo_de_profesional, tipo_de_cocina_especialidad, tipo_servicio, profesional_id, children }) => {
+const CardProfesionales = ({nombre, localizacion, tipo_de_profesional, tipo_de_cocina_especialidad, tipo_servicio_pica_pica, tipo_servicio_chef_taller_de_cocina, profesional_id, children }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -35,13 +35,6 @@ const CardProfesionales = ({nombre, localizacion, tipo_de_profesional, tipo_de_c
                         <p className="card-text">
                             Tipo de cocina: {tipo_de_cocina_especialidad}
                         </p>
-                        <p className="card-text">
-                            Tipo de servicio: {tipo_servicio}
-                        </p>
-                        <p className="card-text">
-                            Reseñas
-                        </p>
-                        {children}
                         <button  
                             onClick={handleClick}
                         >
