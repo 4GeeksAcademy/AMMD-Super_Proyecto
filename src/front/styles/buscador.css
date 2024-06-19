@@ -1,27 +1,28 @@
-
-
 .buscador {
     margin-top: -50px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px 5px;
     gap: 10px;
     flex-wrap: wrap; /* Permite que el contenido se ajuste y envuelva */
-    background-color: #6C7884;
-    border-bottom: #C09F65 solid 10px;
+    background-color: #C19F65;
 }
 
-.nav-link {
+.nav-link.disabled {
     font-size: 35px;
-    color: black;
-    border-bottom: #C09F65 solid 3px;
+    color: #212529;
+    border-bottom: #414141 solid 3px;
 
 }
-
 
 .dropdown-menu {
     max-height: 250px; /* Ajusta esta altura según sea necesario */
     overflow-y: auto; /* Añade scroll vertical si el contenido excede la altura máxima */
 }
 
+.dropdown .btn {
+    font-size: 18px; /* Tamaño de fuente reducido para los botones */
+    padding: 10px 30px; /* Reducción del padding para hacer los botones más pequeños */
+}
