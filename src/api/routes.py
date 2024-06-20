@@ -19,8 +19,7 @@ api = Blueprint('api', __name__)
 
 mail = Mail()
 # Allow CORS requests to this API
-CORS(api)
-
+CORS(api, origins=['https://sample-service-name-quuc.onrender.com'])
 # This should be implemented as a proper storage (e.g., a database or an in-memory store like Redis)
 # revoked_tokens = set()
 
