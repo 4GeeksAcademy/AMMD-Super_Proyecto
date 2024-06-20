@@ -56,7 +56,7 @@
     background: #202529;
     box-shadow: 3px 3px #6c452b;
     cursor: pointer;
-    margin: 35px 0;
+    margin: 5px 0;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
   

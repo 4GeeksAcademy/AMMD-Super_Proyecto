@@ -78,7 +78,7 @@ const PrivadaCliente = () => {
             <p className="editable-placeholder" data-placeholder="Codigo Postal: "> </p>
             <p className="editable-placeholder" data-placeholder="Alergias: "> {store.usuarios.alergias} </p>
             <button type="button" className="btn eliminar-cliente"    onClick={handleServiciosContratadosUsuario}>SERVICIOS CONTRATADOS</button>
-            <button type="button" className="btn eliminar-cliente"    onClick={handleHablar}>HABLA CON UN CLIENTE</button>
+            <button type="button" className="btn eliminar-cliente"    onClick={handleHablar}>HABLA CON UN PROFESIONAL</button>
             <button 
               type="button"
               className="btn editar-cliente"
