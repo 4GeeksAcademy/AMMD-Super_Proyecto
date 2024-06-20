@@ -25,7 +25,7 @@ static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../public/')
 load_dotenv()
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=['https://sample-service-name-quuc.onrender.com'])
 app.url_map.strict_slashes = False
 BASE_URL = os.getenv('BACKEND_URL')
 
