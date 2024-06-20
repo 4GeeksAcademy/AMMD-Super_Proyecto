@@ -17,13 +17,15 @@ from dotenv import load_dotenv
 from flask_mail import Mail, Message
 from api.routes import api
 from datetime import timedelta
-# from models import Person
+from flask_cors import CORS
+# from models import Pers on
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../public/')
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
 app.url_map.strict_slashes = False
 BASE_URL = os.getenv('BACKEND_URL')
 
