@@ -83,7 +83,13 @@ body {
     display: -webkit-box; /* Compatibilidad con webkit */
     -webkit-line-clamp: 6; /* Número de líneas que quieres mostrar */
     -webkit-box-orient: vertical; /* Orientación vertical */
-  }
+    
+    /* Propiedades estándar para futura compatibilidad */
+    display: box; /* Se está agregando para compatibilidad futura con especificación estándar */
+    box-orient: vertical; /* Orientación vertical estándar */
+    line-clamp: 6; /* Propiedad estándar */
+}
+
   
   .accordion-container {
     display: flex;
