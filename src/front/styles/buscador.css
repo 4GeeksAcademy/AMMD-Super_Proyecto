@@ -11,9 +11,9 @@
 }
 
 .nav-link.disabled {
-    font-size: 35px;
+    font-size: 20px;
     color: #212529;
-    border-bottom: #414141 solid 3px;
+    
 
 }
 

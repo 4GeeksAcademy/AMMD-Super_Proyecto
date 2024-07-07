@@ -1,6 +1,7 @@
 import React from 'react';
 import "../../styles/sobreNosotros.css";
 import logoammd from "../../img/logoammd.png"
+import Manu from "../../img/Manu.png"
 
 
 const SobreNosotros = () => {
@@ -31,10 +32,10 @@ const SobreNosotros = () => {
           </div>
           <div className="col-3">
             <div className="card" style={{width: '18rem'}}>
-              <img src="https://via.placeholder.com/150" className="card-img-top" alt="Manu" />
+              <img src={Manu} alt="Manu" style={{ height: 'auto', width: 'auto',  }}></img>
               <div className="card-body">
                 <h5 className="card-title">Manu</h5>
-                <h5 className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</h5>
+                <h5 className="card-text">Soy un desarrollador Full-Stack con más de 15 años de experiencia en administracion en las Fuerzas Armadas. Hago uso de mis habilidades técnicas para crear soluciones tecnológicas eficientes.</h5>
               </div>
             </div>
           </div>

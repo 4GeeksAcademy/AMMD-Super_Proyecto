@@ -66,17 +66,17 @@ const PrivadaCliente = () => {
             />
           </div>
           
-          <div className="col">                            
+          <div className="col privada cliente">                            
             <h3>Hola !!!</h3>
             <br />
-            <p className="editable-placeholder" data-placeholder="Nombre: "> {store.usuarios.nombre}</p>
-            <p className="editable-placeholder" data-placeholder="Apellidos: "> {store.usuarios.apellidos} </p>
-            <p className="editable-placeholder" data-placeholder="Email: "> {store.usuarios.email} </p>
-            <p className="editable-placeholder" data-placeholder="Dirección: "> {store.usuarios.direccion}</p>          
-            <p className="editable-placeholder" data-placeholder="País: "> </p>
-            <p className="editable-placeholder" data-placeholder="Población: "> {store.usuarios.localizacion}</p>
-            <p className="editable-placeholder" data-placeholder="Codigo Postal: "> </p>
-            <p className="editable-placeholder" data-placeholder="Alergias: "> {store.usuarios.alergias} </p>
+            <a className="editable-placeholder" data-placeholder="Nombre: "> {store.usuarios.nombre}</a>
+            <a className="editable-placeholder" data-placeholder="Apellidos: "> {store.usuarios.apellidos} </a>
+            <a className="editable-placeholder" data-placeholder="Email: "> {store.usuarios.email} </a>
+            <a className="editable-placeholder" data-placeholder="Dirección: "> {store.usuarios.direccion}</a>          
+            <a className="editable-placeholder" data-placeholder="País: "> </a>
+            <a className="editable-placeholder" data-placeholder="Población: "> {store.usuarios.localizacion}</a>
+            <a className="editable-placeholder" data-placeholder="Codigo Postal: "> </a>
+            <a className="editable-placeholder" data-placeholder="Alergias: "> {store.usuarios.alergias} </a>
             <button type="button" className="btn eliminar-cliente"    onClick={handleServiciosContratadosUsuario}>SERVICIOS CONTRATADOS</button>
             <button type="button" className="btn eliminar-cliente"    onClick={handleHablar}>HABLA CON UN PROFESIONAL</button>
             <button 

@@ -118,3 +118,9 @@
   .btn.eliminar-cliente {
     margin: 0px; /* Agrega un margen superior al botón "ELIMINAR" */
   }
+
+  .editable-placeholder {
+    display: block; /* Hace que el enlace se comporte como un bloque */
+    margin-bottom: 10px; /* Opcional: Agrega espacio entre los enlaces */
+    text-decoration: transparent;
+}

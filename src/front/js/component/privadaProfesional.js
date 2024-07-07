@@ -64,12 +64,12 @@ const handleHablar = () => {
           <div className="col">
             <h3>Hola {store.profesionales.nombre}!</h3>         
             <br />
-            <p className="editable-placeholder" data-placeholder="Nombre: ">{store.profesionales.nombre}</p>
-            <p className="editable-placeholder" data-placeholder="Apellido: ">{store.profesionales.apellidos}</p>
-            <p className="editable-placeholder" data-placeholder="Email: ">{store.profesionales.email}</p>
-            <p className="editable-placeholder" data-placeholder="Profesion: ">{store.profesionales.tipo_de_profesional}</p>
-            <p className="editable-placeholder" data-placeholder="Información adicional: ">{store.profesionales.info_adicional}</p>
-            <p className="editable-placeholder" data-placeholder="Población: ">{store.profesionales.localizacion}</p>
+            <a className="editable-placeholder" data-placeholder="Nombre: ">{store.profesionales.nombre}</a>
+            <a className="editable-placeholder" data-placeholder="Apellido: ">{store.profesionales.apellidos}</a>
+            <a className="editable-placeholder" data-placeholder="Email: ">{store.profesionales.email}</a>
+            <a className="editable-placeholder" data-placeholder="Profesion: ">{store.profesionales.tipo_de_profesional}</a>
+            <a className="editable-placeholder" data-placeholder="Información adicional: ">{store.profesionales.info_adicional}</a>
+            <a className="editable-placeholder" data-placeholder="Población: ">{store.profesionales.localizacion}</a>
 
             {store.profesionales.tipo_de_profesional === "chef" && (
               <>
