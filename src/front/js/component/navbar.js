@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     // bg-body-tertiary
-<nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{ marginBottom: '50px' }}> 
+<nav className="navbar navbar-expand-lg navbar-dark bg-dark"> 
   <div className="container-fluid">
     <a className="navbar-brand" href="#" onClick={() => navigate(`/`)}>
       <img src={Cocinero_adopta_un_chef} alt="logo_adoptaunchef" style={{ height: '80px', width: 'auto' }}></img>

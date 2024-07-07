@@ -1,10 +1,9 @@
 .buscador {
-    margin-top: -50px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 5px;
+    
     gap: 10px;
     flex-wrap: wrap; /* Permite que el contenido se ajuste y envuelva */
     background-color: #C19F65;

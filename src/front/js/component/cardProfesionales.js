@@ -35,11 +35,14 @@ const CardProfesionales = ({nombre, localizacion, tipo_de_profesional, tipo_de_c
                         <p className="card-text">
                             Tipo de cocina: {tipo_de_cocina_especialidad}
                         </p>
-                        <button  
-                            onClick={handleClick}
-                        >
-                            ¿Quieres saber más de mí?
-                        </button>
+                        <div className="cardProfesionales">
+                           <button  
+                                onClick={handleClick}
+                            >
+                                ¿Quieres saber más de mí?
+                            </button> 
+                        </div>
+                            
 
                     </div>
                 </div>

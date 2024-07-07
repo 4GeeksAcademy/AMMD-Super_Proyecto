@@ -44,7 +44,7 @@ const Buscador = () => {
     console.log(localizacion)
 
     return (
-        <div className="buscador" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px 5px', gap: '10px' }}>
+        <div className="buscador">
             <ul className="nav" style={{ marginRight: '10px' }}>
                 <li className="nav-item">
                     <a className="nav-link disabled" aria-disabled="true"><strong>¿Qué te apetece?</strong></a>
