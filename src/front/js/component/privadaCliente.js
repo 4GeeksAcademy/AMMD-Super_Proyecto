@@ -54,7 +54,7 @@ const PrivadaCliente = () => {
 
   return (
     <div>
-      <button type="button" className="btn cerrar-cliente" style={{ position: 'absolute', top: 335, right: 0 }}  onClick={handleCerrarSesion}>CERRAR </button>
+      <button type="button" className="btn cerrar-cliente" style={{ position: 'absolute', top: 215, right: 0 }}  onClick={handleCerrarSesion}>CERRAR </button>
       <div className="container text-center">
         <div className="row">
           <div className="col">

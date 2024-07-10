@@ -50,7 +50,7 @@ const handleHablar = () => {
 
   return (
     <div>
-      <button type="button" className="btn cerrar-profesional" style={{ position: 'absolute', top: 335, right: 0 }}  onClick={handleCerrarSesion}>CERRAR </button>
+      <button type="button" className="btn cerrar-profesional" style={{ position: 'absolute', top: 215, right: 0 }}  onClick={handleCerrarSesion}>CERRAR </button>
       <div className="container text-center">
         <div className="row">
           <div className="col">
@@ -61,7 +61,7 @@ const handleHablar = () => {
               height="450" 
             />
           </div>
-          <div className="col">
+          <div className="col privada profesional">
             <h3>Hola {store.profesionales.nombre}!</h3>         
             <br />
             <a className="editable-placeholder" data-placeholder="Nombre: ">{store.profesionales.nombre}</a>

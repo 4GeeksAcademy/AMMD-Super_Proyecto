@@ -1,3 +1,9 @@
+div.col.privada.profesional {
+  margin-top: 20px;
+  position: relative; /* Necesario para que el botón absoluto se posicione relativo a este contenedor */
+  text-align: left;
+}
+
 .btn.editar-profesional {
     margin: 10px; /* Agrega un margen inferior al botón "EDITAR" */
   }

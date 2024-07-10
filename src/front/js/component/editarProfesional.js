@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import "../../styles/editarProfesional.css"
 
 const EditarProfesional = () => {
     const { actions } = useContext(Context);
@@ -122,7 +123,7 @@ const EditarProfesional = () => {
                             height="300"
                         />
                     </div>
-                    <div className="col">
+                    <div className="col editar profesional">
                     <button
                             type="button"
                             className="btn"
@@ -133,22 +134,22 @@ const EditarProfesional = () => {
                         <button type="button" className="btn"  onClick={handleSubmit1}>VOLVER TU PAGINA</button>
                         <div className="col">
                             <form onSubmit={handleSubmit}>
-                                <div>
+                                <div className="e profesional">
                                     <input type="text" name="nombre" value={formData.nombre} placeholder="Nombre" onChange={handleChange} />
                                     {console.log(formData)}
                                 </div>
-                                <br></br>
+                                
                                 {/* <input type="text" name="email" value={formData.email} placeholder="email" onChange={handleChange} />
                                 {console.log(formData)} */}
-                                <div>
+                                <div className="e profesional">
                                     <input type="text" name="apellidos" value={formData.apellidos} placeholder="Apellidos" onChange={handleChange} />
                                 </div>
-                                <br></br>
-                                <div>
+                                
+                                <div className="e profesional">
                                     <input type="text" name="telefono" value={formData.telefono} placeholder="Teléfono" onChange={handleChange} />
                                 </div>
-                                <br></br>
-                                <div>
+                                
+                                <div className="e profesional">
                                     <select name="localizacion" value={formData.localizacion} onChange={handleChange}>
                                         <option value="">Selecciona una localización</option>
                                         <option value="madrid">Madrid</option>
@@ -156,21 +157,21 @@ const EditarProfesional = () => {
                                         <option value="valencia">Valencia</option>
                                     </select>
                                 </div>
-                                <br></br>
-                                <div>
+                                
+                                <div className="e profesional">
                                     <input type="text" name="direccion" value={formData.direccion} placeholder="Dirección" onChange={handleChange} />
                                 </div>
-                                <br></br>
+                                
                                 {/* <input type="text" name="foto_de_perfil" value={formData.foto_de_perfil} placeholder="Foto de Perfil" onChange={handleChange} /> */}
-                                <div>
+                                <div className="e profesional">
                                     <input type="text" name="descripcion" value={formData.descripcion} placeholder="Descripción" onChange={handleChange} />
                                 </div>
-                                <br></br>
-                                <div>
+                                
+                                <div className="e profesional">
                                     <input type="text" name="info_adicional" value={formData.info_adicional} placeholder="Información adicional" onChange={handleChange} />
                                 </div>
-                                <br></br>
-                                <div>
+                                
+                                <div className="e profesional">
                                     <select name="tipo_de_profesional" value={formData.tipo_de_profesional} onChange={handleChange}>
                                         <option value="">Selecciona el tipo de profesional</option>
                                         <option value="chef">Chef</option>
@@ -183,22 +184,22 @@ const EditarProfesional = () => {
                                 
                                 {formData.tipo_de_profesional === "chef" && (
                                     <>
-                                        <div>
+                                        <div className="e profesional">
                                             <input type="text" name="tipo_servicio_chef_pica_pica" value={formData.tipo_servicio_chef_pica_pica} placeholder="Servicio Chef Pica Pica" onChange={handleChange} />
                                         </div>
-                                        <div>
+                                        <div className="e profesional">
                                             <input type="text" name="tipo_servicio_chef_taller_de_cocina" value={formData.tipo_servicio_chef_taller_de_cocina} placeholder="Servicio Chef Taller de Cocina" onChange={handleChange} />
                                         </div>
-                                        <div>
+                                        <div className="e profesional">
                                             <input type="text" name="tipo_servicio_chef_comida_de_trabajo" value={formData.tipo_servicio_chef_comida_de_trabajo} placeholder="Servicio Chef Comida de Trabajo" onChange={handleChange} />
                                         </div>
-                                        <div>
+                                        <div className="e profesional">
                                             <input type="text" name="tipo_servicio_chef_servicio_degustacion" value={formData.tipo_servicio_chef_servicio_degustacion} placeholder="Menú degustación" onChange={handleChange} />
                                         </div>
-                                        <div>
+                                        <div className="e profesional">
                                             <input type="text" name="tipo_servicio_chef_comida_informal" value={formData.tipo_servicio_chef_comida_informal} placeholder="Servicio Chef Comida Informal" onChange={handleChange} />
                                         </div>
-                                        <div>
+                                        <div className="e profesional">
                                             <input type="text" name="tipo_servicio_chef_batchcooking" value={formData.tipo_servicio_chef_batchcooking} placeholder="Servicio Chef Batchcooking" onChange={handleChange} />
                                         </div>                                       
                                     </>

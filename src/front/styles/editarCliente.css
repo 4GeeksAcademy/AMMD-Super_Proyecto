@@ -1,0 +1,9 @@
+div.col.editar.cliente {
+    margin-top: 20px;
+    position: relative; /* Necesario para que el botón absoluto se posicione relativo a este contenedor */
+    text-align: left;
+  }
+
+  div.e.cliente {
+    margin-bottom: 5px;
+  }

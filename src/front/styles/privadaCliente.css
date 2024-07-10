@@ -1,19 +1,11 @@
 /* Contenedor principal */
-.privadaCliente {
+div.col.privada.cliente {
     margin-top: 20px;
     position: relative; /* Necesario para que el botón absoluto se posicione relativo a este contenedor */
+    text-align: left;
   }
   
-  .close-button {
-    position: absolute; /* Posiciona el botón absolutamente dentro del contenedor */
-    top: -50px; /* Cambiado a 0px para subir más el botón */
-    right: 10px; /* Ajusta según desees el margen derecho */
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    padding: 5px 10px;
-  }
-  
+
   /* Centrado */
   .text-center {
     text-align: center;

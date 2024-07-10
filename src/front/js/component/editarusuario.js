@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import "../../styles/editarCliente.css"
 
 const EditarUsuario = () => {
     const { actions } = useContext(Context);
@@ -88,7 +89,7 @@ const EditarUsuario = () => {
                             height="300"
                         />
                     </div>
-                    <div className="col">
+                    <div className="col editar cliente">
                         <button
                             type="button"
                             className="btn"
@@ -98,37 +99,37 @@ const EditarUsuario = () => {
                         </button>
                         <button type="button" className="btn"  onClick={handlePrivadaCliente}>VOLVER A TU PAGINA</button>
                         <br />
-                        <div>
+                        <div className="e cliente">
                             <input type="email" name="email" value={formData.email} placeholder="Email" onChange={handleChange} />
                         </div>
-                        <div>
+                        {/* <div className="e cliente">
                             <input type="password" name="password" value={formData.password} placeholder="Password" onChange={handleChange} />
-                        </div>
-                        <div>
+                        </div> */}
+                        <div className="e cliente">
                             <input type="text" name="nombre" value={formData.nombre} placeholder="Nombre" onChange={handleChange} />
                         </div>
-                        <div>
+                        <div className="e cliente">
                             <input type="text" name="apellidos" value={formData.apellidos} placeholder="Apellidos" onChange={handleChange} />
                         </div>
-                        <div>
+                        <div className="e cliente">
                             <input type="text" name="telefono" value={formData.telefono} placeholder="Teléfono" onChange={handleChange} />
                         </div>
-                        <div>
+                        <div className="e cliente">
                             <input type="text" name="localizacion" value={formData.localizacion} placeholder="Localización" onChange={handleChange} />
                         </div>
-                        <div>
+                        {/* <div className="e cliente">
                             <input type="text" name="longitud" value={formData.longitud} placeholder="Longitud" onChange={handleChange} />
                         </div>
-                        <div>
+                        <div className="e cliente">
                             <input type="text" name="latitud" value={formData.latitud} placeholder="Latitud" onChange={handleChange} />
-                        </div>
-                        <div>
+                        </div> */}
+                        <div className="e cliente">
                             <input type="text" name="direccion" value={formData.direccion} placeholder="Dirección" onChange={handleChange} />
                         </div>
-                        <div>
+                        <div className="e cliente">
                             <input type="text" name="tipo_de_dieta" value={formData.tipo_de_dieta} placeholder="Tipo de dieta" onChange={handleChange} />
                         </div>
-                        <div>
+                        <div className="e cliente">
                             <input type="text" name="alergias" value={formData.alergias} placeholder="Alergias" onChange={handleChange} />
                         </div>
                     </div>

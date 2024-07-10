@@ -54,34 +54,41 @@ body {
     height: 650px; /* Aumentamos la altura */
     display: flex;
     flex-direction: column;
+    justify-content: flex-end; /* Aseguramos que el contenido se alinee en la parte inferior */
     overflow: hidden; /* Para asegurarnos de que el contenido no se salga */
-  }
-  
-  .card-img-top {
+}
+
+.card-img-top {
     height: 400px; /* Aumentamos la altura de la imagen */
     object-fit: cover;
-  }
-  
-  .card-body {
-    flex: 1;
+    flex-shrink: 0; /* Aseguramos que la imagen no se reduzca */
+}
+
+.card-body {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
     overflow: hidden; /* Asegura que el contenido no se salga */
-  }
-  
-  .card-title {
+}
+
+.card-title {
     flex-shrink: 0;
     font-size: 1.5em; /* Aumentamos el tamaño del título */
     margin: 0.5em 0;
-  }
-  
-  .card-text {
+}
+
+.card-text {
     flex-grow: 1;
     font-size: 1em;
     text-align: justify;
+    overflow-y: auto; /* Permitir desplazamiento vertical si el texto es largo */
+    max-height: 150px; /* Esta es una altura máxima para el desplazamiento */
+    /* Propiedades opcionales para mejorar la apariencia del desplazamiento */
+    padding-right: 10px; /* Añadimos padding para que el scrollbar no sobreponga el texto */
     overflow: hidden; /* Asegura que el texto no se salga */
     display: -webkit-box; /* Compatibilidad con webkit */
-    -webkit-line-clamp: 6; /* Número de líneas que quieres mostrar */
+    -webkit-line-clamp: 10; /* Número de líneas que quieres mostrar */
     -webkit-box-orient: vertical; /* Orientación vertical */
     
     /* Propiedades estándar para futura compatibilidad */
@@ -89,6 +96,7 @@ body {
     box-orient: vertical; /* Orientación vertical estándar */
     line-clamp: 6; /* Propiedad estándar */
 }
+
 
   
   .accordion-container {

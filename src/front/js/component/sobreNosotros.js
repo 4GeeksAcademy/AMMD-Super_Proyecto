@@ -2,6 +2,7 @@ import React from 'react';
 import "../../styles/sobreNosotros.css";
 import logoammd from "../../img/logoammd.png"
 import Manu from "../../img/Manu.png"
+import Ainhoa from "../../img/Ainhoa.jpg"
 
 
 const SobreNosotros = () => {
@@ -23,16 +24,16 @@ const SobreNosotros = () => {
         <div className="row">
           <div className="col-3">
             <div className="card" style={{width: '18rem'}}>
-              <img src="https://via.placeholder.com/150" className="card-img-top" alt="Ainhoa" />
+              <img src={Ainhoa} className="card-img-top" alt="Ainhoa"></img>
               <div className="card-body">
                 <h5 className="card-title">Ainhoa</h5>
-                <h5 className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</h5>
+                <h5 className="card-text">Desarrolladora Web en AMMD. Con varios años de experiencia en el desarrollo de soluciones web innovadoras y un firme compromiso con la mejora continua.</h5>
               </div>
             </div>
           </div>
           <div className="col-3">
             <div className="card" style={{width: '18rem'}}>
-              <img src={Manu} alt="Manu" style={{ height: 'auto', width: 'auto',  }}></img>
+              <img src={Manu} className="card-img-top" alt="Manu"></img>
               <div className="card-body">
                 <h5 className="card-title">Manu</h5>
                 <h5 className="card-text">Soy un desarrollador Full-Stack con más de 15 años de experiencia en administracion en las Fuerzas Armadas. Hago uso de mis habilidades técnicas para crear soluciones tecnológicas eficientes.</h5>
