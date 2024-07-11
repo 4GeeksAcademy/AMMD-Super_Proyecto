@@ -4,6 +4,7 @@ import logoammd from "../../img/logoammd.png"
 import Manu from "../../img/Manu.png"
 import Ainhoa from "../../img/Ainhoa.jpg"
 import David from "../../img/David.jpg"
+import Miguel from "../../img/Miguel.jpg"
 
 const SobreNosotros = () => {
   return (
@@ -42,7 +43,7 @@ const SobreNosotros = () => {
           </div>
           <div className="col-3">
             <div className="card" style={{width: '18rem'}}>
-              <img src="https://via.placeholder.com/150" className="card-img-top" alt="Miguel" />
+              <img src={Miguel} className="card-img-top" alt="Miguel" />
               <div className="card-body">
                 <h5 className="card-title">Miguel</h5>
                 <h5 className="card-text">Desarrollador full stack con experiencia en administración de empresas y 15 años en logística, comercio internacional y ventas. Combino habilidades técnicas y empresariales para crear soluciones tecnológicas eficientes.</h5>
