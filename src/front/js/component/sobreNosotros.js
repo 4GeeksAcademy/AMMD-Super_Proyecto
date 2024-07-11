@@ -3,7 +3,7 @@ import "../../styles/sobreNosotros.css";
 import logoammd from "../../img/logoammd.png"
 import Manu from "../../img/Manu.png"
 import Ainhoa from "../../img/Ainhoa.jpg"
-
+import David from "../../img/David.jpg"
 
 const SobreNosotros = () => {
   return (
@@ -51,10 +51,10 @@ const SobreNosotros = () => {
           </div>
           <div className="col-3">
             <div className="card" style={{width: '18rem'}}>
-              <img src="https://via.placeholder.com/150" className="card-img-top" alt="David" />
+              <img src={David} className="card-img-top" alt="David" />
               <div className="card-body">
                 <h5 className="card-title">David</h5>
-                <h5 className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</h5>
+                <h5 className="card-text">¡Hola! Soy David, un desarrollador Full Stack con 25 años de experiencia como chef. Mi carrera en la gastronomía me ha enseñado la importancia de la creatividad, la precisión y el trabajo bajo presión.</h5>
               </div>
             </div>
           </div>
